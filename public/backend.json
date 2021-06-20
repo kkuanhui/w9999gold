@@ -1,0 +1,44 @@
+[
+    {
+        "sizeTraditional" : "8寸",
+        "sizeCM" : "24.5 × 19.5 cm",
+        "weightTraditional" : "5錢",
+        "priceWTax" : "44,448",
+        "priceWOTax" : "43,448"
+    },
+    {
+        "sizeTraditional" : "7寸",
+        "sizeCM" : "24.5 × 19.5 cm",
+        "weightTraditional" : "5錢",
+        "priceWTax" : "44,448",
+        "priceWOTax" : "43,448"
+    },
+    {
+        "sizeTraditional" : "6寸",
+        "sizeCM" : "24.5 × 19.5 cm",
+        "weightTraditional" : "5錢",
+        "priceWTax" : "44,448",
+        "priceWOTax" : "43,448"
+    },
+    {
+        "sizeTraditional" : "5寸",
+        "sizeCM" : "24.5 × 19.5 cm",
+        "weightTraditional" : "5錢",
+        "priceWTax" : "44,448",
+        "priceWOTax" : "43,448"
+    },
+    {
+        "sizeTraditional" : "4寸",
+        "sizeCM" : "24.5 × 19.5 cm",
+        "weightTraditional" : "5錢",
+        "priceWTax" : "44,448",
+        "priceWOTax" : "43,448"
+    },
+    {
+        "sizeTraditional" : "3寸",
+        "sizeCM" : "24.5 × 19.5 cm",
+        "weightTraditional" : "5錢",
+        "priceWTax" : "44,448",
+        "priceWOTax" : "43,448"
+    }
+]

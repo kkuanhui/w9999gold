@@ -1,25 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
 
-function App() {
+import { Fragment } from 'react';
+import NavBar from './NavBar';
+import PriceIntro from './PriceIntro';
+import PriceDetail from './PriceDetail';
+import Footer from './Footer';
+
+const App = () => {
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Fragment>
+
+      <div id="main-content">
+        <NavBar />
+        <div id="price-row" className="flex-center">
+          <PriceIntro />
+          <PriceDetail />
+        </div>
+      </div>
+      <Footer />
+
+    </Fragment>
   );
 }
+
 
 export default App;
