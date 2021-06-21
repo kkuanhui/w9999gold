@@ -1,3 +1,4 @@
+import {useState} from 'react';
 
 const PriceTable = (prop) => {
 
@@ -6,8 +7,16 @@ const PriceTable = (prop) => {
     sizeCM,
     weightTraditional,
     priceWTax,
-    // priceWOTax
+    priceWOTax
   } = prop;
+
+  const [containTax, setContainTax] = useState(false);
+
+  const onSwitchPrice = () => {
+    console.log('wwwwwqqqqq5dddddf')
+    setContainTax(!containTax)
+    
+  }
 
   return (
 
@@ -42,10 +51,14 @@ const PriceTable = (prop) => {
            style={{marginTop: "10px"}}
           >
             <span 
-            style={{color: "green", fontWeight: "bold", fontSize: "2rem"}}
+            style={{color: "green", fontWeight: "bold", fontSize: "2rem", cursor: "pointer"}}
             >
-              {priceWTax}
-            </span>元
+              {containTax?priceWTax:priceWOTax}
+            </span>
+            元
+            <button className="price-table-switch-button" onClick={() => onSwitchPrice()}>
+              {containTax?"含稅":"不含稅"}
+            </button>
           </div>
 				</div>
 

@@ -52,6 +52,7 @@ const PriceDetail = () => {
             sizeCM = {item.sizeCM}
             weightTraditional = {item.weightTraditional}
             priceWTax = {item.priceWTax}
+            priceWOTax = {item.priceWOTax}
           /> 
         )
       })

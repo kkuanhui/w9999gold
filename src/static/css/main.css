@@ -15,7 +15,7 @@ html {
     font-size: 16px;
     --theme-color: rgb(56, 56, 56);
     --component-bg-color: rgba(14, 92, 3, 0.288);
-    --gold-color: rgb(255, 196, 0);
+    --gold-color: rgb(0, 123, 255);
 }
 
 #main-content {
@@ -78,17 +78,24 @@ html {
   margin: 10px 2.5vw;
   padding: 10px 1vw;
   height: 300px;
-  width: 40vw;
+  width: clamp(80%, 40vw, 60%);
 }
 
 #price-intro {
-  
   background-color: var(--component-bg-color);
   border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 20px 20px;
+}
+
+#price-intro-title {
+    width: 80%;
+    margin-bottom: 10%;
 }
 
 #gold-futures-price {
-  
   color: var(--gold-color);
   font-size: 5vw;
 }
@@ -111,10 +118,56 @@ html {
   padding: 10%;
 }
 
+.price-table-switch-button {
+  background-color: #4e9af1;
+  display: block;
+  padding: 0.3em 1.2em;
+  margin: 0 0.1em 0.1em 0;
+  border: 0.16em soild rgab(255, 255, 255, 0);
+  border-radius: 2em;
+  font-family: 'Roboto',sans-serif;
+  font-weight: 300;
+  color: #FFFFFF;
+  text-shadow: 0 0.04em 0.04em rgba(0,0,0,0.35);
+  text-align: center;
+  transition: all 0.2s;
+}
+
+.price-table-switch-button:hover{
+  border-color: rgba(255, 255, 255, 1);
+}
+
+@media all and (max-width:30em) {
+ .price-table-switch-button {
+    display: block;
+    margin: 0.2em auto;
+  }
+}
+
+
+
+
+
+
+
 
 #price-row {
   width: 100vw;
   height: 500px;
+  display: flex;
+  flex-direction: column;
+}
+
+@media only screen and (max-width: 600px) {
+  #price-row {
+      flex-direction: column;
+  }
+}
+
+@media only screen and (min-width: 600px) {
+  #price-row {
+      flex-direction: row;
+  }
 }
 
 #price-detail {
@@ -123,5 +176,6 @@ html {
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 80%;
 }
 
