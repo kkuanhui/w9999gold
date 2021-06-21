@@ -2,31 +2,35 @@
     {
         "sizeTraditional" : "8寸",
         "sizeCM" : "24.5 × 19.5 cm",
-        "weightTraditional" : "5錢",
+        "weightTraditional" : "1錢",
         "priceWTax" : "44,448",
         "priceWOTax" : "43,448"
     },
+
     {
         "sizeTraditional" : "7寸",
         "sizeCM" : "24.5 × 19.5 cm",
-        "weightTraditional" : "5錢",
+        "weightTraditional" : "2錢",
         "priceWTax" : "44,448",
         "priceWOTax" : "43,448"
     },
+
     {
         "sizeTraditional" : "6寸",
         "sizeCM" : "24.5 × 19.5 cm",
-        "weightTraditional" : "5錢",
+        "weightTraditional" : "3錢",
         "priceWTax" : "44,448",
         "priceWOTax" : "43,448"
     },
+
     {
         "sizeTraditional" : "5寸",
         "sizeCM" : "24.5 × 19.5 cm",
-        "weightTraditional" : "5錢",
+        "weightTraditional" : "4錢",
         "priceWTax" : "44,448",
         "priceWOTax" : "43,448"
     },
+
     {
         "sizeTraditional" : "4寸",
         "sizeCM" : "24.5 × 19.5 cm",
@@ -34,11 +38,45 @@
         "priceWTax" : "44,448",
         "priceWOTax" : "43,448"
     },
+
     {
         "sizeTraditional" : "3寸",
         "sizeCM" : "24.5 × 19.5 cm",
-        "weightTraditional" : "5錢",
+        "weightTraditional" : "6錢",
+        "priceWTax" : "44,448",
+        "priceWOTax" : "43,448"
+    },
+
+    {
+        "sizeTraditional" : "7錢",
+        "sizeCM" : "24.5 × 19.5 cm",
+        "weightTraditional" : "7錢",
+        "priceWTax" : "44,448",
+        "priceWOTax" : "43,448"
+    },
+
+    {
+        "sizeTraditional" : "8錢",
+        "sizeCM" : "24.5 × 19.5 cm",
+        "weightTraditional" : "8錢",
+        "priceWTax" : "44,448",
+        "priceWOTax" : "43,448"
+    },
+
+    {
+        "sizeTraditional" : "9錢",
+        "sizeCM" : "24.5 × 19.5 cm",
+        "weightTraditional" : "9錢",
+        "priceWTax" : "44,448",
+        "priceWOTax" : "43,448"
+    },
+
+    {
+        "sizeTraditional" : "1尺",
+        "sizeCM" : "24.5 × 19.5 cm",
+        "weightTraditional" : "1尺",
         "priceWTax" : "44,448",
         "priceWOTax" : "43,448"
     }
+
 ]

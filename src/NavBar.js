@@ -3,17 +3,11 @@ const NavBar = () => {
   return (
     <nav id="navbar" className="black-theme-block">
       {/* <img src="" alt="logo"></img> */}
-      <div id="navbar-item-container" className="flex-around">
+      <div id="navbar-item-container" className="flex-start">
 
         <div className="navbar-item">
           <a href="/" className="navbar-item-link">
-            黃金價格表
-          </a>
-        </div>
-
-        <div className="navbar-item">
-          <a href="/" className="navbar-item-link">
-            聯絡我們
+            仕彩有限公司
           </a>
         </div>
 
