@@ -7,7 +7,7 @@ const PriceIntro = () => {
                 <p>黃金市價</p>
             </h1>
             <div>
-                <span id="gold-futures-price">1881.8</span><span>USD/Oz</span>
+                <span id="gold-futures-price">1881.88</span><span style={{ fontSize: "clamp(5vw, 18px, 1vw)"}}>NTD/kg</span>
             </div>
 
         </div>

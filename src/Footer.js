@@ -7,13 +7,13 @@ const Footer = () => {
           <div style={{"width": "40%", "margin": "auto"}} className="flex-around">
 
               <div className="flex-icon-block">
-                <a href="https://facebook.com" className="footer-icon-link" target="_blank">
+                <a href="https://www.facebook.com/w9999.cs" className="footer-icon-link" target="_blank">
                   <FaFacebook />
                 </a>
               </div>
 
               <div className="flex-icon-block">
-                <a href="https://instagram.com" className="footer-icon-link" target="_blank">
+                <a href="https://www.instagram.com/w999.9_gold/" className="footer-icon-link" target="_blank">
                  <FaInstagram /> 
                 </a>
               </div>
