@@ -14,6 +14,7 @@ const PriceDetail = () => {
 	const flickityOptions = {
 		initialIndex: 0,
 		wrapAround: true,
+        pageDots: false,
 	}
 
   const [Data, setData] = useState([]);
@@ -33,32 +34,39 @@ const PriceDetail = () => {
   
 	return(
 
-    <Flickity
-      className={'price-component-block'} // default ''
-      elementType={'div'} // default 'div'
-      options={flickityOptions} // takes flickity options {}
-      disableImagesLoaded={false} // default false
-      reloadOnUpdate // default false
-      static// default false
-    >
+     <div className={'price-component-block'}>
+      <Flickity
+        className={''} // default ''
+        style={{marginBottom: ""}}
+        elementType={'div'} // default 'div'
+        options={flickityOptions} // takes flickity options {}
+        disableImagesLoaded={false} // default false
+        reloadOnUpdate // default false
+        static// default false
+      >
 
-    {
-      // React require loop item must contains key. So I have to add index on each one.
-      Data.map( (item, idx) => {
-        return (
-          <PriceTable 
-            key={idx}
-            sizeTraditional = {item.sizeTraditional}
-            sizeCM = {item.sizeCM}
-            weightTraditional = {item.weightTraditional}
-            priceWTax = {item.priceWTax}
-            priceWOTax = {item.priceWOTax}
-          /> 
-        )
-      })
-    }
+      {
+        // React require loop item must contains key. So I have to add index on each one.
+        Data.map( (item, idx) => {
+          return (
+            <PriceTable 
+              key={idx}
+              sizeTraditional = {item.sizeTraditional}
+              sizeCM = {item.sizeCM}
+              weightTraditional = {item.weightTraditional}
+              priceWTax = {item.priceWTax}
+              priceWOTax = {item.priceWOTax}
+            /> 
+          )
+        })
+      }
 
-    </ Flickity>
+      </ Flickity>
+      <div id="price-detail-info">
+        <h2>特殊尺寸可以另外詢問</h2>
+        <p>以上表格只包含常規尺寸表，其他客製尺寸重量大小可聯絡詢問。</p>
+      </div>
+    </div>
 
     )
 }

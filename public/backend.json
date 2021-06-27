@@ -2,7 +2,7 @@
     {
         "sizeTraditional" : "8寸",
         "sizeCM" : "24.5 × 19.5 cm",
-        "weightTraditional" : "1錢",
+        "weightTraditional" : 1,
         "priceWTax" : "44,448",
         "priceWOTax" : "43,448"
     },
@@ -10,7 +10,7 @@
     {
         "sizeTraditional" : "7寸",
         "sizeCM" : "24.5 × 19.5 cm",
-        "weightTraditional" : "2錢",
+        "weightTraditional" : 2,
         "priceWTax" : "44,448",
         "priceWOTax" : "43,448"
     },
@@ -18,7 +18,7 @@
     {
         "sizeTraditional" : "6寸",
         "sizeCM" : "24.5 × 19.5 cm",
-        "weightTraditional" : "3錢",
+        "weightTraditional" : 2,
         "priceWTax" : "44,448",
         "priceWOTax" : "43,448"
     },
@@ -26,7 +26,7 @@
     {
         "sizeTraditional" : "5寸",
         "sizeCM" : "24.5 × 19.5 cm",
-        "weightTraditional" : "4錢",
+        "weightTraditional" : 2,
         "priceWTax" : "44,448",
         "priceWOTax" : "43,448"
     },
@@ -34,7 +34,7 @@
     {
         "sizeTraditional" : "4寸",
         "sizeCM" : "24.5 × 19.5 cm",
-        "weightTraditional" : "5錢",
+        "weightTraditional" : 2,
         "priceWTax" : "44,448",
         "priceWOTax" : "43,448"
     },
@@ -42,31 +42,31 @@
     {
         "sizeTraditional" : "3寸",
         "sizeCM" : "24.5 × 19.5 cm",
-        "weightTraditional" : "6錢",
+        "weightTraditional" : 2,
         "priceWTax" : "44,448",
         "priceWOTax" : "43,448"
     },
 
     {
-        "sizeTraditional" : "7錢",
+        "sizeTraditional" : "7寸",
         "sizeCM" : "24.5 × 19.5 cm",
-        "weightTraditional" : "7錢",
+        "weightTraditional" : 2,
         "priceWTax" : "44,448",
         "priceWOTax" : "43,448"
     },
 
     {
-        "sizeTraditional" : "8錢",
+        "sizeTraditional" : "8寸",
         "sizeCM" : "24.5 × 19.5 cm",
-        "weightTraditional" : "8錢",
+        "weightTraditional" : 2,
         "priceWTax" : "44,448",
         "priceWOTax" : "43,448"
     },
 
     {
-        "sizeTraditional" : "9錢",
+        "sizeTraditional" : "9寸",
         "sizeCM" : "24.5 × 19.5 cm",
-        "weightTraditional" : "9錢",
+        "weightTraditional" : 2,
         "priceWTax" : "44,448",
         "priceWOTax" : "43,448"
     },
@@ -74,7 +74,7 @@
     {
         "sizeTraditional" : "1尺",
         "sizeCM" : "24.5 × 19.5 cm",
-        "weightTraditional" : "1尺",
+        "weightTraditional" : 10,
         "priceWTax" : "44,448",
         "priceWOTax" : "43,448"
     }

@@ -32,6 +32,7 @@ html {
     width: 100vw;
     display: flex;
     align-items: center;
+    margin-bottom: 10px;
 }
 
 #navbar-item-container {
@@ -57,7 +58,7 @@ html {
 
 .flex-start {
     display: flex;
-    justify-content: start;
+    justify-content: flex-start;
     align-items: center;
 }
 
@@ -123,7 +124,7 @@ html {
 
 .price-table-switch-button {
   background-color: #4e9af1;
-  display: block;
+  display: inline;
   padding: 0.3em 1.2em;
   margin: 0 0.1em 0.1em 0;
   border: 0.16em soild rgab(255, 255, 255, 0);
@@ -136,6 +137,7 @@ html {
   transition: all 0.2s;
   font-size: clamp(12px, 2vw, 18px);
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  cursor: pointer;
 }
 
 .price-table-switch-button:hover{
@@ -148,10 +150,6 @@ html {
     margin: 0.2em auto;
   }
 }
-
-
-
-
 
 
 
@@ -182,5 +180,14 @@ html {
   align-items: center;
   justify-content: center;
   width: 80%;
+}
+
+#price-detail-info {
+    width: 70%;
+    margin: 10px auto;
+}
+
+.d-inline {
+    display: inline;
 }
 
