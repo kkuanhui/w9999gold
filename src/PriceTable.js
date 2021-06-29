@@ -3,52 +3,44 @@ import {useState} from 'react';
 const PriceTable = (prop) => {
 
   const {
-    future,
+    futurePrice,
     sizeTraditional,
     sizeCM,
-    weightTraditional,
-    priceWTax,
-    priceWOTax
+    initialWeight,
+    wage,
   } = prop;
 
-  const [containTax, setContainTax] = useState(false);
+  const [isContainTax, setIsContainTax] = useState(false)
 
-  const [goldWeight, setGoldWeight] = useState(weightTraditional)
+  const [priceWOTax, setPriceWOTax] = useState((initialWeight * futurePrice + wage).toFixed())
+
+  const [priceWTax,  setPriceWTax]  = useState(((initialWeight * futurePrice + wage) * 1.05).toFixed())
+
+  const [goldWeight, setGoldWeight] = useState(initialWeight)
   
-  const [weightText, setWeightText] = useState(`${weightTraditional}錢`)
-
-  //const [price, setPrice] = useState(future * goldWeight)
+  const [weightText, setWeightText] = useState(`${goldWeight}錢`)
   
-  const onSwitchPrice = () => {
-    setContainTax(!containTax)
-  }
-
   const onChangeGoldWeight = (initialWeight, inputWeight, adding) => {
-      //let a
-      //const nowWeight = (adding)?  a = inputWeight+0.1: a = inputWeight-0.1
       if (adding){
           const nowWeight = inputWeight + 0.1
           setGoldWeight(nowWeight)
           setWeightText(`${nowWeight.toFixed(1)}錢`)
+          setPriceWOTax((nowWeight * futurePrice + wage).toFixed(0))
+          setPriceWTax(((nowWeight * futurePrice + wage)*1.05).toFixed(0))
       }else{
           const nowWeight = inputWeight - 0.1
           if(nowWeight < initialWeight){
             setGoldWeight(initialWeight)
             setWeightText(`最少${initialWeight.toFixed(1)}錢`)
+            setPriceWOTax((initialWeight * futurePrice + wage).toFixed(0))
+            setPriceWTax(((initialWeight * futurePrice + wage) * 1.05).toFixed(0))
           }else{
             setGoldWeight(nowWeight)
             setWeightText(`${nowWeight.toFixed(1)}錢`)
+            setPriceWOTax((nowWeight * futurePrice + wage).toFixed(0))
+            setPriceWTax(((nowWeight * futurePrice + wage) * 1.05).toFixed(0))
           }
       }
-
-      //(nowWeight < initialWeight)?(
-      //  setGoldWeight(initialWeight),
-      //  setWeightText(`最少${initialWeight}錢`)
-      //):(
-      //);
-       
-      console.log(goldWeight)
-      console.log(weightText)
   }
 
   return (
@@ -78,10 +70,12 @@ const PriceTable = (prop) => {
                         backgroundColor: "white", 
                         borderRight: "1px solid #999", 
                         cursor: "pointer"}}
-                    onClick={() => onChangeGoldWeight(weightTraditional, goldWeight, false)}> 
+                    onClick={() => onChangeGoldWeight(initialWeight, goldWeight, false)}> 
                   <strong> - </strong> 
                 </button>
-                <div style={{textAlign: "center", display: "inline-block", width: "70%"}}>{weightText}</div>
+                <div style={{textAlign: "center", display: "inline-block", width: "70%"}}>
+                  {weightText}
+                </div>
                 <button 
                     style={{
                         width: "13%", 
@@ -90,7 +84,7 @@ const PriceTable = (prop) => {
                         backgroundColor: "white", 
                         borderLeft: "1px solid #999", 
                         cursor: "pointer"}}
-                    onClick={() => onChangeGoldWeight(weightTraditional, goldWeight, true)}>
+                    onClick={() => onChangeGoldWeight(initialWeight, goldWeight, true)}>
                   <strong> + </strong> 
                 </button>
 
@@ -106,12 +100,12 @@ const PriceTable = (prop) => {
             <div className="flex-between" style={{marginTop: "10px"}}>
                 <span>
                   <span style={{color: "green", fontWeight: "bold", fontSize: "2rem", cursor: "pointer"}}>
-                    {containTax?priceWTax:priceWOTax}
+                    {isContainTax?priceWTax:priceWOTax}
                   </span>
                     元
                 </span>
-                <button className="price-table-switch-button" onClick={() => onSwitchPrice()}>
-                  {containTax?"含稅":"不含稅"}
+                <button className="price-table-switch-button" onClick={() => setIsContainTax(!isContainTax)}>
+                  {isContainTax?"含稅":"不含稅"}
                 </button>
             </div>
 

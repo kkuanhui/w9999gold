@@ -51,11 +51,11 @@ const PriceDetail = () => {
           return (
             <PriceTable 
               key={idx}
+              futurePrice = {item.futurePrice}
               sizeTraditional = {item.sizeTraditional}
               sizeCM = {item.sizeCM}
-              weightTraditional = {item.weightTraditional}
-              priceWTax = {item.priceWTax}
-              priceWOTax = {item.priceWOTax}
+              initialWeight = {item.initalWeight}
+              wage = {item.wage}
             /> 
           )
         })
