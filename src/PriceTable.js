@@ -2,6 +2,10 @@ import {useState} from 'react';
 
 const PriceTable = (prop) => {
 
+  const currencyFormat = (num) => {
+      return `${num.replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')}`
+    }
+
   const {
     futurePrice,
     sizeTraditional,
@@ -100,7 +104,7 @@ const PriceTable = (prop) => {
             <div className="flex-between" style={{marginTop: "10px"}}>
                 <span>
                   <span style={{color: "green", fontWeight: "bold", fontSize: "2rem", cursor: "pointer"}}>
-                    {isContainTax?priceWTax:priceWOTax}
+                    {isContainTax?currencyFormat(priceWTax):currencyFormat(priceWOTax)}
                   </span>
                     元
                 </span>
