@@ -2,81 +2,82 @@
     {
         "sizeTraditional" : "8寸",
         "sizeCM" : "24.5 × 19.5 cm",
-        "weightTraditional" : 1,
-        "priceWTax" : "44,448",
-        "priceWOTax" : "43,448"
+        "initalWeight" : 1,
+        "wage" : 2337,
+        "futurePrice" : 5432
     },
 
     {
         "sizeTraditional" : "7寸",
         "sizeCM" : "24.5 × 19.5 cm",
-        "weightTraditional" : 2,
-        "priceWTax" : "44,448",
-        "priceWOTax" : "43,448"
+        "initalWeight" : 2,
+        "wage" : 2337,
+        "futurePrice" : 5432
+
     },
 
     {
         "sizeTraditional" : "6寸",
         "sizeCM" : "24.5 × 19.5 cm",
-        "weightTraditional" : 2,
-        "priceWTax" : "44,448",
-        "priceWOTax" : "43,448"
+        "initalWeight" : 2,
+        "wage" : 2337,
+        "futurePrice" : 5432
     },
 
     {
         "sizeTraditional" : "5寸",
         "sizeCM" : "24.5 × 19.5 cm",
-        "weightTraditional" : 2,
-        "priceWTax" : "44,448",
-        "priceWOTax" : "43,448"
+        "initalWeight" : 2,
+        "wage" : 2337,
+        "futurePrice" : 5432
     },
 
     {
         "sizeTraditional" : "4寸",
         "sizeCM" : "24.5 × 19.5 cm",
-        "weightTraditional" : 2,
-        "priceWTax" : "44,448",
-        "priceWOTax" : "43,448"
+        "initalWeight" : 2,
+        "wage" : 2337,
+        "futurePrice" : 5432
     },
 
     {
         "sizeTraditional" : "3寸",
         "sizeCM" : "24.5 × 19.5 cm",
-        "weightTraditional" : 2,
-        "priceWTax" : "44,448",
-        "priceWOTax" : "43,448"
+        "initalWeight" : 2,
+        "wage" : 2337,
+        "futurePrice" : 5432
     },
 
     {
         "sizeTraditional" : "7寸",
         "sizeCM" : "24.5 × 19.5 cm",
-        "weightTraditional" : 2,
-        "priceWTax" : "44,448",
-        "priceWOTax" : "43,448"
+        "initalWeight" : 2,
+        "wage" : 2337,
+        "futurePrice" : 5432
     },
 
     {
         "sizeTraditional" : "8寸",
         "sizeCM" : "24.5 × 19.5 cm",
-        "weightTraditional" : 2,
-        "priceWTax" : "44,448",
-        "priceWOTax" : "43,448"
+        "initalWeight" : 2,
+        "wage" : 2337,
+        "futurePrice" : 5432
     },
 
     {
         "sizeTraditional" : "9寸",
         "sizeCM" : "24.5 × 19.5 cm",
-        "weightTraditional" : 2,
-        "priceWTax" : "44,448",
-        "priceWOTax" : "43,448"
+        "initalWeight" : 2,
+        "wage" : 2337,
+        "futurePrice" : 5432
     },
 
     {
         "sizeTraditional" : "1尺",
         "sizeCM" : "24.5 × 19.5 cm",
-        "weightTraditional" : 10,
-        "priceWTax" : "44,448",
-        "priceWOTax" : "43,448"
+        "initalWeight" : 10,
+        "wage" : 2337,
+        "futurePrice" : 5432
     }
 
 ]
