@@ -6,7 +6,7 @@ import './static/css/flickity.css';
 import PriceTable from './PriceTable';
 
 
-import axios from 'axios';
+// import axios from 'axios';
 
 
 const PriceDetail = () => {
@@ -22,10 +22,12 @@ const PriceDetail = () => {
   // Second argument of useEffect is an enpty array [], which makes it only invoked at the first render.
   useEffect(
     () => {
-    axios.get('./backend.json')
-    .then(res => {
-      setData(res.data)
-      })
+    fetch('http://localhost:5000/Backend1')
+    .then(res => 
+        res.json()
+      ).then(data => 
+      setData(data)
+      )
     .catch(err => 
       console.log('Something goes wrong.\n', err
       ))
@@ -54,7 +56,7 @@ const PriceDetail = () => {
               futurePrice = {item.futurePrice}
               sizeTraditional = {item.sizeTraditional}
               sizeCM = {item.sizeCM}
-              initialWeight = {item.initalWeight}
+              initialWeight = {item.initialWeight}
               wage = {item.wage}
             /> 
           )
