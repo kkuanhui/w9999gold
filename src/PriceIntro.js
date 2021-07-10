@@ -10,10 +10,10 @@ const PriceIntro = () => {
     const [futurePrice, setFuturePrice] = useState([]);
 
     useEffect(() => {
-        axios.get("./backend2.json")
+        axios.get("https://w9999gold-backend.herokuapp.com/backend-2")
         .then( res => {
-            const resultText = currencyFormat(res.data.futurePrice)
-            setFuturePrice(resultText )
+            const resultText = currencyFormat(res.data.future)
+            setFuturePrice(resultText)
         })
         .catch(err => 
             console.log('Something goes wrong.\n', err

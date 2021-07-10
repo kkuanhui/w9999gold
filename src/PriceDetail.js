@@ -22,7 +22,7 @@ const PriceDetail = () => {
   // Second argument of useEffect is an enpty array [], which makes it only invoked at the first render.
   useEffect(
     () => {
-    fetch('https://w9999gold-backend.herokuapp.com/Backend1')
+    fetch('https://w9999gold-backend.herokuapp.com/backend-1')
     .then(res => 
         res.json()
       ).then(data => 
@@ -66,7 +66,9 @@ const PriceDetail = () => {
       </ Flickity>
       <div id="price-detail-info">
         <h2>特殊尺寸可以另外詢問</h2>
-        <p>以上表格只包含常規尺寸表，其他客製尺寸重量大小可聯絡詢問。</p>
+        <p>
+          以上表格只包含常規尺寸表，其他客製尺寸重量大小可聯絡詢問。最後訂單價位請與本公司確認。
+        </p>
       </div>
     </div>
 

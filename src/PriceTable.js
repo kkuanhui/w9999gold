@@ -58,7 +58,7 @@ const PriceTable = (prop) => {
 		<div>
 
           <div>
-            尺寸：{sizeCM}
+            尺寸（公分）：{sizeCM}
           </div>
 
           <div>
