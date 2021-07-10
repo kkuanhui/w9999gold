@@ -22,7 +22,7 @@ const PriceDetail = () => {
   // Second argument of useEffect is an enpty array [], which makes it only invoked at the first render.
   useEffect(
     () => {
-    fetch('http://localhost:5000/Backend1')
+    fetch('https://w9999gold-backend.herokuapp.com/Backend1')
     .then(res => 
         res.json()
       ).then(data => 
