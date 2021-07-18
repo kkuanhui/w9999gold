@@ -11,6 +11,7 @@ const PriceTable = (prop) => {
     sizeTraditional,
     sizeCM,
     initialWeight,
+    maxWeight,
     wage,
   } = prop;
 
@@ -24,27 +25,54 @@ const PriceTable = (prop) => {
   
   const [weightText, setWeightText] = useState(`${goldWeight}錢`)
   
-  const onChangeGoldWeight = (initialWeight, inputWeight, adding) => {
-      if (adding){
-          const nowWeight = inputWeight + 0.1
-          setGoldWeight(nowWeight)
-          setWeightText(`${nowWeight.toFixed(1)}錢`)
-          setPriceWOTax((nowWeight * futurePrice + wage).toFixed(0))
-          setPriceWTax(((nowWeight * futurePrice + wage)*1.05).toFixed(0))
-      }else{
-          const nowWeight = inputWeight - 0.1
-          if(nowWeight < initialWeight){
-            setGoldWeight(initialWeight)
-            setWeightText(`最少${initialWeight.toFixed(1)}錢`)
-            setPriceWOTax((initialWeight * futurePrice + wage).toFixed(0))
-            setPriceWTax(((initialWeight * futurePrice + wage) * 1.05).toFixed(0))
-          }else{
-            setGoldWeight(nowWeight)
-            setWeightText(`${nowWeight.toFixed(1)}錢`)
-            setPriceWOTax((nowWeight * futurePrice + wage).toFixed(0))
-            setPriceWTax(((nowWeight * futurePrice + wage) * 1.05).toFixed(0))
-          }
-      }
+  // const onChangeGoldWeight = (lowerBound, upperBound, inputWeight, adding) => {
+  //     if(adding){
+  //         const nowWeight = inputWeight + 0.1
+  //         setGoldWeight(nowWeight)
+  //         setWeightText(`${nowWeight.toFixed(1)}錢`)
+  //         setPriceWOTax((nowWeight * futurePrice + wage).toFixed(0))
+  //         setPriceWTax(((nowWeight * futurePrice + wage)*1.05).toFixed(0))
+  //     }else{
+  //         const nowWeight = inputWeight - 0.1
+  //         if(nowWeight < initialWeight){
+  //           setGoldWeight(initialWeight)
+  //           if(initialWeight === 0.25){
+  //             setWeightText(`最少${initialWeight.toFixed(2)}錢`)
+  //           }else{
+  //             setWeightText(`最少${initialWeight.toFixed(1)}錢`)
+  //           }
+  //           setPriceWOTax((initialWeight * futurePrice + wage).toFixed(0))
+  //           setPriceWTax(((initialWeight * futurePrice + wage) * 1.05).toFixed(0))
+  //         }else{
+  //           setGoldWeight(nowWeight.toFixed(1))
+  //           setWeightText(`${nowWeight.toFixed(1)}錢`)
+  //           setPriceWOTax((nowWeight * futurePrice + wage).toFixed(0))
+  //           setPriceWTax(((nowWeight * futurePrice + wage) * 1.05).toFixed(0))
+  //         }
+  //     }
+  // }
+
+  const numPos = (x, min, max) => {
+    if( min < x  && x < max){
+      return {resX: Number(x.toFixed(2)), txt: ''}
+    }else if( min >= x ){
+      return {resX: Number(min.toFixed(2)), txt:'至少'}
+    }else if( x >= max){
+      return {resX: Number(max.toFixed(2)), txt: '最多'}
+    }
+  }
+
+  const onChangeGoldWeight = (lowerBound, upperBound, adding) => {
+    const nowWeight = Number((goldWeight + adding).toFixed(1))
+
+    const compareRes = numPos(nowWeight, lowerBound, upperBound)
+    const price = (compareRes.resX * futurePrice + wage)
+
+    setGoldWeight(compareRes.resX)
+    setWeightText(`${compareRes.txt}${parseFloat(compareRes.resX)}錢`)
+    setPriceWOTax(price.toFixed(0))
+    setPriceWTax((price * 1.05).toFixed(0))
+
   }
 
   return (
@@ -63,7 +91,7 @@ const PriceTable = (prop) => {
 
           <div>
             重量：    
-            <div style={{display: "inline-block", width: "clamp(5vw, 100px, 60%)"}}> 
+            <div style={{display: "inline-block", width: "clamp(5vw, 120px, 80%)"}}> 
               <div className="flex-between" style={{border: "1px solid #999", borderRadius: "5px"}}>
 
                 <button 
@@ -74,10 +102,10 @@ const PriceTable = (prop) => {
                         backgroundColor: "white", 
                         borderRight: "1px solid #999", 
                         cursor: "pointer"}}
-                    onClick={() => onChangeGoldWeight(initialWeight, goldWeight, false)}> 
+                    onClick={() => onChangeGoldWeight(initialWeight, maxWeight, -0.1)}> 
                   <strong> - </strong> 
                 </button>
-                <div style={{textAlign: "center", display: "inline-block", width: "70%"}}>
+                <div style={{textAlign: "center", display: "inline-block", width: "100%"}}>
                   {weightText}
                 </div>
                 <button 
@@ -88,7 +116,7 @@ const PriceTable = (prop) => {
                         backgroundColor: "white", 
                         borderLeft: "1px solid #999", 
                         cursor: "pointer"}}
-                    onClick={() => onChangeGoldWeight(initialWeight, goldWeight, true)}>
+                    onClick={() => onChangeGoldWeight(initialWeight, maxWeight, 0.1)}>
                   <strong> + </strong> 
                 </button>
 

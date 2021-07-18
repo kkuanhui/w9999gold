@@ -56,7 +56,8 @@ const PriceDetail = () => {
               futurePrice = {item.futurePrice}
               sizeTraditional = {item.sizeTraditional}
               sizeCM = {item.sizeCM}
-              initialWeight = {item.initialWeight}
+              initialWeight = {Number(item.initialWeight)}
+              maxWeight = {item.maxWeight}
               wage = {item.wage}
             /> 
           )
@@ -65,9 +66,11 @@ const PriceDetail = () => {
 
       </ Flickity>
       <div id="price-detail-info">
-        <h2>特殊尺寸可以另外詢問</h2>
         <p>
-          以上表格只包含常規尺寸表，其他客製尺寸重量大小可聯絡詢問。最後訂單價位請與本公司確認。
+          以上表格僅顯示常規產品參考價格，特殊尺寸或重量歡迎來電詢問。
+        </p>
+        <p>
+          最終售價以本公司專員報價為準。
         </p>
       </div>
     </div>

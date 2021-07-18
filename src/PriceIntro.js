@@ -38,7 +38,7 @@ const PriceIntro = () => {
             </h1>
             <div>
                 <span id="gold-futures-price">{futurePrice}</span><span style={{ fontSize: "clamp(5vw, 18px, 1vw)"}}>NTD/錢</span>
-                <div>時間：{currentTime()}</div>
+                <div>臺灣時間：{currentTime()}</div>
             </div>
 
         </div>
