@@ -5,7 +5,13 @@ const PriceIntro = () => {
 
     const currencyFormat = (num) => {
         return `${num.toFixed().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')}`
-        }
+    }
+
+    const currentTime = () => {
+        const dObj = new Date();
+        const time = dObj.toLocaleString('zh-TW', {'timezone': 'Asia/Taipei'});  
+        return time
+    }
 
     const [futurePrice, setFuturePrice] = useState([]);
 
@@ -23,14 +29,16 @@ const PriceIntro = () => {
     }, 
     []) 
 
+
     return (
         <div id="price-intro" className="price-component-block">
 
             <h1 id="price-intro-title">
-                <p>黃金市價</p>
+                <p>即時黃金條塊價格</p>
             </h1>
             <div>
                 <span id="gold-futures-price">{futurePrice}</span><span style={{ fontSize: "clamp(5vw, 18px, 1vw)"}}>NTD/錢</span>
+                <div>時間：{currentTime()}</div>
             </div>
 
         </div>
