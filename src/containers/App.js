@@ -1,9 +1,9 @@
 
 import { Fragment } from 'react';
-import NavBar from './NavBar';
-import PriceIntro from './PriceIntro';
-import PriceDetail from './PriceDetail';
-import Footer from './Footer';
+import NavBar from '../components/NavBar';
+import PriceIntro from '../components/PriceIntro';
+import PriceDetail from '../components/PriceDetail';
+import Footer from '../components/Footer';
 
 const App = () => {
 

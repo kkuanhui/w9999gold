@@ -10,8 +10,6 @@ const Carousel = (props) => {
   const [transX, setTransX] = useState(0);
   const [transStyle, setTransStyle] = useState( {transform:`translateX(${transX}px)`} )
 
-
-
   const switchCellItem = (direction) => {
     switch(direction){
       case "previous":
@@ -32,8 +30,8 @@ const Carousel = (props) => {
   useEffect(() => {
     const newStyleObj = {transform: `translateX(${transX}px)`}
     setTransStyle( newStyleObj )
-  }, 
-  [transX]
+    }, 
+    [transX]
   )
 
 

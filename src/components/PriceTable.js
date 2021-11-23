@@ -80,7 +80,7 @@ const PriceTable = (prop) => {
       <div className="price-table">
 
         <div style={{marginBottom: "10px"}}>
-          <h2>金牌尺寸：{sizeTraditional}</h2>
+          <h2>浮字金牌尺寸：{sizeTraditional}</h2>
         </div>
 
 		<div>

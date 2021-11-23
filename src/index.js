@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './static/css/main.css';
 import './static/css/carousel.css'
-import App from './App';
+import App from './containers/App';
 import reportWebVitals from './reportWebVitals';
 
 
