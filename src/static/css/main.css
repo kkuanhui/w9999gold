@@ -122,6 +122,10 @@ html {
   padding: 5%;
 }
 
+.price-table h3{
+  font-size: clamp(17px, 3vw, 25px)
+}
+
 .price-table-switch-button {
   background-color: #4e9af1;
   display: inline;
