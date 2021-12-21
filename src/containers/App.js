@@ -1,9 +1,9 @@
 
 import { Fragment } from 'react';
 import NavBar from '../components/NavBar';
-import PriceIntro from '../components/PriceIntro';
-import PriceDetail from '../components/PriceDetail';
 import Footer from '../components/Footer';
+import AboutUsBlock from './AboutUsBlock';
+import PriceBlock from './PriceBlock.js';
 
 const App = () => {
 
@@ -12,12 +12,11 @@ const App = () => {
 
       <div id="main-content">
         <NavBar />
-        <div id="price-row" className="flex-center">
-          <PriceIntro />
-          <PriceDetail />
-        </div>
+        <PriceBlock />
+        <AboutUsBlock />
       </div>
-      <Footer />
+
+      <Footer></Footer>
 
     </Fragment>
   );

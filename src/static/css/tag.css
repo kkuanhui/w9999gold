@@ -1,0 +1,19 @@
+/* starter reset */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  border: 0;
+  padding: 0;
+}
+
+a {
+    text-decoration: none;
+}
+
+/* rem */
+html {
+  font-size: 16px;
+  --theme-color: rgb(56, 56, 56);
+  --component-bg-color: rgba(14, 92, 3, 0.288);
+  --gold-color: rgb(0, 123, 255);
+  }

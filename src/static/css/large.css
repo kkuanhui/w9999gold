@@ -1,0 +1,9 @@
+@media (min-width: 1000px){
+  #price-block {
+      flex-direction: row;
+  }
+
+  #gold-future-price {
+    font-size: clamp(20px, 5vw, 5vw)
+  }
+}

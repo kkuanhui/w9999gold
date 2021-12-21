@@ -25,33 +25,6 @@ const PriceTable = (prop) => {
   
   const [weightText, setWeightText] = useState(`${goldWeight}錢`)
   
-  // const onChangeGoldWeight = (lowerBound, upperBound, inputWeight, adding) => {
-  //     if(adding){
-  //         const nowWeight = inputWeight + 0.1
-  //         setGoldWeight(nowWeight)
-  //         setWeightText(`${nowWeight.toFixed(1)}錢`)
-  //         setPriceWOTax((nowWeight * futurePrice + wage).toFixed(0))
-  //         setPriceWTax(((nowWeight * futurePrice + wage)*1.05).toFixed(0))
-  //     }else{
-  //         const nowWeight = inputWeight - 0.1
-  //         if(nowWeight < initialWeight){
-  //           setGoldWeight(initialWeight)
-  //           if(initialWeight === 0.25){
-  //             setWeightText(`最少${initialWeight.toFixed(2)}錢`)
-  //           }else{
-  //             setWeightText(`最少${initialWeight.toFixed(1)}錢`)
-  //           }
-  //           setPriceWOTax((initialWeight * futurePrice + wage).toFixed(0))
-  //           setPriceWTax(((initialWeight * futurePrice + wage) * 1.05).toFixed(0))
-  //         }else{
-  //           setGoldWeight(nowWeight.toFixed(1))
-  //           setWeightText(`${nowWeight.toFixed(1)}錢`)
-  //           setPriceWOTax((nowWeight * futurePrice + wage).toFixed(0))
-  //           setPriceWTax(((nowWeight * futurePrice + wage) * 1.05).toFixed(0))
-  //         }
-  //     }
-  // }
-
   const numPos = (x, min, max) => {
     if( min < x  && x < max){
       return {resX: Number(x.toFixed(2)), txt: ''}

@@ -1,0 +1,136 @@
+.black-theme-block {
+  background-color: var(--theme-color);
+}
+
+.bg-gray{
+  background-color: #f5f5f5;
+}
+
+.navbar-item-link {
+  color: white;
+}
+
+.about-us-brick {
+  padding: 10px 5px 10px 5px;
+}
+
+.jumbotron {
+  width: 100%;
+  height: 50vh;
+  background-color: gray;
+  margin: 0px 0px 20px 0px;
+}
+
+.flex-around {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.flex-between {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.flex-start {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.flex-direction-column {
+  flex-direction: column;
+}
+
+.about-us-icon {
+  width: 50px;
+}
+
+.about-us-icon > button {
+  cursor: pointer;
+  background-color: transparent;
+}
+
+.about-us-icon img {
+  width: 25px;
+  height: 25px;
+}
+
+.d-grid {
+  display: grid;
+}
+
+.blue-button {
+  background-color: var(--gold-color);
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 1.2em;
+  cursor: pointer;
+}
+
+.footer-icon-link {
+  color: white;
+}
+
+.flex-icon-block {
+  margin: 3px;
+}
+
+.price-table {
+  width: 70%;
+  /* height: 250px; */
+  border-radius: 5px;
+  border: 1px solid rgba(36, 150, 51, 0.5);
+  margin-right: 10%;
+  padding: 5%;
+}
+
+.price-table h3{
+  font-size: clamp(17px, 3vw, 25px)
+}
+
+.price-table-switch-button {
+  background-color: #4e9af1;
+  display: inline;
+  padding: 0.3em 1.2em;
+  margin: 0 0.1em 0.1em 0;
+  border: 0.16em soild rgab(255, 255, 255, 0);
+  border-radius: 2em;
+  font-family: 'Roboto',sans-serif;
+  font-weight: 300;
+  color: #FFFFFF;
+  text-shadow: 0 0.04em 0.04em rgba(0,0,0,0.35);
+  text-align: center;
+  transition: all 0.2s;
+  font-size: clamp(12px, 2vw, 18px);
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  cursor: pointer;
+}
+
+.price-table-switch-button:hover{
+  border-color: rgba(255, 255, 255, 1);
+}
+
+.d-inline {
+  display: inline;
+}
+
+.price-detail-item {
+  flex: 1 1 auto;
+}
+
+@media all and (max-width:30em) {
+ .price-table-switch-button {
+    display: block;
+    margin: 0.2em auto;
+  }
+}

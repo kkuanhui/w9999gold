@@ -1,0 +1,59 @@
+@media (min-width: 780px){
+  #price-block {
+    flex-direction: row;
+  }
+
+  #about-us-block {
+    flex-direction: row;
+    height: 500px;
+  }
+
+  #about-us-icons {
+    flex-direction: column;
+  }
+
+  #gold-future-price {
+    font-size: clamp(20px, 5vw, 5vw)
+  }
+
+  #about-us-block{
+    height: 300px;
+  }
+
+  #about-us-map {
+    width: 250px;
+  }
+
+  .about-us-icon img {
+    width: 50px;
+    height: 50px;
+  }
+
+  #about-us-address {
+    width: 250px;
+  }
+
+  #about-us-icons {
+    width: 50px;
+    height: 80%;
+  }
+  
+  #price-intro {
+    height: 300px;
+  }
+
+  #price-intro-show-block {
+    padding: 20px;
+    min-height: 200px;
+  }
+
+  #price-intro-title {
+    margin-bottom: 1%;
+    font-size: clamp(24px, 2.5vw, 36px);
+    white-space: nowrap;
+  }
+  
+  .gold-future-price-text {
+    font-size: clamp(20px, 1.5vw, 36px)
+  }
+}

@@ -32,10 +32,11 @@ const PriceDetail = () => {
   
 	return(
 
-     <div className={'price-component-block'}>
+     <div id="price-detail" className=''>
       <Flickity
-        className={''} // default ''
-        style={{marginBottom: ""}}
+        id={''}
+        className={'price-detail-element'} // default ''
+        style={{}}
         elementType={'div'} // default 'div'
         options={flickityOptions} // takes flickity options {}
         disableImagesLoaded={false} // default false
@@ -61,16 +62,11 @@ const PriceDetail = () => {
       }
 
       </ Flickity>
-      <div id="price-detail-info">
-        <p>
-          以上表格僅顯示常規產品參考價格，更大尺寸歡迎詢問。
-        </p>
-        <p>
-          部分尺寸或重量會增加少許工錢。
-        </p>
-        <p>
-          最終售價以本公司專員報價為準。
-        </p>
+
+      <div id="price-detail-info" className="price-detail-element">
+        <p>以上表格僅顯示常規產品參考價格，更大尺寸歡迎詢問。</p>
+        <p>部分尺寸或重量會增加少許工錢。</p>
+        <p>最終售價以本公司專員報價為準。</p>
       </div>
     </div>
 

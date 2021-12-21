@@ -1,9 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './static/css/main.css';
-import './static/css/carousel.css'
 import App from './containers/App';
 import reportWebVitals from './reportWebVitals';
+import './static/css/tag.css'
+import './static/css/id.css'
+import './static/css/class.css';
+import './static/css/medium.css'
+import './static/css/large.css'
+import './static/css/extra-large.css'
+
+import './static/css/carousel.css'
 
 ReactDOM.render(
   <React.StrictMode>
