@@ -28,7 +28,7 @@ const PriceIntro = () => {
   return (
     <div id="price-intro">
 
-      <PriceSwitch />
+      {/* <PriceSwitch /> */}
 
       <div id="price-intro-show-block">
         <div id="price-intro-title">
