@@ -20,6 +20,8 @@ const AboutUsBlock = () => {
             臺南市北區大興街 325 巷 34 號 <br></br>
             營業時間：平日 9:00～19:00 <br></br>
             晚上其他時間可預約 <br></br>
+            電話：062587755 <br></br>
+            手機：0916968547 <br></br>
           </div>
 
           <AboutUsIcons />
