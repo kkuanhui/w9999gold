@@ -16,13 +16,9 @@ const PriceTable = (prop) => {
   } = prop;
 
   const [isContainTax, setIsContainTax] = useState(false)
-
   const [priceWOTax, setPriceWOTax] = useState((initialWeight * futurePrice + wage).toFixed())
-
   const [priceWTax,  setPriceWTax]  = useState(((initialWeight * futurePrice + wage) * 1.05).toFixed())
-
   const [goldWeight, setGoldWeight] = useState(initialWeight)
-  
   const [weightText, setWeightText] = useState(`${goldWeight}錢`)
   
   const numPos = (x, min, max) => {
@@ -92,10 +88,16 @@ const PriceTable = (prop) => {
                     onClick={() => onChangeGoldWeight(initialWeight, maxWeight, 0.1)}>
                   <strong> + </strong> 
                 </button>
-
               </div>
             </div>
+          </div>
 
+          <div>
+            黃金：{currencyFormat((futurePrice * goldWeight).toFixed(0))}
+          </div>
+
+          <div>
+            工錢：{currencyFormat(wage.toFixed(0)) }
           </div>
 
           <hr style={{height: "1px",backgroundColor: "rgb(149, 163, 152)",marginTop: "10px"}}/>
