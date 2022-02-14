@@ -108,12 +108,8 @@
   flex: 1 1 auto;
 }
 
-#gold-future-price > * {
-  font-size: clamp(20px, 2vw, 2vw)
-}
-
 #gold-future-price {
-  font-size: clamp(20px, 10vw, 48px)
+  font-size: clamp(20px, 3vw, 3vw)
 }
 
 #gold-futures-price {

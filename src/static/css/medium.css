@@ -12,10 +12,6 @@
     flex-direction: column;
   }
 
-  #gold-future-price {
-    font-size: clamp(20px, 5vw, 5vw)
-  }
-
   #about-us-block{
     height: 300px;
   }
