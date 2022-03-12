@@ -104,17 +104,17 @@ const PriceTable = (prop) => {
 
 
             參考價格：
-            <div className="flex-between" style={{marginTop: "10px"}}>
+            <div className="" style={{marginTop: "10px"}}>
                 <div>
                   含稅價：
-                  <span style={{color: "green", fontWeight: "bold", fontSize: "2rem", cursor: "pointer"}}>
+                  <span style={{color: "green", fontWeight: "bold", fontSize: "1rem", cursor: "pointer"}}>
                     {currencyFormat(priceWTax)}
                   </span>
                     元
                 </div>
                 <div>
                   不含稅價：
-                  <span style={{color: "green", fontWeight: "bold", fontSize: "2rem", cursor: "pointer"}}>
+                  <span style={{color: "green", fontWeight: "bold", fontSize: "1rem", cursor: "pointer"}}>
                     {currencyFormat(priceWOTax)}
                   </span>
                     元
