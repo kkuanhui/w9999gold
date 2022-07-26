@@ -1,5 +1,7 @@
 @media (min-width: 1000px){
-  #price-block {
-      flex-direction: row;
-  }
+
+#price-block {
+    flex-direction: row;
+}
+
 }

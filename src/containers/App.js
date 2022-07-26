@@ -4,6 +4,7 @@ import NavBar from '../components/NavBar';
 import Footer from '../components/Footer';
 import AboutUsBlock from './AboutUsBlock';
 import PriceBlock from './PriceBlock.js';
+import Popup from "../components/Popup.js"
 
 const App = () => {
 
@@ -17,6 +18,8 @@ const App = () => {
       </div>
 
       <Footer></Footer>
+
+      <Popup></Popup>
 
     </Fragment>
   );

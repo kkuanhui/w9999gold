@@ -1,14 +1,6 @@
 import icon from "../static/image/w9999gold-icon.png";
-import {useState} from 'react'
 
 const NavBar = () => {
-  const [isMenuPopup, setIsMenuPopup] = useState(false)
-  const handleClick = () => {
-    setIsMenuPopup(!isMenuPopup)
-    if(isMenuPopup){
-      /// do sth.
-    }
-  }
   return (
     <nav id="navbar" className="black-theme-block">
 
@@ -28,7 +20,6 @@ const NavBar = () => {
           </div>
         </div>
       </div>
-
 
     </nav>
   );
