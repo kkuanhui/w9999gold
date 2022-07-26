@@ -1,19 +1,30 @@
 /* starter reset */
-*, *::before, *::after {
-  box-sizing: border-box;
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
   margin: 0;
   border: 0;
   padding: 0;
 }
 
 a {
-    text-decoration: none;
+  text-decoration: none;
 }
 
 /* rem */
 html {
+  box-sizing: border-box;
   font-size: 16px;
   --theme-color: rgb(56, 56, 56);
   --component-bg-color: rgba(14, 92, 3, 0.288);
   --gold-color: rgb(0, 123, 255);
-  }
+}
+
+li {
+  list-style-type: none;
+}
+
+button:hover {
+  cursor: pointer;
+}

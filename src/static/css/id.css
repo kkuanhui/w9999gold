@@ -4,19 +4,35 @@
 }
 
 #navbar {
+  position: sticky;
+  top: 0;
   height: 50px;
   width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  color: white;
 }
 
-#navbar-items-start{
-  padding: 2.5px 2.5vw 2.5px 2.5vw;
+#navbar-collapse {
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100vh;
+  width: 100vw;
+  background-color: rgba(145, 145, 145, 0.5);
 }
 
-#navbar-items-second{
-  padding: 2.5px 2.5vw 2.5px 2.5vw;
+#navbar-collapse > div {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100vh;
+  width: 60vw;
+  background-color: rgb(14, 14, 14);
+}
+
+#navbar-link-list {
 }
 
 #about-us-block {
@@ -37,7 +53,7 @@
 
 #about-us-address {
   flex: 1 1 auto;
-  font-size: clamp(15px, 2vw, 2vw)
+  font-size: clamp(15px, 2vw, 2vw);
 }
 
 #about-us-icons {
@@ -113,7 +129,7 @@
 }
 
 #gold-future-price {
-  font-size: clamp(20px, 3vw, 3vw)
+  font-size: clamp(20px, 3vw, 3vw);
 }
 
 #gold-futures-price {

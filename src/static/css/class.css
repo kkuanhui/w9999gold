@@ -2,12 +2,12 @@
   background-color: var(--theme-color);
 }
 
-.bg-gray{
+.bg-gray {
   background-color: #f5f5f5;
 }
 
-.navbar-item-link {
-  color: white;
+.navbar-block {
+  padding: 2.5px 2.5vw 2.5px 2.5vw;
 }
 
 .about-us-brick {
@@ -94,8 +94,8 @@
   padding: 5%;
 }
 
-.price-table h3{
-  font-size: clamp(17px, 3vw, 25px)
+.price-table h3 {
+  font-size: clamp(17px, 3vw, 25px);
 }
 
 .price-table-switch-button {
@@ -105,10 +105,10 @@
   margin: 0 0.1em 0.1em 0;
   border: 0.16em soild rgab(255, 255, 255, 0);
   border-radius: 2em;
-  font-family: 'Roboto',sans-serif;
+  font-family: "Roboto", sans-serif;
   font-weight: 300;
-  color: #FFFFFF;
-  text-shadow: 0 0.04em 0.04em rgba(0,0,0,0.35);
+  color: #ffffff;
+  text-shadow: 0 0.04em 0.04em rgba(0, 0, 0, 0.35);
   text-align: center;
   transition: all 0.2s;
   font-size: clamp(12px, 2vw, 18px);
@@ -116,7 +116,7 @@
   cursor: pointer;
 }
 
-.price-table-switch-button:hover{
+.price-table-switch-button:hover {
   border-color: rgba(255, 255, 255, 1);
 }
 
@@ -128,8 +128,8 @@
   flex: 1 1 auto;
 }
 
-@media all and (max-width:30em) {
- .price-table-switch-button {
+@media all and (max-width: 30em) {
+   .price-table-switch-button {
     display: block;
     margin: 0.2em auto;
   }
