@@ -1,15 +1,27 @@
-@media (min-width: 780px) {
+@media only screen and (min-width: 780px) {
+
   #navbar-hamburger {
     display: none;
   }
 
-  #navbar-callapse {
-    display: block;
+  #navbar-collapse {
+    position: static;
+    width:auto;
+    height: auto;
   }
 
-  #navbar-callapse > div {
-    background-color: none;
+  #navbar-collapse > div {
+    position: static;
+    width:auto;
+    height: auto;
   }
+
+  #navbar-link-list{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+  }
+
 
   #navbar-link-list {
     display: flex;

@@ -4,14 +4,16 @@ import { useState } from "react";
 
 const NavBar = () => {
   const [isPopup, setIsPopup] = useState(false);
-
   return (
     <nav id="navbar" className="black-theme-block">
+
       <div className="navbar-block flex-start">
         <img src={icon} alt="icon" width="50" height="24.33"></img>
         <div>仕彩金飾</div>
       </div>
+
       <div className="navbar-block">
+
         <div id="navbar-hamburger">
           <button
             onClick={() => {
@@ -32,14 +34,15 @@ const NavBar = () => {
           <div>
             <ul id="navbar-link-list">
               <li>
-                <a>產品價格</a>
+                <a href="/price">產品價格</a>
               </li>
               <li>
-                <a>黃金市價</a>
+                <a href="/market">黃金市價</a>
               </li>
             </ul>
           </div>
         </div>
+
       </div>
     </nav>
   );
