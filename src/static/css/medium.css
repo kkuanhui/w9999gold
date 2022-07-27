@@ -1,31 +1,23 @@
 @media only screen and (min-width: 780px) {
-
   #navbar-hamburger {
     display: none;
   }
 
-  #navbar-collapse {
+  #navbar-toggler ~ div {
+    display: block;
     position: static;
-    width:auto;
-    height: auto;
   }
 
-  #navbar-collapse > div {
-    position: static;
-    width:auto;
-    height: auto;
-  }
-
-  #navbar-link-list{
+  #navbar-list ul {
     display: flex;
-    flex-direction: row;
     gap: 10px;
+    position: static;
+    width: auto;
+    height: auto;
+    background-color: transparent;
   }
 
-
-  #navbar-link-list {
-    display: flex;
-  }
+  /* --------------------------------- */
 
   #price-block {
     flex-direction: row;
