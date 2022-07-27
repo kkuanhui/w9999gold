@@ -14,8 +14,13 @@
   color: white;
 }
 
+/* make input invisiable */
 #navbar-toggler {
   display: none;
+}
+
+#navbar-hamburger{
+  font-size: 2em;
 }
 
 #navbar-toggler ~ div {

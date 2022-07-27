@@ -1,8 +1,6 @@
 import icon from "../static/image/w9999gold-icon.png";
-import { useState } from "react";
 
 const NavBar = () => {
-  const [isPopup, setIsPopup] = useState(false);
   return (
     <nav id="navbar" className="black-theme-block">
       <div className="navbar-block" style={{ display: "flex" }}>
