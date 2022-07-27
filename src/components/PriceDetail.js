@@ -9,7 +9,7 @@ const PriceDetail = () => {
   const flickityOptions = {
     initialIndex: 0,
     wrapAround: true,
-    pageDots: false
+    pageDots: true,
   };
 
   const [Data, setData] = useState([]);
@@ -24,6 +24,7 @@ const PriceDetail = () => {
 
   return (
     <div id="price-detail">
+
       <Flickity
         id={""}
         className={"price-detail-element"} // default ''

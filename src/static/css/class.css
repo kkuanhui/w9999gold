@@ -124,10 +124,6 @@
   display: inline;
 }
 
-.price-detail-element {
-  position: relative;
-  z-index: 0;
-}
 
 .price-detail-item {
   flex: 1 1 auto;

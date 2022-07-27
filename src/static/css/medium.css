@@ -20,6 +20,10 @@
     background-color: transparent;
   }
 
+  #navbar-list div {
+    display: none;
+  }
+
   #navbar-list ul {
     display: flex;
     position: static;
@@ -29,6 +33,9 @@
     background-color: transparent;
   }
 
+.flickity-prev-next-button {
+  display: block;
+}
 
 
   #price-block {
