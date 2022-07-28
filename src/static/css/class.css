@@ -124,9 +124,38 @@
   display: inline;
 }
 
-
 .price-detail-item {
   flex: 1 1 auto;
+}
+
+.price-computer-name {
+  font-size: 2em;
+  font-weight: bold;
+}
+
+.price-computer-parameter {
+  text-decoration: underline;
+  font-size: 1.5em;
+  align-self: flex-start;
+}
+
+.price-computer-name ~ div {
+  font-size: 1.5em;
+  width: 70%;
+  text-align: center;
+}
+
+.price-parameter-form {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.price-parameter-form > div:nth-child(odd) {
+  width: 30%;
+}
+
+.price-parameter-form > div:nth-child(even) {
+  width: 70%;
 }
 
 @media all and (max-width: 30em) {

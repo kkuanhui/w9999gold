@@ -92,4 +92,9 @@
   .gold-future-price-text {
     font-size: clamp(20px, 1.5vw, 36px);
   }
+
+  #price-computer {
+    width: 30%;
+    margin: 10px auto;
+  }
 }

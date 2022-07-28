@@ -4,6 +4,9 @@ import { Link } from "react-router-dom";
 
 const NavBar = () => {
   const [isChecked, setIsChecked] = useState(false);
+  const toggleCheck = () => {
+    setIsChecked(!isChecked);
+  };
   return (
     <nav id="navbar" className="black-theme-block">
       <div className="navbar-block" style={{ display: "flex" }}>
@@ -19,15 +22,15 @@ const NavBar = () => {
           type="checkbox"
           id="navbar-toggler"
           checked={isChecked}
-          onChange={() => setIsChecked(!isChecked)}
+          onChange={toggleCheck}
         ></input>
         <div id="navbar-list">
-          <div onClick={() => setIsChecked(!isChecked)}></div>
+          <div onClick={toggleCheck}></div>
           <ul>
-            <li onClick={() => setIsChecked(!isChecked)}>
+            <li onClick={toggleCheck}>
               <Link to="/">首頁</Link>
             </li>
-            <li onClick={() => setIsChecked(!isChecked)}>
+            <li onClick={toggleCheck}>
               <Link to="/price">產品價格</Link>
             </li>
           </ul>

@@ -114,15 +114,6 @@
   align-items: center;
 }
 
-#price-switch {
-  flex: 0 1 auto;
-}
-
-#price-switch button {
-  font-size: clamp(16px, 2vw, 24px);
-  padding: 2px;
-}
-
 #price-detail {
   flex: 1 1 auto;
   margin: 10px;
@@ -149,6 +140,31 @@
   margin-bottom: 10%;
   font-size: clamp(20px, 2vw, 2vw);
   white-space: nowrap;
+}
+
+#price-computer {
+  width: 100%;
+  margin: 10px auto;
+}
+
+#price-computer > div {
+  display: flex;
+  margin: 10px;
+  padding: 10px;
+  height: auto;
+  flex-direction: column;
+  flex: 0 1 auto;
+  background: #ffffff;
+  border: 1px solid #9e9e9e;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 15px;
+}
+
+#price-computer > div > div {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
 }
 
 #gold-show-section {
