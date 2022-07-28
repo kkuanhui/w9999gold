@@ -16,7 +16,7 @@ a {
 html {
   box-sizing: border-box;
   font-size: 16px;
-  --theme-color: rgb(56, 56, 56);
+  --theme-color: #1E1E1E;
   --component-bg-color: rgba(14, 92, 3, 0.288);
   --gold-color: rgb(0, 123, 255);
 }
