@@ -19,7 +19,7 @@
   display: none;
 }
 
-#navbar-hamburger{
+#navbar-hamburger {
   font-size: 2em;
 }
 
@@ -48,8 +48,12 @@
 }
 
 #navbar-list ul {
+  padding: 10px;
   position: absolute;
-  display: block;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-size: 2em;
   top: 0px;
   right: 0px;
   width: 60vw;

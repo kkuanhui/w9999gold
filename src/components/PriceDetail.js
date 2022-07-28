@@ -8,7 +8,8 @@ import PriceTable from "./PriceTable";
 const PriceDetail = () => {
   const flickityOptions = {
     initialIndex: 0,
-    wrapAround: true
+    wrapAround: true,
+    pageDots: false
   };
 
   const [Data, setData] = useState([]);

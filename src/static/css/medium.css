@@ -1,5 +1,4 @@
 @media only screen and (min-width: 780px) {
-
   #navbar-hamburger {
     display: none;
   }
@@ -25,18 +24,20 @@
   }
 
   #navbar-list ul {
+    padding: inherit;
     display: flex;
+    flex-direction: row;
     position: static;
     width: auto;
     height: auto;
+    font-size: inherit;
     gap: 10px;
     background-color: transparent;
   }
 
-.flickity-prev-next-button {
-  display: block;
-}
-
+  .flickity-prev-next-button {
+    display: block;
+  }
 
   #price-block {
     flex-direction: row;
