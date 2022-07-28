@@ -1,4 +1,5 @@
 import AboutUsIcon from "./AboutUsIcon"
+import React from "react"
 
 const AboutUsIcons = () => {
   return(

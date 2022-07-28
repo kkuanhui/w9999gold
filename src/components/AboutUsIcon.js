@@ -1,3 +1,4 @@
+import React from "react";
 
 const AboutUsIcon = (props) => {
   const {brickName, iconUrl, pageUrl} = props

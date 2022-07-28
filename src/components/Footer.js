@@ -1,3 +1,4 @@
+import React from 'react';
 import { FaFacebook, FaInstagram, FaLine } from 'react-icons/fa';
 
 

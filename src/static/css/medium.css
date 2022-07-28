@@ -94,7 +94,7 @@
   }
 
   #price-computer {
-    width: 30%;
+    width: clamp(350px, 40%, 400px);
     margin: 10px auto;
   }
 }

@@ -1,5 +1,5 @@
 import icon from "../static/image/w9999gold-icon.png";
-import { useState } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 const NavBar = () => {

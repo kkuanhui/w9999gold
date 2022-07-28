@@ -1,3 +1,4 @@
+import React from 'react';
 import PriceIntro from '../components/PriceIntro';
 import PriceDetail from '../components/PriceDetail';
 

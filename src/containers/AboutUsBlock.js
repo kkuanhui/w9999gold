@@ -1,3 +1,4 @@
+import React from "react"
 import AboutUsIcons from "../components/AboutUsIcons.js"
 
 const AboutUsBlock = () => {
