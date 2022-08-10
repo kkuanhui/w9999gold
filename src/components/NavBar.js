@@ -9,10 +9,14 @@ const NavBar = () => {
   };
   return (
     <nav id="navbar" className="black-theme-block">
-      <div className="navbar-block" style={{ display: "flex" }}>
+      <a 
+        href="/"
+        className="navbar-block" 
+        style={{ display: "flex" }}
+        >
         <img src={icon} alt="icon" width="50" height="24.33"></img>
         <div>仕彩金飾</div>
-      </div>
+      </a>
 
       <div className="navbar-block">
         <label id="navbar-hamburger" for="navbar-toggler">
