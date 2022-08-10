@@ -12,3 +12,6 @@ Rush to online.
 
 I'm planning to create an easy price table that user can edit some condition.
 
+## 0.1.0
+
+Make multiple pages.
