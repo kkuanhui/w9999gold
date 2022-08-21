@@ -28,7 +28,7 @@
 }
 
 #navbar-toggler:checked ~ div {
-  display: block;
+  display: none;
   position: fixed;
   top: 0px;
   right: 0px;

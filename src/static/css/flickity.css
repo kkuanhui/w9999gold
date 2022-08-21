@@ -18,14 +18,14 @@ http://flickity.metafizzy.co
 
 .flickity-slider {
   position: absolute;
-  z-index: -1;
+  /* z-index: -1; */
   width: 100%;
   height: 100%;
 }
 
 /* draggable */
 
-.flickity-enabled.is-draggable {
+enabled.is-draggable {
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
