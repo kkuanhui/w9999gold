@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import NavBar from "../components/NavBar";
 import Footer from "../components/Footer";
-import PriceComputer from "../components/PriceComputer.js";
+import AppProduct from "../components/AppProduct.js";
 import AboutUsBlock from "./AboutUsBlock";
 import PriceBlock from "./PriceBlock.js";
 
@@ -19,7 +19,7 @@ const Home = () => {
 const Price = () => {
   return (
     <Fragment>
-      <PriceComputer />
+      <AppProduct />
     </Fragment>
   );
 };

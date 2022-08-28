@@ -1,0 +1,12 @@
+[
+  {
+    "size": 2,
+    "cost": 1500,
+    "PhotoCost": 200
+  },
+  {
+    "size": 3,
+    "cost": 1600,
+    "PhotoCost": 200
+  }
+]
