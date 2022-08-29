@@ -5,7 +5,7 @@ const AppProduct = () => {
     <div id="app-product">
       <div className="flex-center" style={{"margin": "10px", "gap": "10px", "flexDirection": "column"}}>
         <ProductOptions></ProductOptions>
-        <ProducrCanvas></ProducrCanvas>
+        <ProductCanvas></ProductCanvas>
       </div>
       <ProductTotalPrice></ProductTotalPrice>
     </div>
@@ -24,39 +24,69 @@ const ProductTotalPrice = () => {
 const ProductOptions = () => {
   return (
     <div id="product-options">
-      <ProductOption></ProductOption>
-      <ProductOption></ProductOption>
-      <ProductOption></ProductOption>
-      <ProductOption></ProductOption>
+      <div className="flex-start">
+        <div>金牌設計</div>
+        <select style={{"backgroundColor":"#CCC888"}}>
+          <option value="E3456">雙龍搶珠</option>
+        </select>
+      </div>
+      <div className="flex-center">
+        <div>金牌尺寸</div>
+        <select style={{"backgroundColor":"#CCC888"}}>
+          <option value="3">3寸</option>
+        </select>
+      </div>
+      <div className="flex-center">
+        <div>黃金重量</div>
+        <select style={{"backgroundColor":"#CCC888"}}>
+          <option value="3">3寸</option>
+        </select>
+        <div>時價</div>
+        <div>＄3,650</div>
+      </div>
+      <div className="flex-center">
+        <label>增加照片</label>
+        <input type="checkbox"></input>
+      </div>
+      <div className="flex-center">
+        <div>增加外框</div>
+        <select style={{"backgroundColor": "#CCC999"}}><option value="34">心型</option></select>
+      </div>
     </div>
   )
 }
 
-const ProductOption = () => {
-  return(
-    <div>Option</div>
-  )
-}
-
-const ProducrCanvas = () => {
+const ProductCanvas = () => {
   const canvasRef = useRef()
   useEffect(() => {
     const canvas = canvasRef.current
     const ctx = canvas.getContext("2d");
     ctx.fillStyle = "#FF0000";
-    ctx.fillRect(0, 0, 80, 80);
+    ctx.fillRect(10, 50, 80, 30);
+    const bw=400;
+    const bh=400;
+    const p=10;
+    function drawBoardGrid(){
+      for (var x = 0; x <= bw; x += 40) {
+          ctx.moveTo(0.5 + x + p, p);
+          ctx.lineTo(0.5 + x + p, bh + p);
+      }
+  
+      for (var x = 0; x <= bh; x += 40) {
+          ctx.moveTo(p, 0.5 + x + p);
+          ctx.lineTo(bw + p, 0.5 + x + p);
+      }
+      ctx.strokeStyle = "black";
+      ctx.stroke();
+    }
+    drawBoardGrid()
+
   })
   return (
     <div id="product-canvas">
       <canvas
         id="myCanvas"
-        width="200"
-        height="100"
         ref={canvasRef}
-        style={{
-          border: "1px solid #d3d3d3;",
-          border: "solid 1px rgb(255, 30, 40)",
-        }}
       ></canvas>
     </div>
   );

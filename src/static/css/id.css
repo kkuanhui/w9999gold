@@ -159,7 +159,8 @@
 #product-canvas{
   width: 80%;
   height: 300px;
-  border: 1px solid #303030
+  border: 1px solid #303030;
+  background-color: #D7D7D7;
 }
 
 #gold-show-section {
@@ -178,4 +179,9 @@
 #price-detail-info {
   width: 100%;
   margin: 10px auto;
+}
+
+canvas{
+  width: 100%;
+  height: 100%;
 }
