@@ -15,3 +15,27 @@ I'm planning to create an easy price table that user can edit some condition.
 ## 0.1.0
 
 Make multiple pages.
+
+## Name and categories
+
+w9999gold is composited by many Apps.
+
+- MainPage
+
+  1. MetaApi (To show latest post)
+
+- PricePage
+
+  1. Product Categories
+  2. Price Computer
+  3. Product Editor(Canvas)
+  4. Product Preview
+
+- GoldMarketPage
+
+  1. Google Chart
+  2. Price(Public future and exchange rate API)
+
+- AboutUsPage
+
+  1. About us
