@@ -26,31 +26,11 @@ const ProductOptions = () => {
     <div id="product-options">
       <div className="flex-start">
         <div>金牌設計</div>
-        <select style={{"backgroundColor":"#CCC888"}}>
-          <option value="E3456">雙龍搶珠</option>
-        </select>
-      </div>
-      <div className="flex-center">
-        <div>金牌尺寸</div>
-        <select style={{"backgroundColor":"#CCC888"}}>
-          <option value="3">3寸</option>
-        </select>
-      </div>
-      <div className="flex-center">
-        <div>黃金重量</div>
-        <select style={{"backgroundColor":"#CCC888"}}>
-          <option value="3">3寸</option>
-        </select>
-        <div>時價</div>
-        <div>＄3,650</div>
-      </div>
-      <div className="flex-center">
-        <label>增加照片</label>
-        <input type="checkbox"></input>
-      </div>
-      <div className="flex-center">
-        <div>增加外框</div>
-        <select style={{"backgroundColor": "#CCC999"}}><option value="34">心型</option></select>
+        <div className="select">
+          <select>
+            <option value="E3456">雙龍搶珠</option>
+          </select>
+        </div>
       </div>
     </div>
   )
@@ -61,25 +41,21 @@ const ProductCanvas = () => {
   useEffect(() => {
     const canvas = canvasRef.current
     const ctx = canvas.getContext("2d");
-    ctx.fillStyle = "#FF0000";
-    ctx.fillRect(10, 50, 80, 30);
-    const bw=400;
-    const bh=400;
-    const p=10;
-    function drawBoardGrid(){
-      for (var x = 0; x <= bw; x += 40) {
+    const bw=300;
+    const bh=300;
+    const p=0;
+    (function(){
+      for (var x = 0; x <= bw; x += 10) {
           ctx.moveTo(0.5 + x + p, p);
           ctx.lineTo(0.5 + x + p, bh + p);
       }
-  
-      for (var x = 0; x <= bh; x += 40) {
+      for (var x = 0; x <= bh; x += 10) {
           ctx.moveTo(p, 0.5 + x + p);
           ctx.lineTo(bw + p, 0.5 + x + p);
       }
-      ctx.strokeStyle = "black";
+      ctx.strokeStyle = "rgba(150, 150, 150, 0.3)";
       ctx.stroke();
-    }
-    drawBoardGrid()
+    }())
 
   })
   return (

@@ -39,3 +39,24 @@ w9999gold is composited by many Apps.
 - AboutUsPage
 
   1. About us
+# Naming rules
+
+**general component**
+- NavBar-
+- Footer-
+
+**Main Page**
+- Meta platform linkage
+
+**AboutUs**
+- AboutUs-
+
+
+**Products and price**
+- Products
+- Price
+- Canvas and design function
+
+**Gold market value**
+- Charts
+- Some future and exchange rate API
