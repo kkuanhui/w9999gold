@@ -20,43 +20,21 @@ Make multiple pages.
 
 w9999gold is composited by many Apps.
 
-- MainPage
+- General 
+  1. Comp - NavBar
+  2. Comp - Footer
 
-  1. MetaApi (To show latest post)
+- AppHome
+  1. Comp - MetaPost
 
-- PricePage
-
+- AppProduct
   1. Product Categories
-  2. Price Computer
-  3. Product Editor(Canvas)
-  4. Product Preview
+  2. Product Requirement Form (will generate total price)
+  3. Product Viewer (It is a canvas)
 
-- GoldMarketPage
-
-  1. Google Chart
+- AppMarket
+  1. Comp - Chart
   2. Price(Public future and exchange rate API)
 
-- AboutUsPage
-
-  1. About us
-# Naming rules
-
-**general component**
-- NavBar-
-- Footer-
-
-**Main Page**
-- Meta platform linkage
-
-**AboutUs**
-- AboutUs-
-
-
-**Products and price**
-- Products
-- Price
-- Canvas and design function
-
-**Gold market value**
-- Charts
-- Some future and exchange rate API
+- AppAbout
+  1. Comp - Article
