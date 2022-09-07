@@ -37,3 +37,9 @@ a{
 a:hover {
   cursor: pointer;
 }
+
+select {
+  border: 1px solid #ababab;
+  padding: 5px 10px;
+  border-radius: 10px;
+}
