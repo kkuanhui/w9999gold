@@ -1,7 +1,26 @@
 import React, { useEffect, useRef, useState } from "react";
+import { BrowserRouter as Router, Routes, Route, useRouteMatch } from "react-router-dom";
+import ProductCate from "./ProductCate";
+
+// const AppProduct = () => {
+//   return(
+//       <Routes>
+//         <Route path="/price" element={<ProductCate />}></Route>
+//         <Route path="/price/p1" element={<AppProduct2 />}></Route>
+//       </Routes>
+//   )
+// }
 
 const AppProduct = () => {
   return (
+    <div id="app-product">
+      <ProductCate></ProductCate>
+    </div>
+  );
+};
+
+export const AppProductCalculater = () => {
+  return(
     <div id="app-product">
       <div className="flex-center" style={{"margin": "10px", "gap": "10px", "flexDirection": "column"}}>
         <ProductOptions></ProductOptions>
@@ -9,8 +28,8 @@ const AppProduct = () => {
       </div>
       <ProductTotalPrice></ProductTotalPrice>
     </div>
-  );
-};
+  )
+}
 
 const ProductTotalPrice = () => {
   return (

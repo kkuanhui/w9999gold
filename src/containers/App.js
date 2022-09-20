@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import NavBar from "../components/NavBar";
 import Footer from "../components/Footer";
-import AppProduct from "../components/AppProduct.js";
+import AppProduct, {AppProductCalculater} from "../components/AppProduct.js";
 import AboutUsBlock from "./AboutUsBlock";
 import PriceBlock from "./PriceBlock.js";
 
@@ -16,14 +16,6 @@ const Home = () => {
   );
 };
 
-const Price = () => {
-  return (
-    <Fragment>
-      <AppProduct />
-    </Fragment>
-  );
-};
-
 const App = () => {
   return (
     <Fragment>
@@ -32,7 +24,11 @@ const App = () => {
           <NavBar />
           <Routes>
             <Route exact path="/" element={<Home />}></Route>
-            <Route path="/price" element={<Price />}></Route>
+            <Route path="/price" element={<AppProduct />}> </Route>
+            <Route path="/relief-plate" element={<AppProductCalculater />}></Route>
+            <Route path="/gold" element={<AppProductCalculater />}></Route>
+            <Route path="/p3" element={<AppProductCalculater />}></Route>
+            <Route path="/p4" element={<AppProductCalculater />}></Route>
           </Routes>
         </Router>
       </div>
