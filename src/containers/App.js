@@ -5,6 +5,7 @@ import NavBar from "../components/NavBar";
 import Footer from "../components/Footer";
 import AppProduct, {AppProductCalculater} from "../components/AppProduct.js";
 import AboutUsBlock from "./AboutUsBlock";
+import AppAboutUs from "./AppAboutUs.js"
 import PriceBlock from "./PriceBlock.js";
 
 const Home = () => {
@@ -25,6 +26,7 @@ const App = () => {
           <Routes>
             <Route exact path="/" element={<Home />}></Route>
             <Route path="/price" element={<AppProduct />}> </Route>
+            <Route path="/about-us" element={<AppAboutUs/>}> </Route>
             <Route path="/relief-plate" element={<AppProductCalculater />}></Route>
             <Route path="/gold" element={<AppProductCalculater />}></Route>
             <Route path="/p3" element={<AppProductCalculater />}></Route>
