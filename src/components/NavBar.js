@@ -35,6 +35,9 @@ const NavBar = () => {
               <Link to="/">首頁</Link>
             </li>
             <li onClick={toggleCheck}>
+              <Link to="/about-us">關於我們</Link>
+            </li>
+            <li onClick={toggleCheck}>
               <Link to="/price">產品價格</Link>
             </li>
           </ul>
