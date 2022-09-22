@@ -1,25 +1,6 @@
-import React, { useEffect, useRef, useState } from "react";
-import { BrowserRouter as Router, Routes, Route, useRouteMatch } from "react-router-dom";
-import ProductCate from "./ProductCate";
+import React from "react"
 
-// const AppProduct = () => {
-//   return(
-//       <Routes>
-//         <Route path="/price" element={<ProductCate />}></Route>
-//         <Route path="/price/p1" element={<AppProduct2 />}></Route>
-//       </Routes>
-//   )
-// }
-
-const AppProduct = () => {
-  return (
-    <div id="app-product">
-      <ProductCate></ProductCate>
-    </div>
-  );
-};
-
-export const AppProductCalculater = () => {
+const AppProductCalculater = () => {
   return(
     <div id="app-product">
       <div className="flex-center" style={{"margin": "10px", "gap": "10px", "flexDirection": "column"}}>
@@ -27,15 +8,6 @@ export const AppProductCalculater = () => {
         <ProductCanvas></ProductCanvas>
       </div>
       <ProductTotalPrice></ProductTotalPrice>
-    </div>
-  )
-}
-
-const ProductTotalPrice = () => {
-  return (
-    <div id="product-total-price">
-      <div>總價</div>
-      <div>$ 34,567</div>
     </div>
   )
 }
@@ -115,5 +87,3 @@ const ProductCanvas = () => {
 
 // We are using useRef to manipulate <canvas> in React.js.
 // 我只要先宣告一個空的 useRef()，然後當成 dom 上 ref attribute 的值，這時候再元件任何地方印出 canvasRef.current 就會是這個 DOM
-
-export default AppProduct;
