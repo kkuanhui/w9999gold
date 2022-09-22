@@ -4,31 +4,45 @@ import imgPlaceholder from '../static/image/placeholder.jpeg'
 
 const ProductCate = (props) => {
   return (
-    <div className="flex-around">
-    <div className="product-cate-block" style={{"backgroundColor": "green"}}>
-      <Link to="/relief-plate">
-        <img src={imgPlaceholder} width='50' height="50"></img>
-      </Link>
+    <div id="product-cate">
+      <Card
+        linkTarget="/p1"
+        append="123 123 123"
+        name="浮字金牌"
+        imgPlaceholder={imgPlaceholder}
+      ></Card>
+      <Card
+        linkTarget="/p2"
+        append="123 123 123"
+        name="一般金牌"
+        imgPlaceholder={imgPlaceholder}
+      ></Card>
+      <Card
+        linkTarget="/p3"
+        append="123 123 123"
+        name="神明金牌"
+        imgPlaceholder={imgPlaceholder}
+      ></Card>
+      <Card
+        linkTarget="/p4"
+        append="123 123 123"
+        name="金片"
+        imgPlaceholder={imgPlaceholder}
+      ></Card>
     </div>
-    <div className="product-cate-block" style={{"backgroundColor": "black"}}>
-      <Link to="/gold">
-        <img src={imgPlaceholder} width='50' height="50"></img>
-      </Link>
-    </div>
-    <div className="product-cate-block" style={{"backgroundColor": "black"}}>
-      <Link to="/p3">
-        <img src={imgPlaceholder} width='50' height="50"></img>
-      </Link>
-    </div>
-    <div className="product-cate-block" style={{"backgroundColor": "black"}}>
-      <Link to="/p4">
-        <img src={imgPlaceholder} width='50' height="50"></img>
-      </Link>
-    </div>
+  );
+};
 
+const Card = (props) => {
+  return (
+    <div className="product-cate">
+      <Link to={props.linkTarget}>
+        <h1>{props.name}</h1>
+        <img src={props.imgPlaceholder} width="300" height="300"></img>
+        <p>{props.append}</p>
+      </Link>
     </div>
-  )
-}
+  );
+};
 
-
-export default ProductCate
+export default ProductCate;

@@ -156,6 +156,22 @@
   background-color: #E1E1E1;
 }
 
+#product-cate{
+  display: flex;
+  width: 850px;
+  justify-content: space-around;
+  flex-wrap: wrap; 
+  margin: 10px auto;
+}
+
+#product-cate > div{
+  width: 400px;
+  height: 400px;
+  padding: 10px;
+  text-align: center;
+  flex: 0 1 auto;
+}
+
 #product-canvas{
   width: 80%;
   height: 300px;
