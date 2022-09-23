@@ -1,10 +1,10 @@
 import React from "react";
 import {Link} from "react-router-dom";
-import imgPlaceholder from '../static/image/placeholder.jpeg'
+import imgPlaceholder from './static/image/placeholder.jpeg'
 
-const ProductCate = (props) => {
+const AppProduct = () => {
   return (
-    <div id="product-cate">
+    <div id="app-product">
       <Card
         linkTarget="/p1"
         append="123 123 123"
@@ -37,12 +37,11 @@ const Card = (props) => {
   return (
     <div className="product-cate">
       <Link to={props.linkTarget}>
-        <h1>{props.name}</h1>
         <img src={props.imgPlaceholder} width="300" height="300"></img>
-        <p>{props.append}</p>
+        <div>{props.name}</div>
       </Link>
     </div>
   );
 };
 
-export default ProductCate;
+export default AppProduct;

@@ -1,6 +1,6 @@
 import React from 'react';
-import PriceIntro from '../components/PriceIntro';
-import PriceDetail from '../components/PriceDetail';
+import PriceIntro from './PriceIntro';
+import PriceDetail from './PriceDetail';
 
 const PriceBlock = () => {
   return(
