@@ -61,21 +61,35 @@ const PlateCanvas = () => {
   useEffect(() => {
     const canvas = canvasRef.current
     const ctx = canvas.getContext("2d");
-    const bw=300;
-    const bh=300;
-    const p=0;
-    (function(){
-      for (var x = 0; x <= bw; x += 10) {
-          ctx.moveTo(0.5 + x + p, p);
-          ctx.lineTo(0.5 + x + p, bh + p);
-      }
-      for (var x = 0; x <= bh; x += 10) {
-          ctx.moveTo(p, 0.5 + x + p);
-          ctx.lineTo(bw + p, 0.5 + x + p);
-      }
-      ctx.strokeStyle = "rgba(150, 150, 150, 0.3)";
-      ctx.stroke();
-    }())
+    const rect = canvas.getBoundingClientRect()
+    let isPainting = false
+    const positionStart = (e) => {
+      isPainting = true
+      draw(e)
+    }
+    const positionFinish = () => {
+      isPainting = false
+      ctx.beginPath()
+    }
+    const draw = (e) => {
+      if(!isPainting) return;
+      ctx.lineWidth = 1
+      ctx.lineCap = 'round'
+
+      ctx.lineTo(
+        (e.clientX - rect.left)/(rect.right - rect.left)* canvas.width, 
+        (e.clientY - rect.top)/(rect.bottom - rect.top)* canvas.height
+      )
+      ctx.stroke()
+      ctx.beginPath()
+      ctx.moveTo(
+        (e.clientX - rect.left)/(rect.right - rect.left)* canvas.width, 
+        (e.clientY - rect.top)/(rect.bottom - rect.top)* canvas.height
+      )
+    }
+    canvas.addEventListener('mousedown', positionStart)
+    canvas.addEventListener('mouseup', positionFinish)
+    canvas.addEventListener('mousemove', draw)
   })
 
   return (
