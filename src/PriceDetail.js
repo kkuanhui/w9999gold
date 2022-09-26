@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Flickity from "react-flickity-component";
-import "../static/css/flickity.css";
+import "./static/css/flickity.css";
 import PriceTable from "./PriceTable";
 
 // import axios from 'axios';

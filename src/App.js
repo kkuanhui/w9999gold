@@ -3,9 +3,12 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import NavBar from "./NavBar";
 import Footer from "./Footer";
-import AppProduct, {AppProductCalculater} from "./AppProduct.js";
-import AppAboutUs from "./AppAboutUs.js"
+
 import AppHome from "./AppHome";
+import AppMarket from "./AppMarket"
+import AppAboutUs from "./AppAboutUs"
+import AppProduct from './AppProduct'
+import PlateGod from "./PlateGod";
 
 
 const App = () => {
@@ -13,7 +16,7 @@ const App = () => {
     <Fragment>
       <div id="main-content">
         <Router>
-          <NavBar />
+        <NavBar />
           <Routes>
 
             <Route exact path="/" element={<AppHome />}></Route>
@@ -22,12 +25,7 @@ const App = () => {
 
             <Route path="/about-us" element={<AppAboutUs/>}> </Route>
 
-            <Route path="/prodcut" element={<AppProduct />}> </Route>
-            <Route path="/plate-god" element={<AppProductCalculater />}></Route>
-            <Route path="/plate-regular" element={<AppProductCalculater />}></Route>
-            <Route path="/medal" element={<AppProductCalculater />}></Route>
-            <Route path="/gold" element={<AppProductCalculater />}></Route>
-
+            <Route path="/product/*" element={<AppProduct />}> </Route>
 
 
           </Routes>

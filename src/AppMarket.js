@@ -1,10 +1,10 @@
-import MarketPriceChart from "../components/MarketPriceChart"
+import MarketPriceChart from "./MarketPriceChart"
+import React from "react"
 
 const AppMarket = () => {
   return (
-    <div>
+    <div className="flex-center flex-direction-column">
       <div>This is App Market</div>
-      <div>head lines</div>
       <MarketPriceChart></MarketPriceChart>
     </div>
   )

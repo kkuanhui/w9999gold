@@ -1,4 +1,4 @@
-import icon from "../static/image/w9999gold-icon.png";
+import icon from "./static/image/w9999gold-icon.png";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
@@ -38,7 +38,10 @@ const NavBar = () => {
               <Link to="/about-us">關於我們</Link>
             </li>
             <li onClick={toggleCheck}>
-              <Link to="/price">產品價格</Link>
+              <Link to="/market">黃金市價</Link>
+            </li>
+            <li onClick={toggleCheck}>
+              <Link to="/product">產品價格</Link>
             </li>
           </ul>
         </div>

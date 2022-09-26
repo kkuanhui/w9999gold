@@ -1,5 +1,6 @@
-import PriceBlock from '../components/PriceBlock.js'
-import React from "react";
+import PriceBlock from './PriceBlock.js'
+import React, { Fragment } from "react";
+import AboutUsBlock from './AboutUsBlock'
 
 const AppHome = () => {
   return (
