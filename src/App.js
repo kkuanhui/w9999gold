@@ -8,7 +8,6 @@ import AppHome from "./AppHome";
 import AppMarket from "./AppMarket"
 import AppAboutUs from "./AppAboutUs"
 import AppProduct from './AppProduct'
-import PlateGod from "./PlateGod";
 
 
 const App = () => {

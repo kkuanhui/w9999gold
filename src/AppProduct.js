@@ -1,13 +1,17 @@
 import React from "react";
 import { Routes, Route, Link } from "react-router-dom";
 import imgPlaceholder from "./static/image/placeholder.jpeg";
+import PlateDeities from "./PlateDeities";
 
 const AppProduct = () => {
   return (
     <div>
       <Routes>
         <Route index element={<Cards />}></Route>
-        <Route path="plate-deities" element={<P1 name="plate-deities" />}></Route>
+        <Route
+          path="plate-deities"
+          element={<PlateDeities />}
+        ></Route>
         <Route
           path="plate-regular"
           element={<P1 name="plate-regular" />}
