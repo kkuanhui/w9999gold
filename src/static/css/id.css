@@ -212,7 +212,11 @@
   margin: 10px auto;
 }
 
-canvas{
-  width: 100%;
-  height: 100%;
+#product-options{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 15px;
 }

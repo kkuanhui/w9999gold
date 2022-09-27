@@ -159,6 +159,24 @@
   width: 70%;
 }
 
+.product-attr-choice{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0px;
+  gap: 25px;
+}
+
+.product-attr-choice .extend-text{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 0px;
+  gap: 25px;
+  color: #9E9E9E9E;
+}
+
 @media all and (max-width: 30em) {
    .price-table-switch-button {
     display: block;
