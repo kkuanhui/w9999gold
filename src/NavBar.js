@@ -47,7 +47,7 @@ const NavBar = () => {
 
       <div>
         <Routes>
-          <Route path="/product/*" element={<ProductPriceSummary></ProductPriceSummary>}></Route>
+          <Route path="/product/*" element={<ExtendProduct></ExtendProduct>}></Route>
         </Routes>
       </div>
 
@@ -55,14 +55,22 @@ const NavBar = () => {
   );
 };
 
-const ProductPriceSummary = () => {
+const ExtendProduct = () => {
   return (
     <Routes>
       <Route index></Route>
-      <Route path="*" element={<div style={{ width: "100%", height: "30px", backgroundColor:"#3e4a2d"}}>summary</div>}></Route>
+      <Route path="*" element={<ProductSummary></ProductSummary>}></Route>
     </Routes>
-
   )
 };
+
+const ProductSummary = () => {
+  return(
+    <div id="navbar-extend-product">
+        <div>神明金牌</div> 
+        <div>NT $15,000</div> 
+    </div>
+  )
+}
 
 export default NavBar;

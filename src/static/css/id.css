@@ -14,6 +14,16 @@
   color: white;
 }
 
+#navbar-extend-product{
+  background: #AAAAAA;
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.25);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 40px;
+  padding: 0px 10%;
+}
+
 /* make input invisiable */
 #navbar-toggler {
   display: none;
