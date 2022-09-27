@@ -1,4 +1,4 @@
-import React, {useRef, useEffect} from "react"
+import React, {useRef, useEffect, useState} from "react"
 
 const PlateDeities = () => {
   return(
@@ -55,7 +55,7 @@ const PlateOptions = () => {
 const PlateCanvas = () => {
 
   const canvasRef = useRef()
-
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth)
   useEffect(() => {
     const canvas = canvasRef.current
     const ctx = canvas.getContext("2d");
@@ -88,6 +88,7 @@ const PlateCanvas = () => {
     canvas.addEventListener('mousedown', positionStart)
     canvas.addEventListener('mouseup', positionFinish)
     canvas.addEventListener('mousemove', draw)
+    window.addEventListener('resize', setWindowWidth)
   })
 
   return (
