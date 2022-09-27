@@ -50,8 +50,6 @@ const PlateOptions = () => {
   )
 }
 
-
-
 // We are using useRef to manipulate <canvas> in React.js.
 // 我只要先宣告一個空的 useRef()，然後當成 dom 上 ref attribute 的值，這時候再元件任何地方印出 canvasRef.current 就會是這個 DOM
 const PlateCanvas = () => {
