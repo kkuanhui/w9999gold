@@ -4,7 +4,7 @@ import PriceDetail from './PriceDetail';
 
 const PriceBlock = () => {
   return(
-    <div id="price-block" className='flex-center'>
+    <div id="price-block" className='flex-direction-column'>
       <PriceIntro />
       <PriceDetail />
     </div>

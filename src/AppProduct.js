@@ -16,8 +16,8 @@ const AppProduct = () => {
           path="plate-regular"
           element={<P1 name="plate-regular" />}
         ></Route>
-        <Route path="medal" element={<P1 name="medal" />}></Route>
-        <Route path="gold" element={<P1 name="gold" />}></Route>
+        <Route path="goldfan" element={<P1 name="goldfan" />}></Route>
+        <Route path="omori" element={<P1 name="omori" />}></Route>
         <Route path="*" element={<P1 name="plate-god" />}></Route>
       </Routes>
     </div>
@@ -27,6 +27,10 @@ const AppProduct = () => {
 const P1 = (props) => {
   return <div>這是 {props.name}</div>;
 };
+
+// 1. plate 金牌
+// 2. omori 御守
+// 3. goldfan 黃金扇
 
 const Cards = (props) => {
   return (
@@ -42,13 +46,13 @@ const Cards = (props) => {
         imgPlaceholder={imgPlaceholder}
       ></Card>
       <Card
-        linkTarget="medal"
-        name="純金獎牌"
+        linkTarget="goldfan"
+        name="黃金扇"
         imgPlaceholder={imgPlaceholder}
       ></Card>
       <Card
-        linkTarget="gold"
-        name="純金金幣"
+        linkTarget="omori"
+        name="純金御守"
         imgPlaceholder={imgPlaceholder}
       ></Card>
     </div>

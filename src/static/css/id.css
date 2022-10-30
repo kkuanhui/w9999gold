@@ -74,14 +74,15 @@
 /* ---------------------------------------- */
 #about-us-block {
   min-height: 300px;
-  margin: 10px auto 10px auto;
+  margin: 10px auto;
   /* padding: 5px 5px 5px 5px; */
-  width: 80%;
+  width: 50%;
   flex-direction: column;
 }
 
 #about-us-map {
-  flex: 1 1 auto;
+  margin: 0px;
+  width: 100%;
 }
 
 #about-us-map > iframe {
@@ -94,7 +95,6 @@
 }
 
 #about-us-icons {
-  flex: 0 1 auto;
   width: 100%;
 }
 
@@ -110,7 +110,7 @@
 #price-block {
   margin: 10px auto 10px auto;
   padding: 5px 5px 5px 5px;
-  width: 80%;
+  width: 50%;
   flex-direction: column;
 }
 

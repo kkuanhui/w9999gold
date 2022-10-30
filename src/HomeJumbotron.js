@@ -1,5 +1,6 @@
+import React from "react"
 
-const Jumbotron = (props) => {
+const HomeJumbotron = (props) => {
     return (
         <div className="jumbotron">
           <picture>
@@ -10,4 +11,4 @@ const Jumbotron = (props) => {
     )
 }
 
-export default Jumbotron
+export default HomeJumbotron

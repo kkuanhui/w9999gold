@@ -3,7 +3,7 @@ import AboutUsIcons from "./AboutUsIcons.js"
 
 const AboutUsBlock = () => {
   return(
-        <div id="about-us-block" className="flex-around">
+        <div id="about-us-block" className="flex-direction-column">
 
           <div id="about-us-map">
             <iframe 
