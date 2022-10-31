@@ -1,9 +1,10 @@
-import AboutUsIcon from "./AboutUsIcon"
+import AboutUsIcon from "./HomeAboutUsIcon"
 import React from "react"
 
 const AboutUsIcons = () => {
   return(
     <div id="about-us-icons" className="flex-around">
+
       <AboutUsIcon 
       pageUrl="https://www.facebook.com/w9999.cs" 
       brickName="facebook" 
@@ -21,6 +22,7 @@ const AboutUsIcons = () => {
       brickName="line" 
       iconUrl="https://www.newsmarket.com.tw/herbcides/files/2017/05/line-icon.png">
       </AboutUsIcon>
+
     </div>
   )
 }

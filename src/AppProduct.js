@@ -1,71 +1,35 @@
 import React from "react";
 import { Routes, Route, Link } from "react-router-dom";
-import imgPlaceholder from "./static/image/placeholder.jpeg";
-import PlateDeities from "./PlateDeities";
+import ProductCards from "./ProductCards";
+import ProductPlateDeities from "./ProductPlateDeities";
+import ProductPlateRegular from "./ProductPlateRegular";
+import ProductGoldfan from "./ProductGoldfan";
+import ProductOmori from "./ProductOmori";
+
+// 1.1 plate-deities 神明金牌
+// 1.2 plate-regular 純金金牌
+// 2.  omori 御守
+// 3.  goldfan 黃金扇
 
 const AppProduct = () => {
   return (
     <div>
       <Routes>
-        <Route index element={<Cards />}></Route>
+
+        <Route index element={<ProductCards />}></Route>
         <Route
           path="plate-deities"
-          element={<PlateDeities />}
+          element={<ProductPlateDeities />}
         ></Route>
         <Route
           path="plate-regular"
-          element={<P1 name="plate-regular" />}
+          element={<ProductPlateRegular />}
         ></Route>
-        <Route path="goldfan" element={<P1 name="goldfan" />}></Route>
-        <Route path="omori" element={<P1 name="omori" />}></Route>
-        <Route path="*" element={<P1 name="plate-god" />}></Route>
+        <Route path="goldfan" element={<ProductGoldfan />}></Route>
+        <Route path="omori" element={<ProductOmori />}></Route>
+        <Route path="*" element={<ProductCards />}></Route>
+
       </Routes>
-    </div>
-  );
-};
-
-const P1 = (props) => {
-  return <div>這是 {props.name}</div>;
-};
-
-// 1. plate 金牌
-// 2. omori 御守
-// 3. goldfan 黃金扇
-
-const Cards = (props) => {
-  return (
-    <div id="app-product">
-      <Card
-        linkTarget="plate-deities"
-        name="神明金牌"
-        imgPlaceholder={imgPlaceholder}
-      ></Card>
-      <Card
-        linkTarget="plate-regular"
-        name="純金金牌"
-        imgPlaceholder={imgPlaceholder}
-      ></Card>
-      <Card
-        linkTarget="goldfan"
-        name="黃金扇"
-        imgPlaceholder={imgPlaceholder}
-      ></Card>
-      <Card
-        linkTarget="omori"
-        name="純金御守"
-        imgPlaceholder={imgPlaceholder}
-      ></Card>
-    </div>
-  );
-};
-
-const Card = (props) => {
-  return (
-    <div>
-      <Link to={props.linkTarget}>
-        <img src={props.imgPlaceholder} width="250" height="200"></img>
-        <div>{props.name}</div>
-      </Link>
     </div>
   );
 };

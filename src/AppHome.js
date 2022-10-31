@@ -1,14 +1,14 @@
-import PriceBlock from './PriceBlock.js'
 import React, { Fragment } from "react";
-import AboutUsBlock from './AboutUsBlock'
 import HomeJumbotron from './HomeJumbotron.js';
+import HomePriceBlock from './HomePriceBlock.js'
+import HomeAboutUsBlock from './HomeAboutUsBlock.js'
 
 const AppHome = () => {
   return (
     <Fragment>
       <HomeJumbotron />
-      <PriceBlock />
-      <AboutUsBlock />
+      <HomePriceBlock />
+      <HomeAboutUsBlock />
     </Fragment>
   );
 };

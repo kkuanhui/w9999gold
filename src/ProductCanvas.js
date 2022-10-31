@@ -1,4 +1,3 @@
-
 import React, {useRef, useEffect} from "react"
 
 // We are using useRef to manipulate <canvas> in React.js.

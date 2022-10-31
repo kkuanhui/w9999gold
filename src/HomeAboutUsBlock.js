@@ -1,7 +1,7 @@
 import React from "react"
-import AboutUsIcons from "./AboutUsIcons.js"
+import HomeAboutUsIcons from "./HomeAboutUsIcons.js"
 
-const AboutUsBlock = () => {
+const HomeAboutUsBlock = () => {
   return(
         <div id="about-us-block" className="flex-direction-column">
 
@@ -25,11 +25,10 @@ const AboutUsBlock = () => {
             手機：0916968547 <br></br>
           </div>
 
-          <AboutUsIcons />
+          <HomeAboutUsIcons />
 
         </div>
-
   )
 }
 
-export default AboutUsBlock
+export default HomeAboutUsBlock
