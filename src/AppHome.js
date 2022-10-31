@@ -1,7 +1,7 @@
 import React, { Fragment } from "react";
-import HomeJumbotron from './HomeJumbotron.js';
-import HomePriceBlock from './HomePriceBlock.js'
-import HomeAboutUsBlock from './HomeAboutUsBlock.js'
+import HomeJumbotron from "./HomeJumbotron.js";
+import HomePriceBlock from "./HomePriceBlock.js";
+import HomeAboutUsBlock from "./HomeAboutUsBlock.js";
 
 const AppHome = () => {
   return (
@@ -13,4 +13,4 @@ const AppHome = () => {
   );
 };
 
-export default AppHome
+export default AppHome;

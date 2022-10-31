@@ -1,10 +1,11 @@
-import React from 'react';
+import React from "react";
+import { Routes, Route, Link } from "react-router-dom";
 
 const Card = (props) => {
   return (
     <div>
       <Link to={props.linkTarget}>
-        <img src={props.imgPlaceholder} width="250" height="200"></img>
+        <img src={"./djwoidjiwoe.png"} width="250" height="200"></img>
         <div>{props.name}</div>
       </Link>
     </div>
@@ -14,29 +15,12 @@ const Card = (props) => {
 const ProductCards = (props) => {
   return (
     <div id="app-product">
-      <Card
-        linkTarget="plate-deities"
-        name="神明金牌"
-        imgPlaceholder={imgPlaceholder}
-      ></Card>
-      <Card
-        linkTarget="plate-regular"
-        name="純金金牌"
-        imgPlaceholder={imgPlaceholder}
-      ></Card>
-      <Card
-        linkTarget="goldfan"
-        name="黃金扇"
-        imgPlaceholder={imgPlaceholder}
-      ></Card>
-      <Card
-        linkTarget="omori"
-        name="純金御守"
-        imgPlaceholder={imgPlaceholder}
-      ></Card>
+      <Card linkTarget="plate-deities" name="神明金牌"></Card>
+      <Card linkTarget="plate-creativity" name="純金金牌"></Card>
+      <Card linkTarget="goldfan" name="黃金扇"></Card>
+      <Card linkTarget="omori" name="純金御守"></Card>
     </div>
   );
 };
-
 
 export default ProductCards;

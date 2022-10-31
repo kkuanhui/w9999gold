@@ -1,8 +1,8 @@
 import React from "react";
-import { Routes, Route, Link } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import ProductCards from "./ProductCards";
 import ProductPlateDeities from "./ProductPlateDeities";
-import ProductPlateRegular from "./ProductPlateRegular";
+import ProductPlateCreativity from "./ProductPlateCreativity";
 import ProductGoldfan from "./ProductGoldfan";
 import ProductOmori from "./ProductOmori";
 
@@ -15,28 +15,17 @@ const AppProduct = () => {
   return (
     <div>
       <Routes>
-
         {/* index and exception */}
         <Route index element={<ProductCards />}></Route>
         <Route path="*" element={<ProductCards />}></Route>
 
+        <Route path="plate-deities" element={<ProductPlateDeities />}></Route>
         <Route
-          path="plate-deities"
-          element={<ProductPlateDeities />}
+          path="plate-creativity"
+          element={<ProductPlateCreativity />}
         ></Route>
-        <Route
-          path="plate-regular"
-          element={<ProductPlateRegular />}
-        ></Route>
-        <Route 
-          path="goldfan" 
-          element={<ProductGoldfan />}
-        ></Route>
-        <Route 
-          path="omori" 
-          element={<ProductOmori />}
-        ></Route>
-
+        <Route path="goldfan" element={<ProductGoldfan />}></Route>
+        <Route path="omori" element={<ProductOmori />}></Route>
       </Routes>
     </div>
   );

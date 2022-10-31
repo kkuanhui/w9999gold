@@ -7,6 +7,7 @@ const NavBar = () => {
   const toggleCheck = () => {
     setIsChecked(!isChecked);
   };
+
   return (
     <div>
       <nav id="navbar" className="black-theme-block">
@@ -14,17 +15,18 @@ const NavBar = () => {
           <img src={icon} alt="icon" width="50" height="24.33"></img>
           <div>仕彩金飾</div>
         </a>
-
-        <div className="navbar-block">
-          <label id="navbar-hamburger" for="navbar-toggler">
+        <div className="navbr-block">
+          <label id="navbar-hamburger" htmlFor="navbar-toggler">
             &#9776;
           </label>
+
           <input
             type="checkbox"
             id="navbar-toggler"
             checked={isChecked}
             onChange={toggleCheck}
           ></input>
+
           <div id="navbar-list">
             <div onClick={toggleCheck}></div>
             <ul>
@@ -47,10 +49,12 @@ const NavBar = () => {
 
       <div>
         <Routes>
-          <Route path="/product/*" element={<ExtendProduct></ExtendProduct>}></Route>
+          <Route
+            path="/product/*"
+            element={<ExtendProduct></ExtendProduct>}
+          ></Route>
         </Routes>
       </div>
-
     </div>
   );
 };
@@ -61,16 +65,16 @@ const ExtendProduct = () => {
       <Route index></Route>
       <Route path="*" element={<ProductSummary></ProductSummary>}></Route>
     </Routes>
-  )
+  );
 };
 
 const ProductSummary = () => {
-  return(
+  return (
     <div id="navbar-extend-product">
-        <div>神明金牌</div> 
-        <div>NT $15,000</div> 
+      <div>神明金牌</div>
+      <div>NT $15,000</div>
     </div>
-  )
-}
+  );
+};
 
 export default NavBar;

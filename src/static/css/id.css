@@ -14,8 +14,8 @@
   color: white;
 }
 
-#navbar-extend-product{
-  background: #AAAAAA;
+#navbar-extend-product {
+  background: #aaaaaa;
   box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.25);
   display: flex;
   justify-content: space-between;
@@ -152,7 +152,7 @@
   white-space: nowrap;
 }
 
-#product-total-price{
+#product-total-price {
   position: fixed;
   bottom: 0px;
   display: flex;
@@ -163,19 +163,19 @@
   width: 100vw;
   height: 100px;
   box-shadow: 0px -10px 14px rgba(0, 0, 0, 0.25);
-  background-color: #E1E1E1;
+  background-color: #e1e1e1;
 }
 
-#app-product{
+#app-product {
   display: flex;
   margin: 50px 0px;
   width: 100%;
   justify-content: space-around;
-  flex-wrap: wrap; 
-  background-color: #E5E5E5;
+  flex-wrap: wrap;
+  background-color: #e5e5e5;
 }
 
-#app-product > div{
+#app-product > div {
   width: clamp(200px, 100%, 280px);
   height: 300px;
   background-color: #ffffff;
@@ -187,11 +187,11 @@
   border-radius: 15px;
 }
 
-#product-canvas{
+#product-canvas {
   width: 80%;
   height: 300px;
   border: 1px solid #303030;
-  background-color: #D7D7D7;
+  background-color: #d7d7d7;
 }
 
 #gold-show-section {
@@ -212,7 +212,7 @@
   margin: 10px auto;
 }
 
-#product-options{
+#product-options {
   display: flex;
   flex-direction: column;
   justify-content: center;
