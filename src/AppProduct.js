@@ -16,7 +16,10 @@ const AppProduct = () => {
     <div>
       <Routes>
 
+        {/* index and exception */}
         <Route index element={<ProductCards />}></Route>
+        <Route path="*" element={<ProductCards />}></Route>
+
         <Route
           path="plate-deities"
           element={<ProductPlateDeities />}
@@ -25,9 +28,14 @@ const AppProduct = () => {
           path="plate-regular"
           element={<ProductPlateRegular />}
         ></Route>
-        <Route path="goldfan" element={<ProductGoldfan />}></Route>
-        <Route path="omori" element={<ProductOmori />}></Route>
-        <Route path="*" element={<ProductCards />}></Route>
+        <Route 
+          path="goldfan" 
+          element={<ProductGoldfan />}
+        ></Route>
+        <Route 
+          path="omori" 
+          element={<ProductOmori />}
+        ></Route>
 
       </Routes>
     </div>

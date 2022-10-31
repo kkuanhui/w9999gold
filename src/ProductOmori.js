@@ -2,9 +2,9 @@ import React, {useRef, useEffect, useState} from "react"
 
 const ProductOmori = () => {
   return(
-      <div className="flex-center" style={{"margin": "10px", "gap": "10px", "flexDirection": "column"}}>
-        Omori
-      </div>
+    <div className="flex-center" style={{"margin": "10px", "gap": "10px", "flexDirection": "column"}}>
+      Omori
+    </div>
   )
 }
 
