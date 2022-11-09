@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Routes, Route, Link } from "react-router-dom";
+import axios from 'axios'
 
 const Card = (props) => {
   return (
@@ -13,12 +14,20 @@ const Card = (props) => {
 };
 
 const ProductCards = (props) => {
+  const [apps, setApps] = useState([])
+  useEffect(() => {
+    axios.get(`/list-apps`)
+    .then(res => {
+      setApps(res.data)
+    })
+  }, [])
   return (
     <div id="app-product">
-      <Card linkTarget="plate-deities" name="神明金牌"></Card>
-      <Card linkTarget="plate-creativity" name="純金金牌"></Card>
-      <Card linkTarget="goldfan" name="黃金扇"></Card>
-      <Card linkTarget="omori" name="純金御守"></Card>
+      {
+        apps.map(obj => {
+          return <Card linkTarget={obj['english_name']} name={obj['show_name']}></Card>
+        })
+      }
     </div>
   );
 };

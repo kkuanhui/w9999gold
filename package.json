@@ -48,5 +48,6 @@
     "nodemon": "^2.0.7"
   },
   "keywords": [],
-  "description": ""
+  "description": "",
+  "proxy": "https://express-psql-backend.herokuapp.com/"
 }
