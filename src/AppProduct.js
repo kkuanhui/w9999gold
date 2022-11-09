@@ -18,10 +18,9 @@ const AppProduct = () => {
         {/* index and exception */}
         <Route index element={<ProductCards />}></Route>
         <Route path="*" element={<ProductCards />}></Route>
-
-        <Route path="plate-deities" element={<ProductPlateDeities />}></Route>
+        <Route path="plate_deities" element={<ProductPlateDeities />}></Route>
         <Route
-          path="plate-creativity"
+          path="plate_creativity"
           element={<ProductPlateCreativity />}
         ></Route>
         <Route path="goldfan" element={<ProductGoldfan />}></Route>

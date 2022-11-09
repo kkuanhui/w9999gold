@@ -4,6 +4,7 @@ import { Routes, Route, Link } from "react-router-dom";
 
 const NavBar = () => {
   const [isChecked, setIsChecked] = useState(false);
+
   const toggleCheck = () => {
     setIsChecked(!isChecked);
   };
@@ -47,32 +48,6 @@ const NavBar = () => {
         </div>
       </nav>
 
-      <div>
-        <Routes>
-          <Route
-            path="/product/*"
-            element={<ExtendProduct></ExtendProduct>}
-          ></Route>
-        </Routes>
-      </div>
-    </div>
-  );
-};
-
-const ExtendProduct = () => {
-  return (
-    <Routes>
-      <Route index></Route>
-      <Route path="*" element={<ProductSummary></ProductSummary>}></Route>
-    </Routes>
-  );
-};
-
-const ProductSummary = () => {
-  return (
-    <div id="navbar-extend-product">
-      <div>神明金牌</div>
-      <div>NT $15,000</div>
     </div>
   );
 };

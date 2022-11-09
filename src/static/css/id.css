@@ -58,7 +58,7 @@
 }
 
 #navbar-list ul {
-  padding: 10px;
+  margin-right: 25px;
   position: absolute;
   display: flex;
   flex-direction: column;
