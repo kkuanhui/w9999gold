@@ -7,7 +7,7 @@ import ProductGoldfan from "./ProductGoldfan";
 import ProductOmori from "./ProductOmori";
 
 // 1.1 plate-deities 神明金牌
-// 1.2 plate-regular 純金金牌
+// 1.2 plate-creativity 創意金牌
 // 2.  omori 御守
 // 3.  goldfan 黃金扇
 
