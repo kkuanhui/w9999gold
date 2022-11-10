@@ -1,4 +1,5 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
+
 
 const dataProducts = [
   { name: "金鎖", id: "1" },
@@ -32,6 +33,21 @@ const dataProductDetail = [
 ];
 
 const PlateDeities = () => {
+
+  const [productList, setProductList] = useState([])
+  const [selectedProduct, setSelectedProduct] = useState("")
+  const [goldPrice, setGoldPrice] = useState("")
+
+  useEffect(() => {
+
+  }, [])
+  useEffect(() => {
+
+  }, [])
+  useEffect(() => {
+
+  }, [])
+
   return (
     <div
       className="flex-center"
