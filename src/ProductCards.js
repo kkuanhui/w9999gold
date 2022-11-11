@@ -7,7 +7,7 @@ const Card = (props) => {
   return (
     <div>
       <Link to={props.linkTarget}>
-        <img src={"./djwoidjiwoe.png"} width="250" height="200"></img>
+        <img src={""} width="250" height="200"></img>
         <div>{props.name}</div>
       </Link>
     </div>

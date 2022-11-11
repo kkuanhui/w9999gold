@@ -2,11 +2,13 @@ import React, { useRef, useEffect, useState } from "react";
 
 const ProductPlateRegular = () => {
   return (
-    <div
-      className="flex-center"
-      style={{ margin: "10px", gap: "10px", flexDirection: "column" }}
-    >
-      Plate Creativity
+    <div>
+      <h1>創意金牌</h1>
+      <div
+        className="flex-center"
+        style={{ margin: "10px", gap: "10px", flexDirection: "column" }}
+      >
+      </div>
     </div>
   );
 };

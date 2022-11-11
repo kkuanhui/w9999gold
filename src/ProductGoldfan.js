@@ -2,9 +2,33 @@ import React, {useRef, useEffect, useState} from "react"
 
 const ProductGoldfan = () => {
   return(
+    <div>
+      <h1>黃金扇</h1>
       <div className="flex-center" style={{"margin": "10px", "gap": "10px", "flexDirection": "column"}}>
-        Goldfan
+        <div id="product-options">
+          <div className="product-attr-choice">
+            <div>黃金扇設計</div>
+          </div>
+
+          <div className="product-attr-choice">
+            <div>
+              <div>黃金重量</div>
+              <div >0.1</div>
+            </div>
+            <div className="extend-text">
+              <div>時價</div>
+              <div>3,650</div>
+            </div>
+          </div>
+
+          <div className="product-attr-choice">
+            <div>增加文字</div>
+            <input type="checkbox"></input>
+          </div>
+
+        </div>
       </div>
+    </div>
   )
 }
 

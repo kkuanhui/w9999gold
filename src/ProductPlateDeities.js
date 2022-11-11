@@ -1,3 +1,4 @@
+import axios from "axios";
 import React, {useEffect, useState} from "react";
 
 
@@ -37,69 +38,81 @@ const PlateDeities = () => {
   const [productList, setProductList] = useState([])
   const [selectedProduct, setSelectedProduct] = useState("")
   const [goldPrice, setGoldPrice] = useState("")
+  const [renewTimes, setRenewTimes] = useState(0)
 
   useEffect(() => {
-
+    axios.get(``)
+    .then(res => {
+      setProductList(res.data)
+    })
   }, [])
+
   useEffect(() => {
+    axios.get(``)
+    .then(res => {
+      setGoldPrice(res.data)
+    })
+  }, renewTimes)
 
-  }, [])
-  useEffect(() => {
-
-  }, [])
+  setInterval(() => {
+    setRenewTimes(renewTimes++)
+  }, 1000 * 60 * 7)
 
   return (
-    <div
-      className="flex-center"
-      style={{ margin: "10px", gap: "10px", flexDirection: "column" }}
-    >
-      <div id="product-options">
-        <div className="product-attr-choice">
-          <div>金牌設計</div>
-          <select>
-            {dataProducts.map((ele) => {
-              return <option value={ele.id}>{ele.name}</option>;
-            })}
-          </select>
-        </div>
-
-        <div className="product-attr-choice">
-          <div>金牌尺寸</div>
-          <select>
-            {dataProductDetail.map((ele) => {
-              return <option value={ele.size}>{ele.size} 寸</option>;
-            })}
-          </select>
-        </div>
-
-        <div className="product-attr-choice">
-          <div>
-            <div>黃金重量</div>
+    <div>
+      <h1 className="text-center width-70">酬神金牌</h1>
+      <div
+        className="flex-center"
+        style={{ margin: "10px", gap: "10px", flexDirection: "column" }}
+      >
+        <div id="product-options">
+          <div className="product-attr-choice">
+            <div>金牌設計</div>
             <select>
-              {dataProductDetail.map((ele) => {
-                return (
-                  <option value={ele.weight_min}>{ele.weight_min} 錢</option>
-                );
+              {dataProducts.map((ele) => {
+                return <option value={ele.id}>{ele.name}</option>;
               })}
             </select>
           </div>
-          <div className="extend-text">
-            <div>時價</div>
-            <div>3,650</div>
+
+          <div className="product-attr-choice">
+            <div>金牌尺寸</div>
+            <select>
+              {dataProductDetail.map((ele) => {
+                return <option value={ele.size}>{ele.size} 寸</option>;
+              })}
+            </select>
           </div>
-        </div>
 
-        <div className="product-attr-choice">
-          <div>增加照片</div>
-          <input type="checkbox"></input>
-        </div>
+          <div className="product-attr-choice">
+            <div>
+              <div>黃金重量</div>
+              <select>
+                {dataProductDetail.map((ele) => {
+                  return (
+                    <option value={ele.weight_min}>{ele.weight_min} 錢</option>
+                  );
+                })}
+              </select>
+            </div>
+            <div className="extend-text">
+              <div>時價</div>
+              <div>3,650</div>
+            </div>
+          </div>
 
-        <div className="product-attr-choice">
-          <div>增加外框</div>
-          <select>
-            <option value="E3456">龍鳳搶珠</option>
-            <option value="E3456">雙龍雙龍</option>
-          </select>
+          <div className="product-attr-choice">
+            <div>增加照片</div>
+            <input type="checkbox"></input>
+          </div>
+
+          <div className="product-attr-choice">
+            <div>增加外框</div>
+            <select>
+              <option value="E3456">龍鳳搶珠</option>
+              <option value="E3456">雙龍雙龍</option>
+            </select>
+          </div>
         </div>
       </div>
     </div>
