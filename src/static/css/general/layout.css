@@ -1,22 +1,4 @@
-/* css reset */
-*,
-*::before,
-*::after {
-  box-sizing: inherit;
-  margin: 0;
-  border: 0;
-  padding: 0;
-}
-
-/* root element */
-html {
-  box-sizing: border-box;
-  font-size: 16px;
-  /* custom colors */
-  --theme-color-1: #1E1E1E;
-}
-
-/* ---------------------- */
+/* css layout */
 
 .d-flex {
   display: flex;
@@ -112,8 +94,4 @@ html {
 
 .mr-3 {
   margin-right: 15px;
-}
-
-.bg-theme-1 {
-  background-color: var(--theme-color-1);
 }
