@@ -5,30 +5,42 @@ const ProductOmori = () => {
 
   const [goldPrice, setGoldPrice] = useState([])
   const [productList, setProductList] = useState([])
+  const [goldWeight, setGoldWeight] = useState(0.1)
+  const [isCustom, setIsCustom] = useState(false)
+  const [productId, setProductId] = useState('')
+  const [totalPrice, setTotalPrice] = useState(0)
 
+  const sevenMin = 1000 * 60 * 7
   let fifteenCheck = 0
 
   setInterval(() => {
     fifteenCheck++    
-  }, 1000*60*7)
+  }, sevenMin)
 
   useEffect(() => {
-    axios.get(`/quote-gold-price`)
+    axios.get(`/get-gold-quote`)
     .then((res) => {
-      setGoldPrice(res.data)
+      setGoldPrice(res.data[0])
     })
   }, fifteenCheck)
 
   useEffect(() => {
-    axios.get(`get-detail/A04/P0401`)
+    axios.get(`/list-products/A04`)
     .then(res => {
       setProductList(res.data)
     })
   }, [])
 
+  useEffect(() => {
+    axios.get(`/get-detail/A04/${productId}`)
+    .then(res => {
+      setProductId(res.data)
+    })
+  }, productId)
+
   return (
     <div>
-      <h1>
+      <h1 className="width-70">
         黃金御守
       </h1>
       <div
@@ -38,16 +50,21 @@ const ProductOmori = () => {
         <div id="product-options">
           <div className="product-attr-choice">
             <div>御守設計</div>
+            <select>
+              {productList.map(ele => {
+                return <option value={ele["product_id"]}>{ele["show_name"]}</option>
+              })}
+            </select>
           </div>
 
           <div className="product-attr-choice">
             <div>
               <div>黃金重量</div>
-              <div >0.1</div>
+              <div>0.1 錢</div>
             </div>
             <div className="extend-text">
               <div>時價</div>
-              <div>3,650</div>
+              <div>{Number(goldPrice["price_value"] * 0.1).toFixed()}</div>
             </div>
           </div>
 
@@ -55,6 +72,14 @@ const ProductOmori = () => {
             <div>增加文字</div>
             <input type="checkbox"></input>
           </div>
+
+          <div>--------------</div>
+
+          <div>
+            <div>總價</div>
+            <div>$<span>{totalPrice}</span></div>
+          </div>
+
 
         </div>
       </div>

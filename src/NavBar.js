@@ -34,12 +34,12 @@ const NavBar = () => {
               <li onClick={toggleCheck}>
                 <Link to="/">首頁</Link>
               </li>
-              <li onClick={toggleCheck}>
+              {/* <li onClick={toggleCheck}>
                 <Link to="/about-us">關於我們</Link>
-              </li>
-              <li onClick={toggleCheck}>
+              </li> */}
+              {/* <li onClick={toggleCheck}>
                 <Link to="/market">黃金市價</Link>
-              </li>
+              </li> */}
               <li onClick={toggleCheck}>
                 <Link to="/product">產品價格</Link>
               </li>
