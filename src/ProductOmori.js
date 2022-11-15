@@ -51,7 +51,7 @@ const ProductOmori = () => {
 
   return (
     <div>
-      <h1 className="width-70 text-center">OMORI</h1>
+      <h1 className="width-70 text-center">黃金御守</h1>
 
       <div
         className="d-grid grid-column-3 mr-auto ml-auto width-50"
