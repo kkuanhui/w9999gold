@@ -211,12 +211,3 @@
   width: 100%;
   margin: 10px auto;
 }
-
-#product-options {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
-  padding: 0px;
-  gap: 15px;
-}
