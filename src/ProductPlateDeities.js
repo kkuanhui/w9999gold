@@ -1,24 +1,53 @@
 import axios from "axios";
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useState, useSyncExternalStore} from "react";
 import {keyBy} from 'lodash'
 
 const PlateDeities = () => {
 
-  const [goldPrice, setGoldPrice] = useState([]);
-  const [productList, setProductList] = useState([]);
-  const [size, setSize] = useState('2')
-  const [isCustom, setIsCustom] = useState(false);
-  const [productId, setProductId] = useState([]);
-  const [totalPrice, setTotalPrice] = useState(0);
-  const [wageBasic, setWageBasic] = useState(0);
+  const APP_ID = 'A01'
 
-  const requestGoldPrice = () => {
+  // get-gold-quote
+  const [goldPrice, setGoldPrice] = useState({});
+  // list-products/
+  const [appProducts, setAppProducts] = useState([]);
+  // get-detail/app/product
+  const [productDetails, setProductDetails] = useState([]);
+  // list-addons/
+  const [appAddons, setAppAddons] = useState([]);
+  // get-detail-addons/
+  const [addonDetails, setAddonDetails] = useState([])
+
+  const [userProduct, setUserProduct] = useState('');
+  const [userWeight, setUserWeight] = useState(0);
+  const [userAddImage, setUserAddImage] = useState(false);
+  const [userAddon, setUserAddon] = useState("")
+  const [totalPrice, setTotalPrice] = useState(0);
+
+  useEffect(() => {
+    // get-gold-quote
+    // list-products/
+    // get-detail/app/product
+    // list-addons/
+    // get-detail-addons/
+
     axios.get(`/get-gold-quote`).then((res) => {
-      setGoldPrice(res.data[0]["price_value"]);
+      setGoldPrice(res.data[0]);
     });
-    setTimeout(requestGoldPrice, 1000 * 60 * 5)
-  }
-  useEffect(requestGoldPrice, []);
+
+    axios.get(`/list-products/${APP_ID}`).then((res) => {
+      setAppProducts(res.data);
+    });
+
+    axios.get(`/list-addons/${APP_ID}`).then((res) => {
+      setAppAddons(res.data);
+    });
+
+    axios.get(`/get-detail-addons/${APP_ID}`).then((res) => {
+      setAddonDetails(res.data);
+    });
+
+  }, [])
+
 
   const handelSizeChange = (event) => {
     setSize(event.target.value)
@@ -27,32 +56,16 @@ const PlateDeities = () => {
   }
 
   useEffect(() => {
-    axios.get(`/list-products/A01`).then((res) => {
-      setProductList(res.data);
-    });
-  }, []);
-
-  useEffect(() => {
     const keyBySize = keyBy(productId, "size")
     const customFee = isCustom? keyBySize[size]["wage_image"]: 0
     const goldFee = goldPrice * 0.1
     setTotalPrice(goldFee + customFee + wageBasic)
   }, [isCustom, goldPrice, productId, size])
 
-
   const handleChange = (event) => {
-    axios.get(`/get-detail/A01/${event.target.value}`).then((res) => {
-      setProductId(res.data);
-      console.log(res.data)
-    })
-    .catch(err => console.log(err))
   }
 
   useEffect(() => {
-    axios.get(`/get-detail/A01/P0102`).then((res) => {
-      setProductId(res.data);
-      console.log(res.data)
-    })
   }, [])
 
   const handleChecked = () => {
