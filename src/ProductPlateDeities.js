@@ -1,13 +1,12 @@
 import axios from "axios";
 import React, { useEffect, useState, useSyncExternalStore } from "react";
-import { keyBy, groupBy } from "lodash";
+import {filter, keyBy} from "lodash";
 
 const PlateDeities = (props) => {
   // const APP_ID = props["appId"]
   const APP_ID = "A01";
 
-  // how about use default value?
-  const [goldPrice, setGoldPrice] = useState({"timestamp": null);
+  const [goldPrice, setGoldPrice] = useState([]);
   const [appProducts, setAppProducts] = useState([]);
   const [productDetails, setProductDetails] = useState([]);
   const [appAddons, setAppAddons] = useState([]);
@@ -21,9 +20,6 @@ const PlateDeities = (props) => {
   const [userAddon, setUserAddon] = useState("");
   const [totalPrice, setTotalPrice] = useState(0);
 
-  // component state
-  const [isInit, setIsInit] = useState(true);
-
   // request API 
   useEffect(() => {
     axios
@@ -36,32 +32,35 @@ const PlateDeities = (props) => {
       ])
       .then(
         axios.spread((...res) => {
-          setGoldPrice(res[0].data[0]);
+          const defaultProduct = res[1].data[0]["product_id"]
+          const defaultDetail = filter(res[3].data, {"product_id": defaultProduct})
+          const defaultSize = defaultDetail[0]["size"]
+          const defaultWeight = defaultDetail[0]["weight_min"]
+          const defaultAddon = filter(res[4].data, {"product_id": defaultSize})
+
+          setGoldPrice(res[0].data);
+
           setAppProducts(res[1].data);
           setAppAddons(res[2].data);
           setProductDetails(res[3].data);
           setAddonDetails(res[4].data);
+
+          setUserProduct(defaultProduct)
+          setUserDetail(defaultDetail)
+          setUserWeight(defaultWeight)
+          setUserSize(defaultSize)
+          setUserAddon(defaultAddon)
+
         })
       )
       .catch((errors) => {
         console.log(errors);
       })
-      .finally(() => {
-        setIsInit(false);
-      });
   }, []);
 
-  const onUserProductChange = (e) => {
-    setUserProduct(e.target.value);
-  };
-
   useEffect(() => {
-    const g = groupBy(productDetails, "product_id");
-    const a = g[userProduct];
-    const e = a.map((ele) => {
-      return ele["size"];
-    });
-  }, [userProduct, goldPrice, appProducts, productDetails]);
+
+  })
 
   return (
     <div>
@@ -73,7 +72,7 @@ const PlateDeities = (props) => {
       >
         <div>金牌設計</div>
         <div>
-          <select value="" onChange={onUserProductChange}>
+          <select onChange={(e) => {setUserProduct(e.target.value)}}>
             {appProducts.map((ele) => {
               return (
                 <option value={ele["product_id"]}>{ele["show_name"]}</option>
@@ -84,8 +83,8 @@ const PlateDeities = (props) => {
 
         <div style={{ gridRow: "2" }}>金牌尺寸</div>
         <div style={{ gridRow: "2" }}>
-          <select>
-            {userDetail.map((ele) => {
+          <select onChange={(e) => {setUserSize(e.target.value)}}>
+            {filter(productDetails, {"product_id": userProduct}).map((ele) => {
               return (
                 <option value={ele["size"]}>{ele["size"]}</option>
               );
