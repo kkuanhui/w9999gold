@@ -15,6 +15,7 @@ const PlateDeities = (props) => {
   const [userProduct, setUserProduct] = useState("");
   const [userDetail, setUserDetail] = useState([])
   const [userWeight, setUserWeight] = useState(0);
+  const [weightInt, setWeightInt] = useState([])
   const [userSize, setUserSize] = useState(0);
   const [userIsAddImage, setUserIsAddImage] = useState(false);
   const [userAddon, setUserAddon] = useState("");
@@ -59,8 +60,32 @@ const PlateDeities = (props) => {
   }, []);
 
   useEffect(() => {
+    const detail = filter(productDetails, {"product_id": userProduct})
+    setUserDetail(detail)
+    const weightMin = detail["0"]?.["weight_min"]
+    const weightMax = detail["0"]?.["weight_max"]
+    setUserWeight(weightMin)
+    setWeightInt([weightMin, weightMax])
+    const sizeMin = detail["0"]?.["size"]
+    setUserSize(sizeMin)
+    setUserIsAddImage(false)
+  },[userProduct])
 
-  })
+  useEffect(() => {
+    const detail = filter(userDetail, {"size": Number(userSize)})
+    const weightMin = detail["0"]?.["weight_min"]
+    const weightMax = detail["0"]?.["weight_max"]
+    setUserWeight(weightMin)
+    setWeightInt([weightMin, weightMax])
+    setUserIsAddImage(false)
+  }, [userSize])
+
+  useEffect(() => {
+      const goldValue = userWeight * goldPrice["0"]?.["price_value"]
+      const wageBasic = filter(userDetail, {"size": userSize})["0"]?.["wage_basic"]
+      setTotalPrice(goldValue + wageBasic)
+  }, [userProduct, userSize, userWeight, userIsAddImage])
+
 
   return (
     <div>
@@ -83,8 +108,8 @@ const PlateDeities = (props) => {
 
         <div style={{ gridRow: "2" }}>金牌尺寸</div>
         <div style={{ gridRow: "2" }}>
-          <select onChange={(e) => {setUserSize(e.target.value)}}>
-            {filter(productDetails, {"product_id": userProduct}).map((ele) => {
+          <select value={userSize} onChange={(e) => {setUserSize(e.target.value)}}>
+            {(userDetail).map((ele) => {
               return (
                 <option value={ele["size"]}>{ele["size"]}</option>
               );
@@ -97,8 +122,10 @@ const PlateDeities = (props) => {
           <input
             style={{ border: "solid 1px #000000" }}
             type="number"
-            min="10"
-            max="100"
+            value={userWeight}
+            min={weightInt[0]}
+            max={weightInt[1]}
+            onChange={(e) => {setUserWeight(e.target.value)}}
           ></input>
         </div>
         <div style={{ gridArea: "3/3" }}>時價</div>
@@ -108,14 +135,27 @@ const PlateDeities = (props) => {
 
         <div style={{ gridRow: "4" }}>增加照片</div>
         <div style={{ gridRow: "4" }}>
-          <input type="checkbox"></input>
+          <input type="checkbox" checked={userIsAddImage} onClick={() => {setUserIsAddImage(!userIsAddImage)}}></input>
         </div>
 
-        <div style={{ gridRow: "5" }}>增加外框</div>
+        <div style={{ gridRow: "5" }}>外框尺寸</div>
         <div style={{ gridRow: "5" }}>
-          {" "}
-          <select></select>
+          <select >
+          </select>
         </div>
+
+        <div style={{ gridRow: "5" }}>外框設計</div>
+        <div style={{ gridRow: "5" }}>
+          <select>
+            {
+              appAddons.map(ele => 
+                  <option value={ele["product_id"]}>{ele["show_name"]}</option>
+                )
+          }
+          </select>
+        </div>
+
+
 
         <div
           style={{
