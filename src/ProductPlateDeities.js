@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState, useSyncExternalStore } from "react";
-import {filter, keyBy} from "lodash";
+import {filter, uniqBy} from "lodash";
 
 const PlateDeities = (props) => {
   // const APP_ID = props["appId"]
@@ -13,12 +13,18 @@ const PlateDeities = (props) => {
   const [addonDetails, setAddonDetails] = useState([]);
 
   const [userProduct, setUserProduct] = useState("");
-  const [userDetail, setUserDetail] = useState([])
+  const [userDetail, setUserDetail] = useState([]);
   const [userWeight, setUserWeight] = useState(0);
-  const [weightInt, setWeightInt] = useState([])
+  const [weightInt, setWeightInt] = useState([]);
   const [userSize, setUserSize] = useState(0);
   const [userIsAddImage, setUserIsAddImage] = useState(false);
+
+  const [userIsAddon, setUserIsAddon] = useState(false);
+  const [userAddonSize, setUserAddonSize] = useState(0);
   const [userAddon, setUserAddon] = useState("");
+  const [userAddonIsAddImage, setUserAddonIsAddImage] = useState(false)
+
+
   const [totalPrice, setTotalPrice] = useState(0);
 
   // request API 
@@ -50,7 +56,6 @@ const PlateDeities = (props) => {
           setUserDetail(defaultDetail)
           setUserWeight(defaultWeight)
           setUserSize(defaultSize)
-          setUserAddon(defaultAddon)
 
         })
       )
@@ -67,6 +72,7 @@ const PlateDeities = (props) => {
     setUserWeight(weightMin)
     setWeightInt([weightMin, weightMax])
     const sizeMin = detail["0"]?.["size"]
+    // This is relative new syntax called option chaining.
     setUserSize(sizeMin)
     setUserIsAddImage(false)
   },[userProduct])
@@ -82,10 +88,11 @@ const PlateDeities = (props) => {
 
   useEffect(() => {
       const goldValue = userWeight * goldPrice["0"]?.["price_value"]
-      const wageBasic = filter(userDetail, {"size": userSize})["0"]?.["wage_basic"]
-      setTotalPrice(goldValue + wageBasic)
+      const wageBasic = filter(userDetail, {"size": Number(userSize)})["0"]?.["wage_basic"]
+      const wageImage = filter(userDetail, {"size": Number(userSize)})["0"]?.["wage_image"]
+      const addImageWage = (userIsAddImage)?Number(wageImage):0
+      setTotalPrice(goldValue + wageBasic + addImageWage)
   }, [userProduct, userSize, userWeight, userIsAddImage])
-
 
   return (
     <div>
@@ -130,43 +137,65 @@ const PlateDeities = (props) => {
         </div>
         <div style={{ gridArea: "3/3" }}>時價</div>
         <div style={{ gridArea: "3/4" }} className="d-flex">
-          <div>{Number(goldPrice * 0.1).toFixed()}</div>
+          <div>{(Number(goldPrice["0"]?.["price_value"])*Number(userWeight)).toFixed()}</div>
         </div>
 
         <div style={{ gridRow: "4" }}>增加照片</div>
         <div style={{ gridRow: "4" }}>
-          <input type="checkbox" checked={userIsAddImage} onClick={() => {setUserIsAddImage(!userIsAddImage)}}></input>
+          <input 
+            type="checkbox" 
+            checked={userIsAddImage} 
+            onClick={() => {setUserIsAddImage(!userIsAddImage)}}></input>
         </div>
 
-        <div style={{ gridRow: "5" }}>外框尺寸</div>
+        <div style={{ gridRow: "5" }}>加大外框</div>
         <div style={{ gridRow: "5" }}>
-          <select >
-          </select>
+          <input 
+            type="checkbox" 
+            checked={userIsAddon} 
+            onClick={() => {setUserIsAddon(!userIsAddon)}}></input>
         </div>
 
-        <div style={{ gridRow: "5" }}>外框設計</div>
-        <div style={{ gridRow: "5" }}>
-          <select>
+        <div style={{ gridRow: "6" }}>外框尺寸</div>
+        <div style={{ gridRow: "6" }}>
+          <select 
+            disabled={!userIsAddon}
+            onChange={(e) => setUserAddonSize(e.target.value)}
+            >
             {
-              appAddons.map(ele => 
-                  <option value={ele["product_id"]}>{ele["show_name"]}</option>
-                )
-          }
+              uniqBy(filter(addonDetails, function(e){
+                return e["size"] >= userSize+2
+              }), "size").map(ele => 
+                  <option value={ele["size"]}>{ele["size"]}</option>
+              ) 
+            }
           </select>
+        </div>
+
+        <div style={{ gridRow: "7" }}>外框設計</div>
+        <div style={{ gridRow: "7" }}>
+          <select disabled={!userIsAddon} onChange={(e) => {setUserAddon(e.target.value)}}>
+            {
+              uniqBy(filter(addonDetails, {"size": Number(userAddonSize)}), "addon_id").map(
+                ele => <option value={ele["addon_id"]}>{ele["show_name"]}</option>
+              )
+            }
+          </select>
+        </div>
+
+        <div style={{ gridRow: "8" }}>外框加圖</div>
+        <div style={{ gridRow: "8" }}>
+          <input 
+            type="checkbox" 
+            disabled={!userIsAddon}
+            checked={userAddonIsAddImage} 
+            onClick={() => {setUserAddonIsAddImage(!userAddonIsAddImage)}}></input>
         </div>
 
 
 
-        <div
-          style={{
-            gridRow: "6/7",
-            gridColumn: "1/5",
-            borderTop: "1px solid #3f3f3f",
-          }}
-        ></div>
-
-        <div style={{ gridRow: "7" }}>總價</div>
-        <div style={{ gridRow: "7" }}>
+        <div style={{ gridRow: "10" }}>總價</div>
+        <div style={{ gridRow: "10" }}>
           $<span>{totalPrice.toFixed()}</span>
         </div>
       </div>
