@@ -9,6 +9,7 @@ const PlateDeities = (props) => {
   const [goldPrice, setGoldPrice] = useState([]);
   const [appProducts, setAppProducts] = useState([]);
   const [productDetails, setProductDetails] = useState([]);
+  const [addonDetails, setAddonDetais] = useState([])
 
   const [userProduct, setUserProduct] = useState("");
   const [userDetail, setUserDetail] = useState([]);
@@ -16,8 +17,9 @@ const PlateDeities = (props) => {
   const [weightInt, setWeightInt] = useState([]);
   const [userSize, setUserSize] = useState(0);
   const [userIsAddImage, setUserIsAddImage] = useState(false);
-
   const [userIsAddon, setUserIsAddon] = useState(false);
+
+  const [addonPartWage, setAddonPartWage] = useState(0)
 
   const [totalPrice, setTotalPrice] = useState(0);
 
@@ -28,12 +30,14 @@ const PlateDeities = (props) => {
         axios.get(`/get-gold-quote`),
         axios.get(`/list-products/${APP_ID}`),
         axios.get(`/get-detail/${APP_ID}`),
+        axios.get(`/get-detail-addons/${APP_ID}`)
       ])
       .then(
         axios.spread((...res) => {
           setGoldPrice(res[0].data);
           setAppProducts(res[1].data);
           setProductDetails(res[2].data);
+          setAddonDetais(res[3].data)
 
           const defaultProduct = res[1].data[0]["product_id"];
           const defaultDetail = filter(res[2].data, {
@@ -104,7 +108,7 @@ const PlateDeities = (props) => {
     ];
     const addImageWage = userIsAddImage ? Number(wageImage) : 0;
     const mainPart = goldValue + wageBasic + addImageWage;
-    setTotalPrice(mainPart);
+    setTotalPrice(mainPart+addonPartWage);
   }, [
     goldPrice,
     userDetail,
@@ -113,7 +117,13 @@ const PlateDeities = (props) => {
     userWeight,
     userIsAddImage,
     userIsAddon,
+    addonPartWage,
   ]);
+
+  const onIsAddonClick = () => {
+    setUserIsAddon(!userIsAddon)
+    if(!userIsAddon === false){setAddonPartWage(0)}
+  }
 
   return (
     <div>
@@ -183,19 +193,27 @@ const PlateDeities = (props) => {
           ></input>
         </div>
 
-        <div style={{ gridRow: "5" }}>加大外框</div>
+        <div style={{ gridRow: "5" }}>金喜加大</div>
         <div style={{ gridRow: "5" }}>
           <input
             type="checkbox"
             disabled={((userSize+2)>10)?true:false}
             checked={userIsAddon}
-            onClick={() => {
-              setUserIsAddon(!userIsAddon);
-            }}
+            onClick={onIsAddonClick}
           ></input>
         </div>
         {
           ((userSize+2)>10)?<div style={{gridRow:"5"}}>無法再加外框</div>:null
+        }
+
+        {
+          (userIsAddon)?
+            <AddonPart 
+              addonDetails={addonDetails} 
+              plateSize={userSize} 
+              setAddonPartWage={setAddonPartWage}>
+            </AddonPart>
+          :null
         }
 
         <div style={{ gridRow: "10" }}>總價</div>
@@ -208,46 +226,41 @@ const PlateDeities = (props) => {
 };
 
 const AddonPart = (props) => {
-  const [APP_ID, isActivated] = {...props}
+  const { plateSize, setAddonPartWage, addonDetails} = props;
 
-  const [appAddons, setAppAddons] = useState([]);
-  const [addonDetails, setAddonDetails] = useState([]);
-
-  const [userIsAddon, setUserIsAddon] = useState(false);
   const [userAddonSize, setUserAddonSize] = useState(0);
   const [userAddon, setUserAddon] = useState("");
   const [userAddonIsAddImage, setUserAddonIsAddImage] = useState(false);
 
   useEffect(() => {
-    axios
-      .all([
-        axios.get(`/list-addons/${APP_ID}`),
-        axios.get(`/get-detail-addons/${APP_ID}`),
-      ])
-      .then(
-        axios.spread((...res) => {
-          setAppAddons(res[0].data);
-          setAddonDetails(res[1].data);
-        })
-      )
-      .catch((errors) => {
-        console.log(errors);
-      });
+    const detailUnderSize = filter(addonDetails, function(e){return e["size"] >= plateSize + 2})
+    setUserAddonSize(detailUnderSize[0]?.["size"])
+    setUserAddon(detailUnderSize[0]?.["addon_id"])
   }, []);
 
-  return (
-    <>
+  useEffect(() => {
+    const detail = filter(addonDetails, {"addon_id": userAddon, "size": userAddonSize})
+    const wageImage = (userAddonIsAddImage)?detail[0]?.["wage_image"]:0
+    const wageBasic = detail[0]?.["wage_basic"]
+    setAddonPartWage(wageImage+wageBasic)
+  }, 
+  [
+    userAddonSize, 
+    userAddon, 
+    userAddonIsAddImage
+  ]);
 
+  return (
+    <div style={{ gridRow: "6" }}>
       <div style={{ gridRow: "6" }}>外框尺寸</div>
       <div style={{ gridRow: "6" }}>
         <select
-          disabled={!userIsAddon}
-          onChange={(e) => setUserAddonSize(e.target.value)}
+          onChange={(e) => setUserAddonSize(Number(e.target.value))}
           value={userAddonSize}
         >
           {uniqBy(
             filter(addonDetails, function (e) {
-              return e["size"] >= Number(1) + 2;
+              return e["size"] >= plateSize + 2;
             }),
             "size"
           ).map((ele) => (
@@ -259,14 +272,13 @@ const AddonPart = (props) => {
       <div style={{ gridRow: "7" }}>外框設計</div>
       <div style={{ gridRow: "7" }}>
         <select
-          disabled={!userIsAddon}
           value={userAddon}
           onChange={(e) => {
             setUserAddon(e.target.value);
           }}
         >
           {uniqBy(
-            filter(addonDetails, { size: Number(userAddonSize) }),
+            filter(addonDetails, { size: userAddonSize }),
             "addon_id"
           ).map((ele) => (
             <option value={ele["addon_id"]}>{ele["show_name"]}</option>
@@ -278,14 +290,13 @@ const AddonPart = (props) => {
       <div style={{ gridRow: "8" }}>
         <input
           type="checkbox"
-          disabled={!userIsAddon}
           checked={userAddonIsAddImage}
           onClick={() => {
             setUserAddonIsAddImage(!userAddonIsAddImage);
           }}
         ></input>
       </div>
-    </>
+    </div>
   );
 };
 
