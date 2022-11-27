@@ -16,9 +16,9 @@ const PriceIntro = () => {
 
   useEffect(() => {
     axios
-      .get("https://w9999gold-backend.herokuapp.com/backend-2")
+      .get("https://express-psql-backend.herokuapp.com/get-gold-quote")
       .then((res) => {
-        const resultText = currencyFormat(res.data.future);
+        const resultText = currencyFormat(res.data[0]["price_value"]);
         setFuturePrice(resultText);
       })
       .catch((err) => console.log("Something goes wrong.\n", err));
