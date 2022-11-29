@@ -16,24 +16,28 @@ const Card = (props) => {
 
 const ProductCards = (props) => {
   const [apps, setApps] = useState([])
-  useEffect(() => {
-    axios.get(`/list-apps`)
-    .then(res => {
-      setApps(res.data)
-    })
-  }, [])
   const imgUrls = [
     "https://res.cloudinary.com/hbehita9k/image/upload/v1669652312/w9999gold/plate-deities-1_tunbky.png",
     "https://res.cloudinary.com/hbehita9k/image/upload/v1669652316/w9999gold/plate-deities-2_wjy9xw.png",
     "https://res.cloudinary.com/hbehita9k/image/upload/v1669652321/w9999gold/goldfan-1.png",
     "https://res.cloudinary.com/hbehita9k/image/upload/v1669652318/w9999gold/omori-1_ichsxz.png"
   ]
+  useEffect(() => {
+    axios.get(`/list-apps`)
+    .then(res => {
+      const data = res.data
+      data[0]["imgUrl"]=imgUrls[0]
+      data[1]["imgUrl"]=imgUrls[1]
+      data[2]["imgUrl"]=imgUrls[2]
+      data[3]["imgUrl"]=imgUrls[3]
+      setApps(res.data)
+    })
+  }, [])
   return (
     <div id="app-product">
-      <Card linkTarget={apps[0]?.['english_name']} name={apps[0]?.['show_name']} imgUrl={imgUrls[0]}></Card>
-      <Card linkTarget={apps[1]?.['english_name']} name={apps[1]?.['show_name']} imgUrl={imgUrls[1]}></Card>
-      <Card linkTarget={apps[2]?.['english_name']} name={apps[2]?.['show_name']} imgUrl={imgUrls[2]}></Card>
-      <Card linkTarget={apps[3]?.['english_name']} name={apps[3]?.['show_name']} imgUrl={imgUrls[3]}></Card>
+      {apps.map(ele => {
+        return <Card linkTarget={ele['english_name']} name={ele['show_name']} imgUrl={ele["imgUrl"]}></Card>
+      })}
     </div>
   );
 };

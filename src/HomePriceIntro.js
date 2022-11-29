@@ -18,7 +18,6 @@ const PriceIntro = () => {
     axios
       .get("/get-gold-quote")
       .then((res) => {
-        console.log(res.data[0]["price_value"])
         const resultText = currencyFormat(res.data[0]["price_value"]);
         setFuturePrice(resultText);
       })
