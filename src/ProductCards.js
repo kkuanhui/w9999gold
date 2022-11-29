@@ -7,8 +7,8 @@ const Card = (props) => {
   return (
     <div>
       <Link to={props.linkTarget}>
-        <img src={props.imgUrl} width="250" height="200" alt={'card img'}></img>
-        <div>{props.name}</div>
+          <img src={props.imgUrl} width="250" height="200" alt={'card img'}></img>
+          <div>{props.name}</div>
       </Link>
     </div>
   );
