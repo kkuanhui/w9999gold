@@ -83,8 +83,8 @@ const PlateDeities = (props) => {
   }, [userSize]);
 
   // check is weight in interval
-  const handleWeightChange = (e) => {
-    const input = Number(e.target.value)
+  const handleWeightChange = (v) => {
+    const input = Number(v)
     const min = weightInt[0]
     const max = (!weightInt[1])?Infinity:weightInt[1]
     if(input < min){
@@ -164,15 +164,20 @@ const PlateDeities = (props) => {
 
         <div className="d-flex flex-ai-center flex-jc-between width-80 pl-3 flex-wrap">
           <div className="font-bold font-size-15" style={{"flex": "1 1 50%"}}>黃金重量</div>
-          <input
-            className="width-20"
-            type="number"
-            style={{"flex": "1 1 50%"}}
-            value={userWeight}
-            min={weightInt[0]}
-            max={weightInt[1]}
-            onChange={(e) => handleWeightChange(e)}
-          ></input>
+          <div className="d-flex flex-direction-row" style={{"border": "1px solid black", "borderRadius": "10px"}}>
+            <button className="pl-3 pr-3" onClick={() => handleWeightChange((userWeight-0.1).toFixed(2))}>-</button>
+            <div className="d-flex flex-ai-center flex-jc-center" style={{"border": "1px solid black", "borderStyle": "none solid"}}>
+              <input
+                className="width-100 height-100 text-center"
+                type="number"
+                value={userWeight}
+                min={weightInt[0]}
+                max={weightInt[1]}
+                onChange={(e) => handleWeightChange(e.target.value)}
+              ></input>
+            </div>
+            <button className="pl-3 pr-3" onClick={() => handleWeightChange((userWeight+0.1).toFixed(2))}>+</button>
+          </div>
           <div style={{"flex": "1 1 50%"}}>時價</div>
           <div style={{"flex": "1 1 50%"}}>
             {(
@@ -219,12 +224,17 @@ const PlateDeities = (props) => {
             </AddonPart>
           :null
         }
+      </div>
 
+      <div>
+        <div className="seperate-line width-100"></div>
         <div>總價</div>
         <div>
           $<span>{totalPrice.toFixed()}</span>
         </div>
       </div>
+
+
 
     </div>
   );
