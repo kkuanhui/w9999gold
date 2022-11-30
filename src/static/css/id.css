@@ -2,6 +2,7 @@
   min-height: 100vh;
   padding-bottom: 50px;
 }
+
 /* ------------------------------------------ */
 #navbar {
   position: sticky;
@@ -33,11 +34,11 @@
   font-size: 2em;
 }
 
-#navbar-toggler ~ div {
+#navbar-toggler~div {
   display: none;
 }
 
-#navbar-toggler:checked ~ div {
+#navbar-toggler:checked~div {
   display: block;
   position: fixed;
   top: 0px;
@@ -85,7 +86,7 @@
   width: 100%;
 }
 
-#about-us-map > iframe {
+#about-us-map>iframe {
   width: 100%;
 }
 
@@ -167,34 +168,27 @@
 }
 
 #app-product {
-  display: flex;
   margin: 50px 0px;
-  width: 100%;
-  justify-content: space-around;
-  flex-wrap: wrap;
   background-color: #e5e5e5;
+  gap: 10px;
+  padding: 50px 15px;
 }
 
-#app-product > div {
-  width: clamp(150px, 100%, 220px);
-  height: 250px;
+#app-product > a {
+  width: clamp(50px, 100%, 120px);
+  height: 160px;
   background-color: #ffffff;
-  margin: 30px;
-  text-align: center;
-  flex: 0 1 auto;
   box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.25);
   border-radius: 15px;
-  overflow: hidden; 
 }
 
-#app-product > div:hover{
+#app-product>a:hover {
   cursor: pointer;
 }
 
-#app-product > div img{
-  width: 100%;
+#app-product div {
+  flex: 1 1 auto;
 }
-
 
 #gold-show-section {
   flex: 1 1 auto;
