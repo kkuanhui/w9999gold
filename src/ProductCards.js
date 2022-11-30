@@ -5,12 +5,10 @@ import axios from 'axios'
 const Card = (props) => {
 
   return (
-    <div>
-      <Link to={props.linkTarget}>
-          <img src={props.imgUrl} width="250" height="200" alt={'card img'}></img>
-          <div>{props.name}</div>
-      </Link>
-    </div>
+    <Link to={props.linkTarget} className="text-center flex-item-flex overflow-hidden d-flex flex-ai-center flex-jc-between flex-direction-column">
+        <img className="img-cover" src={props.imgUrl} width="120" height="120" alt="card img"></img>
+        <div className="font-bold d-flex flex-ai-center flex-jc-center">{props.name}</div>
+    </Link>
   );
 };
 
@@ -34,7 +32,7 @@ const ProductCards = (props) => {
     })
   }, [])
   return (
-    <div id="app-product">
+    <div id="app-product" className="d-flex flex-jc-around flex-ai-center flex-wrap width-100">
       {apps.map(ele => {
         return <Card linkTarget={ele['english_name']} name={ele['show_name']} imgUrl={ele["imgUrl"]}></Card>
       })}
