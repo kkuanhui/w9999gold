@@ -126,15 +126,15 @@ const PlateDeities = (props) => {
   }
 
   return (
-    <div>
-      <h1 className="width-70 text-center">神明金牌</h1>
+    <div className="p-5">
+      <h1 className="width-70 text-center font-size-30">神明金牌</h1>
 
-      <div
-        className="d-grid grid-column-3 mr-auto ml-auto width-50"
-        style={{ gridTemplateColumns: "3fr 2fr 1fr 1fr" }}
-      >
-        <div>金牌設計</div>
-        <div>
+      <div className="product-green-border p-5">
+
+        <h1 className="font-size-20">金牌本體的規格</h1>
+
+        <div className="d-flex flex-ai-center flex-jc-between width-80 pl-3">
+          <div className="font-bold font-size-15">金牌設計</div>
           <select
             onChange={(e) => {
               setUserProduct(e.target.value);
@@ -148,8 +148,8 @@ const PlateDeities = (props) => {
           </select>
         </div>
 
-        <div style={{ gridRow: "2" }}>金牌尺寸</div>
-        <div style={{ gridRow: "2" }}>
+        <div className="d-flex flex-ai-center flex-jc-between width-80 pl-3">
+          <div className="font-bold font-size-15">金牌尺寸</div>
           <select
             value={userSize}
             onChange={(e) => {
@@ -162,29 +162,29 @@ const PlateDeities = (props) => {
           </select>
         </div>
 
-        <div style={{ gridRow: "3" }}>黃金重量</div>
-        <div style={{ gridRow: "3" }}>
+        <div className="d-flex flex-ai-center flex-jc-between width-80 pl-3 flex-wrap">
+          <div className="font-bold font-size-15" style={{"flex": "1 1 50%"}}>黃金重量</div>
           <input
-            style={{ border: "solid 1px #000000" }}
+            className="width-20"
             type="number"
+            style={{"flex": "1 1 50%"}}
             value={userWeight}
             min={weightInt[0]}
             max={weightInt[1]}
             onChange={(e) => handleWeightChange(e)}
           ></input>
-        </div>
-        <div style={{ gridArea: "3/3" }}>時價</div>
-        <div style={{ gridArea: "3/4" }} className="d-flex">
-          <div>
+          <div style={{"flex": "1 1 50%"}}>時價</div>
+          <div style={{"flex": "1 1 50%"}}>
             {(
               Number(goldPrice["0"]?.["price_value"]) * Number(userWeight)
             ).toFixed()}
           </div>
         </div>
 
-        <div style={{ gridRow: "4" }}>增加照片</div>
-        <div style={{ gridRow: "4" }}>
+        <div className="d-flex flex-ai-center flex-jc-between width-80 pl-3">
+          <div className="font-size-15 font-bold">增加照片</div>
           <input
+            className="font-bold font-size-15"
             type="checkbox"
             checked={userIsAddImage}
             onClick={() => {
@@ -193,8 +193,11 @@ const PlateDeities = (props) => {
           ></input>
         </div>
 
-        <div style={{ gridRow: "5" }}>金喜加大</div>
-        <div style={{ gridRow: "5" }}>
+      </div>
+
+      <div className="product-golden-border p-5">
+        <div className="d-flex flex-ai-center flex-jc-between width-80 pl-3">
+          <div className="font-size-15 font-bold">金喜加大</div>
           <input
             type="checkbox"
             disabled={((userSize+2)>10)?true:false}
@@ -202,8 +205,9 @@ const PlateDeities = (props) => {
             onClick={onIsAddonClick}
           ></input>
         </div>
+
         {
-          ((userSize+2)>10)?<div style={{gridRow:"5"}}>無法再加外框</div>:null
+          ((userSize+2)>10)?<div style={{"color": "red"}}>無法再加外框</div>:null
         }
 
         {
@@ -216,11 +220,12 @@ const PlateDeities = (props) => {
           :null
         }
 
-        <div style={{ gridRow: "10" }}>總價</div>
-        <div style={{ gridRow: "10" }}>
+        <div>總價</div>
+        <div>
           $<span>{totalPrice.toFixed()}</span>
         </div>
       </div>
+
     </div>
   );
 };
@@ -251,9 +256,9 @@ const AddonPart = (props) => {
   ]);
 
   return (
-    <div style={{ gridRow: "6" }}>
-      <div style={{ gridRow: "6" }}>外框尺寸</div>
-      <div style={{ gridRow: "6" }}>
+    <div>
+      <div>外框尺寸</div>
+      <div>
         <select
           onChange={(e) => setUserAddonSize(Number(e.target.value))}
           value={userAddonSize}
@@ -269,8 +274,8 @@ const AddonPart = (props) => {
         </select>
       </div>
 
-      <div style={{ gridRow: "7" }}>外框設計</div>
-      <div style={{ gridRow: "7" }}>
+      <div>外框設計</div>
+      <div>
         <select
           value={userAddon}
           onChange={(e) => {
@@ -286,8 +291,8 @@ const AddonPart = (props) => {
         </select>
       </div>
 
-      <div style={{ gridRow: "8" }}>外框加圖</div>
-      <div style={{ gridRow: "8" }}>
+      <div>外框加圖</div>
+      <div>
         <input
           type="checkbox"
           checked={userAddonIsAddImage}

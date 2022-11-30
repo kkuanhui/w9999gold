@@ -4,27 +4,27 @@
   display: flex;
 }
 
-.d-none{
+.d-none {
   display: none;
 }
 
-.d-grid{
+.d-grid {
   display: grid;
 }
 
-.grid-column-3{
+.grid-column-3 {
   grid-template-columns: auto auto auto;
 }
 
-.grid-column-4{
+.grid-column-4 {
   grid-template-columns: auto auto auto auto;
 }
 
-.flex-direction-row{
+.flex-direction-row {
   flex-direction: row;
 }
 
-.flex-direction-column{
+.flex-direction-column {
   flex-direction: column;
 }
 
@@ -80,15 +80,15 @@
   align-items: center;
 }
 
-.flex-wrap{
+.flex-wrap {
   flex-wrap: wrap;
 }
 
-.flex-nowrap{
+.flex-nowrap {
   flex-wrap: nowrap;
 }
 
-.flex-item-flex{
+.flex-item-flex {
   flex: 0 1 auto;
 }
 
@@ -112,6 +112,18 @@
   padding-right: 5px;
 }
 
+.p-5 {
+  padding: 15px;
+}
+
+.pr-5 {
+  padding-right: 15px;
+}
+
+.pl-5 {
+  padding-left: 15px;
+}
+
 .m-3 {
   margin: 15px;
 }
@@ -132,88 +144,142 @@
   margin-right: 15px;
 }
 
-.ml-auto{
+.ml-auto {
   margin-left: auto;
 }
 
-.mr-auto{
+.mr-auto {
   margin-right: auto;
 }
 
-.text-center{
+.text-center {
   text-align: center;
 }
 
-.width-10{
+.width-10 {
   width: 10%;
 }
-.width-20{
+
+.width-20 {
   width: 20%;
 }
-.width-30{
+
+.width-30 {
   width: 30%;
 }
-.width-40{
+
+.width-40 {
   width: 40%;
 }
-.width-50{
+
+.width-50 {
   width: 50%;
 }
-.width-60{
+
+.width-60 {
   width: 60%;
 }
-.width-70{
+
+.width-70 {
   width: 70%;
 }
-.width-80{
+
+.width-80 {
   width: 80%;
 }
-.width-90{
+
+.width-90 {
   width: 90%;
 }
-.width-100{
+
+.width-100 {
   width: 100%;
 }
 
-.height-10{
+.height-10 {
   height: 10%;
 }
-.height-20{
+
+.height-20 {
   height: 20%;
 }
-.height-30{
+
+.height-30 {
   height: 30%;
 }
-.height-40{
+
+.height-40 {
   height: 40%;
 }
-.height-50{
+
+.height-50 {
   height: 50%;
 }
-.height-60{
+
+.height-60 {
   height: 60%;
 }
-.height-70{
+
+.height-70 {
   height: 70%;
 }
-.height-80{
+
+.height-80 {
   height: 80%;
 }
-.height-90{
+
+.height-90 {
   height: 90%;
 }
-.height-100{
+
+.height-100 {
   height: 100%;
 }
 
-.overflow-hidden{
+.overflow-hidden {
   overflow: hidden;
 }
 
-.img-cover{
+.img-cover {
   object-fit: cover
 }
 
-.font-bold{
+.font-bold {
   font-weight: bold;
+}
+
+.font-size-10 {
+  font-size: 1em;
+}
+
+.font-size-15 {
+  font-size: 1.5em;
+}
+
+.font-size-20 {
+  font-size: 2em;
+}
+
+.font-size-25 {
+  font-size: 2.5em;
+}
+
+.font-size-30 {
+  font-size: 3em;
+}
+
+.font-size-35 {
+  font-size: 3.5em;
+}
+
+.font-size-40 {
+  font-size: 4em;
+}
+
+.font-size-45 {
+  font-size: 4.5em;
+}
+
+.font-size-50 {
+  font-size: 5em;
 }

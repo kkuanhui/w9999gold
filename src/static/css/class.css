@@ -159,6 +159,16 @@
   width: 70%;
 }
 
+.product-green-border{
+  border: 5px solid #335A28;
+  border-radius: 30px;
+}
+
+.product-golden-border{
+  border: 5px solid #C69F18;
+  border-radius: 30px;
+}
+
 @media all and (max-width: 30em) {
    .price-table-switch-button {
     display: block;
