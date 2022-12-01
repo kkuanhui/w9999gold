@@ -165,8 +165,17 @@ const PlateDeities = (props) => {
         <div className="d-flex flex-ai-center flex-jc-between width-80 pl-3 flex-wrap ml-auto mr-auto">
           <div className="font-bold font-size-15" style={{"flex": "1 1 50%"}}>黃金重量</div>
           <div className="d-flex flex-direction-row" style={{"flex": "1 1 50%", "border": "1px solid black", "borderRadius": "10px"}}>
-            <button className="pl-3 pr-3" onClick={() => handleWeightChange((userWeight-0.1).toFixed(2))}>-</button>
-            <div className="d-flex flex-ai-center flex-jc-center" style={{"border": "1px solid black", "borderStyle": "none solid"}}>
+
+            <button 
+              style={{"flex": "1 1 auto"}}
+              className="pl-3 pr-3" 
+              onClick={() => handleWeightChange((userWeight-0.1).toFixed(2))}>
+              -
+            </button>
+            <div 
+              className="d-flex flex-ai-center flex-jc-center" 
+              style={{"flex": "1 1 auto", "border": "1px solid black", "borderStyle": "none solid"}}
+            >
               <input
                 className="width-100 height-100 text-center"
                 type="number"
@@ -176,7 +185,13 @@ const PlateDeities = (props) => {
                 onChange={(e) => handleWeightChange(e.target.value)}
               ></input>
             </div>
-            <button className="pl-3 pr-3" onClick={() => handleWeightChange((userWeight+0.1).toFixed(2))}>+</button>
+            <button 
+              style={{"flex": "1 1 auto"}}
+              className="pl-3 pr-3" 
+              onClick={() => handleWeightChange((userWeight+0.1).toFixed(2))}>
+              +
+            </button>
+
           </div>
           <div style={{"flex": "1 1 50%"}}>時價</div>
           <div style={{"flex": "1 1 50%"}}>

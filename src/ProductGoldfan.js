@@ -67,48 +67,55 @@ const ProductGoldfan = () => {
   };
 
   return (
-    <div>
-      <h1 className="width-70 text-center">黃金扇</h1>
+    <div className="p-5 mr-auto ml-auto" style={{"width": "clamp(0px, 100%, 600px"}}>
+      <h1 className="width-70 text-center font-size-30">黃金扇</h1>
 
-      <div
-        className="d-grid mr-auto ml-auto width-50"
-        style={{ gridTemplateColumns: "2fr 3fr" }}
-      >
-        <div>產品設計</div>
-        <select
-          value={userProduct}
-          onChange={(e) => {
-            setUserProduct(e.target.value);
-          }}
-        >
-          {products.map((ele) => {
-            return (
-              <option value={ele["product_id"]}>{ele["show_name"]}</option>
-            );
-          })}
-        </select>
+      <div className="product-green-border p-5 mb-3">
 
-        <div>產品尺寸</div>
-        <select
-          value={userSize}
-          onChange={(e) => {
-            onSizeChange(Number(e.target.value));
-          }}
-        >
-          {filter(productDetails, {"product_id": userProduct}).map(ele => {
-            return <option value={ele["size"]}>{ele["size"]}</option>;
-          })}
-        </select>
+        <h1 className="font-size-20">黃金扇本體的規格</h1>
 
-        <div style={{}}>黃金重量</div>
-        <div style={{}}>{userWeight} 錢</div>
-        <div style={{}}>時價</div>
-        <div style={{}} className="d-flex">
-          <div>{(goldPrice[0]?.["price_value"] * userWeight).toFixed()}元</div>
+        <div className="d-flex flex-ai-center flex-jc-between width-80 ml-auto mr-auto">
+
+          <div className="font-bold font-size-15">黃金扇設計</div>
+          <select
+            value={userProduct}
+            onChange={(e) => {
+              setUserProduct(e.target.value);
+            }}
+          >
+            {products.map((ele) => {
+              return (
+                <option value={ele["product_id"]}>{ele["show_name"]}</option>
+              );
+            })}
+          </select>
         </div>
 
-        <div style={{}}>增加文字</div>
-        <div style={{}}>
+        <div className="d-flex flex-ai-center flex-jc-between width-80 mr-auto ml-auto">
+          <div className="font-bold font-size-15">產品尺寸</div>
+          <select
+            value={userSize}
+            onChange={(e) => {
+              onSizeChange(Number(e.target.value));
+            }}
+          >
+            {filter(productDetails, {"product_id": userProduct}).map(ele => {
+              return <option value={ele["size"]}>{ele["size"]}</option>;
+            })}
+          </select>
+        </div>
+
+        <div className="d-flex flex-ai-center flex-jc-between width-80 mr-auto ml-auto flex-wrap">
+          <div className="font-bold font-size-15" style={{"flex": "1 1 50%"}}>黃金重量</div>
+          <div style={{"flex": "1 1 50%"}}>固定 {userWeight} 錢</div>
+          <div style={{"flex": "1 1 50%"}}>時價</div>
+          <div style={{"flex": "1 1 50%"}} className="d-flex">
+            <div>{(goldPrice[0]?.["price_value"] * userWeight).toFixed()}元</div>
+          </div>
+        </div>
+
+        <div className="d-flex flex-ai-center flex-jc-between width-80 mr-auto ml-auto">
+          <div className="font-bold font-size-15">增加文字</div>
           <input
             type="checkbox"
             onClick={() => setIsAddText(!isAddText)}
@@ -116,11 +123,23 @@ const ProductGoldfan = () => {
           ></input>
         </div>
 
-        <div style={{}}>總價</div>
-        <div style={{}}>
-          $<span>{totalPrice.toFixed()}元</span>
-        </div>
+
       </div>
+    
+
+      <div className="mb-3">
+        <div className="seperate-line width-100"></div>
+
+        <div className="d-flex flex-ai-center flex-jc-between mr-auto ml-auto width-70">
+          <div className="font-size-20 font-bold">總價</div>
+          <div className="font-size-20 font-bold">
+            $<span>{totalPrice.toFixed()}元</span>
+          </div>
+        </div>
+
+      </div>
+
+
     </div>
   );
 };

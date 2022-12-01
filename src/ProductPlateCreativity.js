@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { filter, uniqBy } from "lodash";
 
-const PlateCreativity = (props) => {
+const PlateDeities = (props) => {
   // const APP_ID = props["appId"]
   const APP_ID = "A02";
 
@@ -83,8 +83,8 @@ const PlateCreativity = (props) => {
   }, [userSize]);
 
   // check is weight in interval
-  const handleWeightChange = (e) => {
-    const input = Number(e.target.value)
+  const handleWeightChange = (v) => {
+    const input = Number(v)
     const min = weightInt[0]
     const max = (!weightInt[1])?Infinity:weightInt[1]
     if(input < min){
@@ -126,15 +126,15 @@ const PlateCreativity = (props) => {
   }
 
   return (
-    <div>
-      <h1 className="width-70 text-center">創意金牌</h1>
+    <div className="p-5 mr-auto ml-auto" style={{"width": "clamp(0px, 100%, 600px)"}}>
+      <h1 className="width-70 text-center font-size-30">創意金牌</h1>
 
-      <div
-        className="d-grid grid-column-3 mr-auto ml-auto width-50"
-        style={{ gridTemplateColumns: "3fr 2fr 1fr 1fr" }}
-      >
-        <div>金牌設計</div>
-        <div>
+      <div className="product-green-border p-5 mb-3">
+
+        <h1 className="font-size-20">金牌本體的規格</h1>
+
+        <div className="d-flex flex-ai-center flex-jc-between width-80 pl-3 ml-auto mr-auto">
+          <div className="font-bold font-size-15">金牌設計</div>
           <select
             onChange={(e) => {
               setUserProduct(e.target.value);
@@ -148,8 +148,8 @@ const PlateCreativity = (props) => {
           </select>
         </div>
 
-        <div style={{ gridRow: "2" }}>金牌尺寸</div>
-        <div style={{ gridRow: "2" }}>
+        <div className="d-flex flex-ai-center flex-jc-between width-80 pl-3 mr-auto ml-auto">
+          <div className="font-bold font-size-15">金牌尺寸</div>
           <select
             value={userSize}
             onChange={(e) => {
@@ -162,29 +162,49 @@ const PlateCreativity = (props) => {
           </select>
         </div>
 
-        <div style={{ gridRow: "3" }}>黃金重量</div>
-        <div style={{ gridRow: "3" }}>
-          <input
-            style={{ border: "solid 1px #000000" }}
-            type="number"
-            value={userWeight}
-            min={weightInt[0]}
-            max={weightInt[1]}
-            onChange={(e) => handleWeightChange(e)}
-          ></input>
-        </div>
-        <div style={{ gridArea: "3/3" }}>時價</div>
-        <div style={{ gridArea: "3/4" }} className="d-flex">
-          <div>
+        <div className="d-flex flex-ai-center flex-jc-between width-80 pl-3 flex-wrap ml-auto mr-auto">
+          <div className="font-bold font-size-15" style={{"flex": "1 1 50%"}}>黃金重量</div>
+          <div className="d-flex flex-direction-row" style={{"flex": "1 1 50%", "border": "1px solid black", "borderRadius": "10px"}}>
+
+            <button 
+              style={{"flex": "1 1 auto"}}
+              className="pl-3 pr-3" 
+              onClick={() => handleWeightChange((userWeight-0.1).toFixed(2))}>
+              -
+            </button>
+            <div 
+              className="d-flex flex-ai-center flex-jc-center" 
+              style={{"flex": "1 1 auto", "border": "1px solid black", "borderStyle": "none solid"}}
+            >
+              <input
+                className="width-100 height-100 text-center"
+                type="number"
+                value={userWeight}
+                min={weightInt[0]}
+                max={weightInt[1]}
+                onChange={(e) => handleWeightChange(e.target.value)}
+              ></input>
+            </div>
+            <button 
+              style={{"flex": "1 1 auto"}}
+              className="pl-3 pr-3" 
+              onClick={() => handleWeightChange((userWeight+0.1).toFixed(2))}>
+              +
+            </button>
+
+          </div>
+          <div style={{"flex": "1 1 50%"}}>時價</div>
+          <div style={{"flex": "1 1 50%"}}>
             {(
               Number(goldPrice["0"]?.["price_value"]) * Number(userWeight)
             ).toFixed()}
           </div>
         </div>
 
-        <div style={{ gridRow: "4" }}>增加照片</div>
-        <div style={{ gridRow: "4" }}>
+        <div className="d-flex flex-ai-center flex-jc-between width-80 pl-3 ml-auto mr-auto">
+          <div className="font-size-15 font-bold">增加照片</div>
           <input
+            className="font-bold font-size-15"
             type="checkbox"
             checked={userIsAddImage}
             onClick={() => {
@@ -193,8 +213,12 @@ const PlateCreativity = (props) => {
           ></input>
         </div>
 
-        <div style={{ gridRow: "5" }}>金喜加大</div>
-        <div style={{ gridRow: "5" }}>
+      </div>
+
+      <div className="product-golden-border p-5 mb-3">
+
+        <div className="d-flex flex-ai-center flex-jc-between width-80 pl-3 mb-3 mr-auto ml-auto">
+          <div className="font-size-15 font-bold">金喜加大</div>
           <input
             type="checkbox"
             disabled={((userSize+2)>10)?true:false}
@@ -202,8 +226,12 @@ const PlateCreativity = (props) => {
             onClick={onIsAddonClick}
           ></input>
         </div>
+
         {
-          ((userSize+2)>10)?<div style={{gridRow:"5"}}>無法再加外框</div>:null
+          ((userSize+2)>10)
+          ?<div className="mb-3" style={{"color": "gray"}}>無法再加外框</div>
+          :<div className="mb-3">部份尺寸可以增加加大背板，視覺效果更加分</div>
+
         }
 
         {
@@ -215,12 +243,19 @@ const PlateCreativity = (props) => {
             </AddonPart>
           :null
         }
+      </div>
 
-        <div style={{ gridRow: "10" }}>總價</div>
-        <div style={{ gridRow: "10" }}>
-          $<span>{totalPrice.toFixed()}</span>
+      <div className="mb-3">
+        <div className="seperate-line width-100"></div>
+        <div className="d-flex flex-ai-center flex-jc-between mr-auto ml-auto width-70">
+          <div className="font-size-20 font-bold">總價</div>
+          <div className="font-size-20 font-bold">
+            $<span>{totalPrice.toFixed()}</span>
+          </div>
         </div>
       </div>
+
+
     </div>
   );
 };
@@ -251,26 +286,28 @@ const AddonPart = (props) => {
   ]);
 
   return (
-    <div style={{ gridRow: "6" }}>
-      <div style={{ gridRow: "6" }}>外框尺寸</div>
-      <div style={{ gridRow: "6" }}>
-        <select
-          onChange={(e) => setUserAddonSize(Number(e.target.value))}
-          value={userAddonSize}
-        >
-          {uniqBy(
-            filter(addonDetails, function (e) {
-              return e["size"] >= plateSize + 2;
-            }),
-            "size"
-          ).map((ele) => (
-            <option value={ele["size"]}>{ele["size"]}</option>
-          ))}
-        </select>
+    <>
+      <div className="d-flex flex-ai-center flex-jc-between width-80 pl-3 mr-auto ml-auto">
+        <div className="font-bold font-size-15">外框尺寸</div>
+        <div>
+          <select
+            onChange={(e) => setUserAddonSize(Number(e.target.value))}
+            value={userAddonSize}
+          >
+            {uniqBy(
+              filter(addonDetails, function (e) {
+                return e["size"] >= plateSize + 2;
+              }),
+              "size"
+            ).map((ele) => (
+              <option value={ele["size"]}>{ele["size"]}</option>
+            ))}
+          </select>
+        </div>
       </div>
 
-      <div style={{ gridRow: "7" }}>外框設計</div>
-      <div style={{ gridRow: "7" }}>
+      <div className="d-flex flex-ai-center flex-jc-between width-80 pl-3 mr-auto ml-auto">
+        <div className="font-bold font-size-15">外框設計</div>
         <select
           value={userAddon}
           onChange={(e) => {
@@ -286,8 +323,9 @@ const AddonPart = (props) => {
         </select>
       </div>
 
-      <div style={{ gridRow: "8" }}>外框加圖</div>
-      <div style={{ gridRow: "8" }}>
+
+      <div className="d-flex flex-ai-center flex-jc-between width-80 pl-3 mr-auto ml-auto">
+        <div className="font-bold font-size-15">外框加圖</div>
         <input
           type="checkbox"
           checked={userAddonIsAddImage}
@@ -296,8 +334,9 @@ const AddonPart = (props) => {
           }}
         ></input>
       </div>
-    </div>
+
+    </>
   );
 };
 
-export default PlateCreativity;
+export default PlateDeities;
