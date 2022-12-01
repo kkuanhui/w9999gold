@@ -126,14 +126,14 @@ const PlateDeities = (props) => {
   }
 
   return (
-    <div className="p-5">
+    <div className="p-5 mr-auto ml-auto" style={{"width": "clamp(0px, 100%, 600px)"}}>
       <h1 className="width-70 text-center font-size-30">神明金牌</h1>
 
-      <div className="product-green-border p-5">
+      <div className="product-green-border p-5 mb-3">
 
         <h1 className="font-size-20">金牌本體的規格</h1>
 
-        <div className="d-flex flex-ai-center flex-jc-between width-80 pl-3">
+        <div className="d-flex flex-ai-center flex-jc-between width-80 pl-3 ml-auto mr-auto">
           <div className="font-bold font-size-15">金牌設計</div>
           <select
             onChange={(e) => {
@@ -148,7 +148,7 @@ const PlateDeities = (props) => {
           </select>
         </div>
 
-        <div className="d-flex flex-ai-center flex-jc-between width-80 pl-3">
+        <div className="d-flex flex-ai-center flex-jc-between width-80 pl-3 mr-auto ml-auto">
           <div className="font-bold font-size-15">金牌尺寸</div>
           <select
             value={userSize}
@@ -162,9 +162,9 @@ const PlateDeities = (props) => {
           </select>
         </div>
 
-        <div className="d-flex flex-ai-center flex-jc-between width-80 pl-3 flex-wrap">
+        <div className="d-flex flex-ai-center flex-jc-between width-80 pl-3 flex-wrap ml-auto mr-auto">
           <div className="font-bold font-size-15" style={{"flex": "1 1 50%"}}>黃金重量</div>
-          <div className="d-flex flex-direction-row" style={{"border": "1px solid black", "borderRadius": "10px"}}>
+          <div className="d-flex flex-direction-row" style={{"flex": "1 1 50%", "border": "1px solid black", "borderRadius": "10px"}}>
             <button className="pl-3 pr-3" onClick={() => handleWeightChange((userWeight-0.1).toFixed(2))}>-</button>
             <div className="d-flex flex-ai-center flex-jc-center" style={{"border": "1px solid black", "borderStyle": "none solid"}}>
               <input
@@ -186,7 +186,7 @@ const PlateDeities = (props) => {
           </div>
         </div>
 
-        <div className="d-flex flex-ai-center flex-jc-between width-80 pl-3">
+        <div className="d-flex flex-ai-center flex-jc-between width-80 pl-3 ml-auto mr-auto">
           <div className="font-size-15 font-bold">增加照片</div>
           <input
             className="font-bold font-size-15"
@@ -200,8 +200,9 @@ const PlateDeities = (props) => {
 
       </div>
 
-      <div className="product-golden-border p-5">
-        <div className="d-flex flex-ai-center flex-jc-between width-80 pl-3">
+      <div className="product-golden-border p-5 mb-3">
+
+        <div className="d-flex flex-ai-center flex-jc-between width-80 pl-3 mb-3 mr-auto ml-auto">
           <div className="font-size-15 font-bold">金喜加大</div>
           <input
             type="checkbox"
@@ -212,7 +213,10 @@ const PlateDeities = (props) => {
         </div>
 
         {
-          ((userSize+2)>10)?<div style={{"color": "red"}}>無法再加外框</div>:null
+          ((userSize+2)>10)
+          ?<div className="mb-3" style={{"color": "gray"}}>無法再加外框</div>
+          :<div className="mb-3">部份尺寸可以增加加大背板，視覺效果更加分</div>
+
         }
 
         {
@@ -226,14 +230,15 @@ const PlateDeities = (props) => {
         }
       </div>
 
-      <div>
+      <div className="mb-3">
         <div className="seperate-line width-100"></div>
-        <div>總價</div>
-        <div>
-          $<span>{totalPrice.toFixed()}</span>
+        <div className="d-flex flex-ai-center flex-jc-between mr-auto ml-auto width-70">
+          <div className="font-size-20 font-bold">總價</div>
+          <div className="font-size-20 font-bold">
+            $<span>{totalPrice.toFixed()}</span>
+          </div>
         </div>
       </div>
-
 
 
     </div>
@@ -266,26 +271,28 @@ const AddonPart = (props) => {
   ]);
 
   return (
-    <div>
-      <div>外框尺寸</div>
-      <div>
-        <select
-          onChange={(e) => setUserAddonSize(Number(e.target.value))}
-          value={userAddonSize}
-        >
-          {uniqBy(
-            filter(addonDetails, function (e) {
-              return e["size"] >= plateSize + 2;
-            }),
-            "size"
-          ).map((ele) => (
-            <option value={ele["size"]}>{ele["size"]}</option>
-          ))}
-        </select>
+    <>
+      <div className="d-flex flex-ai-center flex-jc-between width-80 pl-3 mr-auto ml-auto">
+        <div className="font-bold font-size-15">外框尺寸</div>
+        <div>
+          <select
+            onChange={(e) => setUserAddonSize(Number(e.target.value))}
+            value={userAddonSize}
+          >
+            {uniqBy(
+              filter(addonDetails, function (e) {
+                return e["size"] >= plateSize + 2;
+              }),
+              "size"
+            ).map((ele) => (
+              <option value={ele["size"]}>{ele["size"]}</option>
+            ))}
+          </select>
+        </div>
       </div>
 
-      <div>外框設計</div>
-      <div>
+      <div className="d-flex flex-ai-center flex-jc-between width-80 pl-3 mr-auto ml-auto">
+        <div className="font-bold font-size-15">外框設計</div>
         <select
           value={userAddon}
           onChange={(e) => {
@@ -301,8 +308,9 @@ const AddonPart = (props) => {
         </select>
       </div>
 
-      <div>外框加圖</div>
-      <div>
+
+      <div className="d-flex flex-ai-center flex-jc-between width-80 pl-3 mr-auto ml-auto">
+        <div className="font-bold font-size-15">外框加圖</div>
         <input
           type="checkbox"
           checked={userAddonIsAddImage}
@@ -311,7 +319,8 @@ const AddonPart = (props) => {
           }}
         ></input>
       </div>
-    </div>
+
+    </>
   );
 };
 

@@ -168,30 +168,56 @@
 }
 
 #app-product {
-  margin: 50px 0px;
+  margin: 30px 0px;
+  width: 100%;
   background-color: #e5e5e5;
-  gap: 10px;
+  gap: 20px;
   padding: 50px 15px;
 }
 
-#app-product > a {
-  width: clamp(50px, 100%, 120px);
-  height: 160px;
+#app-product > div {
+  width: clamp(50px, 40%, 300px);
+}
+
+#app-product a {
+  width: 100%;
+  position: relative;;
+  padding-top: 133%;
   background-color: #ffffff;
   box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.25);
   border-radius: 15px;
 }
 
-#app-product>a:hover {
-  cursor: pointer;
+#app-product > div > a > div {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
 }
 
-#app-product div {
+#app-product .img-container{
+  position: relative;
+  width: 100%;
+  padding-top: 100%;
+}
+
+#app-product img{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+
+#app-product .card-name{
   flex: 1 1 auto;
 }
 
 #gold-show-section {
-  flex: 1 1 auto;
+  width: 100%;
 }
 
 #gold-future-price {

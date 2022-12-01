@@ -1,14 +1,22 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import axios from 'axios'
+import axios from 'axios';
 
 const Card = (props) => {
 
   return (
-    <Link to={props.linkTarget} className="text-center flex-item-flex overflow-hidden d-flex flex-ai-center flex-jc-between flex-direction-column">
-        <img className="img-cover" src={props.imgUrl} width="120" height="120" alt="card img"></img>
-        <div className="font-bold d-flex flex-ai-center flex-jc-center">{props.name}</div>
-    </Link>
+    <div>
+      <Link to={props.linkTarget} className="text-center flex-item-flex overflow-hidden d-flex flex-ai-center flex-jc-between flex-direction-column">
+        <div className="d-flex flex-direction-column flex-ai-center flex-jc-between">
+            <div className="img-container">
+              <img className="img-cover" src={props.imgUrl} width="120" height="120" alt="card img"></img>
+            </div>
+            <div className="card-name d-flex flex-ai-center flex-jc-center">
+              {props.name}
+            </div>
+        </div>
+      </Link>
+    </div>
   );
 };
 
@@ -20,6 +28,7 @@ const ProductCards = (props) => {
     "https://res.cloudinary.com/hbehita9k/image/upload/v1669652321/w9999gold/goldfan-1.png",
     "https://res.cloudinary.com/hbehita9k/image/upload/v1669652318/w9999gold/omori-1_ichsxz.png"
   ]
+
   useEffect(() => {
     axios.get(`/list-apps`)
     .then(res => {
@@ -31,11 +40,16 @@ const ProductCards = (props) => {
       setApps(res.data)
     })
   }, [])
+
   return (
     <div id="app-product" className="d-flex flex-jc-around flex-ai-center flex-wrap width-100">
       {apps.map(ele => {
         return <Card linkTarget={ele['english_name']} name={ele['show_name']} imgUrl={ele["imgUrl"]}></Card>
-      })}
+      })
+      }
+      <div style={{"visiablity": "hidden"}}></div>
+      <div style={{"visiablity": "hidden"}}></div>
+      <div style={{"visiablity": "hidden"}}></div>
     </div>
   );
 };
