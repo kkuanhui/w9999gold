@@ -61,7 +61,6 @@ const ProductGoldfan = () => {
       "product_id": userProduct,
       "size": size,
     });
-    console.log(size, detail[0]?.["weight"])
     setUserWeight(detail[0]?.["weight"]);
     setUserSize(size);
   };
@@ -83,9 +82,9 @@ const ProductGoldfan = () => {
               setUserProduct(e.target.value);
             }}
           >
-            {products.map((ele) => {
+            {products.map((ele, idx) => {
               return (
-                <option value={ele["product_id"]}>{ele["show_name"]}</option>
+                <option key={idx} value={ele["product_id"]}>{ele["show_name"]}</option>
               );
             })}
           </select>
@@ -99,8 +98,8 @@ const ProductGoldfan = () => {
               onSizeChange(Number(e.target.value));
             }}
           >
-            {filter(productDetails, {"product_id": userProduct}).map(ele => {
-              return <option value={ele["size"]}>{ele["size"]}</option>;
+            {filter(productDetails, {"product_id": userProduct}).map((ele, idx) => {
+              return <option key={idx} value={ele["size"]}>{ele["size"]}</option>;
             })}
           </select>
         </div>
@@ -118,7 +117,7 @@ const ProductGoldfan = () => {
           <div className="font-bold font-size-15">增加文字</div>
           <input
             type="checkbox"
-            onClick={() => setIsAddText(!isAddText)}
+            onChange={() => setIsAddText(!isAddText)}
             checked={isAddText}
           ></input>
         </div>

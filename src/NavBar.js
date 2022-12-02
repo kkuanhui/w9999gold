@@ -1,6 +1,6 @@
 import icon from "./static/image/w9999gold-icon.png";
 import React, { useState } from "react";
-import { Routes, Route, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const NavBar = () => {
   const [isChecked, setIsChecked] = useState(false);
@@ -11,13 +11,16 @@ const NavBar = () => {
 
   return (
     <div>
-      <nav id="navbar" className="black-theme-block">
-        <a href="/" className="navbar-block" style={{ display: "flex" }}>
+      <nav id="navbar" className="bg-theme-1 d-flex flex-ai-center flex-jc-between">
+
+        <a href="/" className="navbar-block d-flex">
           <img src={icon} alt="icon" width="50" height="24.33"></img>
           <div>仕彩金飾</div>
         </a>
+
         <div className="navbr-block">
-          <label id="navbar-hamburger" htmlFor="navbar-toggler">
+
+          <label id="navbar-hamburger" className="font-size-20" htmlFor="navbar-toggler">
             &#9776;
           </label>
 
@@ -45,7 +48,9 @@ const NavBar = () => {
               </li>
             </ul>
           </div>
+
         </div>
+
       </nav>
 
     </div>

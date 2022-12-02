@@ -83,13 +83,13 @@ const PlateDeities = (props) => {
   }, [userSize]);
 
   // check is weight in interval
-  const handleWeightChange = (v) => {
-    const input = Number(v)
+  const handleWeightChange = (value) => {
+    const input = Number(value)
     const min = weightInt[0]
     const max = (!weightInt[1])?Infinity:weightInt[1]
     if(input < min){
       setUserWeight(min)
-    }else if(input > max){
+    }else if(max < input){
       setUserWeight(max)
     }else{
       setUserWeight(input)
@@ -140,9 +140,9 @@ const PlateDeities = (props) => {
               setUserProduct(e.target.value);
             }}
           >
-            {appProducts.map((ele) => {
+            {appProducts.map((ele, idx) => {
               return (
-                <option value={ele["product_id"]}>{ele["show_name"]}</option>
+                <option key={idx} value={ele["product_id"]}>{ele["show_name"]}</option>
               );
             })}
           </select>
@@ -156,8 +156,8 @@ const PlateDeities = (props) => {
               setUserSize(Number(e.target.value));
             }}
           >
-            {userDetail.map((ele) => {
-              return <option value={ele["size"]}>{ele["size"]}</option>;
+            {userDetail.map((ele, idx) => {
+              return <option key={idx} value={ele["size"]}>{ele["size"]}</option>;
             })}
           </select>
         </div>
@@ -182,7 +182,9 @@ const PlateDeities = (props) => {
                 value={userWeight}
                 min={weightInt[0]}
                 max={weightInt[1]}
-                onChange={(e) => handleWeightChange(e.target.value)}
+                onChange={(e) => {
+                  handleWeightChange(e.target.value)}
+                }
               ></input>
             </div>
             <button 
@@ -207,7 +209,7 @@ const PlateDeities = (props) => {
             className="font-bold font-size-15"
             type="checkbox"
             checked={userIsAddImage}
-            onClick={() => {
+            onChange={() => {
               setUserIsAddImage(!userIsAddImage);
             }}
           ></input>
@@ -223,7 +225,7 @@ const PlateDeities = (props) => {
             type="checkbox"
             disabled={((userSize+2)>10)?true:false}
             checked={userIsAddon}
-            onClick={onIsAddonClick}
+            onChange={onIsAddonClick}
           ></input>
         </div>
 
@@ -299,8 +301,8 @@ const AddonPart = (props) => {
                 return e["size"] >= plateSize + 2;
               }),
               "size"
-            ).map((ele) => (
-              <option value={ele["size"]}>{ele["size"]}</option>
+            ).map((ele, idx) => (
+              <option key={idx} value={ele["size"]}>{ele["size"]}</option>
             ))}
           </select>
         </div>
@@ -317,8 +319,8 @@ const AddonPart = (props) => {
           {uniqBy(
             filter(addonDetails, { size: userAddonSize }),
             "addon_id"
-          ).map((ele) => (
-            <option value={ele["addon_id"]}>{ele["show_name"]}</option>
+          ).map((ele, idx) => (
+            <option key={idx} value={ele["addon_id"]}>{ele["show_name"]}</option>
           ))}
         </select>
       </div>
@@ -329,7 +331,7 @@ const AddonPart = (props) => {
         <input
           type="checkbox"
           checked={userAddonIsAddImage}
-          onClick={() => {
+          onChange={() => {
             setUserAddonIsAddImage(!userAddonIsAddImage);
           }}
         ></input>

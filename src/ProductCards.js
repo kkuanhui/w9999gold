@@ -43,8 +43,8 @@ const ProductCards = (props) => {
 
   return (
     <div id="app-product" className="d-flex flex-jc-around flex-ai-center flex-wrap width-100">
-      {apps.map(ele => {
-        return <Card linkTarget={ele['english_name']} name={ele['show_name']} imgUrl={ele["imgUrl"]}></Card>
+      {apps.map((ele, idx) => {
+        return <Card key={idx} linkTarget={ele['english_name']} name={ele['show_name']} imgUrl={ele["imgUrl"]}></Card>
       })
       }
       <div style={{"visiablity": "hidden"}}></div>

@@ -3,16 +3,14 @@
   padding-bottom: 50px;
 }
 
-/* ------------------------------------------ */
+/* - navbar ----------------------------------------- */
 #navbar {
   position: sticky;
   top: 0;
   height: 50px;
   width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
   color: white;
+  z-index: 100 !important;
 }
 
 #navbar-extend-product {
@@ -30,10 +28,6 @@
   display: none;
 }
 
-#navbar-hamburger {
-  font-size: 2em;
-}
-
 #navbar-toggler~div {
   display: none;
 }
@@ -46,7 +40,10 @@
   width: 100vw;
   height: 100vh;
   background-color: rgba(100, 100, 100, 0.5);
-  z-index: 99 !important;
+}
+
+#navbar-list{
+  position: relative;
 }
 
 #navbar-list div {
@@ -59,7 +56,6 @@
 }
 
 #navbar-list ul {
-  margin-right: 25px;
   position: absolute;
   display: flex;
   flex-direction: column;

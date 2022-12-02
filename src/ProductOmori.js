@@ -67,9 +67,9 @@ const ProductOmori = () => {
               setUserProduct(e.target.value);
             }}
           >
-            {products.map((ele) => {
+            {products.map((ele, idx) => {
               return (
-                <option value={ele["product_id"]}>{ele["show_name"]}</option>
+                <option key={idx} value={ele["product_id"]}>{ele["show_name"]}</option>
               );
             })}
           </select>
@@ -88,7 +88,7 @@ const ProductOmori = () => {
           <div className="font-bold font-size-15">增加文字</div>
           <input
             type="checkbox"
-            onClick={() => setIsAddText(!isAddText)}
+            onChange={() => setIsAddText(!isAddText)}
             checked={isAddText}
           ></input>
         </div>
