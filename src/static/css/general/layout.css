@@ -116,12 +116,28 @@
   padding: 15px;
 }
 
+.pt-5{
+  padding-top: 15px;
+}
+
+.pb-5{
+  padding-bottom: 15px;
+}
+
 .pr-5 {
   padding-right: 15px;
 }
 
 .pl-5 {
   padding-left: 15px;
+}
+
+.pl-auto{
+  padding-left: auto;
+}
+
+.pr-auto{
+  padding-right: auto;
 }
 
 .m-3 {
@@ -286,4 +302,8 @@
 
 .font-size-50 {
   font-size: 5em;
+}
+
+.font-color-white{
+  color: #ffffff;
 }
