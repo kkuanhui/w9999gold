@@ -8,6 +8,8 @@ import './static/css/class.css';
 import './static/css/medium.css'
 import './static/css/large.css'
 import './static/css/extra-large.css'
+import './static/css/general/layout.css'
+import './static/css/general/root-and-custom.css'
 
 ReactDOM.render(
   <React.StrictMode>

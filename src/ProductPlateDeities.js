@@ -1,92 +1,343 @@
-import React from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import { filter, uniqBy } from "lodash";
 
-const dataProducts = [
-  { name: "金鎖", id: "1" },
-  { name: "金鎖壽框", id: "2" },
-  { name: "金吉祥", id: "3" },
-  { name: "金書卷", id: "4" },
-  { name: "金元寶", id: "5" },
-  { name: "金方圓", id: "6" },
-  { name: "金三角", id: "7" },
-  { name: "金獅", id: "8" },
-  { name: "金桃喜", id: "9" }
-];
+const PlateDeities = (props) => {
+  // const APP_ID = props["appId"]
+  const APP_ID = "A01";
 
-const dataProductDetail = [
-  {
-    product_name: "金鎖",
-    size: 2,
-    weight_min: 0.2,
-    weight_max: null,
-    wage_basic: 2400,
-    wage_image: 200
-  },
-  {
-    product_name: "金鎖",
-    size: 2.65,
-    weight_min: 0.25,
-    weight_max: null,
-    wage_basic: 2650,
-    wage_image: 200
+  const [goldPrice, setGoldPrice] = useState([]);
+  const [appProducts, setAppProducts] = useState([]);
+  const [productDetails, setProductDetails] = useState([]);
+  const [addonDetails, setAddonDetais] = useState([])
+
+  const [userProduct, setUserProduct] = useState("");
+  const [userDetail, setUserDetail] = useState([]);
+  const [userWeight, setUserWeight] = useState(0);
+  const [weightInt, setWeightInt] = useState([]);
+  const [userSize, setUserSize] = useState(0);
+  const [userIsAddImage, setUserIsAddImage] = useState(false);
+  const [userIsAddon, setUserIsAddon] = useState(false);
+
+  const [addonPartWage, setAddonPartWage] = useState(0)
+
+  const [totalPrice, setTotalPrice] = useState(0);
+
+  // request API
+  useEffect(() => {
+    axios
+      .all([
+        axios.get(`/get-gold-quote`),
+        axios.get(`/list-products/${APP_ID}`),
+        axios.get(`/get-detail/${APP_ID}`),
+        axios.get(`/get-detail-addons/${APP_ID}`)
+      ])
+      .then(
+        axios.spread((...res) => {
+          setGoldPrice(res[0].data);
+          setAppProducts(res[1].data);
+          setProductDetails(res[2].data);
+          setAddonDetais(res[3].data)
+
+          const defaultProduct = res[1].data[0]["product_id"];
+          const defaultDetail = filter(res[2].data, {
+            product_id: defaultProduct,
+          });
+          const defaultSize = defaultDetail[0]["size"];
+          const defaultWeight = defaultDetail[0]["weight_min"];
+
+          setUserProduct(defaultProduct);
+          setUserDetail(defaultDetail);
+          setUserWeight(defaultWeight);
+          setUserSize(defaultSize);
+        })
+      )
+      .catch((errors) => {
+        console.log(errors);
+      });
+  }, []);
+
+  // when product is chenged
+  useEffect(() => {
+    const detail = filter(productDetails, { product_id: userProduct });
+    setUserDetail(detail);
+    const weightMin = detail["0"]?.["weight_min"];
+    const weightMax = detail["0"]?.["weight_max"];
+    setUserWeight(weightMin);
+    setWeightInt([weightMin, weightMax]);
+    const sizeMin = detail["0"]?.["size"];
+    // This is relative new syntax called option chaining.
+    setUserSize(sizeMin);
+    setUserIsAddImage(false);
+  }, [userProduct, productDetails]);
+
+  // when plate size(userSize) is changed
+  useEffect(() => {
+    const detail = filter(userDetail, { size: Number(userSize) });
+    const weightMin = detail["0"]?.["weight_min"];
+    const weightMax = detail["0"]?.["weight_max"];
+    setUserWeight(weightMin);
+    setWeightInt([weightMin, weightMax]);
+    setUserIsAddImage(false);
+    if((userSize+2)>10){setUserIsAddon(false)}
+  }, [userSize]);
+
+  // check is weight in interval
+  const handleWeightChange = (value) => {
+    const input = Number(value)
+    const min = weightInt[0]
+    const max = (!weightInt[1])?Infinity:weightInt[1]
+    if(input < min){
+      setUserWeight(min)
+    }else if(max < input){
+      setUserWeight(max)
+    }else{
+      setUserWeight(input)
+    }
   }
-];
 
-const PlateDeities = () => {
+  // set total price when anything is chenged
+  useEffect(() => {
+    // main part
+    const goldValue = userWeight * goldPrice["0"]?.["price_value"];
+    const wageBasic = filter(userDetail, { size: userSize })["0"]?.[
+      "wage_basic"
+    ];
+    const wageImage = filter(userDetail, { size: userSize })["0"]?.[
+      "wage_image"
+    ];
+    const addImageWage = userIsAddImage ? Number(wageImage) : 0;
+    const mainPart = goldValue + wageBasic + addImageWage;
+    setTotalPrice(mainPart+addonPartWage);
+  }, [
+    goldPrice,
+    userDetail,
+    userProduct,
+    userSize,
+    userWeight,
+    userIsAddImage,
+    userIsAddon,
+    addonPartWage,
+  ]);
+
+  const onIsAddonClick = () => {
+    setUserIsAddon(!userIsAddon)
+    if(!userIsAddon === false){setAddonPartWage(0)}
+  }
+
   return (
-    <div
-      className="flex-center"
-      style={{ margin: "10px", gap: "10px", flexDirection: "column" }}
-    >
-      <div id="product-options">
-        <div className="product-attr-choice">
-          <div>金牌設計</div>
-          <select>
-            {dataProducts.map((ele) => {
-              return <option value={ele.id}>{ele.name}</option>;
+    <div className="p-5 mr-auto ml-auto" style={{"width": "clamp(0px, 100%, 600px)"}}>
+      <h1 className="width-70 text-center font-size-30">神明金牌</h1>
+
+      <div className="product-green-border p-5 mb-3">
+
+        <h1 className="font-size-20">金牌本體的規格</h1>
+
+        <div className="d-flex flex-ai-center flex-jc-between width-80 pl-3 ml-auto mr-auto">
+          <div className="font-bold font-size-15">金牌設計</div>
+          <select
+            onChange={(e) => {
+              setUserProduct(e.target.value);
+            }}
+          >
+            {appProducts.map((ele, idx) => {
+              return (
+                <option key={idx} value={ele["product_id"]}>{ele["show_name"]}</option>
+              );
             })}
           </select>
         </div>
 
-        <div className="product-attr-choice">
-          <div>金牌尺寸</div>
-          <select>
-            {dataProductDetail.map((ele) => {
-              return <option value={ele.size}>{ele.size} 寸</option>;
+        <div className="d-flex flex-ai-center flex-jc-between width-80 pl-3 mr-auto ml-auto">
+          <div className="font-bold font-size-15">金牌尺寸</div>
+          <select
+            value={userSize}
+            onChange={(e) => {
+              setUserSize(Number(e.target.value));
+            }}
+          >
+            {userDetail.map((ele, idx) => {
+              return <option key={idx} value={ele["size"]}>{ele["size"]}</option>;
             })}
           </select>
         </div>
 
-        <div className="product-attr-choice">
-          <div>
-            <div>黃金重量</div>
-            <select>
-              {dataProductDetail.map((ele) => {
-                return (
-                  <option value={ele.weight_min}>{ele.weight_min} 錢</option>
-                );
-              })}
-            </select>
+        <div className="d-flex flex-ai-center flex-jc-between width-80 pl-3 flex-wrap ml-auto mr-auto">
+          <div className="font-bold font-size-15" style={{"flex": "1 1 50%"}}>黃金重量</div>
+          <div className="d-flex flex-direction-row" style={{"flex": "1 1 50%", "border": "1px solid black", "borderRadius": "10px"}}>
+
+            <button 
+              style={{"flex": "1 1 auto"}}
+              className="pl-3 pr-3" 
+              onClick={() => handleWeightChange((userWeight-0.1).toFixed(2))}>
+              -
+            </button>
+            <div 
+              className="d-flex flex-ai-center flex-jc-center" 
+              style={{"flex": "1 1 auto", "border": "1px solid black", "borderStyle": "none solid"}}
+            >
+              <input
+                className="width-100 height-100 text-center"
+                type="number"
+                value={userWeight}
+                min={weightInt[0]}
+                max={weightInt[1]}
+                onChange={(e) => {
+                  handleWeightChange(e.target.value)}
+                }
+              ></input>
+            </div>
+            <button 
+              style={{"flex": "1 1 auto"}}
+              className="pl-3 pr-3" 
+              onClick={() => handleWeightChange((userWeight+0.1).toFixed(2))}>
+              +
+            </button>
+
           </div>
-          <div className="extend-text">
-            <div>時價</div>
-            <div>3,650</div>
+          <div style={{"flex": "1 1 50%"}}>時價</div>
+          <div style={{"flex": "1 1 50%"}}>
+            {(
+              Number(goldPrice["0"]?.["price_value"]) * Number(userWeight)
+            ).toFixed()}
           </div>
         </div>
 
-        <div className="product-attr-choice">
-          <div>增加照片</div>
-          <input type="checkbox"></input>
+        <div className="d-flex flex-ai-center flex-jc-between width-80 pl-3 ml-auto mr-auto">
+          <div className="font-size-15 font-bold">增加照片</div>
+          <input
+            className="font-bold font-size-15"
+            type="checkbox"
+            checked={userIsAddImage}
+            onChange={() => {
+              setUserIsAddImage(!userIsAddImage);
+            }}
+          ></input>
         </div>
 
-        <div className="product-attr-choice">
-          <div>增加外框</div>
-          <select>
-            <option value="E3456">龍鳳搶珠</option>
-            <option value="E3456">雙龍雙龍</option>
+      </div>
+
+      <div className="product-golden-border p-5 mb-3">
+
+        <div className="d-flex flex-ai-center flex-jc-between width-80 pl-3 mb-3 mr-auto ml-auto">
+          <div className="font-size-15 font-bold">金喜加大</div>
+          <input
+            type="checkbox"
+            disabled={((userSize+2)>10)?true:false}
+            checked={userIsAddon}
+            onChange={onIsAddonClick}
+          ></input>
+        </div>
+
+        {
+          ((userSize+2)>10)
+          ?<div className="mb-3" style={{"color": "gray"}}>無法再加外框</div>
+          :<div className="mb-3">部份尺寸可以增加加大背板，視覺效果更加分</div>
+
+        }
+
+        {
+          (userIsAddon)?
+            <AddonPart 
+              addonDetails={addonDetails} 
+              plateSize={userSize} 
+              setAddonPartWage={setAddonPartWage}>
+            </AddonPart>
+          :null
+        }
+      </div>
+
+      <div className="mb-3">
+        <div className="seperate-line width-100"></div>
+        <div className="d-flex flex-ai-center flex-jc-between mr-auto ml-auto width-70">
+          <div className="font-size-20 font-bold">總價</div>
+          <div className="font-size-20 font-bold">
+            $<span>{totalPrice.toFixed()}</span>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+  );
+};
+
+const AddonPart = (props) => {
+  const { plateSize, setAddonPartWage, addonDetails} = props;
+
+  const [userAddonSize, setUserAddonSize] = useState(0);
+  const [userAddon, setUserAddon] = useState("");
+  const [userAddonIsAddImage, setUserAddonIsAddImage] = useState(false);
+
+  useEffect(() => {
+    const detailUnderSize = filter(addonDetails, function(e){return e["size"] >= plateSize + 2})
+    setUserAddonSize(detailUnderSize[0]?.["size"])
+    setUserAddon(detailUnderSize[0]?.["addon_id"])
+  }, []);
+
+  useEffect(() => {
+    const detail = filter(addonDetails, {"addon_id": userAddon, "size": userAddonSize})
+    const wageImage = (userAddonIsAddImage)?detail[0]?.["wage_image"]:0
+    const wageBasic = detail[0]?.["wage_basic"]
+    setAddonPartWage(wageImage+wageBasic)
+  }, 
+  [
+    userAddonSize, 
+    userAddon, 
+    userAddonIsAddImage
+  ]);
+
+  return (
+    <>
+      <div className="d-flex flex-ai-center flex-jc-between width-80 pl-3 mr-auto ml-auto">
+        <div className="font-bold font-size-15">外框尺寸</div>
+        <div>
+          <select
+            onChange={(e) => setUserAddonSize(Number(e.target.value))}
+            value={userAddonSize}
+          >
+            {uniqBy(
+              filter(addonDetails, function (e) {
+                return e["size"] >= plateSize + 2;
+              }),
+              "size"
+            ).map((ele, idx) => (
+              <option key={idx} value={ele["size"]}>{ele["size"]}</option>
+            ))}
           </select>
         </div>
       </div>
-    </div>
+
+      <div className="d-flex flex-ai-center flex-jc-between width-80 pl-3 mr-auto ml-auto">
+        <div className="font-bold font-size-15">外框設計</div>
+        <select
+          value={userAddon}
+          onChange={(e) => {
+            setUserAddon(e.target.value);
+          }}
+        >
+          {uniqBy(
+            filter(addonDetails, { size: userAddonSize }),
+            "addon_id"
+          ).map((ele, idx) => (
+            <option key={idx} value={ele["addon_id"]}>{ele["show_name"]}</option>
+          ))}
+        </select>
+      </div>
+
+
+      <div className="d-flex flex-ai-center flex-jc-between width-80 pl-3 mr-auto ml-auto">
+        <div className="font-bold font-size-15">外框加圖</div>
+        <input
+          type="checkbox"
+          checked={userAddonIsAddImage}
+          onChange={() => {
+            setUserAddonIsAddImage(!userAddonIsAddImage);
+          }}
+        ></input>
+      </div>
+
+    </>
   );
 };
 

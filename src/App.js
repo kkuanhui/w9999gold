@@ -5,7 +5,6 @@ import NavBar from "./NavBar";
 import Footer from "./Footer";
 
 import AppHome from "./AppHome";
-import AppMarket from "./AppMarket";
 import AppAbout from "./AppAbout";
 import AppProduct from "./AppProduct";
 
@@ -17,7 +16,6 @@ const App = () => {
           <NavBar />
           <Routes>
             <Route index element={<AppHome />}></Route>
-            <Route path="/market" element={<AppMarket />}></Route>
             <Route path="/about-us" element={<AppAbout />}></Route>
             <Route path="/product/*" element={<AppProduct />}></Route>
           </Routes>

@@ -2,16 +2,15 @@
   min-height: 100vh;
   padding-bottom: 50px;
 }
-/* ------------------------------------------ */
+
+/* - navbar ----------------------------------------- */
 #navbar {
   position: sticky;
   top: 0;
   height: 50px;
   width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
   color: white;
+  z-index: 100 !important;
 }
 
 #navbar-extend-product {
@@ -29,15 +28,11 @@
   display: none;
 }
 
-#navbar-hamburger {
-  font-size: 2em;
-}
-
-#navbar-toggler ~ div {
+#navbar-toggler~div {
   display: none;
 }
 
-#navbar-toggler:checked ~ div {
+#navbar-toggler:checked~div {
   display: block;
   position: fixed;
   top: 0px;
@@ -45,7 +40,10 @@
   width: 100vw;
   height: 100vh;
   background-color: rgba(100, 100, 100, 0.5);
-  z-index: 99 !important;
+}
+
+#navbar-list{
+  position: relative;
 }
 
 #navbar-list div {
@@ -58,7 +56,6 @@
 }
 
 #navbar-list ul {
-  padding: 10px;
   position: absolute;
   display: flex;
   flex-direction: column;
@@ -85,7 +82,7 @@
   width: 100%;
 }
 
-#about-us-map > iframe {
+#about-us-map>iframe {
   width: 100%;
 }
 
@@ -103,7 +100,7 @@
 }
 
 #footer {
-  height: 50px;
+  min-height: 50px;
   margin-top: -50px;
 }
 
@@ -167,35 +164,56 @@
 }
 
 #app-product {
-  display: flex;
-  margin: 50px 0px;
+  margin: 30px 0px;
   width: 100%;
-  justify-content: space-around;
-  flex-wrap: wrap;
   background-color: #e5e5e5;
+  gap: 20px;
+  padding: 50px 15px;
 }
 
 #app-product > div {
-  width: clamp(200px, 100%, 280px);
-  height: 300px;
+  width: clamp(50px, 40%, 300px);
+}
+
+#app-product a {
+  width: 100%;
+  position: relative;;
+  padding-top: 133%;
   background-color: #ffffff;
-  margin: 30px;
-  padding: 10px;
-  text-align: center;
-  flex: 0 1 auto;
   box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.25);
   border-radius: 15px;
 }
 
-#product-canvas {
-  width: 80%;
-  height: 300px;
-  border: 1px solid #303030;
-  background-color: #d7d7d7;
+#app-product > div > a > div {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+
+#app-product .img-container{
+  position: relative;
+  width: 100%;
+  padding-top: 100%;
+}
+
+#app-product img{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+
+#app-product .card-name{
+  flex: 1 1 auto;
 }
 
 #gold-show-section {
-  flex: 1 1 auto;
+  width: 100%;
 }
 
 #gold-future-price {
@@ -210,13 +228,4 @@
 #price-detail-info {
   width: 100%;
   margin: 10px auto;
-}
-
-#product-options {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
-  padding: 0px;
-  gap: 15px;
 }
