@@ -1,5 +1,4 @@
 import React from "react"
-import HomeAboutUsIcons from "./HomeAboutUsIcons.js"
 
 const HomeAboutUsBlock = () => {
   return(
@@ -24,8 +23,6 @@ const HomeAboutUsBlock = () => {
             電話：062587755 <br></br>
             手機：0916968547 <br></br>
           </div>
-
-          <HomeAboutUsIcons />
 
         </div>
   )

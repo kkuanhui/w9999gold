@@ -14,12 +14,8 @@ const PriceIntro = () => {
 
   const [futurePrice, setFuturePrice] = useState([]);
 
-  const axiosInstance = axios.create({
-    baseURL: process.env.REACT_APP_API_BASE_URL
-  });
-
   useEffect(() => {
-    axiosInstance
+    axios
       .get("/get-gold-quote")
       .then((res) => {
         const resultText = currencyFormat(res.data[0]["price_value"]);
