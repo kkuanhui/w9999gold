@@ -10,6 +10,10 @@ import './static/css/large.css'
 import './static/css/extra-large.css'
 import './static/css/general/layout.css'
 import './static/css/general/root-and-custom.css'
+import axios from 'axios';
+
+axios.defaults.baseURL = 'https://express-psql-backend.herokuapp.com/';
+
 
 ReactDOM.render(
   <React.StrictMode>

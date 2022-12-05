@@ -23,21 +23,17 @@ const PlateDeities = (props) => {
 
   const [totalPrice, setTotalPrice] = useState(0);
 
-  const axiosInstance = axios.create({
-    baseURL: process.env.REACT_APP_API_BASE_URL
-  });
-
   // request API
   useEffect(() => {
-    axiosInstance
+    axios
       .all([
-        axiosInstance.get(`/get-gold-quote`),
-        axiosInstance.get(`/list-products/${APP_ID}`),
-        axiosInstance.get(`/get-detail/${APP_ID}`),
-        axiosInstance.get(`/get-detail-addons/${APP_ID}`)
+        axios.get(`/get-gold-quote`),
+        axios.get(`/list-products/${APP_ID}`),
+        axios.get(`/get-detail/${APP_ID}`),
+        axios.get(`/get-detail-addons/${APP_ID}`)
       ])
       .then(
-        axiosInstance.spread((...res) => {
+        axios.spread((...res) => {
           setGoldPrice(res[0].data);
           setAppProducts(res[1].data);
           setProductDetails(res[2].data);

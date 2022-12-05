@@ -13,19 +13,15 @@ const ProductGoldfan = () => {
   const [isAddText, setIsAddText] = useState(false);
   const [totalPrice, setTotalPrice] = useState(0);
   
-  const axiosInstance = axios.create({
-    baseURL: process.env.REACT_APP_API_BASE_URL
-  });
-
   useEffect(() => {
-    axiosInstance
+    axios
       .all([
-       axiosInstance.get(`/get-gold-quote`),
-       axiosInstance.get(`/list-products/A03`),
-       axiosInstance.get(`/get-detail/A03`),
+       axios.get(`/get-gold-quote`),
+       axios.get(`/list-products/A03`),
+       axios.get(`/get-detail/A03`),
       ])
       .then(
-        axiosInstance.spread((...res) => {
+        axios.spread((...res) => {
           setGoldPrice(res[0].data);
           setProducts(res[1].data);
           setProductDetails(res[2].data);
