@@ -29,8 +29,12 @@ const ProductCards = (props) => {
     "https://res.cloudinary.com/hbehita9k/image/upload/v1669652318/w9999gold/omori-1_ichsxz.png"
   ]
 
+  const axiosInstance = axios.create({
+    baseURL: process.env.REACT_APP_API_BASE_URL
+  });
+
   useEffect(() => {
-    axios.get(`/list-apps`)
+    axiosInstance.get(`/list-apps`)
     .then(res => {
       const data = res.data
       data[0]["imgUrl"]=imgUrls[0]
