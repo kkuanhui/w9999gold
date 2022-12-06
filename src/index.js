@@ -14,7 +14,6 @@ import axios from 'axios';
 
 axios.defaults.baseURL = 'https://express-psql-backend.herokuapp.com/';
 
-
 ReactDOM.render(
   <React.StrictMode>
     <App />
