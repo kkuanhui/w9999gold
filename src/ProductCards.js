@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import axios from 'axios';
+import imageGoldFan from './static/image/product-goldfan.jpg'
+import imageCreativity from './static/image/product-plate-creativity.jpg'
+import imageDeities from './static/image/product-plate-deities.jpg'
+import imageOmori from './static/image/product-omori.jpg'
 
 const Card = (props) => {
 
@@ -23,10 +27,10 @@ const Card = (props) => {
 const ProductCards = (props) => {
   const [apps, setApps] = useState([])
   const imgUrls = [
-    "https://res.cloudinary.com/hbehita9k/image/upload/v1669652312/w9999gold/plate-deities-1_tunbky.png",
-    "https://res.cloudinary.com/hbehita9k/image/upload/v1669652316/w9999gold/plate-deities-2_wjy9xw.png",
-    "https://res.cloudinary.com/hbehita9k/image/upload/v1669652321/w9999gold/goldfan-1.png",
-    "https://res.cloudinary.com/hbehita9k/image/upload/v1669652318/w9999gold/omori-1_ichsxz.png"
+    imageDeities,
+    imageCreativity,
+    imageGoldFan,
+    imageOmori,
   ]
 
   useEffect(() => {
