@@ -34,11 +34,11 @@ const ProductOmori = () => {
       });
   }, []);
 
-  useEffect(() => {
-    const details = filter(productDetails, {
-      "product_id": userProduct,
-    });
-  }, [userProduct])
+  // useEffect(() => {
+  //   const details = filter(productDetails, {
+  //     "product_id": userProduct,
+  //   });
+  // }, [userProduct])
 
   useEffect(() => {
     const quote = goldPrice[0]?.["price_value"];
