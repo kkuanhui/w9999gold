@@ -2,9 +2,8 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { filter, uniqBy } from "lodash";
 
-const PlateDeities = (props) => {
-  // const APP_ID = props["appId"]
-  const APP_ID = "A02";
+const ProductPlate = (props) => {
+  const APP_ID = props["appId"]
 
   const [goldPrice, setGoldPrice] = useState([]);
   const [appProducts, setAppProducts] = useState([]);
@@ -14,7 +13,7 @@ const PlateDeities = (props) => {
   const [userProduct, setUserProduct] = useState("");
   const [userDetail, setUserDetail] = useState([]);
   const [userWeight, setUserWeight] = useState(0);
-  const [weightInt, setWeightInt] = useState([]);
+  const [weightInt, setWeightInt] = useState([-1, 1]);
   const [userSize, setUserSize] = useState(0);
   const [userIsAddImage, setUserIsAddImage] = useState(false);
   const [userIsAddon, setUserIsAddon] = useState(false);
@@ -59,28 +58,32 @@ const PlateDeities = (props) => {
 
   // when product is chenged
   useEffect(() => {
-    const detail = filter(productDetails, { product_id: userProduct });
-    setUserDetail(detail);
-    const weightMin = detail["0"]?.["weight_min"];
-    const weightMax = detail["0"]?.["weight_max"];
-    setUserWeight(weightMin);
-    setWeightInt([weightMin, weightMax]);
-    const sizeMin = detail["0"]?.["size"];
-    // This is relative new syntax called option chaining.
-    setUserSize(sizeMin);
-    setUserIsAddImage(false);
+    if(userProduct.length && productDetails.length){
+      const detail = filter(productDetails, { product_id: userProduct });
+      setUserDetail(detail);
+      const weightMin = detail["0"]?.["weight_min"];
+      const weightMax = detail["0"]?.["weight_max"];
+      setUserWeight(weightMin);
+      setWeightInt([weightMin, weightMax]);
+      const sizeMin = detail["0"]?.["size"];
+      // This is relative new syntax called option chaining.
+      setUserSize(sizeMin);
+      setUserIsAddImage(false);
+    }
   }, [userProduct, productDetails]);
 
   // when plate size(userSize) is changed
   useEffect(() => {
-    const detail = filter(userDetail, { size: Number(userSize) });
-    const weightMin = detail["0"]?.["weight_min"];
-    const weightMax = detail["0"]?.["weight_max"];
-    setUserWeight(weightMin);
-    setWeightInt([weightMin, weightMax]);
-    setUserIsAddImage(false);
-    if((userSize+2)>10){setUserIsAddon(false)}
-  }, [userSize]);
+    if(userDetail.length || userSize){
+      const detail = filter(userDetail, { size: Number(userSize) });
+      const weightMin = detail["0"]?.["weight_min"];
+      const weightMax = detail["0"]?.["weight_max"];
+      setUserWeight(weightMin);
+      setWeightInt([weightMin, weightMax]);
+      setUserIsAddImage(false);
+      if((userSize+2)>10){setUserIsAddon(false)}
+    }
+  }, [userSize, userDetail]);
 
   // check is weight in interval
   const handleWeightChange = (v) => {
@@ -182,8 +185,11 @@ const PlateDeities = (props) => {
                 value={userWeight}
                 min={weightInt[0]}
                 max={weightInt[1]}
-                onChange={(e) => handleWeightChange(e.target.value)}
+                onChange={(e) => {
+                  handleWeightChange(e.target.value)}
+                }
               ></input>
+
             </div>
             <button 
               style={{"flex": "1 1 auto"}}
@@ -196,7 +202,7 @@ const PlateDeities = (props) => {
           <div style={{"flex": "1 1 50%"}}>時價</div>
           <div style={{"flex": "1 1 50%"}}>
             {(
-              Number(goldPrice["0"]?.["price_value"]) * Number(userWeight)
+              (goldPrice["0"]?.["price_value"]) * userWeight
             ).toFixed()}
           </div>
         </div>
@@ -339,4 +345,4 @@ const AddonPart = (props) => {
   );
 };
 
-export default PlateDeities;
+export default ProductPlate;

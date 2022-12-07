@@ -12,8 +12,7 @@ import { Routes, Route } from "react-router-dom";
 // 3.  goldfan 黃金扇
 
 const ProductCards = lazy(() => import('./ProductCards'));
-const ProductPlateCreativity = lazy(() => import('./ProductPlateCreativity'));
-const ProductPlateDeities = lazy(() => import('./ProductPlateDeities'));
+const ProductPlate = lazy(() => import('./ProductPlate'));
 const ProductOmori = lazy(() => import('./ProductOmori'));
 const ProductGoldfan = lazy(() => import('./ProductGoldfan'));
 
@@ -24,10 +23,10 @@ const AppProduct = () => {
         {/* index and exception */}
         <Route index element={<ProductCards />}></Route>
         <Route path="*" element={<ProductCards />}></Route>
-        <Route path="plate_deities" element={<ProductPlateDeities />}></Route>
+        <Route path="plate_deities" element={<ProductPlate appId="A01"/>}></Route>
         <Route
           path="plate_creativity"
-          element={<ProductPlateCreativity />}
+          element={<ProductPlate appId="A02"/>}
         ></Route>
         <Route path="goldfan" element={<ProductGoldfan />}></Route>
         <Route path="omori" element={<ProductOmori />}></Route>
