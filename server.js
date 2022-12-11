@@ -16,31 +16,12 @@ app.use(favicon(__dirname + '/build/favicon/favicon.ico'));
 app.use(express.static(__dirname));
 app.use(express.static(path.join(__dirname, 'build')));
 
+app.set('view engine', 'ejs')
+app.set('views', path.join(__dirname, 'views'));
+
 // to serve api
-app.get('/api', (req, res, next) => {
-  res.send(`<pre>
-  1. <a target="_blank" href="/"> / </a>
-    Home
-
-  2. <a target="_blank" href="/list-apps">/list-apps</a>
-    List all apps.
-
-  3. <a target="_blank" href="/list-products/A01">/list-products/:app</a>
-    List all product under an app.
-
-  4. <a target="_blank" href="/get-detail/A01">/get-detail/:app</a>
-    List detaill information of a product.
-
-  5. <a target="_blank" href="/list-addons/A01">/list-addons/:app/</a>
-    List all addons under an app.
-
-  6. <a target="_blank" href="/get-gold-quote">/get-gold-quote</a>
-    Get the latest gold price quote.
-    
-  7. <a target="_blank" href="/get-detail-addons/A01">/get-detail-addons/:app/</a>
-    Get detail informaion on an app.
-  </pre>
-  `)
+app.get('/api', (req, res) => {
+  res.render('api-doc')
 })
 
 app.get('/', function (req, res) {
