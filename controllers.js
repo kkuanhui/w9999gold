@@ -7,26 +7,26 @@ const listApps = (req, res, next) => {
 
 const getDetail = (req, res, next) => {
   const app = req.params.app
-  if(app == `A01`){
+  if(app === `A01`){
     dbConnect.detailPlate(req, res)
-  }else if(app == `A02`){
+  }else if(app === `A02`){
     dbConnect.detailPlate(req, res)
-  }else if(app == `A03`){
+  }else if(app === `A03`){
     dbConnect.detailGoldfan(req, res)
-  }else if(app == `A04`){
+  }else if(app === `A04`){
     dbConnect.detailOmori(req, res)
   }
 }
 
 const listProducts = (req, res, next) => {
   const app = req.params.app
-  if(app == `A01`){
+  if(app === `A01`){
     dbConnect.listPlate(req, res)
-  }else if(app == `A02`){
+  }else if(app === `A02`){
     dbConnect.listPlate(req, res)
-  }else if(app == `A03`){
+  }else if(app === `A03`){
     dbConnect.listGoldfan(req, res)
-  }else if(app == `A04`){
+  }else if(app === `A04`){
     dbConnect.listOmori(req, res)
   }
 }
