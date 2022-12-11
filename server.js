@@ -30,8 +30,7 @@ app.get('/', function (req, res) {
 
 app.get('/list-apps', (req, res, next) => {
     controllers.listApps(req, res, next)
-  }
-)
+})
 
 app.get('/list-products/:app', (req, res, next) => 
   controllers.listProducts(req, res, next)
