@@ -37,7 +37,6 @@ const detailPlate = (req, res) => {
 }
 
 const detailGoldfan = (req, res) => {
-  const productId = req.params.product
   knex.select()
   .from(`product_goldfan AS goldfan`)
   .then(function(data){
@@ -47,7 +46,6 @@ const detailGoldfan = (req, res) => {
 }
 
 const detailOmori = (req, res) => {
-  const productId = req.params.product
   knex.select()
   .from(`product_omori AS omori`)
   .then(function(data){
