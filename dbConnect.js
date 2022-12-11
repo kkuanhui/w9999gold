@@ -1,5 +1,3 @@
-const { select } = require( 'cheerio-select' );
-
 // connect database using module knex
 const knex = require('knex')({
   // note: This is heroku postgresql-slippery-95994.

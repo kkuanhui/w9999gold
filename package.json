@@ -16,7 +16,14 @@
     "react-icons": "^4.2.0",
     "react-router-dom": "6.3.0",
     "react-scripts": "5.0.1",
-    "web-vitals": "^1.1.2"
+    "web-vitals": "^1.1.2",
+    "cheerio": "^1.0.0-rc.5",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "knex": "^0.21.14",
+    "pg": "^8.5.1",
+    "request": "^2.88.2",
+    "request-promise": "^4.2.6"
   },
   "scripts": {
     "start": "node server.js",

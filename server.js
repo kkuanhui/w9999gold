@@ -1,3 +1,5 @@
+require('dotenv').config()
+
 const express = require('express');
 const favicon = require('express-favicon');
 const path = require('path');
@@ -5,9 +7,7 @@ const controllers = require('./controllers.js');
 const ReqDojoApi = require( './ReqDojoApi.js' );
 const ReqWebScraping = require('./ReqWebScraping.js')
 
-require('dotenv').config()
-
-const port = process.env.PORT || 8080;
+const port = process.env.PORT || 80;
 const app = express();
 
 // to serve react build
@@ -15,9 +15,6 @@ app.use(favicon(__dirname + '/build/favicon/favicon.ico'));
 // the __dirname is the current directory from where the script is running
 app.use(express.static(__dirname));
 app.use(express.static(path.join(__dirname, 'build')));
-app.get('/*', function (req, res) {
-  res.sendFile(path.join(__dirname, 'build', 'index.html'));
-});
 
 // to serve api
 app.get('/api', (req, res, next) => {
@@ -46,8 +43,13 @@ app.get('/api', (req, res, next) => {
   `)
 })
 
-app.get('/list-apps', (req, res, next) => 
-  controllers.listApps(req, res, next)
+app.get('/', function (req, res) {
+  res.sendFile(path.join(__dirname, 'build', 'index.html'));
+});
+
+app.get('/list-apps', (req, res, next) => {
+    controllers.listApps(req, res, next)
+  }
 )
 
 app.get('/list-products/:app', (req, res, next) => 
