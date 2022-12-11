@@ -38,8 +38,3 @@ w9999gold is composited by many Apps.
 
 - AppAbout
   1. Comp - Article
-
-
-
-"start": "react-scripts --max_old_space_size=4096 start",
-"build": "react-scripts --max_old_space_size=4096 build",
