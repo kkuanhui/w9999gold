@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 
 const PriceTable = (prop) => {
 
@@ -15,7 +15,6 @@ const PriceTable = (prop) => {
     wage,
   } = prop;
 
-  const [isContainTax, setIsContainTax] = useState(false)
   const [priceWOTax, setPriceWOTax] = useState((initialWeight * futurePrice + wage).toFixed())
   const [priceWTax,  setPriceWTax]  = useState(((initialWeight * futurePrice + wage) * 1.05).toFixed())
   const [goldWeight, setGoldWeight] = useState(initialWeight)
@@ -43,6 +42,11 @@ const PriceTable = (prop) => {
     setPriceWTax((price * 1.05).toFixed(0))
 
   }
+
+  useEffect(() => {
+    console.log(goldWeight)
+    console.log(futurePrice)
+  })
 
   return (
 

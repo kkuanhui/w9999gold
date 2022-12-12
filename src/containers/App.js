@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import NavBar from "../components/NavBar";
 import Footer from "../components/Footer";
-import PriceComputer from "../components/PriceComputer.js";
 import AboutUsBlock from "./AboutUsBlock";
 import PriceBlock from "./PriceBlock.js";
 
@@ -16,14 +15,6 @@ const Home = () => {
   );
 };
 
-const Price = () => {
-  return (
-    <Fragment>
-      <PriceComputer />
-    </Fragment>
-  );
-};
-
 const App = () => {
   return (
     <Fragment>
@@ -32,7 +23,6 @@ const App = () => {
           <NavBar />
           <Routes>
             <Route exact path="/" element={<Home />}></Route>
-            <Route path="/price" element={<Price />}></Route>
           </Routes>
         </Router>
       </div>
