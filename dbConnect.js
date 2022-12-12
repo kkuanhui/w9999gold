@@ -30,6 +30,7 @@ const detailPlate = (req, res) => {
         this.on('wage.size', '=', 'size.size')
         .on('wage.app_id', '=', 'plate.app_id')
       })
+    .orderBy('size.size', 'asc')
   .then(function(data) {
     res.json(data)
   })
