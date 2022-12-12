@@ -42,12 +42,12 @@ const ProductOmori = () => {
 
   useEffect(() => {
     const quote = goldPrice[0]?.["price_value"];
-    const partGold = quote * userWeight;
     const detail = filter(productDetails, {
       "product_id": userProduct,
     });
+    const partWage = detail[0]?.["wage_basic"]
     const partCustom = isAddText ? detail[0]?.["wage_text_custom"] : 0;
-    setTotalPrice(partGold + partCustom);
+    setTotalPrice(partWage + partCustom);
   }, [userProduct, userWeight, isAddText]);
 
 

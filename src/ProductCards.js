@@ -27,8 +27,8 @@ const Card = (props) => {
 const ProductCards = (props) => {
   const [apps, setApps] = useState([])
   const imgUrls = [
-    imageDeities,
     imageCreativity,
+    imageDeities,
     imageGoldFan,
     imageOmori,
   ]

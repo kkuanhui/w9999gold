@@ -53,7 +53,8 @@ const ProductGoldfan = () => {
       "size": userSize,
     });
     const partCustom = isAddText ? detail[0]?.["wage_text_custom"] : 0;
-    setTotalPrice(partGold + partCustom);
+    const partWage = detail[0]?.["wage_basic"]
+    setTotalPrice(partGold + partCustom + partWage);
   }, [userProduct, userSize, userWeight, isAddText]);
 
   const onSizeChange = (size) => {
