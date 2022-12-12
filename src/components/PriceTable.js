@@ -19,6 +19,13 @@ const PriceTable = (prop) => {
   const [priceWTax,  setPriceWTax]  = useState(((initialWeight * futurePrice + wage) * 1.05).toFixed())
   const [goldWeight, setGoldWeight] = useState(initialWeight)
   const [weightText, setWeightText] = useState(`${goldWeight}錢`)
+  const [futureP, setFutureP] = useState(futurePrice)
+
+  useEffect(() => {
+    setFutureP(futurePrice)
+    setPriceWOTax((goldWeight * futurePrice + wage).toFixed())
+    setPriceWTax(((goldWeight * futurePrice + wage) * 1.05).toFixed())
+  }, [futurePrice])
   
   const numPos = (x, min, max) => {
     if( min < x  && x < max){
@@ -34,7 +41,7 @@ const PriceTable = (prop) => {
     const nowWeight = Number((goldWeight + adding).toFixed(1))
 
     const compareRes = numPos(nowWeight, lowerBound, upperBound)
-    const price = (compareRes.resX * futurePrice + wage)
+    const price = (compareRes.resX * futureP+ wage)
 
     setGoldWeight(compareRes.resX)
     setWeightText(`${compareRes.txt}${parseFloat(compareRes.resX)}錢`)
@@ -42,11 +49,6 @@ const PriceTable = (prop) => {
     setPriceWTax((price * 1.05).toFixed(0))
 
   }
-
-  useEffect(() => {
-    console.log(goldWeight)
-    console.log(futurePrice)
-  })
 
   return (
 
@@ -97,7 +99,7 @@ const PriceTable = (prop) => {
           </div>
 
           <div>
-            黃金：{currencyFormat((futurePrice * goldWeight).toFixed(0))}
+            黃金：{currencyFormat((futureP* goldWeight).toFixed(0))}
           </div>
 
           <div>
