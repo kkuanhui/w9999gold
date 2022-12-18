@@ -23,10 +23,10 @@ const AppProduct = () => {
         {/* index and exception */}
         <Route index element={<ProductCards />}></Route>
         <Route path="*" element={<ProductCards />}></Route>
-        <Route path="plate_deities" element={<ProductPlate appId="A01"/>}></Route>
+        <Route path="plate_deities" element={<ProductPlate appId="A01" name="神明金牌"/>}></Route>
         <Route
           path="plate_creativity"
-          element={<ProductPlate appId="A02"/>}
+          element={<ProductPlate appId="A02" name="創意金牌"/>}
         ></Route>
         <Route path="goldfan" element={<ProductGoldfan />}></Route>
         <Route path="omori" element={<ProductOmori />}></Route>

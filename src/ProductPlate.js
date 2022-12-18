@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { filter, uniqBy } from "lodash";
+import Carousel, {CarouselChild} from "./Carousel/Carousel";
 
 const ProductPlate = (props) => {
   const APP_ID = props["appId"]
@@ -130,7 +131,7 @@ const ProductPlate = (props) => {
 
   return (
     <div className="p-5 mr-auto ml-auto" style={{"width": "clamp(0px, 100%, 600px)"}}>
-      <h1 className="width-70 text-center font-size-30">創意金牌</h1>
+      <h1 className="width-70 text-center font-size-30">{props["name"]}</h1>
 
       <div className="product-green-border p-5 mb-3">
 
@@ -151,18 +152,24 @@ const ProductPlate = (props) => {
           </select>
         </div>
 
-        <div className="d-flex flex-ai-center flex-jc-between width-80 pl-3 mr-auto ml-auto">
-          <div className="font-bold font-size-15">金牌尺寸</div>
-          <select
-            value={userSize}
-            onChange={(e) => {
-              setUserSize(Number(e.target.value));
-            }}
-          >
-            {userDetail.map((ele, idx) => {
-              return <option key={idx} value={ele["size"]}>{ele["size"]}</option>;
-            })}
-          </select>
+        <div className="d-flex flex-ai-center flex-jc-between width-80 pl-3 mr-auto ml-auto flex-wrap">
+          <div style={{"flex": "1 1 50%"}} className="font-bold font-size-15">金牌尺寸</div>
+          <div style={{"flex": "1 1 50%"}}>
+            <select
+              value={userSize}
+              onChange={(e) => {
+                setUserSize(Number(e.target.value));
+              }}
+            >
+              {userDetail.map((ele, idx) => {
+                return <option key={idx} value={ele["size"]}>{ele["size"]}</option>;
+              })}
+            </select>
+          </div>
+          <div style={{"flex": "1 1 50%"}}>工資</div>
+          <div style={{"flex": "1 1 50%"}}>
+            {filter(userDetail, { size: userSize })["0"]?.["wage_basic"]}
+          </div>
         </div>
 
         <div className="d-flex flex-ai-center flex-jc-between width-80 pl-3 flex-wrap ml-auto mr-auto">
@@ -224,7 +231,7 @@ const ProductPlate = (props) => {
       <div className="product-golden-border p-5 mb-3">
 
         <div className="d-flex flex-ai-center flex-jc-between width-80 pl-3 mb-3 mr-auto ml-auto">
-          <div className="font-size-15 font-bold">金喜加大</div>
+          <div className="font-size-15 font-bold">藝術框</div>
           <input
             type="checkbox"
             disabled={((userSize+2)>10)?true:false}
@@ -259,6 +266,16 @@ const ProductPlate = (props) => {
             $<span>{totalPrice.toFixed()}</span>
           </div>
         </div>
+      </div>
+
+      <div className="d-flex flex-direction-column">
+        <h1>產品圖庫</h1>
+        <Carousel className="d-flex flex-ai-center" style={{height: "200px", backgroundColor: '#cecece'}}>
+          <CarouselChild widthPercent="100"><div>1</div></CarouselChild>
+          <CarouselChild widthPercent="100"><div>2</div></CarouselChild>
+          <CarouselChild widthPercent="100"><div>3</div></CarouselChild>
+          <CarouselChild widthPercent="100"><div>4</div></CarouselChild>
+        </Carousel>        
       </div>
 
 
