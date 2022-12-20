@@ -1,19 +1,32 @@
 .carousel {
     position: relative;
     width: 100%;
-    height: 100px;
     overflow: hidden;
+    cursor: grab;
 }
-.carousel > div {
+
+.carousel .carousel-direction{
     position: absolute;
-    min-width: 100%;
-    height: 100px;
+    background-color: rgba(200, 200, 200, 0.8);
+    height: 100%;
+    width: 15%;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2em;
+    font-weight: bold;
+    color: rgb(100, 100, 100);
+}
+
+.carousel .carousel-content {
+    position: absolute;
+    height: 100%;
     transition: all 1s;
     display: flex;
+    gap: 50px;
 }
-.carousel > div > div {
-    height: 100px;
-    background-color: red;
-    margin-right: 5px;
+
+.carousel > .carousel-content> div {
     flex: 1 0 auto;
 }

@@ -2,6 +2,10 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { filter, uniqBy } from "lodash";
 import Carousel, {CarouselChild} from "./Carousel/Carousel";
+import myImg from './static/image/product-goldfan.jpg'
+import myImg2 from './static/image/product-omori.jpg'
+import myImg3 from './static/image/product-plate-creativity.jpg'
+import myImg4 from './static/image/product-plate-deities.jpg'
 
 const ProductPlate = (props) => {
   const APP_ID = props["appId"]
@@ -270,11 +274,11 @@ const ProductPlate = (props) => {
 
       <div className="d-flex flex-direction-column">
         <h1>產品圖庫</h1>
-        <Carousel className="d-flex flex-ai-center" style={{height: "200px", backgroundColor: '#cecece'}}>
-          <CarouselChild widthPercent="100"><div>1</div></CarouselChild>
-          <CarouselChild widthPercent="100"><div>2</div></CarouselChild>
-          <CarouselChild widthPercent="100"><div>3</div></CarouselChild>
-          <CarouselChild widthPercent="100"><div>4</div></CarouselChild>
+        <Carousel className="d-flex flex-ai-center width-100" style={{height: "300px"}}>
+          <img src={myImg} alt="img"></img>
+          <img src={myImg2} alt="img"></img>
+          <img src={myImg3} alt="img"></img>
+          <img src={myImg4} alt="img"></img>
         </Carousel>        
       </div>
 
