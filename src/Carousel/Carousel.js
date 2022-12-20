@@ -1,12 +1,34 @@
-import React, { Children, useState } from "react";
+import React, { Children, useState, useRef, useLayoutEffect, useEffect } from "react";
 import './carousel-style.css';
 
 const Carousel = (props) => {
   const { children, style, className} = props;
   const [transx, setTransx] = useState(0)
   const [step, setStep] = useState(0)
+  const [width, setWidth] = useState(0);
+  const [wwidth, setwwidth] = useState(0)
 
   const childrenNum = Children.count(children);
+
+  useEffect(() => {
+    console.log(width)
+  })
+
+  const handleResize = () => {
+    setWidth(window.innerWidth)
+  }
+
+  useEffect(() => {
+    window.addEventListener('resize', handleResize)
+  }, [])
+
+  useLayoutEffect(() => {
+    setWidth(ref.current.offsetWidth);
+  }, []);
+
+  useEffect(() => {
+    setTransx(width*step)
+  }, [width])
 
   const handleClick = (sign) => {
     if(sign === '+'){
@@ -22,15 +44,17 @@ const Carousel = (props) => {
         setStep(step-1)
       }
     }
-    setTransx(100*step)
+    setTransx(width*step)
   };
 
+  const ref = useRef(null);
+
   return (
-    <div className={`carousel ${className}`} style={style}>
+    <div className={`carousel ${className}`} style={style} ref={ref}>
       <div className="carousel-direction" style={{left: "0px"}} onClick={() => handleClick('-')}>
         -
       </div>
-      <div className="carousel-content" style={{transform: `translateX(-${transx}%)`}}>
+      <div className="carousel-content" style={{transform: `translateX(-${transx}px)`}}>
         {children}
       </div>
       <div className="carousel-direction" style={{right: "0px"}} onClick={() => handleClick('+')}>
