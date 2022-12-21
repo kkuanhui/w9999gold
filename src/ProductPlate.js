@@ -282,6 +282,13 @@ const ProductPlate = (props) => {
         </Carousel>        
       </div>
 
+      <div className="d-flex flex-wrap mt-3" style={{gap: '5px'}}>
+        <img src={myImg}  alt="img" width="50" style={{cursor: "pointer", flex: '0 1 auto'}}></img>
+        <img src={myImg2} alt="img" width="50" style={{cursor: "pointer", flex: '0 1 auto'}}></img>
+        <img src={myImg3} alt="img" width="50" style={{cursor: "pointer", flex: '0 1 auto'}}></img>
+        <img src={myImg4} alt="img" width="50" style={{cursor: "pointer", flex: '0 1 auto'}}></img>
+      </div>
+
 
     </div>
   );
@@ -365,5 +372,7 @@ const AddonPart = (props) => {
     </>
   );
 };
+
+
 
 export default ProductPlate;

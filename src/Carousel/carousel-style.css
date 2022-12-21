@@ -2,21 +2,31 @@
   position: relative;
   width: 100%;
   overflow: hidden;
-  cursor: grab;
 }
 
 .carousel .carousel-direction {
   position: absolute;
-  background-color: rgba(200, 200, 200, 0.8);
   height: 100%;
   width: 15%;
   z-index: 1;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 2em;
-  font-weight: bold;
+}
+
+.carousel .carousel-direction div{
+  font-weight: bolder;
+  cursor: pointer;
   color: rgb(100, 100, 100);
+  font-size: 2em;
+  background-color: rgba(200, 200, 200, 0.8);
+  border-radius: 30px;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
 }
 
 .carousel .carousel-content {

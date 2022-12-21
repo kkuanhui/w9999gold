@@ -49,17 +49,21 @@ const Carousel = (props) => {
   const ref = useRef(null);
 
   return (
-    <div className={`carousel ${className}`} style={style} ref={ref}>
-      <div className="carousel-direction" style={{left: "0px"}} onClick={() => handleClick('-')}>
-        -
+      <div className={`carousel ${className}`} style={style} ref={ref}>
+        <div className="carousel-direction" style={{left: "0px"}} onClick={() => handleClick('-')}>
+          <div>
+            {"<"}
+          </div>
+        </div>
+        <div className="carousel-content" style={{transform: `translateX(-${transx}px)`}}>
+          {children.map((ele, idx) => {return <div key={idx} style={{width: `${containerWidth}px`}}>{ele}</div>})}
+        </div>
+        <div className="carousel-direction" style={{right: "0px"}} onClick={() => handleClick('+')}>
+          <div>
+            {">"}
+          </div>
+        </div>
       </div>
-      <div className="carousel-content" style={{transform: `translateX(-${transx}px)`}}>
-        {children.map(ele => {return <div style={{width: `${containerWidth}px`}}>{ele}</div>})}
-      </div>
-      <div className="carousel-direction" style={{right: "0px"}} onClick={() => handleClick('+')}>
-        +
-      </div>
-    </div>
   );
 };
 
