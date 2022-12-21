@@ -275,7 +275,7 @@ const ProductPlate = (props) => {
       <div className="d-flex flex-direction-column">
         <h1>產品圖庫</h1>
         <Carousel className="d-flex flex-ai-center width-100" style={{height: "300px"}}>
-          <img src={myImg} alt="img"></img>
+          <img src={myImg}  alt="img"></img>
           <img src={myImg2} alt="img"></img>
           <img src={myImg3} alt="img"></img>
           <img src={myImg4} alt="img"></img>

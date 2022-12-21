@@ -5,17 +5,13 @@ const Carousel = (props) => {
   const { children, style, className} = props;
   const [transx, setTransx] = useState(0)
   const [step, setStep] = useState(0)
-  const [width, setWidth] = useState(0);
-  const [wwidth, setwwidth] = useState(0)
+  const [containerWidth, setContainerWidth] = useState(0);
+  const [windowWidth, setWindowWidth] = useState(0)
 
   const childrenNum = Children.count(children);
 
-  useEffect(() => {
-    console.log(width)
-  })
-
   const handleResize = () => {
-    setWidth(window.innerWidth)
+    setWindowWidth(window.innerWidth)
   }
 
   useEffect(() => {
@@ -23,28 +19,31 @@ const Carousel = (props) => {
   }, [])
 
   useLayoutEffect(() => {
-    setWidth(ref.current.offsetWidth);
-  }, []);
+    setContainerWidth(ref.current.offsetWidth);
+  }, [windowWidth]);
 
   useEffect(() => {
-    setTransx(width*step)
-  }, [width])
+    setTransx(containerWidth*step)
+  }, [containerWidth])
 
   const handleClick = (sign) => {
     if(sign === '+'){
       if (step >= childrenNum - 1) {
         setStep(0)
+        setTransx(0)
       } else {
         setStep(step+1)
+        setTransx(containerWidth*(step+1))
       }
     }else{
       if (step <= 0) {
-        setStep(childrenNum)
+        setStep(childrenNum -1)
+        setTransx(containerWidth*(childrenNum-1))
       } else {
         setStep(step-1)
+        setTransx(containerWidth*(step-1))
       }
     }
-    setTransx(width*step)
   };
 
   const ref = useRef(null);
@@ -55,7 +54,7 @@ const Carousel = (props) => {
         -
       </div>
       <div className="carousel-content" style={{transform: `translateX(-${transx}px)`}}>
-        {children}
+        {children.map(ele => {return <div style={{width: `${containerWidth}px`}}>{ele}</div>})}
       </div>
       <div className="carousel-direction" style={{right: "0px"}} onClick={() => handleClick('+')}>
         +

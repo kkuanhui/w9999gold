@@ -1,32 +1,34 @@
 .carousel {
-    position: relative;
-    width: 100%;
-    overflow: hidden;
-    cursor: grab;
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  cursor: grab;
 }
 
-.carousel .carousel-direction{
-    position: absolute;
-    background-color: rgba(200, 200, 200, 0.8);
-    height: 100%;
-    width: 15%;
-    z-index: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 2em;
-    font-weight: bold;
-    color: rgb(100, 100, 100);
+.carousel .carousel-direction {
+  position: absolute;
+  background-color: rgba(200, 200, 200, 0.8);
+  height: 100%;
+  width: 15%;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2em;
+  font-weight: bold;
+  color: rgb(100, 100, 100);
 }
 
 .carousel .carousel-content {
-    position: absolute;
-    height: 100%;
-    transition: all 1s;
-    display: flex;
-    gap: 50px;
+  position: absolute;
+  height: 100%;
+  transition: all 0.5s;
+  display: flex;
+  justify-content: space-around;
 }
 
-.carousel > .carousel-content> div {
-    flex: 1 0 auto;
+.carousel>.carousel-content>div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
