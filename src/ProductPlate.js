@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { filter, uniqBy } from "lodash";
-import Carousel, {CarouselChild} from "./Carousel/Carousel";
+import Carousel from "./Carousel/Carousel";
 import myImg from './static/image/product-goldfan.jpg'
 import myImg2 from './static/image/product-omori.jpg'
 import myImg3 from './static/image/product-plate-creativity.jpg'
@@ -272,22 +272,7 @@ const ProductPlate = (props) => {
         </div>
       </div>
 
-      <div className="d-flex flex-direction-column">
-        <h1>產品圖庫</h1>
-        <Carousel className="d-flex flex-ai-center width-100" style={{height: "300px"}}>
-          <img src={myImg}  alt="img"></img>
-          <img src={myImg2} alt="img"></img>
-          <img src={myImg3} alt="img"></img>
-          <img src={myImg4} alt="img"></img>
-        </Carousel>        
-      </div>
-
-      <div className="d-flex flex-wrap mt-3" style={{gap: '5px'}}>
-        <img src={myImg}  alt="img" width="50" style={{cursor: "pointer", flex: '0 1 auto'}}></img>
-        <img src={myImg2} alt="img" width="50" style={{cursor: "pointer", flex: '0 1 auto'}}></img>
-        <img src={myImg3} alt="img" width="50" style={{cursor: "pointer", flex: '0 1 auto'}}></img>
-        <img src={myImg4} alt="img" width="50" style={{cursor: "pointer", flex: '0 1 auto'}}></img>
-      </div>
+      <GalleryPart></GalleryPart>
 
 
     </div>
@@ -373,6 +358,32 @@ const AddonPart = (props) => {
   );
 };
 
+
+const GalleryPart = () => {
+
+  const [showIdx, setShowIdx] = useState(0)
+
+  return(
+      <>
+        <div className="d-flex flex-direction-column">
+          <h1>產品圖庫</h1>
+          <Carousel className="d-flex flex-ai-center width-100" style={{height: "300px"}} toStep={showIdx}>
+            <img src={myImg}  alt="img"></img>
+            <img src={myImg2} alt="img"></img>
+            <img src={myImg3} alt="img"></img>
+            <img src={myImg4} alt="img"></img>
+          </Carousel>        
+        </div>
+
+        <div className="d-flex flex-wrap mt-3" style={{gap: '5px'}}>
+          <img src={myImg}  alt="img" width="50" onClick={() => {setShowIdx(0)}}style={{cursor: "pointer", flex: '0 1 auto'}}></img>
+          <img src={myImg2} alt="img" width="50" onClick={() => {setShowIdx(1)}}style={{cursor: "pointer", flex: '0 1 auto'}}></img>
+          <img src={myImg3} alt="img" width="50" onClick={() => {setShowIdx(2)}}style={{cursor: "pointer", flex: '0 1 auto'}}></img>
+          <img src={myImg4} alt="img" width="50" onClick={() => {setShowIdx(3)}}style={{cursor: "pointer", flex: '0 1 auto'}}></img>
+      </div>
+      </>
+  )
+}
 
 
 export default ProductPlate;

@@ -2,11 +2,16 @@ import React, { Children, useState, useRef, useLayoutEffect, useEffect } from "r
 import './carousel-style.css';
 
 const Carousel = (props) => {
-  const { children, style, className} = props;
+  const { children, style, className, toStep} = props;
   const [transx, setTransx] = useState(0)
-  const [step, setStep] = useState(0)
+  const [step, setStep] = useState(toStep?toStep:0)
   const [containerWidth, setContainerWidth] = useState(0);
   const [windowWidth, setWindowWidth] = useState(0)
+
+  useEffect(() => {
+    setStep(toStep)
+    setTransx(containerWidth*toStep)
+  }, [toStep])
 
   const childrenNum = Children.count(children);
 
