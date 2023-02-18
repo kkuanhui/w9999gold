@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { filter, uniqBy } from "lodash";
-import Carousel from "./Carousel/Carousel";
+import Carousel, { CarouselChild } from "./Carousel/Carousel";
 import myImg from './static/image/product-goldfan.jpg'
 import myImg2 from './static/image/product-omori.jpg'
 import myImg3 from './static/image/product-plate-creativity.jpg'
@@ -368,19 +368,21 @@ const GalleryPart = () => {
         <div className="d-flex flex-direction-column">
           <h1>產品圖庫</h1>
           <Carousel className="d-flex flex-ai-center width-100" style={{height: "300px"}} toStep={showIdx}>
-            <img src={myImg}  alt="img"></img>
-            <img src={myImg2} alt="img"></img>
-            <img src={myImg3} alt="img"></img>
-            <img src={myImg4} alt="img"></img>
+            <CarouselChild className="d-flex flex-ai-center flex-direction-column">
+              <img src={myImg}  alt="img" style={{"width": "80%"}}></img>
+              <div className="font-size-15">黃金扇</div>
+            </CarouselChild>
+            <CarouselChild className="d-flex flex-ai-center flex-direction-column">
+              <img src={myImg2}  alt="img" style={{"width": "80%", "margin": "0px auto"}}></img>
+              <div className="font-size-15">御守</div>
+            </CarouselChild>
           </Carousel>        
         </div>
 
         <div className="d-flex flex-wrap mt-3" style={{gap: '5px'}}>
           <img src={myImg}  alt="img" width="50" onClick={() => {setShowIdx(0)}}style={{cursor: "pointer", flex: '0 1 auto'}}></img>
           <img src={myImg2} alt="img" width="50" onClick={() => {setShowIdx(1)}}style={{cursor: "pointer", flex: '0 1 auto'}}></img>
-          <img src={myImg3} alt="img" width="50" onClick={() => {setShowIdx(2)}}style={{cursor: "pointer", flex: '0 1 auto'}}></img>
-          <img src={myImg4} alt="img" width="50" onClick={() => {setShowIdx(3)}}style={{cursor: "pointer", flex: '0 1 auto'}}></img>
-      </div>
+        </div>
       </>
   )
 }

@@ -22,6 +22,7 @@ const Card = (props) => {
       </Link>
     </div>
   );
+
 };
 
 const ProductCards = (props) => {

@@ -73,9 +73,9 @@ const Carousel = (props) => {
 };
 
 export const CarouselChild = (props) => {
-  const { children } = props;
+  const { children, style, className} = props;
   return (
-    <div style={{"width": `100%`}}>
+    <div style={style} className={className}>
       {children}
     </div>
   )
