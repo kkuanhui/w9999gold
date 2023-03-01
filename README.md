@@ -4,19 +4,7 @@ This is is README of this project.
 
 Explanatory of this project and plan will be revealed below.
 
-# website version
-
-## 0.0.1
-
-Rush to online.
-
-I'm planning to create an easy price table that user can edit some condition.
-
-## 0.1.0
-
-Make multiple pages.
-
-## Name and categories
+# Name and categories
 
 w9999gold is composited by many Apps.
 
@@ -38,3 +26,14 @@ w9999gold is composited by many Apps.
 
 - AppAbout
   1. Comp - Article
+
+
+## note
+
+In this project frontend and backend are put all together.
+Everything in folder `src/` are sorce code of react-app, wharae every files in root directory are backend part.
+The frontend part needed to be built before deploy.
+Backend part will start a nginx engine in charge of responding and receving http request.
+Backend will only respond built frontend in folder `build/`.
+To use node package like this way. 
+We can serve both frontend and backend on the same server.
