@@ -76,12 +76,4 @@
     margin: 10px auto;
   }
 
-  .jumbotron{
-    width: 100%;
-    padding-top: 30%; 
-    position: relative;
-    background-color: gray;
-    margin-bottom: 20px;
-  }
-
 }

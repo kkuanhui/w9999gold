@@ -2,6 +2,7 @@ import React, { Fragment } from "react";
 import HomeJumbotron from "./HomeJumbotron.js";
 import HomePriceBlock from "./HomePriceBlock.js";
 import HomeAboutUsBlock from "./HomeAboutUsBlock.js";
+import HomeIntro from "./HomeIntro.js";
 import { Link } from "react-router-dom";
 
 const AppHome = () => {
@@ -17,6 +18,7 @@ const AppHome = () => {
         </Link>
       </div>
       <HomeAboutUsBlock />
+      <HomeIntro />
     </Fragment>
   );
 };
