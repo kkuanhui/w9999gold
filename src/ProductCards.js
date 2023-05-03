@@ -1,60 +1,73 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import axios from 'axios';
-import imageGoldFan from './static/image/product-goldfan.jpg'
-import imageCreativity from './static/image/product-plate-creativity.jpg'
-import imageDeities from './static/image/product-plate-deities.jpg'
-import imageOmori from './static/image/product-omori.jpg'
-
-const Card = (props) => {
-
-  return (
-    <div>
-      <Link to={props.linkTarget} className="text-center flex-item-flex overflow-hidden d-flex flex-ai-center flex-jc-between flex-direction-column">
-        <div className="d-flex flex-direction-column flex-ai-center flex-jc-between">
-            <div className="img-container">
-              <img className="img-cover" src={props.imgUrl} width="120" height="120" alt="card img"></img>
-            </div>
-            <div className="card-name d-flex flex-ai-center flex-jc-center">
-              {props.name}
-            </div>
-        </div>
-      </Link>
-    </div>
-  );
-
-};
+import axios from "axios";
+// cloudinary related package
+import { AdvancedImage } from "@cloudinary/react";
+import { CloudinaryImage } from "@cloudinary/url-gen";
 
 const ProductCards = (props) => {
-  const [apps, setApps] = useState([])
-  const imgUrls = [
-    imageCreativity,
-    imageDeities,
-    imageGoldFan,
-    imageOmori,
-  ]
+  const [apps, setApps] = useState([]);
+  const imgRootDirectory = "w9999gold/product/";
+  // w9999gold/product/goldfan/image03_er5qne.png
+  const imgs = {
+    plate_creativity: new CloudinaryImage(
+      `${imgRootDirectory}plate_creativity/image13_itgglb`,
+      { cloudName: "hbehita9k" }
+    ),
+    plate_deities: new CloudinaryImage(
+      `${imgRootDirectory}plate_deities/image08_bsdav1`,
+      { cloudName: "hbehita9k" }
+    ),
+    goldfan: new CloudinaryImage(`${imgRootDirectory}/goldfan/image03_er5qne`, {
+      cloudName: "hbehita9k",
+    }),
+    omori: new CloudinaryImage(`${imgRootDirectory}/omori/image01_uvmf2a`, {
+      cloudName: "hbehita9k",
+    }),
+  };
 
   useEffect(() => {
-    axios.get(`/list-apps`)
-    .then(res => {
-      const data = res.data
-      data[0]["imgUrl"]=imgUrls[0]
-      data[1]["imgUrl"]=imgUrls[1]
-      data[2]["imgUrl"]=imgUrls[2]
-      data[3]["imgUrl"]=imgUrls[3]
-      setApps(res.data)
-    })
-  }, [])
+    axios.get(`/list-apps`).then((res) => {
+      setApps(res.data);
+    });
+  }, []);
 
   return (
-    <div id="app-product" className="d-flex flex-jc-around flex-ai-center flex-wrap width-100">
+    <div 
+      className="d-flex flex-jc-around flex-ai-center flex-wrap" 
+      style={{width: "min(100%, 992px)", margin: "30px auto"}}
+    >
       {apps.map((ele, idx) => {
-        return <Card key={idx} linkTarget={ele['english_name']} name={ele['show_name']} imgUrl={ele["imgUrl"]}></Card>
-      })
-      }
-      <div style={{"visiablity": "hidden"}}></div>
-      <div style={{"visiablity": "hidden"}}></div>
-      <div style={{"visiablity": "hidden"}}></div>
+        return (
+          <Card
+            key={idx}
+            linkTarget={ele["english_name"]}
+            name={ele["show_name"]}
+            img={imgs[ele["english_name"]]}
+          ></Card>
+        );
+      })}
+      <div style={{ visiablity: "hidden" }}></div>
+      <div style={{ visiablity: "hidden" }}></div>
+      <div style={{ visiablity: "hidden" }}></div>
+    </div>
+  );
+};
+
+const Card = (props) => {
+  return (
+    <div style={{borderRadius: "30px", boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)", overflow: "hidden", height: "min(30vw, 300px)"}}>
+      <Link to={props.linkTarget} style={{height: "100%"}}>
+        <div className="" style={{borderBottom: "1px solid black", height: "60%", overflow: "hidden"}}>
+          <AdvancedImage 
+            cldImg={props.img} 
+            alt="card img" 
+            className="img-cover" 
+            style={{width: "100%"}}>
+          </AdvancedImage>
+        </div>
+        <div style={{fontSize: "clamp(16px, 3vw, 32px)", height: "40%"}}>{props.name}</div>
+      </Link>
     </div>
   );
 };

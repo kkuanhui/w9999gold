@@ -1,12 +1,18 @@
-import React from 'react';
-import HomePriceIntro from './HomePriceIntro';
+import React from "react";
+import HomePriceIntro from "./HomePriceIntro";
 
 const HomePriceBlock = () => {
-  return(
-    <div id="price-block" className='flex-direction-column'>
+  return (
+    <div
+      className="d-flex flex-direction-column width-100"
+      style={{
+        margin: "10px auto",
+        padding: "5px",
+      }}
+    >
       <HomePriceIntro />
     </div>
-  )
-}
+  );
+};
 
-export default HomePriceBlock
+export default HomePriceBlock;

@@ -1,0 +1,109 @@
+/* navbar */
+#navbar {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  height: 50px;
+  background-color: black;
+}
+
+#navbar > div{
+  width: 100%;
+}
+
+/* hide input elemnet, leave label only */
+input#navbar-toggler {
+  display: none;
+}
+
+label#navbar-toggler-label {
+  cursor: pointer;
+}
+
+#navbar-toggler~div {
+  display: none;
+}
+
+#navbar-toggler:checked~div#navbar-foldable {
+  display: block;
+  position: fixed;
+  top: 0px;
+  right: 0px;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+#navbar-foldable {
+  position: relative;
+}
+
+#navbar-foldable div {
+  position: absolute;
+  display: block;
+  top: 0px;
+  left: 0px;
+  width: 40vw;
+  height: 100vh;
+}
+
+#navbar-foldable ul {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-size: 2em;
+  top: 0px;
+  right: 0px;
+  width: 60vw;
+  height: 100vh;
+  background-color: rgb(46, 46, 46);
+}
+
+/* over x-small break point */
+
+@media screen and (min-width: 576px) {
+
+  label#navbar-toggler-label {
+    display: none;
+  }
+
+  #navbar-toggler~div {
+    display: block;
+    position: static;
+  }
+
+
+  #navbar-toggler:checked~div#navbar-foldable {
+    display: block;
+    position: static;
+    width: auto;
+    height: auto;
+    background-color: transparent;
+  }
+
+
+  #navbar-foldable div {
+    display: none;
+  }
+
+  #navbar-foldable ul {
+    position: static;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    font-size: inherit;
+    width: auto;
+    height: auto;
+    background-color: transparent
+  }
+
+}
+
+/* over medium break point */
+
+@media screen and (min-width: 992px){
+  #navbar > div{
+    width: 990px
+  }
+}

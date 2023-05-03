@@ -1,17 +1,24 @@
-import React, { Suspense, lazy  } from "react";
+import React, { Suspense, lazy } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import NavBar from "./NavBar";
 import Footer from "./Footer";
 
-const AppHome = lazy(() => import('./AppHome'));
-const AppProduct = lazy(() => import('./AppProduct'));
-
+const AppHome = lazy(() => import("./AppHome"));
+const AppProduct = lazy(() => import("./AppProduct"));
 
 const App = () => {
   return (
     <>
-      <div id="main-content">
+
+      <div
+        id="main-content"
+        style={{
+          minHeight: "100vh",
+          paddingBottom: "50px",
+        }}
+      >
+
         <Router>
           <NavBar />
           <Suspense fallback={<div>loading...</div>}>
@@ -21,8 +28,11 @@ const App = () => {
             </Routes>
           </Suspense>
         </Router>
+
       </div>
+
       <Footer></Footer>
+
     </>
   );
 };

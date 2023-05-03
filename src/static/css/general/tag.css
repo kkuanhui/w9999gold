@@ -1,0 +1,28 @@
+/* starter reset */
+html {
+  box-sizing: border-box;
+  font-size: 16px;
+}
+
+/* starter reset */
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+  margin: 0;
+  border: 0;
+  padding: 0;
+  font-size: inherit;
+}
+
+ol, ul {
+  list-style-type: none;
+}
+
+a{
+  text-decoration: none;
+}
+
+button:hover, a:hover {
+  cursor: pointer;
+}

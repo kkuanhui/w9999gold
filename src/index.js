@@ -2,15 +2,11 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import './static/css/tag.css'
-import './static/css/id.css'
-import './static/css/class.css';
-import './static/css/medium.css'
-import './static/css/large.css'
-import './static/css/extra-large.css'
+
+
+import './static/css/general/tag.css'
 import './static/css/general/layout.css'
 import './static/css/general/root-and-custom.css'
-// import axios from 'axios';
 
 // axios.defaults.baseURL = 'https://express-psql-backend.herokuapp.com/';
 

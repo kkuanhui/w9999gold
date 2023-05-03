@@ -1,18 +1,9 @@
-/**
- * Scrape two websites, 臺銀, 詮美.
- * [V] 臺銀
- * [V] 詮美
- * [V] Goldlegend
- * [V] Store value into database.
- * [] make component much robust
- */
-
 const dbConnect = require('./dbConnect.js') 
 const axios = require('axios');
 const _ = require('lodash')
 const cheerio = require('cheerio');
 
-// 臺銀
+// TW bank
 function scrapeTwBank(){
   axios.get(`https://rate.bot.com.tw/gold?Lang=zh-TW`)
   .then(( {data} ) => {
@@ -34,7 +25,7 @@ function scrapeTwBank(){
   setTimeout(scrapeTwBank, 1000*60*15)
 } 
 
-// 詮美
+// all beauty
 function scrapeAllBeauty(){
   axios.get('https://www.allbeauty.com.tw/GoldPrice/')
   .then(( {data} ) => {

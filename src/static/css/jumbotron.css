@@ -1,0 +1,59 @@
+#jumbotron{
+  height: min(100vw, 576px);
+  width: 100vw;
+  position: relative;
+}
+
+#jumbotron > div{
+  height: 80%;
+  width: min(80%, 992px);
+  padding: 10%;
+}
+
+#jumbotron-info h1{
+  font-size: min(10vw, 57.6px);
+}
+
+#jumbotron-info h2{
+  font-size: min(5vw, 28.8px);
+}
+
+#jumbotron-info div{
+  font-size: min(3vw, 17.28px);
+}
+
+#jumbotron-image {
+  display: none;
+}
+
+@media screen and (min-width: 768px) {
+  #jumbotron{
+    height: min(50vw, 576px);
+  }
+
+  #jumbotron-image{
+    display: block;
+    flex-basis: 50%;
+  }
+
+  #jumbotron > div{
+    padding: 5%;
+  }
+
+  #jumbotron-info{
+    flex-basis: 50%;
+  }
+
+  #jumbotron-info h1{
+    width: 100%;
+    font-size: min(5vw, 60px);
+  }
+
+  #jumbotron-info h2{
+    font-size: min(3vw, 36px);
+  }
+
+  #jumbotron-info div{
+    font-size: min(2vw, 24px);
+  }
+}

@@ -12,11 +12,9 @@
 html {
   box-sizing: border-box;
   font-size: 16px;
-  /* custom colors */
-  --theme-color-1: #1E1E1E;
 }
 
-button{
+button {
   background: none;
   color: inherit;
   border: none;
@@ -26,13 +24,11 @@ button{
   outline: inherit;
 }
 
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
+button:hover {
+  cursor: pointer;
 }
 
-a:hover{
+a:hover {
   cursor: pointer;
 }
 
@@ -41,6 +37,8 @@ input[type=number] {
   -moz-appearance: textfield;
 }
 
-.bg-theme-1 {
-  background-color: var(--theme-color-1);
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }

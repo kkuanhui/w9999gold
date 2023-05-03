@@ -1,6 +1,7 @@
 import React, {lazy} from "react";
 import { Routes, Route } from "react-router-dom";
 
+
 // import ProductPlateDeities from "./ProductPlateDeities";
 // import ProductPlateCreativity from "./ProductPlateCreativity";
 // import ProductGoldfan from "./ProductGoldfan";
@@ -17,6 +18,8 @@ const ProductOmori = lazy(() => import('./ProductOmori'));
 const ProductGoldfan = lazy(() => import('./ProductGoldfan'));
 
 const AppProduct = () => {
+
+
   return (
     <div>
       <Routes>
