@@ -1,4 +1,4 @@
-import React, { Suspense, lazy } from "react";
+import React, { Suspense, lazy, useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import NavBar from "./NavBar";
@@ -8,14 +8,15 @@ const AppHome = lazy(() => import("./AppHome"));
 const AppProduct = lazy(() => import("./AppProduct"));
 
 const App = () => {
+  const [footerHieght, setFooterHeight] = useState(0)
   return (
     <>
 
       <div
-        id="main-content"
+        id="main"
         style={{
           minHeight: "100vh",
-          paddingBottom: "50px",
+          paddingBottom: `${footerHieght}px`,
         }}
       >
 
@@ -31,7 +32,7 @@ const App = () => {
 
       </div>
 
-      <Footer></Footer>
+      <Footer setFooterHeight={setFooterHeight}></Footer>
 
     </>
   );

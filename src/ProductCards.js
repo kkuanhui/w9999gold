@@ -4,6 +4,7 @@ import axios from "axios";
 // cloudinary related package
 import { AdvancedImage } from "@cloudinary/react";
 import { CloudinaryImage } from "@cloudinary/url-gen";
+import "./static/css/product-cards.css"
 
 const ProductCards = (props) => {
   const [apps, setApps] = useState([]);
@@ -34,8 +35,14 @@ const ProductCards = (props) => {
 
   return (
     <div
-      className="d-flex flex-jc-around flex-ai-center flex-wrap"
-      style={{ width: "min(100%, 992px)", margin: "30px auto" }}
+      id="product-cards"
+      className="d-grid"
+      style={{ 
+        width: "min(100%, 992px)", 
+        margin: "30px auto",
+        columnGap: "30px",
+        rowGap: "30px",
+      }}
     >
       {apps.map((ele, idx) => {
         return (
@@ -47,9 +54,6 @@ const ProductCards = (props) => {
           ></Card>
         );
       })}
-      <div style={{ visiablity: "hidden" }}></div>
-      <div style={{ visiablity: "hidden" }}></div>
-      <div style={{ visiablity: "hidden" }}></div>
     </div>
   );
 };
@@ -57,33 +61,33 @@ const ProductCards = (props) => {
 const Card = (props) => {
   return (
     <div
+      className="product-cards-card"
       style={{
-        borderRadius: "30px",
         boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
         border: "1px solid rgb(200, 200, 200)",
         overflow: "hidden",
-        height: "300px",
-        width: "200px",
+        width: "90%",
+        aspectRatio: "2/3",
+        margin: "0px auto",
         cursor: "pointer",
-        flex: "0 0 auto"
       }}
     >
       <Link to={props.linkTarget} style={{ width: "100%", height: "100%" }}>
         <div
           className=""
-          style={{
-            height: "60%",
-            overflow: "hidden",
-          }}
+          style={{ height: "70%", overflow: "hidden" }}
         >
-          {/* <AdvancedImage
+          <AdvancedImage
             cldImg={props.img}
             alt="card img"
-            className="img-cover"
-            style={{ width: "100%" }}
-          ></AdvancedImage> */}
+            className="img-fill"
+            style={{ width: "100%", height: "100%"}}
+          ></AdvancedImage>
         </div>
-        <div style={{ color: "black", fontSize: "clamp(16px, 3vw, 32px)", height: "40%" }}>
+        <div 
+          className="d-flex flex-ai-center flex-jc-center" 
+          style={{ color: "black", fontSize: "clamp(16px, 3vw, 32px)", height: "30%"}}
+        >
           {props.name}
         </div>
       </Link>

@@ -6,7 +6,7 @@ const HomeMap = () => {
     <div
       className="mb-5"
       style={{
-        width: "min(100vw, 992px)",
+        width: "min(100%, 992px)",
         marginLeft: "auto",
         marginRight: "auto",
       }}
@@ -28,6 +28,7 @@ const HomeMap = () => {
         電話：062587755 <br></br>
         手機：0916968547 <br></br>
       </div>
+
     </div>
   );
 };

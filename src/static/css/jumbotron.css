@@ -1,6 +1,6 @@
 #jumbotron{
   height: min(100vw, 576px);
-  width: 100vw;
+  width: 100%;
   position: relative;
 }
 
