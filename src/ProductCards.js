@@ -33,9 +33,9 @@ const ProductCards = (props) => {
   }, []);
 
   return (
-    <div 
-      className="d-flex flex-jc-around flex-ai-center flex-wrap" 
-      style={{width: "min(100%, 992px)", margin: "30px auto"}}
+    <div
+      className="d-flex flex-jc-around flex-ai-center flex-wrap"
+      style={{ width: "min(100%, 992px)", margin: "30px auto" }}
     >
       {apps.map((ele, idx) => {
         return (
@@ -56,17 +56,36 @@ const ProductCards = (props) => {
 
 const Card = (props) => {
   return (
-    <div style={{borderRadius: "30px", boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)", overflow: "hidden", height: "min(30vw, 300px)"}}>
-      <Link to={props.linkTarget} style={{height: "100%"}}>
-        <div className="" style={{borderBottom: "1px solid black", height: "60%", overflow: "hidden"}}>
-          <AdvancedImage 
-            cldImg={props.img} 
-            alt="card img" 
-            className="img-cover" 
-            style={{width: "100%"}}>
-          </AdvancedImage>
+    <div
+      style={{
+        borderRadius: "30px",
+        boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
+        border: "1px solid rgb(200, 200, 200)",
+        overflow: "hidden",
+        height: "300px",
+        width: "200px",
+        cursor: "pointer",
+        flex: "0 0 auto"
+      }}
+    >
+      <Link to={props.linkTarget} style={{ width: "100%", height: "100%" }}>
+        <div
+          className=""
+          style={{
+            height: "60%",
+            overflow: "hidden",
+          }}
+        >
+          {/* <AdvancedImage
+            cldImg={props.img}
+            alt="card img"
+            className="img-cover"
+            style={{ width: "100%" }}
+          ></AdvancedImage> */}
         </div>
-        <div style={{fontSize: "clamp(16px, 3vw, 32px)", height: "40%"}}>{props.name}</div>
+        <div style={{ color: "black", fontSize: "clamp(16px, 3vw, 32px)", height: "40%" }}>
+          {props.name}
+        </div>
       </Link>
     </div>
   );
