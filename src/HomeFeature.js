@@ -6,7 +6,7 @@ import iconMarket from './static/image/icon-market.png';
 
 const HomeFeature = () => {
   return(
-    <div className="mb-5" style={{backgroundColor: "#F3F3F3", width: "100vw"}}>
+    <div className="mb-5" style={{backgroundColor: "#F3F3F3", width: "100%"}}>
 
       <h2 style={{textAlign: "center", fontSize: "clamp(16px, 5vw, 48px)"}}>
         任何版型 客製化服務
