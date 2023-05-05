@@ -7,7 +7,7 @@ const ProductPlate = (props) => {
       <h1>神明金牌</h1>
       <div>
         <PartProduct></PartProduct>
-        {/* <PartCustomer></PartCustomer> */}
+        <PartCustomer></PartCustomer>
       </div>
     </div>
   )
@@ -15,7 +15,7 @@ const ProductPlate = (props) => {
 
 const PartProduct = () => {
   return (
-    <div>
+    <div style={{padding: "0px 10px"}}>
       <div>
         <div className="d-inline-block" style={{width: "30px", aspectRatio: "1/1", border: "1px solid #3E3E3E", borderRadius: "5px", backgroundColor: "#5E5E5E"}}></div>
         <div className="d-inline-block">選擇樣式</div>
@@ -30,7 +30,7 @@ const PartProduct = () => {
 
 const PartCustomer = () => {
   return (
-    <div>
+    <div style={{padding: "0px 10px", backgroundColor: "#EEEEEE"}}>
       <div>報價諮詢</div>
       <div>姓名</div>
       <div>電話</div>
