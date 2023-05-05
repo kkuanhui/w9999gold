@@ -4,8 +4,10 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import NavBar from "./NavBar";
 import Footer from "./Footer";
 
+
 const AppHome = lazy(() => import("./AppHome"));
 const AppProduct = lazy(() => import("./AppProduct"));
+const AppGold = lazy(() => import("./AppGold"));
 
 const App = () => {
   const [footerHieght, setFooterHeight] = useState(0)
@@ -25,6 +27,7 @@ const App = () => {
           <Suspense fallback={<div>loading...</div>}>
             <Routes>
               <Route index element={<AppHome />}></Route>
+              <Route path="/gold/*" element={<AppGold />}></Route>
               <Route path="/product/*" element={<AppProduct />}></Route>
             </Routes>
           </Suspense>

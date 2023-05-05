@@ -11,6 +11,12 @@ const NavBar = () => {
     setIsChecked(!isChecked);
   };
 
+  useEffect(() => {
+    window.onresize = () => {
+      setIsChecked(false)
+    }
+  }, [])
+
   return (
     <nav
       id="navbar"
@@ -50,9 +56,9 @@ const NavBar = () => {
               {/* <li onClick={toggleCheck}>
                 <Link style={{color: "#FFFFFF"}} to="/about-us">關於我們</Link>
               </li> */}
-              {/* <li onClick={toggleCheck}>
-                <Link style={{color: "#FFFFFF"}} to="/market">黃金市價</Link>
-              </li> */}
+              <li onClick={toggleCheck}>
+                <Link style={{color: "#FFFFFF"}} to="/gold">黃金市價</Link>
+              </li>
               <li onClick={() => setIsChecked(false)}>
                 <Link style={{ color: "#FFFFFF" }} to="/product">
                   產品價格
