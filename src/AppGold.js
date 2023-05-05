@@ -1,5 +1,27 @@
+import React, { Fragment, useEffect, useState } from "react";
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+// import { Link } from "react-router-dom";
+
+const AppGold = () => {
+  return (
+    <Fragment>
+      <PriceIntro />
+      {/* <PriceChart></PriceChart> */}
+      <h1 style={{width: "min(100%, 768px)"}}>仕彩黃金價格</h1>
+      <div style={{width: "min(100%, 768px)"}}>
+        <div>
+          金牌、獎牌中黃金價格部分完全與市場連動，所以產品售出總價隨黃金市場價格浮動。 
+        </div>
+        <div>
+          仕彩產品黃金皆可要求仕彩回收，回收價為黃金當下市價九折。
+        </div>
+        <div>
+          舉例：王先生在購買產品時黃金市價 6000(錢)，後由仕彩回購時市價 5900(錢)，則以此價格九折進行回購。
+        </div>
+      </div>
+    </Fragment>
+  );
+};
 
 const PriceIntro = () => {
   const currencyFormat = (num) => {
@@ -48,4 +70,8 @@ const PriceIntro = () => {
   );
 };
 
-export default PriceIntro;
+// const PriceChart = () => {
+//   return()
+// }
+
+export default AppGold;
