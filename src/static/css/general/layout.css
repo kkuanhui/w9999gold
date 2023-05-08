@@ -20,11 +20,11 @@
   grid-template-columns: auto auto auto auto;
 }
 
-.flex-wrap{
+.flex-wrap {
   flex-wrap: wrap;
 }
 
-.flex-nowrap{
+.flex-nowrap {
   flex-wrap: nowrap;
 }
 
@@ -124,11 +124,11 @@
   padding: 15px;
 }
 
-.pt-5{
+.pt-5 {
   padding-top: 15px;
 }
 
-.pb-5{
+.pb-5 {
   padding-bottom: 15px;
 }
 
@@ -140,11 +140,11 @@
   padding-left: 15px;
 }
 
-.pl-auto{
+.pl-auto {
   padding-left: auto;
 }
 
-.pr-auto{
+.pr-auto {
   padding-right: auto;
 }
 
@@ -276,7 +276,7 @@
   height: 100%;
 }
 
-.height-auto{
+.height-auto {
   height: auto;
 }
 
@@ -294,6 +294,22 @@
 
 .font-bold {
   font-weight: bold;
+}
+
+.font-size-larger {
+  font-size: larger;
+}
+
+.font-size-large {
+  font-size: large;
+}
+
+.font-size-smaller {
+  font-size: smaller;
+}
+
+.font-size-small {
+  font-size: small;
 }
 
 .font-size-10 {
@@ -332,6 +348,6 @@
   font-size: 5em;
 }
 
-.font-color-white{
+.font-color-white {
   color: #ffffff;
 }

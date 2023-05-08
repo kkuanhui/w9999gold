@@ -1,18 +1,18 @@
-import React, { Fragment, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 // import { Link } from "react-router-dom";
-import { Chart } from "react-google-charts";
+// import { Chart } from "react-google-charts";
 import "./static/css/app-gold.css"
 
 const AppGold = () => {
   return (
     <div id="app-gold" style={{}}>
       <div>
-        <PriceIntro />
+        <PriceIntro></PriceIntro>
         {/* <PriceChart></PriceChart> */}
       </div>
       <div className="p-5" style={{width: "min(100%, 768px)", margin: "0px auto"}}>
-        <h1 className="mb-3" style={{fontSize: "max(24px, 2vw)"}}>仕彩黃金價格</h1>
+        <h1 className="mb-2" style={{fontSize: "max(24px, 2vw)"}}>仕彩黃金價格</h1>
         <div>
           <div className="mb-2">
             金牌、獎牌中黃金價格部分完全與市場連動，所以產品售出總價隨黃金市場價格浮動。 
@@ -53,11 +53,11 @@ const PriceIntro = () => {
   }, []);
 
   return (
-    <div style={{width: "100%", backgroundColor: "#EEEEEE"}}>
+    <div className="width-100" style={{backgroundColor: "#EEEEEE"}}>
       <div className="p-5" style={{width: "min(100%, 768px)", margin: "0px auto" }}>
         <h1 style={{fontSize: "max(32px, 3vw)"}}>即時金價</h1>
         <div>
-          <div style={{fontSize: "max(24px, 2vw)"}}>{futurePrice}NTD/一錢</div>
+          <div style={{fontSize: "max(24px, 2vw)"}}><span className="font-bold" style={{color: "#009b2e"}}>{futurePrice} </span><span className="font-size-smaller">NTD/一錢</span></div>
           <div style={{fontSize: "smaller"}}>臺灣時間：{currentTime()}</div>
         </div>
       </div>
@@ -65,14 +65,15 @@ const PriceIntro = () => {
   );
 };
 
-const PriceChart = () => {
-  return(
-    <Chart
-      chartType="LineChart"
-      data={[["Date", "Price"], [1, 5.5], [2, 6], [3, 4], [4,5], [5,6]]}
-      style={{width: "50%", aspectRatio: "4/3", margin: "0px auto"}}
-    />
-  )
-}
+// const PriceChart = () => {
+//   return(
+//     <Chart
+//       chartType="LineChart"
+//       data={[["Date", "Price"], [1, 5.5], [2, 6], [3, 4], [4,5], [5,6]]}
+//       className="p-5 width-100"
+//       style={{aspectRatio: "2/1", backgroundColor: "#335544"}}
+//     />
+//   )
+// }
 
 export default AppGold;
