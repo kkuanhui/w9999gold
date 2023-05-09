@@ -67,16 +67,16 @@ const ProductGoldfan = () => {
   };
 
   return (
-    <div className="p-5 mr-auto ml-auto" style={{"width": "clamp(0px, 100%, 600px"}}>
-      <h1 className="width-70 text-center font-size-30">黃金扇</h1>
+    <div className="p-5 mr-auto ml-auto" style={{"width": "min(100vw, 768px"}}>
+      <h1 className="width-70 text-center font-size-30" style={{fontSize: "clamp(32px 5vw, 64px)"}}>黃金扇</h1>
 
-      <div className="product-green-border p-5 mb-3">
+      <div className="product-green-border p-5 mb-3" style={{border: "3px solid #0EA344", borderRadius: "15px"}}>
 
-        <h1 className="font-size-20">黃金扇本體的規格</h1>
+        <h1 style={{fontSize: "clamp(24px, 5vw, 48px)"}}>黃金扇本體的規格</h1>
 
         <div className="d-flex flex-ai-center flex-jc-between width-80 ml-auto mr-auto">
 
-          <div className="font-bold font-size-15">黃金扇設計</div>
+          <div className="font-bold" style={{fontSize: "clamp(24px, 5vw, 48px)"}}>黃金扇設計</div>
           <select
             value={userProduct}
             onChange={(e) => {
@@ -128,7 +128,7 @@ const ProductGoldfan = () => {
     
 
       <div className="mb-3">
-        <div className="seperate-line width-100"></div>
+        <div className=" width-100"></div>
 
         <div className="d-flex flex-ai-center flex-jc-between mr-auto ml-auto width-70">
           <div className="font-size-20 font-bold">總價</div>
