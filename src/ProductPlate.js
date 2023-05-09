@@ -3,15 +3,14 @@ import "./static/css/product-plate.css";
 
 const ProductPlate = (props) => {
   const id = "product-plate";
-  const [showOverlap, setIsShowOverlap] = useState(true)
-
+  const [showOverlap, setIsShowOverlap] = useState(false)
   return (
     <div id={id} style={{ width: "min(100%, 992px)", margin: "0px auto" }}>
       <div>
         <View></View>
-        <Product id={`${id}-product`}></Product>
+        <Product id={`${id}-product`} setIsShowOverlap={setIsShowOverlap}></Product>
         {/* <PartCustomer></PartCustomer> */}
-        {(showOverlap)?<OverLap />: null}
+        {(showOverlap)?<OverLap setIsShowOverlap={setIsShowOverlap}/>: null}
       </div>
     </div>
   );
@@ -42,17 +41,17 @@ const Product = (props) => {
         gridRowGap: "10px",
       }}
     >
-      <CustomItem>樣式</CustomItem>
-      <CustomItem>尺寸</CustomItem>
-      <CustomItem>加大</CustomItem>
-      <CustomItem>裝飾</CustomItem>
+      <CustomItem onClick={() => props.setIsShowOverlap(true)}>樣式</CustomItem>
+      <CustomItem onClick={() => props.setIsShowOverlap(true)}>尺寸</CustomItem>
+      <CustomItem onClick={() => props.setIsShowOverlap(true)}>加大</CustomItem>
+      <CustomItem onClick={() => props.setIsShowOverlap(true)}>裝飾</CustomItem>
     </div>
   );
 };
 
 const CustomItem = (props) => {
   return (
-    <div className="d-flex flex-ai-center">
+    <div className="d-flex flex-ai-center" onClick={props.onClick}>
       <div
         className="d-inline-block"
         style={{
@@ -81,11 +80,11 @@ const PartCustomer = () => {
   );
 };
 
-const OverLap = () => {
+const OverLap = (props) => {
   return (
-      <div style={{position: "fixed", left: "0px", top: "0px", width: "100vw", height: "100vh"}}>
-        <div style={{position: "absolute", width: "100%", height: "100%", backgroundColor: "#333333", opacity: "0.5", zIndex: "1"}}></div>
-        <div style={{position: "absolute", color: "orange", zIndex: "3"}}>fjwoiefjoiwfio</div>
+      <div style={{position: "fixed", left: "0px", top: "0px", width: "100vw", height: "100vh", zIndex: "999"}}>
+        <div style={{position: "absolute", top: "0", left: "0", width: "100%", height: "100%", backgroundColor: "#333333", opacity: "0.5"}} onClick={() => {props.setIsShowOverlap(false)} }></div>
+        <div style={{position: "absolute", bottom: "0", left: "0", height: "80%", width: "100%", backgroundColor: "#FFFFFF"}}>content</div>
       </div>
   )
 }
