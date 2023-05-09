@@ -61,7 +61,7 @@ const NavBar = () => {
               </li>
               <li onClick={() => setIsChecked(false)}>
                 <Link style={{ color: "#FFFFFF" }} to="/product">
-                  產品價格
+                  選擇產品
                 </Link>
               </li>
             </ul>

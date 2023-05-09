@@ -3,15 +3,18 @@ import "./static/css/product-plate.css";
 
 const ProductPlate = (props) => {
   const id = "product-plate";
-  const [showOverlap, setIsShowOverlap] = useState(false)
+  const [showOverlap, setIsShowOverlap] = useState(false);
   return (
     <div id={id} style={{ width: "min(100%, 992px)", margin: "0px auto" }}>
       <div>
         <View></View>
-        <Product id={`${id}-product`} setIsShowOverlap={setIsShowOverlap}></Product>
+        <Product
+          id={`${id}-product`}
+          setIsShowOverlap={setIsShowOverlap}
+        ></Product>
         {/* <PartCustomer></PartCustomer> */}
-        {(showOverlap)?<OverLap setIsShowOverlap={setIsShowOverlap}/>: null}
       </div>
+      {showOverlap ? <OverLap setIsShowOverlap={setIsShowOverlap} /> : null}
     </div>
   );
 };
@@ -22,7 +25,7 @@ const View = () => {
       className="mb-3"
       style={{
         width: "100%",
-        height: "min(100vw, 500px)",
+        height: "min(100vw, 400px)",
         backgroundColor: "#DDDDDD",
       }}
     ></div>
@@ -62,7 +65,7 @@ const CustomItem = (props) => {
           backgroundColor: "#5E5E5E",
         }}
       ></div>
-      <div className="d-inline-block" style={{ fontSize: "min(10vw, 32px)" }}>
+      <div className="d-inline-block" style={{ fontSize: "min(5vw, 32px)" }}>
         {props.children}
       </div>
     </div>
@@ -82,11 +85,44 @@ const PartCustomer = () => {
 
 const OverLap = (props) => {
   return (
-      <div style={{position: "fixed", left: "0px", top: "0px", width: "100vw", height: "100vh", zIndex: "999"}}>
-        <div style={{position: "absolute", top: "0", left: "0", width: "100%", height: "100%", backgroundColor: "#333333", opacity: "0.5"}} onClick={() => {props.setIsShowOverlap(false)} }></div>
-        <div style={{position: "absolute", bottom: "0", left: "0", height: "80%", width: "100%", backgroundColor: "#FFFFFF"}}>content</div>
+    <div
+      style={{
+        position: "fixed",
+        left: "0px",
+        top: "0px",
+        width: "100vw",
+        height: "100vh",
+        zIndex: "999",
+      }}
+    >
+      <div
+        style={{
+          position: "absolute",
+          top: "0",
+          left: "0",
+          width: "100%",
+          height: "100%",
+          backgroundColor: "#333333",
+          opacity: "0.5",
+        }}
+        onClick={() => {
+          props.setIsShowOverlap(false);
+        }}
+      ></div>
+      <div
+        style={{
+          position: "absolute",
+          bottom: "0",
+          left: "0",
+          height: "80%",
+          width: "100%",
+          backgroundColor: "#FFFFFF",
+        }}
+      >
+        content
       </div>
-  )
-}
+    </div>
+  );
+};
 
 export default ProductPlate;

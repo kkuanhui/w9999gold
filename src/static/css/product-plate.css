@@ -12,4 +12,8 @@
   #product-plate-product{
     grid-template-columns: repeat(4, 1fr);
   }
+  #product-plate > div:nth-child(1) {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
 }
