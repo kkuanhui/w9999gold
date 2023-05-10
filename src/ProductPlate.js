@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./static/css/product-plate.css";
+import CustomView from "./CustomView";
 
 const ProductPlate = (props) => {
   const id = "product-plate";
@@ -7,7 +8,7 @@ const ProductPlate = (props) => {
   return (
     <div id={id} style={{ width: "min(100%, 992px)", margin: "0px auto" }}>
       <div>
-        <View></View>
+        <CustomView></CustomView>
         <Product
           id={`${id}-product`}
           setIsShowOverlap={setIsShowOverlap}
@@ -16,19 +17,6 @@ const ProductPlate = (props) => {
       </div>
       {showOverlap ? <OverLap setIsShowOverlap={setIsShowOverlap} /> : null}
     </div>
-  );
-};
-
-const View = () => {
-  return (
-    <div
-      className="mb-3"
-      style={{
-        width: "100%",
-        height: "min(100vw, 400px)",
-        backgroundColor: "#DDDDDD",
-      }}
-    ></div>
   );
 };
 
