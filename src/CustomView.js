@@ -1,6 +1,8 @@
+import React, {useState, useRef} from 'react'
 import './static/css/custom-view.css'
 
 const CustomView = () => {
+  const content = useRef(null)
   return(
     <div
       className="mb-3"
@@ -12,7 +14,7 @@ const CustomView = () => {
         position: "relative",
       }}
     >
-      <div style={{width: "150px", height: "150px", border: "1px solid black"}}></div>
+      <div ref={content} style={{width: "150px", height: "150px", border: "1px solid black"}}></div>
     </div>
   )
 }
