@@ -1,3 +1,7 @@
 #custom-view > div{
   cursor: grab;
 }
+
+.custom-view-item:hover{
+  border: 2px solid green;
+}

@@ -1,6 +1,6 @@
 import React, {useState, useRef, useEffect} from 'react'
-import './static/css/custom-view.css'
 import { AiOutlineZoomIn, AiOutlineZoomOut } from 'react-icons/ai'
+import './static/css/custom-view.css'
 
 const CustomView = () => {
   const [zoomIndex, setZoomIndex] = useState(1)
@@ -52,7 +52,7 @@ const CustomViewItem = (props) => {
 
   const myDiv = useRef(null)
 
-  const onMouseDown = (e, b) => {
+  const onMouseDown = (e) => {
     let pos11 = 0, pos12 = 0, pos21 = 0, pos22 = 0 
     pos11 = e.clientX
     pos12 = e.clientY
@@ -69,6 +69,7 @@ const CustomViewItem = (props) => {
   } 
 
   const closeDrag = (e) => {
+    myDiv.current.style.border = null
     document.onmousemove = null
     document.querySelector('#custom-view').style.overflow = 'hidden'
   }
@@ -83,10 +84,21 @@ const CustomViewItem = (props) => {
         height: "50px", 
         top: "100",
         left: "100",
-        border: "1px solid green",
+        padding: "1px",
       }}
       onMouseDown={(e) => {onMouseDown(e)}}
-    ></div>
+    >
+      {/* <div style={{position: "absolute", top: "0px"}}></div>
+      <div style={{position: "absolute", top: "0px"}}></div>
+      <div style={{position: "absolute", top: "0px"}}></div>
+      <div style={{position: "absolute", top: "0px"}}></div> */}
+
+      <div style={{position: "absolute", top: "0px", left: "0px"}}>●</div>
+      <div style={{position: "absolute", top: "0px", right: "0px"}}>●</div>
+      <div style={{position: "absolute", bottom: "0px", right: "0px"}}>●</div>
+      <div style={{position: "absolute", bottom: "0px", left: "0px"}}>●</div>
+        😘
+    </div>
   )
 
 }
