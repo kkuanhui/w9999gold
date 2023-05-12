@@ -1,7 +1,33 @@
 #custom-view > div{
-  cursor: grab;
+  cursor: default;
+}
+
+.custom-view-item{
+  border: 3px solid transparent;
 }
 
 .custom-view-item:hover{
-  border: 2px solid green;
+  border-color: green;
+}
+
+.resize-border{
+  visibility: hidden;
+  background-color: white;
+  position: absolute;
+  user-select: none;
+  box-shadow: 0 0 4px 1px rgba(57,76,96,.15), 0 0 0 1px rgba(43,59,74,.3);
+}
+
+.resize-border:hover{
+  background-color: green;
+}
+
+.resize-dot{
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.custom-view-item:hover .resize-border{
+  visibility: visible;
 }

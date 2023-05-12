@@ -1,6 +1,7 @@
 import React, {useState, useRef, useEffect} from 'react'
 import { AiOutlineZoomIn, AiOutlineZoomOut } from 'react-icons/ai'
 import './static/css/custom-view.css'
+import { opacity } from '@cloudinary/url-gen/actions/adjust'
 
 const CustomView = () => {
   const [zoomIndex, setZoomIndex] = useState(1)
@@ -42,7 +43,6 @@ const CustomView = () => {
       </div>
       <div id="custom-view-container">
         <CustomViewItem zoomIndex={zoomIndex}></CustomViewItem>
-        <CustomViewItem zoomIndex={zoomIndex}></CustomViewItem>
       </div>
     </div>
   )
@@ -50,9 +50,42 @@ const CustomView = () => {
 
 const CustomViewItem = (props) => {
 
-  const myDiv = useRef(null)
+  const myContainer = useRef(null)
 
-  const onMouseDown = (e) => {
+  const onMouseDownDrag = (e) => {
+    let pos11 = 0, pos12 = 0, pos21 = 0, pos22 = 0 
+    console.log('key down')
+    pos11 = e.clientX
+    pos12 = e.clientY
+    document.querySelector('#custom-view').style.overflow = 'visible'
+    myContainer.current.style.cursor  = `grab`
+    document.onmousemove = (e) => {
+      pos21 = e.clientX - pos11
+      pos22 = e.clientY - pos12
+      pos11 = e.clientX
+      pos12 = e.clientY
+      myContainer.current.style.left = `${myContainer.current.offsetLeft + (pos21/props.zoomIndex)}px`
+      myContainer.current.style.top  = `${myContainer.current.offsetTop + (pos22/props.zoomIndex)}px`
+      myContainer.current.style.cursor  = `grabbing`
+    }
+    document.onmouseup = closeDrag
+  } 
+
+  const closeDrag = (e) => {
+    myContainer.current.style.border = null
+    myContainer.current.style.cursor  = `default`
+    document.onmousemove = null
+    document.querySelector('#custom-view').style.overflow = 'hidden'
+  }
+
+  const onMouseReWidth = (e) => {
+    console.log('re width')
+  }
+  const onMouseReSize = (e) => {
+    console.log('re size')
+  }
+
+  const onResize = (e) => {
     let pos11 = 0, pos12 = 0, pos21 = 0, pos22 = 0 
     pos11 = e.clientX
     pos12 = e.clientY
@@ -62,42 +95,54 @@ const CustomViewItem = (props) => {
       pos22 = e.clientY - pos12
       pos11 = e.clientX
       pos12 = e.clientY
-      myDiv.current.style.left = `${myDiv.current.offsetLeft + (pos21/props.zoomIndex)}px`
-      myDiv.current.style.top  = `${myDiv.current.offsetTop + (pos22/props.zoomIndex)}px`
+      myContainer.current.style.left = `${myContainer.current.offsetLeft + (pos21/props.zoomIndex)}px`
+      myContainer.current.style.top  = `${myContainer.current.offsetTop + (pos22/props.zoomIndex)}px`
     }
     document.onmouseup = closeDrag
   } 
 
-  const closeDrag = (e) => {
-    myDiv.current.style.border = null
-    document.onmousemove = null
-    document.querySelector('#custom-view').style.overflow = 'hidden'
-  }
 
   return(
     <div 
-      ref={myDiv} 
+      ref={myContainer}
       className='custom-view-item'
       style={{
         position: "absolute", 
-        width: "50px", 
-        height: "50px", 
-        top: "100",
-        left: "100",
-        padding: "1px",
+        top: "50%",
+        left: "50%",
+        transform: "translate(-50%, -50%)",
+        padding: "3px",
+        width: "200px",
+        height: "150px",
       }}
-      onMouseDown={(e) => {onMouseDown(e)}}
     >
-      {/* <div style={{position: "absolute", top: "0px"}}></div>
-      <div style={{position: "absolute", top: "0px"}}></div>
-      <div style={{position: "absolute", top: "0px"}}></div>
-      <div style={{position: "absolute", top: "0px"}}></div> */}
 
-      <div style={{position: "absolute", top: "0px", left: "0px"}}>●</div>
-      <div style={{position: "absolute", top: "0px", right: "0px"}}>●</div>
-      <div style={{position: "absolute", bottom: "0px", right: "0px"}}>●</div>
-      <div style={{position: "absolute", bottom: "0px", left: "0px"}}>●</div>
-        😘
+      <div 
+        className="resize-border" 
+        onMouseDown={(e) => {onMouseReWidth(e)}}
+        style={{cursor: "e-resize", top: "50%",  left: "0px", height: "30px", width: "7px", borderRadius: "10px", transform: "translate(-100%, -50%)"}}></div>
+
+      <div 
+        className="resize-border" 
+        onMouseDown={(e) => {onMouseReWidth(e)}}
+        style={{cursor: "w-resize", top: "50%", right: "0px", height: "30px", width: "7px", borderRadius: "10px", transform: "translate(100%, -50%)"}}></div>
+
+      <div className="resize-border resize-dot" style={{cursor: "se-resize", top: "0px", left: "0px", transform: "translate(-50%, -50%)"}}></div>
+      <div className="resize-border resize-dot" style={{cursor: "sw-resize", top: "0px",    right: "0px", transform: "translate(50%, -50%)"}}></div>
+      <div className="resize-border resize-dot" style={{cursor: "se-resize", bottom: "0px", right: "0px", transform: "translate(50%, 50%)"}}></div>
+      <div className="resize-border resize-dot" style={{cursor: "sw-resize", bottom: "0px", left: "0px",  transform: "translate(-50%, 50%)"}}></div>
+
+      <div 
+      onMouseDown={(e) => {onMouseDownDrag(e)}}
+      style={{
+        width: "100%",
+        height: "100%",
+        backgroundColor: "blue",
+        opacity: "0.3",
+      }}>
+
+      </div>
+
     </div>
   )
 

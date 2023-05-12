@@ -32,10 +32,10 @@ const Product = (props) => {
         gridRowGap: "10px",
       }}
     >
-      <CustomItem onClick={() => props.setIsShowOverlap(true)}>樣式</CustomItem>
+      {/* <CustomItem onClick={() => props.setIsShowOverlap(true)}>樣式</CustomItem>
       <CustomItem onClick={() => props.setIsShowOverlap(true)}>尺寸</CustomItem>
       <CustomItem onClick={() => props.setIsShowOverlap(true)}>加大</CustomItem>
-      <CustomItem onClick={() => props.setIsShowOverlap(true)}>裝飾</CustomItem>
+      <CustomItem onClick={() => props.setIsShowOverlap(true)}>裝飾</CustomItem> */}
     </div>
   );
 };
