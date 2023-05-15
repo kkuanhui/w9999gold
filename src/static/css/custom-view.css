@@ -1,34 +1,41 @@
-#custom-view > div{
+#custom-view>div {
   cursor: default;
 }
 
-.custom-view-item{
+.custom-view-item {
   border: 3px solid transparent;
 }
 
-.custom-view-item:hover{
+.custom-view-item:hover {
   border-color: green;
 }
 
-.resize-border{
+.resize-border {
   visibility: hidden;
   background-color: white;
   position: absolute;
   user-select: none;
 }
 
-.resize-border:hover{
-  background-color: green;
-}
-
-.resize-dot{
+.resize-dot {
+  visibility: hidden;
+  background-color: white;
+  position: absolute;
+  user-select: none;
   width: 10px;
   height: 10px;
   border-radius: 50%;
-  visibility: hidden;
-  box-shadow: 0 0 4px 1px rgba(57,76,96,.15), 0 0 0 1px rgba(43,59,74,.3);
+  box-shadow: 0 0 4px 1px rgba(57, 76, 96, .15), 0 0 0 1px rgba(43, 59, 74, .3);
 }
 
-.custom-view-item:hover .resize-border{
+.custom-view-item[isclicked="true"]{
+  border-color: green;
+}
+
+.custom-view-item[isclicked="true"] .resize-border{
+  visibility: visible;
+}
+
+.custom-view-item[isclicked="true"] .resize-dot{
   visibility: visible;
 }
