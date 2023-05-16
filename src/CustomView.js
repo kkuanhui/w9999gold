@@ -10,13 +10,12 @@ const CustomView = () => {
 
   useEffect(() => {
     window.onclick = (e) => { 
-      setChoosedItem(e.target.getAttribute("idx"))
+      const isCanvasArea = e.target.getAttribute("iscanvasarea")
+      const idx = e.target.getAttribute('idx')
+      if(isCanvasArea){setChoosedItem(idx)}
     };
   })
 
-  const onDoubleClick = (e) => {
-    dom.current.style.overflow = 'visible'
-  }
   const zoom = (sign) => {
     if(sign === "in"){
       setZoomIndex(zoomIndex+0.1)
@@ -26,10 +25,13 @@ const CustomView = () => {
       container.current.style.scale = `${zoomIndex - 0.1}`
     }
   }
+
   return(
     <div
       className="mb-3"
       id="custom-view"
+      iscanvasarea={1}
+      idx="0"
       ref = {dom}
       style={{
         width: "100%",
@@ -38,16 +40,15 @@ const CustomView = () => {
         position: "relative",
         overflow: "hidden"
       }}
-      onDoubleClick={() => {onDoubleClick()}}
     >
       <div style={{position: "absolute", top: "5px", right: "5px", display: "flex", gap: "10px"}}>
         <button onClick={() => {zoom('in')}}><AiOutlineZoomIn/></button>
         <button onClick={() => {zoom('out')}}><AiOutlineZoomOut/></button>
       </div>
       <div ref={container} id="custom-view-container">
-        <CustomViewItem idx="1" choosedItem={choosedItem}></CustomViewItem>
-        <CustomViewItem idx="2" choosedItem={choosedItem}></CustomViewItem>
-        <CustomViewItem idx="3" choosedItem={choosedItem}></CustomViewItem>
+        <CustomViewItem iscanvasarea={1} idx="1" choosedItem={choosedItem}></CustomViewItem>
+        <CustomViewItem iscanvasarea={1} idx="2" choosedItem={choosedItem}></CustomViewItem>
+        <CustomViewItem iscanvasarea={1} idx="3" choosedItem={choosedItem}></CustomViewItem>
       </div>
     </div>
   )
@@ -59,14 +60,16 @@ const CustomViewItem = (props) => {
 
   const myContainer = useRef(null)
   const myContent = useRef(null)
-  const [isclicked, setIsclicked] = useState('false')
+  const [isclicked, setIsclicked] = useState("false")
   const [inEditMode, setInEditMode] = useState(false)
+  const [content, setContent] = useState(props.idx)
 
   useEffect(() => {
     if(props.idx === props.choosedItem){
-      setIsclicked('true')
+      setIsclicked("true")
     }else{
-      setIsclicked('false')
+      setIsclicked("false")
+      setInEditMode(false)
     }
   }, [props.choosedItem, props.idx])
 
@@ -168,14 +171,18 @@ const CustomViewItem = (props) => {
     }
   } 
 
-
-
   return(
     <div 
       ref={myContainer}
-      isclicked={isclicked}
       idx={props.idx}
+      iscanvasarea={1}
+      isclicked = {isclicked}
       className='custom-view-item'
+      onClick={() => {
+        if(isclicked === 'true'){
+          setInEditMode(true)
+        }
+      }}
       style={{
         position: "absolute", 
         top: "50%",
@@ -222,7 +229,13 @@ const CustomViewItem = (props) => {
 
       <div 
         ref={myContent}
+        iscanvasarea={1}
         idx={props.idx}
+        onClick={() => {
+          if(isclicked === 'true'){
+            setInEditMode(true)
+          }
+        }}
         onMouseDown={(e) => {
           if(isclicked === 'true'){
             onDrag(e)
@@ -240,7 +253,7 @@ const CustomViewItem = (props) => {
           color: "black",
           fontSize: "36px",
         }}>
-          {props.idx}
+          {!(inEditMode)?<div>{content}</div>:<input defaultValue={content} onChange={(e) => {setContent(e.target.value)}}></input>}
       </div>
 
     </div>
