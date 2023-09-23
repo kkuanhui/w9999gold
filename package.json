@@ -1,7 +1,9 @@
 {
   "name": "w9999goldcom-frontend",
   "version": "0.1.0",
-  "private": true,
+  "engines": {
+    "node": "14.x"
+  },
   "dependencies": {
     "@cloudinary/react": "^1.11.2",
     "@cloudinary/url-gen": "^1.10.0",
