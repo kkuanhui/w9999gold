@@ -1,0 +1,15 @@
+.hover-background-06f:hover {
+  background: #06f;
+}
+
+.hover-color-fff:hover, .hover-color-fff:hover * {
+  color: #fff;
+}
+
+.hover-pointer:hover {
+  cursor: pointer;
+}
+
+.text-color-6d6d6d {
+  color: #6d6d6d;
+}

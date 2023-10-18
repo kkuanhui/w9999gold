@@ -88,6 +88,10 @@
   align-items: center;
 }
 
+.flex-ai-end{
+  align-items: end;
+}
+
 .flex-wrap {
   flex-wrap: wrap;
 }
@@ -109,7 +113,7 @@
 }
 
 .pt-3 {
-  padding-bottom: 5px;
+  padding-top: 5px;
 }
 
 .pl-3 {

@@ -18,7 +18,7 @@
 
 @media screen and (min-width: 768px) and (max-width: 992px) {
   #product-cards {
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
   }
   .product-cards-card{
     border-radius: 15px;
@@ -27,7 +27,7 @@
 
 @media screen and (min-width: 992px) {
   #product-cards {
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
   }
   .product-cards-card{
     border-radius: 30px;

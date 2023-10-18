@@ -1,0 +1,56 @@
+{
+  "uuid": "123456779398",
+  "owner": "kuanhui.dev@gmail.com",
+  "create-date": "2023-10-17",
+  "content": [
+    {
+      "id": "0",
+      "type": "word",
+      "place": [100, 50],
+      "zIndex": 0,
+      "children": [
+        {
+          "dom": "p",
+          "bold": true,
+          "children": "功在蘋果"
+        }
+      ]
+    },
+
+    {
+      "id": "1",
+      "type": "image",
+      "position": [100, 100],
+      "zIndex": 2,
+      "src": "./somewhere-in-server/file.jpg",
+      "width": 50,
+      "height": 100
+    },
+
+    {
+      "id": "2",
+      "type": "word",
+      "place": [100, 200],
+      "zIndex": 3,
+      "children": [
+        {
+          "dom": "p",
+          "children": [
+            {
+              "dom": "span",
+              "children": "弟子 "
+            },
+            {
+              "dom": "span",
+              "bold": true,
+              "chidren": "敬獻"
+            }
+          ]
+        }
+      ]
+    }
+
+
+
+  ]
+}

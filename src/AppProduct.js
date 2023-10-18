@@ -18,8 +18,6 @@ const ProductOmori = lazy(() => import('./ProductOmori'));
 const ProductGoldfan = lazy(() => import('./ProductGoldfan'));
 
 const AppProduct = () => {
-
-
   return (
     <div>
       <Routes>

@@ -166,6 +166,7 @@
   border: 1px solid #000000;
 }
 
+
 @media all and (max-width: 30em) {
    .price-table-switch-button {
     display: block;

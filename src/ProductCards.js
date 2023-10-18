@@ -61,10 +61,7 @@ const ProductCards = (props) => {
 const Card = (props) => {
   return (
     <div
-      className="product-cards-card"
       style={{
-        boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
-        border: "1px solid rgb(200, 200, 200)",
         overflow: "hidden",
         width: "90%",
         aspectRatio: "2/3",
@@ -73,10 +70,7 @@ const Card = (props) => {
       }}
     >
       <Link to={props.linkTarget} style={{ width: "100%", height: "100%" }}>
-        <div
-          className=""
-          style={{ height: "70%", overflow: "hidden" }}
-        >
+        <div style={{ height: "70%", overflow: "hidden" }}>
           <AdvancedImage
             cldImg={props.img}
             alt="card img"
@@ -84,11 +78,19 @@ const Card = (props) => {
             style={{ width: "100%", height: "100%"}}
           ></AdvancedImage>
         </div>
-        <div 
-          className="d-flex flex-ai-center flex-jc-center" 
-          style={{ color: "black", fontSize: "clamp(16px, 3vw, 32px)", height: "30%"}}
-        >
-          {props.name}
+        <div style={{ paddingTop: "5px", height: "30%"}}>
+          <div style={{ marginBottom: "5px", color: "black", fontSize: "clamp(16px, 2vw, 24px)"}}>
+            {props.name}
+          </div>
+          <div style={{ color: "gray", fontSize: "clamp(8px, 1.5vw, 16px)"}}>
+            {"酬神適用"}
+          </div>
+          <div style={{ color: "gray", fontSize: "clamp(8px, 1.5vw, 16px)"}}>
+            {"12 種款式"}
+          </div>
+          <div style={{ marginTop: "5px", color: "black", fontSize: "clamp(10px, 1.8vw, 24px)"}}>
+            {"$ 3,222 元起"}
+          </div>
         </div>
       </Link>
     </div>

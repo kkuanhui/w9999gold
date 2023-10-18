@@ -1,24 +1,24 @@
 import React, { useState } from "react";
 import "./static/css/product-plate.css";
-import CustomView from "./CustomView";
+import ProductStudio from "./Studio/Studio";
 
 const ProductPlate = (props) => {
-  const id = "product-plate";
-  const [showOverlap, setIsShowOverlap] = useState(false);
   return (
-    <div id={id} style={{ width: "min(100%, 992px)", margin: "0px auto" }}>
-      <div>
-        <CustomView></CustomView>
-        <Product
-          id={`${id}-product`}
-          setIsShowOverlap={setIsShowOverlap}
-        ></Product>
-        {/* <PartCustomer></PartCustomer> */}
-      </div>
-      {showOverlap ? <OverLap setIsShowOverlap={setIsShowOverlap} /> : null}
+    <div
+      style={{
+        width: "100%",
+        height: "calc(100vh - 50px)",
+        margin: "0px auto",
+      }}
+    >
+      <ProductStudio></ProductStudio>
     </div>
   );
 };
+
+export default ProductPlate;
+
+// rest are most likely useless ------
 
 const Product = (props) => {
   return (
@@ -112,5 +112,3 @@ const OverLap = (props) => {
     </div>
   );
 };
-
-export default ProductPlate;

@@ -1,0 +1,33 @@
+[
+  {
+    "id": 1,
+    "type": "word",
+    "content": "<div><span style='font-size: 36px'>功在</span><strong>蘋果<strong></div>",
+
+    "fontSize": 36,
+    "fontFamily": "DFKai-SB",
+    "textAlign": "center",
+    "fontWeight": "bold",
+    "fontStyle": "italic",
+    "textDecoration": "underline",
+    "zIndex": 1,
+    "textOrientation": "mixed",
+    "writingMode": "vertical-rl",
+
+
+    "curveParameters": null,
+    "positionX": "",
+    "positionY": ""
+  },
+  {
+    "id": 2,
+    "type": "photo",
+    "url": "/my/photo.jpg",
+    "width": "",
+    "height": "",
+    "radius": [0, 0, 0, 0],
+    "zIndex": 0,
+    "positionX": "",
+    "positionY": ""
+  }
+]

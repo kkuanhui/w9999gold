@@ -1,22 +1,48 @@
-import './static/css/custom-view.css'
-import React, {useState, useRef, useEffect} from 'react'
+/**
+ * Item
+ *
+ * @param {Number} key
+ * @param {Object} productInfo
+ * @param {Boolean} activate
+ * @param {Function} onActive
+ */
 
-const CustomViewItem = (props) => {
+import React, {useState, useRef, useEffect} from 'react';
+import RightClick from './RightClick';
+import Word from './Word';
+import Photo from './Photo';
+// css -----
+import '../static/css/studio-item.css';
 
+const Item = (props) => {
+  const {productInfo} = props
+  // ref -------------------------
   const myContainer = useRef(null)
   const myContent = useRef(null)
-  const [isclicked, setIsclicked] = useState("false")
-  const [inEditMode, setInEditMode] = useState(false)
-  const [content, setContent] = useState(props.content)
+
+  // state -------------------------
+  const [inEditMode, setInEditMode] = useState(
+    (productInfo.type !== "word")
+    ?false
+    :(productInfo.content.length === 0)
+    ?true
+    :false
+  )
+  // right click part state
+  const [rcPosition, setRcPosition] = useState([0, 0])
+  const [isRcOpen, setIsRcOpen] = useState(false)
 
   useEffect(() => {
-    if(props.activate === 'true'){
-      setIsclicked("true")
-    }else{
-      setIsclicked("false")
-      setInEditMode(false)
+    function handler(e) {
+      if(myContainer.current.contains(e.target)){
+        // only effect on ref canvas
+        e.preventDefault();
+        setRcPosition([e.offsetX, e.offsetY])
+        setIsRcOpen(true)
+      }
     }
-  }, [props.activate])
+    myContainer.current.oncontextmenu = handler
+  }, [])
 
   const onDrag = (e) => {
     let pos11 = 0, pos12 = 0, pos21 = 0, pos22 = 0 
@@ -117,12 +143,13 @@ const CustomViewItem = (props) => {
   } 
 
   return(
+
     <div 
       ref={myContainer}
       className='custom-view-item'
-      activate={props.activate}
+      activate={props.activate.toString()}
       onClick={() => {
-        props.setActivateItem()
+        props.onActive()
       }}
       style={{
         position: "absolute", 
@@ -130,201 +157,91 @@ const CustomViewItem = (props) => {
         left: "50%",
         transform: "translate(-50%, -50%)",
         padding: "3px",
-        width: "200px",
-        height: "150px",
       }}
     >
-
       <div 
-        onMouseDown={(e) => {onReWidth(e)}}
-        onTouchStart={(e) => {onTouchReWidth(e)}}
+        // onMouseDown={(e) => {onReWidth(e)}}
+        // onTouchStart={(e) => {onTouchReWidth(e)}}
         className="resize-border" 
         style={{cursor: "w-resize", top: "50%",  left: "0px", height: "30px", width: "7px", borderRadius: "10px", transform: "translate(-100%, -50%)"}}></div>
-
       <div 
-        onMouseDown={(e) => {onReWidth(e)}}
-        onTouchStart={(e) => {onTouchReWidth(e)}}
+        // onMouseDown={(e) => {onReWidth(e)}}
+        // onTouchStart={(e) => {onTouchReWidth(e)}}
         className="resize-border" 
         style={{cursor: "e-resize", top: "50%", right: "0px", height: "30px", width: "7px", borderRadius: "10px", transform: "translate(100%, -50%)"}}></div>
-
       <div 
-        onMouseDown={(e) => {onResize(e)}}
-        onTouchStart={(e) => {onTouchResize(e)}}
+        // onMouseDown={(e) => {onResize(e)}}
+        // onTouchStart={(e) => {onTouchResize(e)}}
         className="resize-dot" 
         style={{cursor: "nw-resize", top: "0px", left: "0px", transform: "translate(-50%, -50%)"}}></div>
       <div 
-        onMouseDown={(e) => {onResize(e)}}
-        onTouchStart={(e) => {onTouchResize(e)}}
+        // onMouseDown={(e) => {onResize(e)}}
+        // onTouchStart={(e) => {onTouchResize(e)}}
         className="resize-dot" 
         style={{cursor: "ne-resize", top: "0px",    right: "0px", transform: "translate(50%, -50%)"}}></div>
       <div 
-        onMouseDown={(e) => {onResize(e)}}
-        onTouchStart={(e) => {onTouchResize(e)}}
+        // onMouseDown={(e) => {onResize(e)}}
+        // onTouchStart={(e) => {onTouchResize(e)}}
         className="resize-dot" 
         style={{cursor: "se-resize", bottom: "0px", right: "0px", transform: "translate(50%, 50%)"}}></div>
       <div 
-        onMouseDown={(e) => {onResize(e)}}
-        onTouchStart={(e) => {onTouchResize(e)}}
+        // onMouseDown={(e) => {onResize(e)}}
+        // onTouchStart={(e) => {onTouchResize(e)}}
         className="resize-dot" 
         style={{cursor: "sw-resize", bottom: "0px", left: "0px",  transform: "translate(-50%, 50%)"}}></div>
 
       <div 
         ref={myContent}
-        idx={props.idx}
+        idx={props.productInfo.idx}
         onDoubleClick={() => {
-          if(props.activate === 'true'){
+          if(props.activate){
             setInEditMode(true)
           }
         }}
         onMouseDown={(e) => {
-          if(props.activate === 'true'){
+          if(props.activate){
             onDrag(e)
           }
         }}
         onTouchStart={(e) => {
-          if(props.activate === 'true'){
+          if(props.activate){
             onTouchDrag(e)
           }
         }}
         style={{
-          width: "100%",
-          height: "100%",
           backgroundColor: "transparent",
           color: "black",
-          fontSize: "36px",
         }}>
-          {!(inEditMode)?<div style={{width: "100%", textAlign: "center"}}>{content}</div>:<input defaultValue={content} onChange={(e) => {setContent(e.target.value)}}></input>}
+
+          {
+            (isRcOpen)
+            ?<RightClick 
+              position={rcPosition} 
+              onClose={() => setIsRcOpen(false)} 
+            />
+            :null
+          }
+          {
+            (props.productInfo.type === "word")
+            ? <Word 
+                inEditMode={inEditMode} 
+                setInEditMode={setInEditMode}
+                productInfo={props.productInfo} 
+                onPIChange={props.onPIChange}
+                onPIDelete={props.onPIDelete}
+              />
+            : <Photo 
+                productInfo={props.productInfo} 
+                onPIChange={props.onPIChange}
+                onPIDelete={props.onPIDelete}
+              />
+          }
       </div>
 
     </div>
+
   )
 
-}
+};
 
-export default CustomViewItem
-
-
-// selection 
-
-function rectangleSelect(inputElements, selectionRectangle) {
-  var elements = [];
-  inputElements.forEach(function(element) {
-    var box = element.getBoundingClientRect();
-    if (
-      selectionRectangle.left <= box.left &&
-      selectionRectangle.top <= box.top &&
-      selectionRectangle.right >= box.right &&
-      selectionRectangle.bottom >= box.bottom
-    ) {
-      elements.push(element);
-    }
-  });
-  return elements;
-}
-
-function getSelectionRectNode() {
-  return document.querySelector(".selection-rect");
-}
-
-function showSelectionRectangle(selection) {
-  var rect = getSelectionRectNode();
-  rect.style.left = `${selection.left}px`;
-  rect.style.top = `${selection.top + window.scrollY}px`;
-  rect.style.width = `${selection.right - selection.left}px`;
-  rect.style.height = `${selection.bottom - selection.top}px`;
-  rect.style.opacity = 0.5;
-}
-
-function hideSelectionRectangle() {
-  var rect = getSelectionRectNode();
-  rect.style.opacity = 0;
-}
-
-function selectBoxes(selection) {
-  deselectBoxes();
-  rectangleSelect(getBoxes(), selection).forEach(function(box) {
-    box.classList.add("selected");
-  });
-}
-
-function deselectBoxes() {
-  getBoxes().forEach(function(box) {
-    box.classList.remove("selected");
-  });
-}
-
-function getBoxes() {
-  return [...document.querySelectorAll(".box")];
-}
-
-function initEventHandlers() {
-  var isMouseDown = false;
-  var selectionRectangle = {
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0
-  };
-
-  function onMouseDown(e) {
-    isMouseDown = true;
-    deselectBoxes();
-    selectionRectangle.left = e.clientX;
-    selectionRectangle.top = e.clientY;
-  }
-
-  function onMouseMove(e) {
-    if (!isMouseDown) {
-      return;
-    }
-    selectionRectangle.right = e.clientX;
-    selectionRectangle.bottom = e.clientY;
-    showSelectionRectangle(selectionRectangle);
-    selectBoxes(selectionRectangle);
-  }
-
-  function onMouseUp(e) {
-    isMouseDown = false;
-    selectBoxes(selectionRectangle);
-    hideSelectionRectangle();
-    selectionRectangle = {
-      top: 0,
-      left: 0,
-      right: 0,
-      bottom: 0
-    };
-  }
-
-  document.addEventListener("mousedown", onMouseDown);
-  document.addEventListener("mousemove", onMouseMove);
-  document.addEventListener("mouseup", onMouseUp);
-}
-
-// function initBoxes() {
-//   // Helpers for generating random boxes on screen
-//   function generateColumn(boxesPerColumn) {
-//     var node = document.createElement("div");
-//     node.className = "column";
-//     while (boxesPerColumn--) {
-//       var box = document.createElement("div");
-//       var sizeClassName = ["tiny", "small", "normal", "big", "huge"][
-//         Math.floor(Math.random() * 5)
-//       ];
-//       box.className = "box " + sizeClassName;
-//       node.appendChild(box);
-//     }
-//     return node;
-//   }
-//   function generateBoxes(parent, cols, boxesPerColumn) {
-//     while (cols--) {
-//       parent.appendChild(generateColumn(boxesPerColumn));
-//     }
-//   }
-
-//   generateBoxes(document.querySelector(".boxes"), 10, 10);
-// }
-
-function init() {
-  initEventHandlers();
-  // initBoxes();
-}
+export default Item;
