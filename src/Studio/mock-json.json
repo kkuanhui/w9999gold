@@ -1,0 +1,85 @@
+{
+  "uuid": "123456779398",
+  "owner": "kuanhui.dev@gmail.com",
+  "create-date": "2023-10-17",
+  "product-style": "雙龍搶珠",
+  "product-weight": 3,
+  "product-size": 5,
+  "isLock": false,
+  "price": 0,
+  "content": [
+
+    {
+      "id": 0,
+      "type": "word",
+      "top": 100,
+      "left": 50,
+      "zIndex": 0,
+      "children": [
+        {
+          "dom": "p",
+          "bold": true,
+          "children": [
+            {
+              "dom": "span",
+              "children": "功在蘋果"
+            }
+          ]
+        }
+      ]
+    },
+
+    {
+      "id": 1,
+      "type": "image",
+      "top": 300,
+      "left": 300,
+      "zIndex": 2,
+      "src": "server-name/to/image/steve-jobs.png",
+      "width": 150,
+      "height": 100
+    },
+
+    {
+      "id": 2,
+      "type": "word",
+      "top": 100,
+      "left": 200,
+      "zIndex": 3,
+      "fontSize": 12,
+      "fontFamily": "BeiKi",
+      "children": [
+
+        {
+          "dom": "p",
+          "children": [
+            {
+              "dom": "span",
+              "bold": true,
+              "children": "台南 大興宮"
+            }
+          ]
+        },
+
+        {
+          "dom": "p",
+          "children": [
+            {
+              "dom": "span",
+              "italic": true,
+              "bold": true,
+              "children": "眾弟子 "
+            },
+            {
+              "dom": "span",
+              "children": "敬獻"
+            }
+          ]
+        }
+
+      ]
+    }
+
+
+  ]
+}

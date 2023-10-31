@@ -6,10 +6,10 @@
   color: #fff;
 }
 
-.hover-pointer:hover {
-  cursor: pointer;
-}
-
 .text-color-6d6d6d {
   color: #6d6d6d;
+}
+
+[contenteditable] {
+  outline: 0px solid transparent;
 }

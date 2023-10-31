@@ -1,0 +1,16 @@
+.user-select-none {
+  user-select: none;
+}
+
+.hover-cursor-default:hover{
+  cursor: default;
+}
+
+.hover-cursor-pointer:hover {
+  cursor: pointer;
+}
+
+.hover-cursor-grab:hover{
+  cursor: grab;
+}
+

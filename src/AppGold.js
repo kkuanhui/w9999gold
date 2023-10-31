@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 // import { Link } from "react-router-dom";
 // import { Chart } from "react-google-charts";
-import "./static/css/app-gold.css"
+// import "./static/css/app-gold.css"
 
 const AppGold = () => {
   return (

@@ -4,7 +4,7 @@ import instagrom from "./static/image/instagram.png";
 import facebook from "./static/image/facebook.png";
 import line from "./static/image/line.png";
 import plateFrame from "./static/image/plate-frame.png";
-// css 
+// css -----
 import './static/css/jumbotron.css'
 
 const HomeJumbotron = (props) => {
