@@ -33,9 +33,9 @@ const EditFrame = (props) => {
       id="editable"
       style={{
         position: "absolute",
-        top: "0px",
-        left: "0px",
-        userSelect: 'none'
+        userSelect: 'none',
+        top: "1px",
+        left: "1px",
       }} 
       innerRef={component}
       html={renderToString(
