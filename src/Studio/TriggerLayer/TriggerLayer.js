@@ -5,7 +5,14 @@ import Exit from "./Exit";
 import vector from "../../static/image/Vector.png";
 
 const TriggerLayer = (props) => {
-  const { jsonObj, onChangeAct, onChangeMode, onChangeHov, onRemoveAct, onSetNotEditing} = props;
+  const { 
+    jsonObj, 
+    onChangeAct, 
+    onChangeMode, 
+    onChangeHov, 
+    onRemoveAct, 
+    onSetNotEditing
+  } = props;
   return (
     <div
       style={{
