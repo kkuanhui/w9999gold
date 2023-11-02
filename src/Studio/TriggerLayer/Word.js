@@ -26,6 +26,7 @@ const Word = (props) => {
           width: component.current.offsetWidth, 
           height: component.current.offsetHeight
         });
+        onChangeHov(null);
       }}
       // onBlur ={() => {onChangeMode('normal'); onChangeAct(null)}}
       onMouseEnter={() => {

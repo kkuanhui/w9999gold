@@ -1,5 +1,3 @@
-// I need it be a hollow element
-
 const HoverFrame = (props) => {
   const { hoverItem } = props;
   return (
