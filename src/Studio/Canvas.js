@@ -2,7 +2,6 @@
 import React, {useState}  from 'react';
 import FunctionLayer from './FunctionLayer/FunctionLayer'; 
 import TriggerLayer from './TriggerLayer/TriggerLayer'
-import ExitLayer from './TriggerLayer/Exit';
 // css ------
 
 const Canvas = (props) => {
