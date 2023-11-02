@@ -26,6 +26,7 @@ const Canvas = (props) => {
     >
       <TriggerLayer
         jsonObj={json}
+        activeItem={activeItem}
         onChangeAct={(infoObj) => setActiveItem(infoObj)}
         onChangeMode={onChangeMode}
         onChangeHov={(infoObj) => setHoverItem(infoObj)}

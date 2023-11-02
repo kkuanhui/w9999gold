@@ -6,6 +6,7 @@ import vector from "../../static/image/Vector.png";
 
 const TriggerLayer = (props) => {
   const { 
+    activeItem,
     jsonObj, 
     onChangeAct, 
     onChangeMode, 
@@ -34,8 +35,10 @@ const TriggerLayer = (props) => {
         onSetNotEditing={onSetNotEditing}
         onChangeMode={onChangeMode}
       ></Exit>
+
       {jsonObj.content.map((obj, key) => {
-        if (obj.type === "word") {
+        const activeId = (activeItem)?activeItem.id:null
+        if (obj.type === "word" && activeId !== obj.id) {
           return (
             <Word
               key={key}
@@ -45,7 +48,7 @@ const TriggerLayer = (props) => {
               onChangeMode={onChangeMode}
             ></Word>
           );
-        } else {
+        } else if(obj.type === "image" && activeId !== obj.id){
           return (
             <Image
               key={key}
@@ -55,8 +58,11 @@ const TriggerLayer = (props) => {
               onChangeMode={onChangeMode}
             ></Image>
           );
+        }else{
+          return null
         }
       })}
+
     </div>
   );
 };
