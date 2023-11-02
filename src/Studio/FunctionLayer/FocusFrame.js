@@ -19,9 +19,9 @@ const FocusFrame = (props) => {
   const component = useRef(null)
 
   // life cycle -----
-  useEffect(() => {
-    component.current.focus()
-  }, [])
+  // useEffect(() => {
+  //   component.current.focus()
+  // }, [])
 
   return(
     <div 
@@ -38,7 +38,7 @@ const FocusFrame = (props) => {
         padding: "1px",
         cursor: (wasDragged)?"move":"auto"
       }}
-      draggable={true}
+      draggable={true} 
       onDrag={() => {
         component.current.focus()
         setWasDragged(true)
