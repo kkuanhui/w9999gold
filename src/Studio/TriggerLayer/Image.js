@@ -27,6 +27,7 @@ const Image = (props) => {
           width: component.current.offsetWidth,
           height: component.current.offsetHeight,
         });
+        onChangeHov(null);
       }}
       onMouseEnter={() => {
         onChangeHov({
