@@ -19,7 +19,6 @@ const Exit = (props) => {
       onRemoveAct();
       onSetNotEditing();
       onChangeMode('normal');
-      console.log('exit all')
     }}
     ></div>
   )

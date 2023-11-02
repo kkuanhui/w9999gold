@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react"
 import ContentEditable from "react-contenteditable"
 import { renderToString } from 'react-dom/server'
+import { setCursorAtPosition } from "./gptTest"
 
 const EditFrame = (props) => {
   const {
@@ -17,28 +18,23 @@ const EditFrame = (props) => {
   const component = useRef(null)
 
   // state -----
-  const [isSelectable, setIsSelectable] = useState(false);
+  const [isDisabled, setIsDisabled] = useState(true);
+  const [cursorPos, setCursorPos] = useState([0, 0]);
   
   // life cycle -----
-  // useEffect(() => {
-  //   document.addEventListener('focus', function (e) {
-  //     if(e.target === component.current){
-  //       console.log('selectable')
-  //       setIsSelectable(false)
-  //     }else{
-  //       console.log('not selectable')
-  //       setIsSelectable(true)
-  //     }
-  //   }, true);
-  // }, [])
+  useEffect(() => {
+    if(isDisabled === false){
+      setCursorAtPosition(cursorPos[0], cursorPos[1])
+    }
+  }, [isDisabled, cursorPos])
 
   return(
     <ContentEditable 
+      id="editable"
       style={{
         position: "absolute",
         top: "0px",
         left: "0px",
-        // userSelect: (!isSelectable)?"none":"auto",
         userSelect: 'none'
       }} 
       innerRef={component}
@@ -47,14 +43,17 @@ const EditFrame = (props) => {
           return <Paragraph pObj={pObj} key={key}></Paragraph>
         })
       )} 
-      disabled={!isEditable}       // use true to disable editing
+      disabled={isDisabled} // use true to disable editing
       tagName='div' // Use a custom HTML tag (uses a div by default)
-      onFocus={() => {
-        console.log('edit frame on focus')
-        onSetIsEditing();
+      onClick={(e) => {
+        if(isDisabled){
+          setIsDisabled(false);
+          setCursorPos([e.clientX, e.clientY])
+          // after state isDisabled changed simulate click event
+        }
       }}
       onBlur={() => {
-        console.log(`edit frame on blur`);
+        setIsDisabled(true)
         onSetNotEditing();
       }}
     >

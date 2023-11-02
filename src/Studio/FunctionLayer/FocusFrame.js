@@ -1,12 +1,7 @@
-import "../../static/css/custom-class.css";
-import EditFrame from "./EditFrame";
-
 import {useEffect, useRef, useState} from "react";
-/*
-  Moving
-  image resizing
-  wait to get into editmode
-*/
+import EditFrame from "./EditFrame";
+import "../../static/css/custom-class.css";
+
 const FocusFrame = (props) => {
   // props -----
   const {
@@ -20,7 +15,6 @@ const FocusFrame = (props) => {
 
   // state -----
   const [wasDragged, setWasDragged] = useState(false)
-  const [isEditable, setIsEditable] = useState(false)
   // ref -----
   const component = useRef(null)
 
@@ -28,10 +22,6 @@ const FocusFrame = (props) => {
   useEffect(() => {
     component.current.focus()
   }, [])
-
-  useEffect(() => {
-    console.log('was dragged', wasDragged)
-  }, [wasDragged])
 
   return(
     <div 
@@ -53,39 +43,18 @@ const FocusFrame = (props) => {
         component.current.focus()
         setWasDragged(true)
       }}
-      onDrop={() => {
+      onDragEnd={() => {
         setWasDragged(false)
       }}
-      onClick ={(e) => {
-        console.log('clicked')
-        if(wasDragged){
-          setWasDragged(false)
-          setIsEditable(false)
-        }else{
-          console.log('focus frame clicked')
-          setIsEditable(true)
-          // console.log(e.clientX, e.clientY)
-          const clickE = new MouseEvent('click', {
-            bubbles: true,
-            cancelable: true,
-            view: window,
-            clientX: e.clientX,
-            clientY: e.clientY,
-          });
-          // document.elementFromPoint(e.clientX, e.clientY).dispatchEvent(clickE);
-        }
-      }}
-      onMouseDown = {() => {onSetIsEditing()}}
     >
-      {/* <EditFrame
+      <EditFrame
         activeItem={activeItem}
         isEditing={isEditing}
         onRemoveAct={onRemoveAct}
         onChangeMode={onChangeMode}
         onSetIsEditing={onSetIsEditing}
         onSetNotEditing={onSetNotEditing}
-        isEditable={isEditable}
-      ></EditFrame> */}
+      ></EditFrame>
     </div>
   )
 }
