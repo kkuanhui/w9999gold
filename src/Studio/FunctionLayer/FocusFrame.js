@@ -1,4 +1,4 @@
-import {useEffect, useRef, useState} from "react";
+import {useRef, useState} from "react";
 import EditFrame from "./EditFrame";
 import "../../static/css/custom-class.css";
 

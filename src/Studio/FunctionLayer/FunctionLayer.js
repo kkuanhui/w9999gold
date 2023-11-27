@@ -1,4 +1,3 @@
-import { useState } from "react";
 import HoverFrame from "./HoverFrame";
 import FocusFrame from "./FocusFrame";
 
@@ -7,6 +6,7 @@ import FocusFrame from "./FocusFrame";
  * It is responsible for handling various element editing functions, including content editing, resizing, and the right-click menu.
  */
 const FunctionLayer = (props) => {
+  // destructure
   const { 
     activeItem, 
     hoverItem, 
