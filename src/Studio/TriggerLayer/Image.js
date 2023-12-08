@@ -1,10 +1,11 @@
 import { useRef } from "react";
 import "../../static/css/general/events.css";
 import stevejobs from "../../static/image/steve-jobs.png"
+import { useStudioDispatch } from "../StudioContext";
 
-const Image = (props) => {
+const Image = ({idx, imageObj}) => {
   const component = useRef(null);
-  const {imageObj, onChangeAct, onChangeMode, onChangeHov} = props;
+  const dispatch = useStudioDispatch();
   const style = {
         "position": "absolute",
         "top": imageObj.top,
@@ -14,30 +15,48 @@ const Image = (props) => {
         "height": `${imageObj.height}px`
   }
   return(
-    <img tabIndex="0" 
+    <img 
+      tabIndex="0" 
       className="user-select-none"
       ref={component}
       style={style} 
       alt="user custom" 
       src={stevejobs}
       onFocus={() => {
-        onChangeMode('photo'); 
-        onChangeAct({
-          ...imageObj,
-          width: component.current.offsetWidth,
-          height: component.current.offsetHeight,
+        dispatch({
+          type: "mode", 
+          mode: 'image'
         });
-        onChangeHov(null);
+        dispatch({
+          type: "active",
+          active: {
+            id: idx,
+            width: component.current.offsetWidth, 
+            height: component.current.offsetHeight
+          }
+        })
+        dispatch({
+          type: "hover",
+          hover: null
+        })
       }}
       onMouseEnter={() => {
-        onChangeHov({
-          top: imageObj.top,
-          left: imageObj.left,
-          width: component.current.offsetWidth,
-          height: component.current.offsetHeight,
-        })}
-      }
-      onMouseLeave={() => {onChangeHov(null)}}
+        dispatch({
+          type: "hover",
+          hover: {
+            top: imageObj.top,
+            left: imageObj.left,
+            width: component.current.offsetWidth,
+            height: component.current.offsetHeight,
+          }
+        })
+      }}
+      onMouseLeave={() => {
+        dispatch({
+          type: "hover",
+          hover: null
+        })
+      }}
     />
   )
 }

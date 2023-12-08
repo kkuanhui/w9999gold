@@ -2,25 +2,20 @@ import { useEffect, useRef, useState } from "react"
 import ContentEditable from "react-contenteditable"
 import { renderToString } from 'react-dom/server'
 import { setCursorAtPosition } from "./gptTest"
+import { useStudio, useStudioDispatch } from "../StudioContext"
+import { renderWordObject } from "../utilities"
 
-const EditFrame = (props) => {
-  const {
-    activeItem, 
-    onRemoveAct, 
-    onChangeMode,
-    onSetNotEditing,
-    onSetIsEditing,
-    isEditing,
-    isEditable
-  } = props
-
+const EditFrame = ({onEditing}) => {
+  // context -----
+  const dispatch = useStudioDispatch();
+  const studio = useStudio();
+  const activeItem = studio.json.children.filter(e => e.id === studio.meta.active.id)[0]
   // ref -----
   const component = useRef(null)
-
   // state -----
   const [isDisabled, setIsDisabled] = useState(true);
   const [cursorPos, setCursorPos] = useState([0, 0]);
-  
+  const madeHtml = renderToString(renderWordObject(activeItem)) 
   // life cycle -----
   useEffect(() => {
     if(isDisabled === false){
@@ -30,21 +25,12 @@ const EditFrame = (props) => {
 
   return(
     <ContentEditable 
-      id="editable"
-      style={{
-        position: "absolute",
-        userSelect: 'none',
-        top: "1px",
-        left: "1px",
-      }} 
+      style={{userSelect: 'none'}} 
+      id={"editable"}
       innerRef={component}
-      html={renderToString(
-        activeItem.children.map((pObj, key) => {
-          return <Paragraph pObj={pObj} key={key}></Paragraph>
-        })
-      )} 
+      html={madeHtml} 
       disabled={isDisabled} // use true to disable editing
-      tagName='div' // Use a custom HTML tag (uses a div by default)
+      tagName='div' 
       onClick={(e) => {
         if(isDisabled){
           setIsDisabled(false);
@@ -52,37 +38,29 @@ const EditFrame = (props) => {
           // after state isDisabled changed simulate click event
         }
       }}
+      onChange={(e) => {
+        dispatch({
+          type: "update",
+          id: activeItem.id,
+          item: {...activeItem, children: htmlToObj(e.target.value)}
+        })
+      }}
+      onFocus={() => {
+        onEditing(true)
+      }}
       onBlur={() => {
         setIsDisabled(true)
-        onSetNotEditing();
+        onEditing(false)
+        dispatch({
+          type: "reset"
+        })
       }}
     >
     </ContentEditable>
   )
 }
 
-const Paragraph = (props) => {
-  const {pObj} = props
-  return(
-    <p>
-      {pObj.children.map((spanObj, key) => {
-        return <Span spanObj={spanObj} key={key}></Span>
-      })}
-    </p>
-  )
-}
-
-const Span = (props) => {
-  const {spanObj} = props
-  const style = {
-    fontSize: `${spanObj.fontSize}px`,
-    fontFamily: spanObj.fontFamily,
-    fontStyle: spanObj.italic ? "italic" : "normal",
-    textDecoration: spanObj.underline ? "underline" : "none",
-    fontWeight: spanObj.bold ? "bold" : "normal",
-  };
-  return <span style={style}>{spanObj.children}</span>;
-};
+export default EditFrame;
 
 // functions -----
 const altering = (node, range, setting) => {
@@ -156,4 +134,26 @@ function splitOffsetPlace(arr, target, offset) {
   return 0;
 }
 
-export default EditFrame;
+const htmlToObj = (htmlString) => {
+  const html = document.createElement('div')
+  html.innerHTML = htmlString
+  const nodes = html.childNodes
+  const list = [...nodes].map(node => {
+    if(node.nodeName === "#text"){
+      return {
+        dom: node.nodeName,
+        children: node.data
+      }
+    }else{
+      const fontSize = node.style.fontSize
+      return {
+        dom: node.nodeName.toLowerCase(),
+        fontSize: Number(fontSize.substring(0, fontSize.length - 2)),
+        italic: node.style.fontStyle,
+        bold: node.style.fontWeight,
+        children: htmlToObj(node.innerHTML)
+      }
+    }
+  })
+  return list
+}

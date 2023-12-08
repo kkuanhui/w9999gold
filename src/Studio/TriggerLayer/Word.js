@@ -1,72 +1,88 @@
 import { useRef } from "react";
+import { useStudioDispatch} from "../StudioContext";
 import "../../static/css/general/events.css";
 
-const Word = (props) => {
-  // props -----
-  const {wordObj, onChangeAct, onChangeMode, onChangeHov} = props
-  // ref -----
+const Word = ({idx, wordObj}) => {
+  const dispatch = useStudioDispatch();
   const component = useRef(null);
-
-  const style = {
-    position: "absolute",
-    zIndex: wordObj.zIndex,
-    top: wordObj.top,
-    left: wordObj.left
-  }
   return(
     <div 
       ref={component}
       tabIndex="0" 
       className="user-select-none"
-      style={style} 
+      style={{
+        position: "absolute",
+        zIndex: wordObj.zIndex,
+        top: wordObj.top,
+        left: wordObj.left
+      }} 
       onFocus={() => {
-        onChangeMode('word'); 
-        onChangeAct({
-          ...wordObj, 
-          width: component.current.offsetWidth, 
-          height: component.current.offsetHeight
+        dispatch({
+          type: "mode", 
+          mode: 'word'
         });
-        onChangeHov(null);
+        dispatch({
+          type: "active",
+          active: {
+            id: idx,
+            width: component.current.offsetWidth, 
+            height: component.current.offsetHeight
+          }
+        })
+        dispatch({
+          type: "hover",
+          hover: null
+        })
       }}
       // onBlur ={() => {onChangeMode('normal'); onChangeAct(null)}}
       onMouseEnter={() => {
-        onChangeHov({
-          top: wordObj.top,
-          left: wordObj.left,
-          width: component.current.offsetWidth,
-          height: component.current.offsetHeight,
-        })}
-      }
-      onMouseLeave={() => {onChangeHov(null)}}
+        dispatch({
+          type: "hover",
+          hover: {
+            top: wordObj.top,
+            left: wordObj.left,
+            width: component.current.offsetWidth,
+            height: component.current.offsetHeight,
+          }
+        })
+      }}
+      onMouseLeave={() => {
+        dispatch({
+          type: "hover",
+          hover: null
+        })
+      }}
     >
-      {wordObj.children.map((pObj, key) => {
-        return <Paragraph pObj={pObj} key={key}></Paragraph>
-      })}
+      {WObj(wordObj)}
     </div>
   )
 }
 
-const Paragraph = (props) => {
-  const {pObj} = props
-  return(
-    <p>
-      {pObj.children.map((spanObj, key) => {
-        return <Span spanObj={spanObj} key={key}></Span>
-      })}
-    </p>
-  )
-}
-
-const Span = (props) => {
-  const {spanObj} = props
-  const style = {
-    fontSize: `${spanObj.fontSize}px`,
-    fontFamily: spanObj.fontFamily,
-    fontStyle: spanObj.italic ? "italic" : "normal",
-    textDecoration: spanObj.underline ? "underline" : "none",
-    fontWeight: spanObj.bold ? "bold" : "normal",
-  };
-  return <span style={style}>{spanObj.children}</span>;
-};
+const WObj = (wordObj) => {
+  const children = wordObj.children
+  return children.map((item, key) => {
+    const dom = item.dom
+    if(dom === "p"){
+      return <p key={key}>{WObj(item)}</p>
+    }else if(dom === "span"){
+      return (
+        <span 
+          key={key} 
+          style={{
+            fontSize: `${item.fontSize}px`,
+            fontFamily: item.fontFamily,
+            fontStyle: item.italic,
+            fontWeight: item.bold,
+            textDecoration: item.underline
+          }}
+        >
+          {WObj(item)}
+        </span>
+      )
+    }else{
+      return item.children
+    }
+  })
+} 
 
 export default Word;

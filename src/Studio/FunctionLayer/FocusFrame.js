@@ -1,62 +1,99 @@
-import {useRef, useState} from "react";
+import { useRef, useState, useEffect } from "react";
 import EditFrame from "./EditFrame";
+import ShowFrame from "./ShowFrame";
+import EditImageFrame from "./EditImageFrame";
+import ShowImageFrame from "./ShowImageFrame";
+import Contextmenu from "./Contextmenu";
+// css
 import "../../static/css/custom-class.css";
+import { useStudio, useStudioDispatch } from "../StudioContext";
 
-const FocusFrame = (props) => {
-  // props -----
-  const {
-    activeItem, 
-    onChangeMode, 
-    onRemoveAct, 
-    isEditing,
-    onSetIsEditing,
-    onSetNotEditing
-  } = props;
-
+const FocusFrame = () => {
+  // context -----
+  const studio = useStudio();
+  const dispatch = useStudioDispatch();
+  const active = studio.meta.active;
+  const current = studio.json.children.filter((e) => e.id === active.id)[0];
   // state -----
-  const [wasDragged, setWasDragged] = useState(false)
+  const [isDragging, setIsDragging] = useState(false);
+  const [isEditing , setIsEditing ] = useState(false);
+  const [position, setPosition] = useState(null)
   // ref -----
-  const component = useRef(null)
-
-  // life cycle -----
-  // useEffect(() => {
-  //   component.current.focus()
-  // }, [])
-
-  return(
-    <div 
+  const component = useRef(null);
+  useEffect(() => {
+    if(!isEditing){
+      component.current.oncontextmenu = (e) => {
+        e.preventDefault()
+        setPosition([e.offsetX, e.offsetY])
+      }
+    }else{
+      component.current.oncontextmenu = null
+    }
+  }, [isEditing])
+  return (
+    <div
       ref={component}
-      // tabIndex={0} // make it enable to receive focus
       style={{
         position: "absolute",
         zIndex: "1",
-        top: `${activeItem.top-2}px`,
-        left: `${activeItem.left-2}px`,
-        width: `${activeItem.width+4}px`,
-        height: `${activeItem.height+4}px`,
+        top: `${current.top - 2}px`,
+        left: `${current.left - 2}px`,
         border: "1px solid purple",
         padding: "1px",
-        cursor: (wasDragged)?"move":"auto"
+        cursor: isDragging ? "move" : "auto",
       }}
-      draggable={true} 
-      onDrag={() => {
-        component.current.focus()
-        setWasDragged(true)
-      }}
-      onDragEnd={() => {
-        setWasDragged(false)
+      onMouseDown={() => {
+        if(isEditing) return false;
+        let top = current.top;
+        let left = current.left;
+        document.onmousemove = (e) => {
+          setIsDragging(true);
+          top = top + e.movementY;
+          left = left + e.movementX;
+          dispatch({
+            type: "pos",
+            item: {
+              ...current,
+              top: top,
+              left: left,
+            },
+          });
+        };
+        document.onmouseup = () => {
+          setIsDragging(false);
+          document.onmouseup = null;
+          document.onmousemove = null;
+        };
       }}
     >
-      <EditFrame
-        activeItem={activeItem}
-        isEditing={isEditing}
-        onRemoveAct={onRemoveAct}
-        onChangeMode={onChangeMode}
-        onSetIsEditing={onSetIsEditing}
-        onSetNotEditing={onSetNotEditing}
-      ></EditFrame>
+      <FocusOnWhat 
+        isDragging={isDragging} 
+        itemType={current.type}
+        onEditing={(tf) => setIsEditing(tf)}
+      />
+      {
+        (position !== null)
+        ?<Contextmenu position={position} onClose={() => setPosition(null)}></Contextmenu>
+        :null
+      }
     </div>
-  )
-}
+  );
+};
+
+const FocusOnWhat = ({ isDragging, itemType, onEditing}) => {
+  if (itemType === "word") {
+    if (!isDragging) {
+      return <EditFrame onEditing={onEditing}></EditFrame>;
+    } else {
+      return <ShowFrame></ShowFrame>;
+    }
+  } else {
+    if(!isDragging){
+      return <EditImageFrame></EditImageFrame>
+    }else{
+      return <ShowImageFrame></ShowImageFrame>
+    }
+  }
+};
 
 export default FocusFrame;

@@ -6,15 +6,15 @@
   "product-weight": 3,
   "product-size": 5,
   "isLock": false,
-  "price": 0,
-  "content": [
+  "price": 35359,
+  "children": [
 
     {
-      "id": 0,
+      "id": 1,
       "type": "word",
       "top": 100,
       "left": 50,
-      "zIndex": 0,
+      "zIndex": 3,
       "children": [
         {
           "dom": "p",
@@ -22,7 +22,11 @@
           "children": [
             {
               "dom": "span",
-              "children": "功在蘋果"
+              "fontSize": 24,
+              "children": [{
+                "dom": "#text",
+                "children": "1功在蘋果"
+              }]
             }
           ]
         }
@@ -30,7 +34,7 @@
     },
 
     {
-      "id": 1,
+      "id": 2,
       "type": "image",
       "top": 300,
       "left": 300,
@@ -41,12 +45,11 @@
     },
 
     {
-      "id": 2,
+      "id": 3,
       "type": "word",
       "top": 100,
-      "left": 200,
-      "zIndex": 3,
-      "fontSize": 12,
+      "left": 150,
+      "zIndex": 1,
       "fontFamily": "BeiKi",
       "children": [
 
@@ -55,8 +58,21 @@
           "children": [
             {
               "dom": "span",
+              "fontSize": 16,
+              "bold": false,
+              "children": [{
+                "dom": "#text",
+                "children": "3台南 "
+              }]
+            },
+            {
+              "dom": "span",
+              "fontSize": 20,
               "bold": true,
-              "children": "台南 大興宮"
+              "children": [{
+                "dom": "#text",
+                "children": "大興宮"
+              }]
             }
           ]
         },
@@ -66,13 +82,22 @@
           "children": [
             {
               "dom": "span",
+              "fontSize": 12,
               "italic": true,
               "bold": true,
-              "children": "眾弟子 "
+              "children": [{
+                "dom": "#text",
+                "children": "眾弟子 "
+              }]
             },
             {
               "dom": "span",
-              "children": "敬獻"
+              "italic": true,
+              "fontSize": 12,
+              "children": [{
+                "dom": "#text",
+                "children": "敬獻"
+              }]
             }
           ]
         }

@@ -1,16 +1,19 @@
 import Normal from "./Normal";
 import Word from "./Word";
 import Photo from "./Photo";
+import { useStudio } from "../StudioContext";
 
-const Toolbar = (props) => {
-  return props.operateMode === "normal" ? (
+const Toolbar = () => {
+  const studio = useStudio();
+  const mode = studio.meta.mode;
+  return mode === "normal" ? (
     <Normal 
-      testShowProductItems={props.testShowProductItems} 
-      testShowProductMeta={props.testShowProductMeta}
+      testShowProductItems={mode.testShowProductItems} 
+      testShowProductMeta={mode.testShowProductMeta}
     />
-  ) : props.operateMode === "word" ? (
+  ) : mode === "word" ? (
     <Word />
-  ) : props.operateMode === "photo" ? (
+  ) : mode === "image" ? (
     <Photo />
   ) : (
     <Normal />

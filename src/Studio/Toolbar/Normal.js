@@ -1,10 +1,12 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef} from "react";
 import {GoTriangleLeft, GoTriangleRight} from "react-icons/go";
 import {AiOutlineSearch, AiOutlineZoomIn, AiOutlineZoomOut} from "react-icons/ai";
-import {RiArrowDropDownLine, RiArrowDropUpLine} from "react-icons/ri"
+import {RiArrowDropDownLine} from "react-icons/ri"
+import {useStudio} from "../StudioContext"
 
 const Normal = (props) => {
-  const [total, setTotal] = useState(37592)
+  const studio = useStudio();
+  const price = studio.json.price;
   return (
     <div
       className="d-flex flex-jc-between flex-ai-center"
@@ -44,7 +46,7 @@ const Normal = (props) => {
         <div><AiOutlineZoomIn></AiOutlineZoomIn></div>
       </div>
       <div className="font-bold" style={{fontSize: "large"}}>
-        價格 {Number(total).toLocaleString()} 元
+        價格 {Number(price).toLocaleString()} 元
       </div>
     </div>
   );

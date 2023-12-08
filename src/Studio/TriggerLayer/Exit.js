@@ -1,11 +1,6 @@
-const Exit = (props) => {
-
-  const {
-    onRemoveAct,
-    onSetNotEditing,
-    onChangeMode,
-  } = props;
-
+import { useStudioDispatch } from "../StudioContext";
+const Exit = () => {
+  const dispatch = useStudioDispatch();
   return(
     <div style={{
       position: "absolute",
@@ -16,9 +11,14 @@ const Exit = (props) => {
       height: "100%",
     }}
     onClick={() => {
-      onRemoveAct();
-      onSetNotEditing();
-      onChangeMode('normal');
+      dispatch({
+        type: "active",
+        active: null
+      })
+      dispatch({
+        type: "mode",
+        mode: "normal"
+      })
     }}
     ></div>
   )

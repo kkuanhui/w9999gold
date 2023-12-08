@@ -1,33 +1,24 @@
-import React, { useEffect, useState } from "react";
-import Canvas from "./Canvas";
+import StudioProvider from "./StudioContext";
 import Toolbar from "./Toolbar/Toolbar";
-
-// mock json -----
-import mockJson from "./mock-json.json"
+import FunctionLayer from "./FunctionLayer/FunctionLayer";
+import TriggerLayer from "./TriggerLayer/TriggerLayer";
+import { useStudio } from "./StudioContext";
 
 const Studio = () => {
-  const [jsonRequesting, setJsonRequesting] = useState(true);
-  const [operateMode, setOperateMode] = useState("normal");
-  // modes -> normal, word, photo
-  const [json, setJson] = useState({});
-  // notice: productMeta is an object
+  return (
+    <StudioProvider>
+      <StudioContent />
+    </StudioProvider>
+  );
+};
 
-  // function -----
-  const onChangeMode = (mode) => {
-    setOperateMode(mode)
+const StudioContent = () => {
+  const studio = useStudio();
+  if (studio.json === null) {
+    return <div>loading......</div>;
   }
-
-  // life cycle -----
-  useEffect(() => {
-    setInterval(() => {
-      setJson(mockJson);
-      setJsonRequesting(false)
-    }, 500);
-  }, []);
-
   return (
     <div style={{ width: "100%", height: "100%", background: "#E6E6E6" }}>
-
       <div
         style={{
           width: "100%",
@@ -37,7 +28,7 @@ const Studio = () => {
           zIndex: "1",
         }}
       >
-        <Toolbar operateMode={operateMode}/>
+        <Toolbar />
       </div>
 
       <div
@@ -47,16 +38,21 @@ const Studio = () => {
           height: "100%",
         }}
       >
-        {
-          (!jsonRequesting)
-          ?<Canvas onChangeMode={onChangeMode} json={json}/>
-          :<div>Requesting</div>
-        }
+        <div
+          style={{
+            width: "100%",
+            height: "100%",
+            backgroundColor: "rgba(180, 180, 180, 1)",
+            position: "relative",
+            overflow: "hidden",
+          }}
+        >
+          <TriggerLayer></TriggerLayer>
+          <FunctionLayer></FunctionLayer>
+        </div>
       </div>
-
     </div>
   );
-
 };
 
 export default Studio;

@@ -1,19 +1,15 @@
+import { useState } from "react";
+import { useStudio } from "../StudioContext";
 import Word from "./Word";
 import Image from "./Image";
 import Exit from "./Exit";
+import Contextmenu from "./Contextmenu";
 // test background image -----
 import vector from "../../static/image/Vector.png";
 
-const TriggerLayer = (props) => {
-  const { 
-    activeItem,
-    jsonObj, 
-    onChangeAct, 
-    onChangeMode, 
-    onChangeHov, 
-    onRemoveAct, 
-    onSetNotEditing
-  } = props;
+const TriggerLayer = () => {
+  const studio = useStudio();
+  const [position, setPosition] = useState(null)
   return (
     <div
       style={{
@@ -29,39 +25,33 @@ const TriggerLayer = (props) => {
         backgroundSize: "50% auto",
         zIndex: 1,
       }}
+      onContextMenu={(e) => {
+        e.preventDefault();
+        setPosition([e.nativeEvent.offsetX, e.nativeEvent.offsetY])
+      }}
     >
-      <Exit
-        onRemoveAct={onRemoveAct}
-        onSetNotEditing={onSetNotEditing}
-        onChangeMode={onChangeMode}
-      ></Exit>
 
-      {jsonObj.content.map((obj, key) => {
-        const activeId = (activeItem)?activeItem.id:null
-        if (obj.type === "word" && activeId !== obj.id) {
-          return (
-            <Word
-              key={key}
-              wordObj={obj}
-              onChangeAct={onChangeAct}
-              onChangeHov={onChangeHov}
-              onChangeMode={onChangeMode}
-            ></Word>
-          );
-        } else if(obj.type === "image" && activeId !== obj.id){
-          return (
-            <Image
-              key={key}
-              imageObj={obj}
-              onChangeAct={onChangeAct}
-              onChangeHov={onChangeHov}
-              onChangeMode={onChangeMode}
-            ></Image>
-          );
-        }else{
-          return null
+      <Exit></Exit>
+
+      {studio.json.children.map((item, key) => {
+        const activeId = studio.meta.active?.id 
+        if (item.type === "word" && activeId !== item.id) {
+          return <Word key={key} idx={item.id} wordObj={item}></Word>;
+        } else if (item.type === "image" && activeId !== item.id) {
+          return <Image key={key} idx={item.id} imageObj={item}></Image>;
+        } else {
+          return null;
         }
       })}
+
+      {
+        (position !== null)
+        ?<Contextmenu 
+          position={position}
+          onClose={() => {setPosition(null)}}>
+          </Contextmenu>
+        :null
+      }
 
     </div>
   );
