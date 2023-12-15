@@ -88,6 +88,13 @@ const studioReducer = (studio, action) => {
         json: {...studio.json, children: studioChildren}
       }
     }
+    case "zoom": {
+      const newScale = studio.meta.scale + action.direction
+      return {
+        ...studio,
+        meta: {...studio.meta, scale: newScale},
+      }
+    }
     // json
     case "get": {
       return {
@@ -255,6 +262,7 @@ const studioReducer = (studio, action) => {
 const initStudio = {
   meta: {
     mode: "normal",
+    scale: 1,
     active: null,
     hover: null,
     copy: null,

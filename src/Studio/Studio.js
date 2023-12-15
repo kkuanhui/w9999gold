@@ -3,8 +3,6 @@ import Toolbar from "./Toolbar/Toolbar";
 import FunctionLayer from "./FunctionLayer/FunctionLayer";
 import TriggerLayer from "./TriggerLayer/TriggerLayer";
 import { useStudio } from "./StudioContext";
-import { useState } from "react";
-import "../static/css/id.css"
 
 const Studio = () => {
   return (
@@ -61,18 +59,18 @@ const StudioContent = () => {
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
-          overflowX: "scroll",
-          overflowY: "scroll",
+          overflow: "scroll",
         }}>
-          <div id="canvas" style={{
-            scale: "1",
-            width: "501px",
+          <div style={{
+            scale: `${studio.meta.scale}`,
+            width: "500px",
+            boxSizing: "content-box",
             aspectRatio: "1 / 1",
             background: "#fff",
             border: "1px solid #FF9900"
           }}>
-            {/* <TriggerLayer></TriggerLayer> */}
-            {/* <FunctionLayer></FunctionLayer> */}
+            <TriggerLayer></TriggerLayer>
+            <FunctionLayer></FunctionLayer>
           </div>
         </div>
 

@@ -2,10 +2,11 @@ import { useState, useRef} from "react";
 import {GoTriangleLeft, GoTriangleRight} from "react-icons/go";
 import {AiOutlineSearch, AiOutlineZoomIn, AiOutlineZoomOut} from "react-icons/ai";
 import {RiArrowDropDownLine} from "react-icons/ri"
-import {useStudio} from "../StudioContext"
+import {useStudio, useStudioDispatch} from "../StudioContext"
 
 const Normal = () => {
   const studio = useStudio();
+  const dispatch = useStudioDispatch();
   const price = studio.json.price;
   return (
     <div
@@ -35,10 +36,20 @@ const Normal = () => {
           <SizeContent />
         </NavItem>
 
-        {/* 
-        <div><AiOutlineZoomOut></AiOutlineZoomOut></div>
-        <div><AiOutlineZoomIn></AiOutlineZoomIn></div> 
-        */}
+        
+        <div onClick={() => {
+          dispatch({
+            type: "zoom",
+            direction: -0.1
+          })
+        }}><AiOutlineZoomOut></AiOutlineZoomOut></div>
+        <div onClick={() => {
+          dispatch({
+            type: "zoom",
+            direction: 0.1
+          })
+        }}><AiOutlineZoomIn></AiOutlineZoomIn></div> 
+       
 
       </div>
       <div className="font-bold" style={{fontSize: "large"}}>
