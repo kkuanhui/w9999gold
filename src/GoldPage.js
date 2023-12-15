@@ -1,10 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-// import { Link } from "react-router-dom";
-// import { Chart } from "react-google-charts";
-// import "./static/css/app-gold.css"
 
-const AppGold = () => {
+const GoldPage = () => {
   return (
     <div id="app-gold" style={{}}>
       <div>
@@ -65,15 +62,4 @@ const PriceIntro = () => {
   );
 };
 
-// const PriceChart = () => {
-//   return(
-//     <Chart
-//       chartType="LineChart"
-//       data={[["Date", "Price"], [1, 5.5], [2, 6], [3, 4], [4,5], [5,6]]}
-//       className="p-5 width-100"
-//       style={{aspectRatio: "2/1", backgroundColor: "#335544"}}
-//     />
-//   )
-// }
-
-export default AppGold;
+export default GoldPage;

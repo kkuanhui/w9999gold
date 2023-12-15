@@ -1,43 +1,54 @@
 import React, { Suspense, lazy, useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
-import NavBar from "./NavBar";
-import Footer from "./Footer";
+import RegularNavBar from "./NavBar/RegularNavBar";
+import StudioNavBar from "./NavBar/StudioNavBar";
+import Footer from "./Footer/Footer";
+import NoFooter from "./Footer/NoFooter";
+import Studio from "./Studio/Studio";
 
-
-const AppHome = lazy(() => import("./AppHome"));
-const AppProduct = lazy(() => import("./AppProduct"));
-const AppGold = lazy(() => import("./AppGold"));
+const MainPage = lazy(() => import("./MainPage/MainPage"));
+const GoldPage = lazy(() => import("./GoldPage"));
+const ProductRoutes = lazy(() => import("./ProductRoutes"));
 
 const App = () => {
-  const [footerHieght, setFooterHeight] = useState(0)
+  const [footerHieght, setFooterHeight] = useState(150);
   return (
-    <>
+    <div style={{
+      position: "relative",
+      minHeight: "100vh",
+      paddingBottom: `${footerHieght}px`
+      }}
+    >
 
-      <div
-        id="main"
-        style={{
-          minHeight: "100vh",
-          paddingBottom: `${footerHieght}px`,
-        }}
-      >
+      <Router>
 
-        <Router>
-          <NavBar />
-          <Suspense fallback={<div>loading...</div>}>
-            <Routes>
-              <Route index element={<AppHome />}></Route>
-              <Route path="/gold/*" element={<AppGold />}></Route>
-              <Route path="/product/*" element={<AppProduct />}></Route>
-            </Routes>
-          </Suspense>
-        </Router>
+        <Routes> 
+          <Route path="*" element={<RegularNavBar />}></Route>
+          <Route path="/studio/*" element={<StudioNavBar />}></Route>
+        </Routes>
 
-      </div>
+        <Suspense fallback={<div>loading...</div>}>
+          <Routes>
+            <Route index element={<MainPage />}></Route>
+            <Route path="/gold/*" element={<GoldPage />}></Route>
+            <Route path="/product/*" element={<ProductRoutes />}></Route>
+            <Route path="/studio/*" element={<Studio />}></Route>
+          </Routes>
+        </Suspense>
 
-      <Footer setFooterHeight={setFooterHeight}></Footer>
+        <Routes>
+          <Route path="*" element={
+            <Footer setFooterHeight={(v) => {setFooterHeight(v)}}></Footer>
+          }></Route>
+          <Route path="/studio/*" element={
+            <NoFooter setFooterHeight={(v) => {setFooterHeight(v)}}></NoFooter>
+          }></Route>
+        </Routes>
 
-    </>
+      </Router>
+
+    </div>
   );
 };
 

@@ -1,14 +1,16 @@
 import React from "react";
-import image from "./static/image/background-loop.png";
-import instagrom from "./static/image/instagram.png";
-import facebook from "./static/image/facebook.png";
-import line from "./static/image/line.png";
-import plateFrame from "./static/image/plate-frame.png";
+import image from "../static/image/background-loop.png";
+import instagrom from "../static/image/instagram.png";
+import facebook from "../static/image/facebook.png";
+import line from "../static/image/line.png";
+import plateFrame from "../static/image/plate-frame.png";
 // css -----
-import './static/css/jumbotron.css'
+import '../static/css/jumbotron.css'
 
-const HomeJumbotron = (props) => {
+const Jumbotron = () => {
+
   return (
+
     <div
       id="jumbotron"
       className="mb-5"
@@ -75,9 +77,11 @@ const HomeJumbotron = (props) => {
         <div id="jumbotron-image">
           <img alt="product" src={plateFrame} style={{width: "100%"}}></img>
         </div>
+
       </div>
+
     </div>
   );
 };
 
-export default HomeJumbotron;
+export default Jumbotron;

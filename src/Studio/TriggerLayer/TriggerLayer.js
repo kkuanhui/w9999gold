@@ -13,17 +13,17 @@ const TriggerLayer = () => {
   return (
     <div
       style={{
-        position: "absolute",
-        top: "0",
-        left: "0",
+        // position: "relative",
+        // top: "0",
+        // left: "0",
+        // zIndex: 1,
         height: "100%",
         width: "100%",
         backgroundImage: `url("${vector}")`,
         backgroundRepeat: "no-repeat",
         backgroundAttachment: "fixed",
         backgroundPosition: "center",
-        backgroundSize: "50% auto",
-        zIndex: 1,
+        backgroundSize: "95% auto",
       }}
       onContextMenu={(e) => {
         e.preventDefault();

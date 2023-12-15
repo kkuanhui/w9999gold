@@ -18,8 +18,6 @@ const Word = () => {
         height: "100%",
         width: "100%",
         padding: "0px 20px",
-        background: "#FFFFFF",
-        boxShadow: "0px 4px 4px 0px rgba(0, 0, 0, 0.25)",
         position: "relative",
       }}
     >

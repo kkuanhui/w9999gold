@@ -1,10 +1,9 @@
-import iconDeliver from './static/image/icon-deliver.png';
-import iconCertificate from './static/image/icon-cerificate.png';
-import iconWarrant from './static/image/icon-warrant.png';
-import iconMarket from './static/image/icon-market.png';
+import iconDeliver from '../static/image/icon-deliver.png';
+import iconCertificate from '../static/image/icon-cerificate.png';
+import iconWarrant from '../static/image/icon-warrant.png';
+import iconMarket from '../static/image/icon-market.png';
 
-
-const HomeFeature = () => {
+const Feature = () => {
   return(
     <div className="mb-5" style={{backgroundColor: "#F3F3F3", width: "100%"}}>
 
@@ -24,14 +23,14 @@ const HomeFeature = () => {
   )
 }
 
-const Part = (props) => {
+const Part = ({title, subTitle, imageSrc}) => {
   return(
     <div>
-      <div>{props.title}</div>
-      <div>{props.subTitle}</div>
-      <img alt="intro icon" src={props.imageSrc}></img>
+      <div>{title}</div>
+      <div>{subTitle}</div>
+      <img alt="intro icon" src={imageSrc}></img>
     </div>
   )
 }
 
-export default HomeFeature
+export default Feature

@@ -1,31 +1,29 @@
-import React, {useEffect, useRef, useState} from "react";
+import React, {useEffect, useRef} from "react";
 import { FaFacebook, FaInstagram, FaLine } from "react-icons/fa";
 import { SiGooglemaps } from "react-icons/si";
-import icon from "./static/image/w9999gold-icon.png";
-import './static/css/footer.css'
+import icon from "../static/image/w9999gold-icon.png";
+import '../static/css/footer.css'
 
-const Footer = (props) => {
+const Footer = ({setFooterHeight}) => {
 
-  const footer = useRef(null)
-  const [height, setHeight] = useState(0)
+  const component = useRef(null)
+
   useEffect(() => {
-    window.onresize = () => {
-      const h = footer.current.offsetHeight
-      setHeight(h)
-      props.setFooterHeight(h)
-    }
+    window.addEventListener('resize', () => {
+      setFooterHeight(component.current.offsetHeight)
+    })
+    // manually trigger resize event at the first time
     window.dispatchEvent(new Event('resize'));
   }, [])
 
   return (
     <div
-      id="footer"
-      className="p-5"
-      ref={footer}
+      ref={component}
       style={{
-        backgroundColor: "black",
+        position: "absolute",
+        bottom: "0",
+        backgroundColor: "#000000",
         minHeight: "150px",
-        marginTop: `-${height}px`,
         width: "100%",
       }}
     >
@@ -81,7 +79,9 @@ const Footer = (props) => {
 
       </div>
 
-      <div className="font-color-white width-100 text-center" style={{fontSize: "smaller", marginTop: "40px"}}>
+      <div className="font-color-white width-100 text-center" 
+        style={{fontSize: "smaller", marginTop: "40px"}}
+      >
         仕彩金飾 2023
       </div>
 

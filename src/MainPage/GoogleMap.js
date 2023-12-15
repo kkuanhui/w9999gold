@@ -1,7 +1,6 @@
 import React from "react";
-// import "./static/css/home-map.css";
 
-const HomeMap = () => {
+const GoogleMap = () => {
   return (
     <div
       className="mb-5"
@@ -33,4 +32,4 @@ const HomeMap = () => {
   );
 };
 
-export default HomeMap;
+export default GoogleMap;

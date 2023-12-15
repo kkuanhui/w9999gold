@@ -4,7 +4,7 @@ import {AiOutlineSearch, AiOutlineZoomIn, AiOutlineZoomOut} from "react-icons/ai
 import {RiArrowDropDownLine} from "react-icons/ri"
 import {useStudio} from "../StudioContext"
 
-const Normal = (props) => {
+const Normal = () => {
   const studio = useStudio();
   const price = studio.json.price;
   return (
@@ -14,8 +14,6 @@ const Normal = (props) => {
         height: "100%",
         width: "100%",
         padding: "0px 20px",
-        background: "#FFFFFF",
-        boxShadow: "0px 4px 4px 0px rgba(0, 0, 0, 0.25)",
         position: "relative",
       }}
     >
@@ -36,14 +34,12 @@ const Normal = (props) => {
         <NavItem name={"尺寸"} type={"size"}>
           <SizeContent />
         </NavItem>
-        <NavItem name={"測試"} type={"test"}>
-          <TestContent 
-            testShowProductItems={props.testShowProductItems} 
-            testShowProductMeta={props.testShowProductMeta}
-          />
-        </NavItem>
+
+        {/* 
         <div><AiOutlineZoomOut></AiOutlineZoomOut></div>
-        <div><AiOutlineZoomIn></AiOutlineZoomIn></div>
+        <div><AiOutlineZoomIn></AiOutlineZoomIn></div> 
+        */}
+
       </div>
       <div className="font-bold" style={{fontSize: "large"}}>
         價格 {Number(price).toLocaleString()} 元
@@ -103,15 +99,6 @@ const DropDown = (props) => {
   );
 };
 
-const TestContent = (props) => {
-
-  return(
-    <div style={{width: "100%", height: "100%", position: "relative", overflow: "hidden"}}>
-      <div><button onClick={() => props.testShowProductMeta()}>meta</button></div>
-      <div><button onClick={() => props.testShowProductItems()}>itmes</button></div>
-    </div>
-  )
-}
 
 const AddonContent = (props) => {
 

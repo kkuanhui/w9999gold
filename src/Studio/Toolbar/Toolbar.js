@@ -7,10 +7,7 @@ const Toolbar = () => {
   const studio = useStudio();
   const mode = studio.meta.mode;
   return mode === "normal" ? (
-    <Normal 
-      testShowProductItems={mode.testShowProductItems} 
-      testShowProductMeta={mode.testShowProductMeta}
-    />
+    <Normal />
   ) : mode === "word" ? (
     <Word />
   ) : mode === "image" ? (

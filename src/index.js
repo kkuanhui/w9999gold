@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
-
 import './static/css/general/tag.css'
 import './static/css/general/layout.css'
 import './static/css/general/root-and-custom.css'
