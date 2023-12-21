@@ -1,6 +1,6 @@
-import { useState, useRef} from "react";
+import { useState, useRef, useEffect} from "react";
 import {GoTriangleLeft, GoTriangleRight} from "react-icons/go";
-import {AiOutlineSearch, AiOutlineZoomIn, AiOutlineZoomOut} from "react-icons/ai";
+import {AiOutlineSearch} from "react-icons/ai";
 import {RiArrowDropDownLine} from "react-icons/ri"
 import {useStudio, useStudioDispatch} from "../StudioContext"
 
@@ -20,38 +20,76 @@ const Normal = () => {
     >
       <div className="d-flex flex-jc-around" style={{height: "100%", gap: "10px"}}>
         <div className="d-flex flex-ai-center flex-jc-center font-bold">W</div>
-        <NavItem name={"新增"} type={"addon"}>
-          <AddonContent />
-        </NavItem>
-        <NavItem name={"款式"} type={"style"}>
-          <StyleContent />
-        </NavItem>
-        <NavItem name={"重量"} type={"weight"}>
-          <WeightContent/>
-        </NavItem>
-        <NavItem name={"流蘇"} type={"tassel"}>
-          <TasselContent />
-        </NavItem>
-        <NavItem name={"尺寸"} type={"size"}>
-          <SizeContent />
-        </NavItem>
 
-        
-        <div onClick={() => {
-          dispatch({
-            type: "zoom",
-            direction: -0.1
-          })
-        }}><AiOutlineZoomOut></AiOutlineZoomOut></div>
-        <div onClick={() => {
-          dispatch({
-            type: "zoom",
-            direction: 0.1
-          })
-        }}><AiOutlineZoomIn></AiOutlineZoomIn></div> 
-       
+        <div style={{height: "100%"}}>
+          <button name="word"
+            style={{height: "100%"}}
+            className="hover-background-43ff64d9"
+            onClick={() => {
+              console.log('addon new word block')
+              dispatch({
+                type: "word",
+                position: [250, 250]
+              })
+            }}
+          >
+            新增文字
+          </button>
+        </div>
+
+        <div style={{height: "100%"}}>
+          <button name="word"
+            style={{height: "100%"}}
+            className="hover-background-43ff64d9"
+            onClick={() => {
+              console.log('addon new word block')
+              dispatch({
+                type: "word",
+                position: [250, 250]
+              })
+            }}
+          >
+            新增圖片
+          </button>
+        </div>
+
+        <Dropdown name={"款式"}>
+          <StyleContent />
+        </Dropdown>
+
+        <Dropdown name={"重量"}>
+          <WeightContent/>
+        </Dropdown>
+
+        <Dropdown name={"尺寸"}>
+          <SizeContent />
+        </Dropdown>
+
+        <div name="scale" 
+          className="d-flex flex-ai-center flex-jc-center" 
+          style={{height: "100%"}}
+        >
+          <div><AiOutlineSearch/></div>
+          <input type="range" 
+            style={{width: "80px", padding: "0px 5px"}}
+            defaultValue="9" 
+            min="1" 
+            max="20" 
+            step="1"
+            onChange={(e) => {
+              const value = e.target.value 
+              const c = (value <= 10)?value*0.1:value/10
+              dispatch({
+                type: "zoom",
+                scale: c
+              })
+          }}>
+          </input>
+          <div>{(Number(studio.meta.scale)*100).toFixed(0)}%</div>
+        </div>
 
       </div>
+
       <div className="font-bold" style={{fontSize: "large"}}>
         價格 {Number(price).toLocaleString()} 元
       </div>
@@ -59,75 +97,76 @@ const Normal = () => {
   );
 };
 
-const NavItem = (props) => {
-  const [isShow, setIsStyleShow] = useState(false);
-  // determin dropdown component display.
+const Dropdown = ({children, name}) => {
+  const component = useRef(null);
+  const [isShow, setIsShow] = useState(false);
+
+  useEffect(() => {
+    const handler = (e) => {
+      if(component.current && !component.current.contains(e.target)){
+        setIsShow(false)
+      }
+    }
+    window.addEventListener('click', handler)
+  }, [])
+
   return (
-    <div style={{height: "100%"}}>
-      <button
-        style={
+    <div 
+    ref={component}
+    tabIndex={-1}
+    style={{
+      height: "100%",
+      position: "relative",
+      zIndex: "1"
+    }}>
+      <button 
+      className="hover-background-43ff64d9"
+      style={
           (!isShow)
           ?{height: "100%", padding: "0px 5px"}
           :{height: "100%", padding: "0px 5px", color: "#fff", background: "#00873E"}
         }
-        onClick={() => setIsStyleShow(!isShow)}
+        onClick={() => setIsShow(!isShow)}
       >
-        {props.name}
-        {(props.children)?<RiArrowDropDownLine/>:null}
+        {name}
+        <RiArrowDropDownLine/>
       </button>
-      <DropDown isShow={isShow} setIsShow={setIsStyleShow}>
-        {props.children}
-      </DropDown>
+      <div style={{
+          position: "absolute",
+          width: "150px",
+          height: "200px",
+          zIndex: "1",
+          display: isShow ? "block" : "none",
+          borderRadius: "0px 5px 5px 5px",
+          border: "1px solid #00873E",
+          background: "#FFF",
+          boxShadow: "0px 4px 4px 0px rgba(0, 0, 0, 0.25)",
+        }}
+      >
+        {children}
+      </div>
     </div>
   );
 };
 
-const DropDown = (props) => {
-  const menu = useRef(null)
-  const closeMenu = (e)=>{
-    if(menu.current && !menu.current.contains(e.target)){
-      // props.setIsShow(false)
-    }
-  }
-  document.addEventListener('mousedown',closeMenu)
-  return (
-    <div
-      ref={menu}
-      style={{
-        width: "150px",
-        height: "200px",
-        position: "absolute",
-        zIndex: "999",
-        display: props.isShow ? "block" : "none",
-        borderRadius: "0px 5px 5px 5px",
-        border: "1px solid #00873E",
-        background: "#FFF",
-        boxShadow: "0px 4px 4px 0px rgba(0, 0, 0, 0.25)",
-      }}
-    >
-      {props.children}
-    </div>
-  );
-};
+// content for illustrate -----
 
-
-const AddonContent = (props) => {
-
-  return(
-    <div style={{width: "100%", height: "100%", position: "relative", overflow: "hidden"}}>
-      <h1>新增</h1>
-    </div>
-  )
-}
-
-const StyleContent = (props) => {
-
+const StyleContent = () => {
+  const dispatch = useStudioDispatch()
   const container = useRef(null)
   const options = [
-    {value: "A01", name: "雙龍搶珠"}, {value: "A02", name: "龍鳳搶珠"}, {value: "A03", name: "雙鳳搶珠"},
-    {value: "A04", name: "雙龍搶珠"}, {value: "A05", name: "龍鳳搶珠"}, {value: "A06", name: "雙鳳搶珠"},
-    {value: "A07", name: "雙龍搶珠"}, {value: "A08", name: "龍鳳搶珠"}, {value: "A09", name: "雙鳳搶珠"},
-    {value: "A10", name: "雙龍搶珠"}, {value: "A11", name: "龍鳳搶珠"}, {value: "A12", name: "雙鳳搶珠"},
+    {value: "A01", name: "雙龍搶珠"}, 
+    {value: "A02", name: "龍鳳搶珠"}, 
+    {value: "A03", name: "雙鳳搶珠"},
+    {value: "A04", name: "雙龍搶珠"}, 
+    {value: "A05", name: "龍鳳搶珠"}, 
+    {value: "A06", name: "雙鳳搶珠"},
+    {value: "A07", name: "雙龍搶珠"}, 
+    {value: "A08", name: "龍鳳搶珠"}, 
+    {value: "A09", name: "雙鳳搶珠"},
+    {value: "A10", name: "雙龍搶珠"}, 
+    {value: "A11", name: "龍鳳搶珠"}, 
+    {value: "A12", name: "雙鳳搶珠"},
   ]
   const pageMax = Number((
     (options.length/5) + ((options%5)?1:0)
@@ -147,7 +186,14 @@ const StyleContent = (props) => {
     }
   }
   return(
-    <div ref={container} style={{width: "100%", height: "100%", position: "relative", overflow: "hidden"}}>
+    <div ref={container} 
+      style={{
+        width: "100%", 
+        height: "100%", 
+        position: "relative", 
+        overflow: "hidden"
+      }}
+    >
       <h1>金牌款式</h1>
       <div className="width-80 ml-auto mr-auto">
         <div className="d-flex flex-ai-center flex-jc-around" style={{
@@ -169,7 +215,22 @@ const StyleContent = (props) => {
           height: "100px",
         }}
       >
-        { options.map((ele, key) => <div style={{width: "148px"}} key={key} className="hover-background-06f hover-color-fff hover-pointer">{ele.name}</div>) }
+        { options.map((ele, key) => {
+        return (
+          <div key={key} 
+            style={{width: "148px", userSelect: "none"}} 
+            className="hover-background-06f hover-color-fff hover-pointer"
+            onClick={() => {
+              dispatch({
+                type: "style",
+                style: ele.name   
+              })
+            }}
+          >
+              {ele.name}
+          </div>
+        )
+        }) }
       </div>
       <div 
         className="d-flex width-80 flex-ai-center flex-jc-between mr-auto ml-auto" 
@@ -184,14 +245,19 @@ const StyleContent = (props) => {
 }
 
 const WeightContent = () => {
-  const [weight, setWeight] = useState(5)
+  const studio = useStudio();
+  const dispatch = useStudioDispatch();
+  const weight = studio.json.productWeight
   return(
     <div style={{width: "100%", height: "100%"}}>
       <h1>金牌重量</h1>
       <div className="d-grid" style={{gridTemplateColumns: "2fr 3fr 2fr 1fr"}}>
         <button
           style={{ border: "1px solid rgba(0, 0, 0, 0.5)" }}
-          onClick={() => setWeight(Number((weight - 1).toFixed(1)))}
+          onClick={() => dispatch({
+            type: "weight",
+            weight: Number((weight - 1).toFixed(1))
+          })}
         >
           -
         </button>
@@ -203,7 +269,10 @@ const WeightContent = () => {
         </div>
         <button
           style={{ border: "1px solid rgba(0,0,0,0.5)" }}
-          onClick={() => setWeight(Number((weight + 1).toFixed(1)))}
+          onClick={() => dispatch({
+            type: "weight",
+            weight: Number((weight + 1).toFixed(1))
+          })}
         >
           +
         </button>
@@ -216,14 +285,10 @@ const WeightContent = () => {
   )
 }
 
-const TasselContent = () => {
-  return(
-    <div>選擇流蘇</div>
-  )
-}
-
 const SizeContent = () => {
-  const [size, setSize] = useState(0.5);
+  const studio = useStudio();
+  const dispatch = useStudioDispatch();
+  const size = studio.json.productSize;
   return (
     <div>
       <h1>金牌尺寸</h1>
@@ -231,7 +296,12 @@ const SizeContent = () => {
 
         <button
           style={{ border: "1px solid rgba(0, 0, 0, 0.5)" }}
-          onClick={() => setSize(Number((size - 0.1).toFixed(2)))}
+          onClick={() => {
+            dispatch({
+              type: "size",
+              size: Number((size - 0.1).toFixed(2))
+            })
+          }}
         >
           -
         </button>
@@ -245,7 +315,12 @@ const SizeContent = () => {
 
         <button
           style={{ border: "1px solid rgba(0,0,0,0.5)" }}
-          onClick={() => setSize(Number((size + 0.1).toFixed(2)))}
+          onClick={() => {
+            dispatch({
+              type: "size",
+              size: Number((size + 0.1).toFixed(2))
+            })
+          }}
         >
           +
         </button>

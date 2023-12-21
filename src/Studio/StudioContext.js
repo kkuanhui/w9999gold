@@ -89,12 +89,12 @@ const studioReducer = (studio, action) => {
       }
     }
     case "zoom": {
-      const newScale = studio.meta.scale + action.direction
       return {
         ...studio,
-        meta: {...studio.meta, scale: newScale},
+        meta: {...studio.meta, scale: action.scale},
       }
     }
+
     // json
     case "get": {
       return {
@@ -250,7 +250,36 @@ const studioReducer = (studio, action) => {
       console.log('parameter: position ', action.position, 'add an image. function not complete.')
       return studio;
     }
-
+    case "weight": {
+      return {
+        ...studio,
+        json: {
+          ...studio.json,
+          productWeight: action.weight,
+          price: 45642,
+        }
+      }
+    }
+    case "size": {
+      return {
+        ...studio,
+        json: {
+          ...studio.json,
+          productSize: action.size,
+          price: 303232,
+        }
+      }
+    }
+    case "style": {
+      return {
+        ...studio,
+        json: {
+          ...studio.json,
+          productStyle: action.style,
+          price: 30000,
+        }
+      }
+    }
     // default
     default: {
       throw Error("Studio dispatch error. Unknown action.type: " + action.type);

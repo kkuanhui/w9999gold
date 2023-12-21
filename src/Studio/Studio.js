@@ -19,11 +19,10 @@ const StudioContent = () => {
   }
   return (
     <>
-      <div
+      <div name="toolbar"
       style={{
         width: "100%",
         height: "50px",
-        overflow: "hidden",
         borderBottom: "1px solid #434343",
         background: "#FFFDF7",
         boxShadow: "0px 5px 10px 0px rgba(0, 0, 0, 0.25)",
@@ -35,7 +34,8 @@ const StudioContent = () => {
         <Toolbar />
       </div>
 
-      <div className="d-flex"
+      <div name="studio-content" 
+        className="d-flex"
         style={{ 
           width: "100%", 
           height: "calc(100vh - 150px)"

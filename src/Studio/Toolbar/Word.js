@@ -1,15 +1,15 @@
-import { useState, useRef, useEffect } from "react";
+import { useState } from "react";
 import {
   AiOutlineFileWord, 
   AiOutlineBold, 
   AiOutlineItalic, 
   AiOutlineUnderline, 
   AiOutlineVerticalAlignBottom,
-  AiOutlineDown
 } from 'react-icons/ai';
 import {FiPlus, FiMinus} from 'react-icons/fi';
 
 const Word = () => {
+
   return (
     <div
       className="d-flex flex-jc-start flex-ai-center"
@@ -24,18 +24,23 @@ const Word = () => {
       <AiOutlineFileWord />
       <FontStyle />
       <FontSize />
+
       <FontButton>
         <AiOutlineBold />
       </FontButton>
+
       <FontButton>
         <AiOutlineItalic />
       </FontButton>
+
       <FontButton>
         <AiOutlineUnderline />
       </FontButton>
+
       <FontButton>
         <AiOutlineVerticalAlignBottom />
       </FontButton>
+
     </div>
   );
 };
@@ -109,7 +114,7 @@ const FontStyle = () => {
   );
 }
 
-const FontButton = (props) => {
+const FontButton = ({children}) => {
   const [checked, setChecked] = useState(false);
   return (
     <div
@@ -122,11 +127,19 @@ const FontButton = (props) => {
     >
       <button
         className="width-100 height-100 d-flex flex-ai-center flex-jc-center"
-        onClick={() => {
-          setChecked(!checked);
+        onMouseDown={(e) => {
+          e.preventDefault();
+          const selection = window.getSelection();
+          const range = selection.getRangeAt(0);
+          // console.log(range)
+          const span = document.createElement('span');
+          span.style["fontWeight"] = 'bold';
+          range.surroundContents(span);
+          console.log(document.getElementById('editable').innerHTML)
+          // setChecked(true);
         }}
       >
-        {props.children}
+        {children}
       </button>
     </div>
   );
