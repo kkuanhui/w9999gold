@@ -13,7 +13,7 @@ const FocusFrame = () => {
   const studio = useStudio();
   const dispatch = useStudioDispatch();
   const active = studio.meta.active;
-  const current = studio.json.children.filter((e) => e.id === active.id)[0];
+  const currentObj = studio.json.children.filter((e) => e.id === active.id)[0];
   // state -----
   const [isDragging, setIsDragging] = useState(false);
   const [isEditing , setIsEditing ] = useState(false);
@@ -36,16 +36,16 @@ const FocusFrame = () => {
       style={{
         position: "absolute",
         zIndex: "1",
-        top: `${current.top - 2}px`,
-        left: `${current.left - 2}px`,
+        top: `${currentObj.style.top - 2}px`,
+        left: `${currentObj.style.left - 2}px`,
         border: "1px solid purple",
         padding: "1px",
         cursor: isDragging ? "move" : "auto",
       }}
       onMouseDown={() => {
         if(isEditing) return false;
-        let top = current.top;
-        let left = current.left;
+        let top = currentObj.style.top;
+        let left = currentObj.style.left;
         document.onmousemove = (e) => {
           setIsDragging(true);
           top = top + e.movementY;
@@ -53,9 +53,12 @@ const FocusFrame = () => {
           dispatch({
             type: "pos",
             item: {
-              ...current,
-              top: top,
-              left: left,
+              ...currentObj,
+              style: {
+                ...currentObj.style,
+                top: top,
+                left: left,
+              }
             },
           });
         };
@@ -68,7 +71,7 @@ const FocusFrame = () => {
     >
       <FocusOnWhat 
         isDragging={isDragging} 
-        itemType={current.type}
+        itemType={currentObj.type}
         onEditing={(tf) => setIsEditing(tf)}
       />
       {

@@ -7,6 +7,8 @@ import {
   AiOutlineVerticalAlignBottom,
 } from 'react-icons/ai';
 import {FiPlus, FiMinus} from 'react-icons/fi';
+import { useStudio, useStudioDispatch } from "../StudioContext";
+import { toolbarHtmlToObj } from "../utilities";
 
 const Word = () => {
 
@@ -115,6 +117,9 @@ const FontStyle = () => {
 }
 
 const FontButton = ({children}) => {
+  const dispatch = useStudioDispatch()
+  const studio = useStudio()
+  const activeItem = studio.json.children.filter(e => e.id === studio.meta.active?.id)[0]
   const [checked, setChecked] = useState(false);
   return (
     <div
@@ -128,15 +133,20 @@ const FontButton = ({children}) => {
       <button
         className="width-100 height-100 d-flex flex-ai-center flex-jc-center"
         onMouseDown={(e) => {
+          if(!activeItem){return false}
           e.preventDefault();
           const selection = window.getSelection();
           const range = selection.getRangeAt(0);
-          // console.log(range)
           const span = document.createElement('span');
           span.style["fontWeight"] = 'bold';
           range.surroundContents(span);
-          console.log(document.getElementById('editable').innerHTML)
-          // setChecked(true);
+          const newHTMLString = document.getElementById('editable').innerHTML
+          dispatch({
+            type: "update",
+            id: activeItem.id,
+            item: {...activeItem, children: toolbarHtmlToObj(newHTMLString)}
+          })
+
         }}
       >
         {children}
@@ -146,3 +156,15 @@ const FontButton = ({children}) => {
 };
 
 export default Word;
+
+// <p data-reactroot="">
+//   <span style="font-size:16px;font-weight:bold">
+//     台<span style="font-weight: bold;">南</span> 
+//   </span>
+//   <span style="font-size:20px;font-weight:bold">大興宮</span>
+// </p>
+
+// <p data-reactroot="">
+//   <span style="font-size:12px;font-weight:bold;font-style:italic">眾弟子 </span>
+//   <span style="font-style:italic;font-size:12px">敬獻</span>
+// </p>

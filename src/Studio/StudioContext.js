@@ -228,7 +228,7 @@ const studioReducer = (studio, action) => {
             "children": [
               {
                 "dom": "span",
-                "fontSize": 12,
+                "fontSize": "12px",
                 "children": [{
                   "dom": "#text",
                   "children": "新增文字"

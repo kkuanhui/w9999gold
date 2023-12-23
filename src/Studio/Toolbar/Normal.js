@@ -26,6 +26,18 @@ const Normal = () => {
             style={{height: "100%"}}
             className="hover-background-43ff64d9"
             onClick={() => {
+              console.log(studio.json)
+            }}
+          >
+            json
+          </button>
+        </div>
+
+        <div style={{height: "100%"}}>
+          <button name="word"
+            style={{height: "100%"}}
+            className="hover-background-43ff64d9"
+            onClick={() => {
               console.log('addon new word block')
               dispatch({
                 type: "word",

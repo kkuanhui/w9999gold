@@ -11,8 +11,8 @@ const ShowImageFrame = () => {
     <img
       draggable={false}
       style={{
-        width: `${imageObj.width}px`,
-        height: `${imageObj.height}px`,
+        width: `${imageObj.style.width}px`,
+        height: `${imageObj.style.height}px`,
       }}
       alt="user custom"
       src={stevejobs}

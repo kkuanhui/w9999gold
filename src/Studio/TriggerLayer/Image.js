@@ -8,11 +8,11 @@ const Image = ({idx, imageObj}) => {
   const dispatch = useStudioDispatch();
   const style = {
         "position": "absolute",
-        "top": imageObj.top,
-        "left": imageObj.left,
-        "zIndex": imageObj.zIndex,
-        "width": `${imageObj.width}px`,
-        "height": `${imageObj.height}px`
+        "top": imageObj.style.top,
+        "left": imageObj.style.left,
+        "zIndex": imageObj.style.zIndex,
+        "width": `${imageObj.style.width}px`,
+        "height": `${imageObj.style.height}px`
   }
   return(
     <img 
@@ -44,8 +44,8 @@ const Image = ({idx, imageObj}) => {
         dispatch({
           type: "hover",
           hover: {
-            top: imageObj.top,
-            left: imageObj.left,
+            top: imageObj.style.top,
+            left: imageObj.style.left,
             width: component.current.offsetWidth,
             height: component.current.offsetHeight,
           }

@@ -12,20 +12,26 @@
     {
       "id": 1,
       "type": "word",
-      "top": 100,
-      "left": 50,
-      "zIndex": 3,
+      "style": {
+        "top": 100,
+        "left": 50,
+        "zIndex": 3
+      },
       "children": [
         {
           "dom": "p",
-          "bold": true,
+          "style": {
+            "bold": true
+          },
           "children": [
             {
               "dom": "span",
-              "fontSize": 24,
+              "style": {
+                "fontSize": "24px"
+              },
               "children": [{
                 "dom": "#text",
-                "children": "1功在蘋果"
+                "children": "功在蘋果"
               }]
             }
           ]
@@ -36,21 +42,25 @@
     {
       "id": 2,
       "type": "image",
-      "top": 300,
-      "left": 300,
-      "zIndex": 2,
-      "src": "server-name/to/image/steve-jobs.png",
-      "width": 150,
-      "height": 100
+      "style": {
+        "top": 300,
+        "left": 300,
+        "zIndex": 2,
+        "width": 150,
+        "height": 100
+      },
+      "src": "server-name/to/image/steve-jobs.png"
     },
 
     {
       "id": 3,
       "type": "word",
-      "top": 100,
-      "left": 150,
-      "zIndex": 1,
-      "fontFamily": "BeiKi",
+      "style": {
+        "top": 100,
+        "left": 150,
+        "zIndex": 1,
+        "fontFamily": "BeiKi"
+      },
       "children": [
 
         {
@@ -58,17 +68,21 @@
           "children": [
             {
               "dom": "span",
-              "fontSize": 16,
-              "bold": false,
+              "style": {
+                "fontSize": "16px",
+                "fontWeight": "bold"
+              },
               "children": [{
                 "dom": "#text",
-                "children": "3台南 "
+                "children": "台南 "
               }]
             },
             {
               "dom": "span",
-              "fontSize": 20,
-              "bold": true,
+              "style": {
+                "fontSize": "20px",
+                "fontWeight": "bold"
+              },
               "children": [{
                 "dom": "#text",
                 "children": "大興宮"
@@ -82,9 +96,11 @@
           "children": [
             {
               "dom": "span",
-              "fontSize": 12,
-              "italic": true,
-              "bold": true,
+              "style": {
+                "fontSize": "12px",
+                "fontWeight": "bold",
+                "fontStyle": "italic"
+              },
               "children": [{
                 "dom": "#text",
                 "children": "眾弟子 "
@@ -92,8 +108,10 @@
             },
             {
               "dom": "span",
-              "italic": true,
-              "fontSize": 12,
+              "style": {
+                "fontStyle": "italic",
+                "fontSize": "12px"
+              },
               "children": [{
                 "dom": "#text",
                 "children": "敬獻"

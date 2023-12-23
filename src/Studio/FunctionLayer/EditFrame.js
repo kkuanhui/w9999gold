@@ -1,9 +1,8 @@
 import { useEffect, useRef, useState } from "react"
 import ContentEditable from "react-contenteditable"
 import { renderToString } from 'react-dom/server'
-import { setCursorAtPosition } from "./gptTest"
 import { useStudio, useStudioDispatch } from "../StudioContext"
-import { renderWordObject } from "../utilities"
+import { setCursorAtPosition, renderWordObject, genChildrenArr } from "../utilities"
 
 const EditFrame = ({onEditing}) => {
   // context -----
@@ -42,7 +41,7 @@ const EditFrame = ({onEditing}) => {
         dispatch({
           type: "update",
           id: activeItem.id,
-          item: {...activeItem, children: htmlToObj(e.target.value)}
+          item: {...activeItem, children: genChildrenArr(e.target.value)}
         })
       }}
       onFocus={() => {

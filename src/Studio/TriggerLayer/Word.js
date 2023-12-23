@@ -1,6 +1,7 @@
 import { useRef } from "react";
 import { useStudioDispatch} from "../StudioContext";
 import "../../static/css/general/events.css";
+import { renderWordObject } from "../utilities";
 
 const Word = ({idx, wordObj}) => {
   const dispatch = useStudioDispatch();
@@ -12,9 +13,9 @@ const Word = ({idx, wordObj}) => {
       className="user-select-none"
       style={{
         position: "absolute",
-        zIndex: wordObj.zIndex,
-        top: wordObj.top,
-        left: wordObj.left
+        zIndex: wordObj.style.zIndex,
+        top: wordObj.style.top,
+        left: wordObj.style.left
       }} 
       onFocus={() => {
         dispatch({
@@ -34,13 +35,12 @@ const Word = ({idx, wordObj}) => {
           hover: null
         })
       }}
-      // onBlur ={() => {onChangeMode('normal'); onChangeAct(null)}}
       onMouseEnter={() => {
         dispatch({
           type: "hover",
           hover: {
-            top: wordObj.top,
-            left: wordObj.left,
+            top: wordObj.style.top,
+            left: wordObj.style.left,
             width: component.current.offsetWidth,
             height: component.current.offsetHeight,
           }
@@ -53,36 +53,9 @@ const Word = ({idx, wordObj}) => {
         })
       }}
     >
-      {WObj(wordObj)}
+      {renderWordObject(wordObj)}
     </div>
   )
 }
-
-const WObj = (wordObj) => {
-  const children = wordObj.children
-  return children.map((item, key) => {
-    const dom = item.dom
-    if(dom === "p"){
-      return <p key={key}>{WObj(item)}</p>
-    }else if(dom === "span"){
-      return (
-        <span 
-          key={key} 
-          style={{
-            fontSize: `${item.fontSize}px`,
-            fontFamily: item.fontFamily,
-            fontStyle: item.italic,
-            fontWeight: item.bold,
-            textDecoration: item.underline
-          }}
-        >
-          {WObj(item)}
-        </span>
-      )
-    }else{
-      return item.children
-    }
-  })
-} 
 
 export default Word;

@@ -13,10 +13,6 @@ const TriggerLayer = () => {
   return (
     <div
       style={{
-        // position: "relative",
-        // top: "0",
-        // left: "0",
-        // zIndex: 1,
         boxSizing: "border-box",
         height: "100%",
         width: "100%",
