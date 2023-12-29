@@ -13,6 +13,9 @@
       "id": 1,
       "type": "word",
       "style": {
+        "writingMode": "horizontal",
+        "fontSize": "24px",
+        "fontFamily": "serif",
         "top": 100,
         "left": 50,
         "zIndex": 3
@@ -20,18 +23,41 @@
       "children": [
         {
           "dom": "p",
-          "style": {
-            "bold": true
-          },
+          "style": {},
           "children": [
             {
               "dom": "span",
               "style": {
-                "fontSize": "24px"
               },
               "children": [{
                 "dom": "#text",
-                "children": "功在蘋果"
+                "children": "功"
+              }]
+            },
+            {
+              "dom": "span",
+              "style": {
+              },
+              "children": [{
+                "dom": "#text",
+                "children": "在"
+              }]
+            },
+            {
+              "dom": "span",
+              "style": {
+              },
+              "children": [{
+                "dom": "#text",
+                "children": "蘋"
+              }]
+            },
+            {
+              "dom": "span",
+              "style": {},
+              "children": [{
+                "dom": "#text",
+                "children": "果"
               }]
             }
           ]
@@ -56,10 +82,12 @@
       "id": 3,
       "type": "word",
       "style": {
+        "writingMode": "vertical-rl",
+        "fontSize": "36px",
+        "fontFamily": "serif",
         "top": 100,
         "left": 150,
-        "zIndex": 1,
-        "fontFamily": "BeiKi"
+        "zIndex": 1
       },
       "children": [
 
@@ -69,7 +97,6 @@
             {
               "dom": "span",
               "style": {
-                "fontSize": "16px",
                 "fontWeight": "bold"
               },
               "children": [{
@@ -80,7 +107,6 @@
             {
               "dom": "span",
               "style": {
-                "fontSize": "20px",
                 "fontWeight": "bold"
               },
               "children": [{
@@ -97,7 +123,6 @@
             {
               "dom": "span",
               "style": {
-                "fontSize": "12px",
                 "fontWeight": "bold",
                 "fontStyle": "italic"
               },
@@ -109,8 +134,7 @@
             {
               "dom": "span",
               "style": {
-                "fontStyle": "italic",
-                "fontSize": "12px"
+                "fontStyle": "italic"
               },
               "children": [{
                 "dom": "#text",

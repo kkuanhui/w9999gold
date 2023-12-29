@@ -61,6 +61,15 @@ export const genChildrenArr = (htmlString) => {
   return arr
 }
 
+export const cssTextToObj = (element) => {
+  const camelCaseStyles = {};
+  const styles = eleInlineStyleObj(element) 
+  Object.keys(styles).forEach(key => {
+    camelCaseStyles[kebabToCamelCase(key)] = styles[key];
+  });
+  console.log(camelCaseStyles)
+}
+
 function kebabToCamelCase(str) {
   return str.replace(/-([a-z])/g, (match, letter) => letter.toUpperCase());
 }

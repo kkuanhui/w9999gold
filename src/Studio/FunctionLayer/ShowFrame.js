@@ -9,7 +9,12 @@ const ShowFrame = () => {
   const activeItem = children.filter(e => e.id === activeId)[0]
 
   return(
-    <div style={{userSelect: 'none',}} >
+    <div style={{
+        userSelect: 'none', 
+        writingMode: activeItem.style.writingMode,
+        fontFamily: activeItem.style.fontFamily,
+        fontSize: activeItem.style.fontSize,
+      }} >
       {renderWordObject(activeItem)}
     </div>
   )

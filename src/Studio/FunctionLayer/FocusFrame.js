@@ -13,13 +13,14 @@ const FocusFrame = () => {
   const studio = useStudio();
   const dispatch = useStudioDispatch();
   const active = studio.meta.active;
-  const currentObj = studio.json.children.filter((e) => e.id === active.id)[0];
+  const activeItem = studio.json.children.filter((e) => e.id === active.id)[0];
   // state -----
   const [isDragging, setIsDragging] = useState(false);
   const [isEditing , setIsEditing ] = useState(false);
   const [position, setPosition] = useState(null)
   // ref -----
   const component = useRef(null);
+  // lifecycle -----
   useEffect(() => {
     if(!isEditing){
       component.current.oncontextmenu = (e) => {
@@ -30,22 +31,23 @@ const FocusFrame = () => {
       component.current.oncontextmenu = null
     }
   }, [isEditing])
+
   return (
-    <div
+    <div 
       ref={component}
       style={{
         position: "absolute",
         zIndex: "1",
-        top: `${currentObj.style.top - 2}px`,
-        left: `${currentObj.style.left - 2}px`,
+        top: `${activeItem.style.top - 2}px`,
+        left: `${activeItem.style.left - 2}px`,
         border: "1px solid purple",
         padding: "1px",
         cursor: isDragging ? "move" : "auto",
       }}
       onMouseDown={() => {
         if(isEditing) return false;
-        let top = currentObj.style.top;
-        let left = currentObj.style.left;
+        let top = activeItem.style.top;
+        let left = activeItem.style.left;
         document.onmousemove = (e) => {
           setIsDragging(true);
           top = top + e.movementY;
@@ -53,9 +55,9 @@ const FocusFrame = () => {
           dispatch({
             type: "pos",
             item: {
-              ...currentObj,
+              ...activeItem,
               style: {
-                ...currentObj.style,
+                ...activeItem.style,
                 top: top,
                 left: left,
               }
@@ -71,7 +73,7 @@ const FocusFrame = () => {
     >
       <FocusOnWhat 
         isDragging={isDragging} 
-        itemType={currentObj.type}
+        itemType={activeItem.type}
         onEditing={(tf) => setIsEditing(tf)}
       />
       {

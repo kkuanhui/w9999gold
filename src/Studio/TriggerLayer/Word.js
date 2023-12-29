@@ -13,6 +13,9 @@ const Word = ({idx, wordObj}) => {
       className="user-select-none"
       style={{
         position: "absolute",
+        writingMode: wordObj.style.writingMode,
+        fontFamily: wordObj.style.fontFamily,
+        fontSize: wordObj.style.fontSize,
         zIndex: wordObj.style.zIndex,
         top: wordObj.style.top,
         left: wordObj.style.left
