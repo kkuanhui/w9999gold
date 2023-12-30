@@ -41,12 +41,14 @@ const EditFrame = ({onEditing}) => {
       onClick={(e) => {
         if(isDisabled){
           setIsDisabled(false);
-          setCursorPos([e.clientX, e.clientY])
+          setCursorPos([e.clientX, e.clientY]);
           // after state isDisabled changed simulate click event
+          const anchorEle = document.elementFromPoint(e.clientX, e.clientY)
+          const styleObj = cssTextToObj(anchorEle)
+          console.log(styleObj)
         }else{
           const sel = window.getSelection();
           const anchorParent = sel.anchorNode.parentNode;
-          // console.log(parentOfText.style.cssText)
           const styleObj = cssTextToObj(anchorParent)
           console.log(styleObj)
         }

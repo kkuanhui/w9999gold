@@ -95,6 +95,16 @@ const studioReducer = (studio, action) => {
       }
     }
 
+    // toolbar
+    case "toolbar-style": {
+      return {
+        ...studio,
+        toolbar: {
+          wordStyle: action.wordStyle
+        }
+      }
+    }
+
     // json
     case "get": {
       return {
@@ -289,6 +299,16 @@ const studioReducer = (studio, action) => {
 };
 
 const initStudio = {
+  toolbar: {
+    wordStyle: {
+      'fontFamily': "ariel",
+      'fontSize': "24px",
+      'writingMode': "horizontal",
+      'fontWeight': "normal",
+      'fontStyle': "italic",
+      'textDecoration': "none",
+    },
+  },
   meta: {
     mode: "normal",
     scale: 1,

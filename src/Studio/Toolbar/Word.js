@@ -12,11 +12,38 @@ import { toolbarHtmlToObj } from "../utilities";
 const Word = () => {
   const dispatch = useStudioDispatch();
   const studio = useStudio();
-  const activeItem = studio.json.children.filter(ele => ele.id === studio.meta.active?.id)[0]
+  const active = studio.meta.active
+  const activeItem = studio.json.children.filter(ele => ele.id === active.id)[0]
+
+  // const [headStyle, setHeadStyle] = useState({
+  //   "fontWeight": true,
+  //   "fontStyle": true,
+  //   "textDecoration": true
+  // })
+
+  // const checkIfStyleWhole = (activeItem) => {
+  //   activeItem.children.forEach(child => {
+  //     if(child.dom === "#text"){
+  //       return;
+  //     }else{
+  //       if(child.style.fontWeight !== "bold") setHeadStyle({...headStyle, fontWeight: false})
+  //       if(child.style.fontStyle !== "italic") setHeadStyle({...headStyle, fontStyle: false})
+  //       if(child.style.textDecoration !== "underline") setHeadStyle({...headStyle, textDecoration: false})
+  //       checkIfStyleWhole(child)
+  //     }
+  //   })
+  // }
+
+  // useEffect(() => {
+  //   checkIfStyleWhole(activeItem)
+  //   setTimeout(() => {
+  //     console.log(headStyle)
+  //   }, [3000])
+  // }, [])
 
   const onActionCalled = (newStyle) => {
+    // if user isn't editing. caret not placed on contenteditalbe.
     if(document.activeElement !== document.getElementById('editable')){
-      console.log('on unistylechange')
       onUniStyleChange(newStyle)
       return 0
     }
@@ -75,7 +102,7 @@ const Word = () => {
     // selection.addRange(newRange);
   }
 
-  const onItemStyleChange = (newStyle = {}, altStyle = {}) => {
+  const onItemStyleChange = (newStyle = {}) => {
     const active = studio.meta.active
     const activeItem = studio.json.children.filter(node => node.id === active.id)[0]
     const newStyleActiveItem = {
@@ -91,9 +118,11 @@ const Word = () => {
 
   const onUniStyleChange = (newStyle = {}) => {
     const active = studio.meta.active
+    if(!active){
+      return 0;
+    }
     const activeItem = studio.json.children.filter(node => node.id === active.id)[0]
     traverseStyle(activeItem, newStyle)
-    console.log(activeItem)
     dispatch({
       type: "update",
       id: activeItem.id,
@@ -114,6 +143,7 @@ const Word = () => {
       }
     })
   }
+  
 
   return (
     <div
@@ -126,7 +156,7 @@ const Word = () => {
         position: "relative",
       }}
     >
-      <FontFamily onActionCalled={onActionCalled}></FontFamily>
+      <FontFamily onItemStyleChange={onItemStyleChange}></FontFamily>
       <FontSize onItemStyleChange={onItemStyleChange}></FontSize>
       <FontWeight onActionCalled={onActionCalled}></FontWeight>
       <FontStyle  onActionCalled={onActionCalled}></FontStyle>
@@ -136,11 +166,20 @@ const Word = () => {
   );
 };
 
-const FontFamily = ({onActionCalled}) => {
-  const [style, setStyle] = useState("標楷體");
+const FontFamily = ({onItemStyleChange}) => {
+  // fontFamily affect all content in word
+  const studio = useStudio();
+  const active = studio.meta.active;
+  const activeItem = studio.json.children.filter(node => node.id === active.id)[0];
+  const [style, setStyle] = useState("arial");
   const onStyleChange = (name) => {
-    setStyle(name)
+    setStyle(name);
+    onItemStyleChange({"fontFamily": name});
   }
+  useEffect(() => {
+    const jsonFontFamily = activeItem.style.fontFamily;
+    setStyle(jsonFontFamily);
+  }, [])
   return (
     <div 
       className="d-flex flex-ai-center" 
@@ -158,10 +197,19 @@ const FontFamily = ({onActionCalled}) => {
         <select className="width-100 text-center" 
           value={style} 
           type="number" 
-          onChange={(e) => {onStyleChange(e.target.value)}}>
-            <option value={'新細明體'}>{"新細明體"}</option>
-            <option value={'微軟黑體'}>{"微軟黑體"}</option>
-            <option value={'蘭陽明體'}>{"蘭陽明體"}</option>
+          onChange={(e) => {
+            e.preventDefault()
+            onStyleChange(e.target.value)}
+          }>
+            <option value="arial">Arial</option>
+            <option value="verdana">Verdana</option>
+            <option value="tahoma">Tahoma</option> 
+            <option value="trebuchet">Trebuchet</option>
+            <option value="times">Times</option>
+            <option value="georgia">Georgia</option> 
+            <option value="garamond">Garamond</option>
+            <option value="courier">Courier</option>
+            <option value="brush">Brush</option>
         </select>
       </div>
     </div>
@@ -169,10 +217,11 @@ const FontFamily = ({onActionCalled}) => {
 }
 
 const FontSize = ({onItemStyleChange}) => {
-  const [size, setSize] = useState(16);
+  // fontSize affect all content in word
   const studio = useStudio();
   const active = studio.meta.active;
   const activeItem = studio.json.children.filter(node => node.id === active.id)[0]
+  const [size, setSize] = useState(16);
   const onSizeAdd = (delta) => {
     const s = (size + delta).toFixed(0);
     setSize(Number(s));
@@ -213,7 +262,10 @@ const FontSize = ({onItemStyleChange}) => {
         <input className="width-100 text-center" 
           value={size} 
           type="number" 
-          onChange={(e) => {onSizeChange(e.target.value)}}
+          onChange={(e) => {
+            e.preventDefault();
+            onSizeChange(e.target.value);
+          }}
         />
       </div>
       <div className="width-20 d-flex flex-ai-center flex-jc-center">
@@ -232,7 +284,8 @@ const FontSize = ({onItemStyleChange}) => {
 
 const Button = ({children, styleEnabled, handleMouseDown}) => {
   const studio = useStudio()
-  const activeItem = studio.json.children.filter(e => e.id === studio.meta.active?.id)[0]
+  const active = studio.meta.active;
+  const activeItem = studio.json.children.filter(e => e.id === active.id)[0]
   return (
     <button
       style={{
@@ -300,12 +353,8 @@ const TextDecoration = ({onActionCalled}) => {
 const WritingModeVertical = ({onItemStyleChange}) => {
   const [styleEnabled, setStyleEnabled] = useState(false)
   const studio = useStudio();
-  let activeItem
-  if(studio.meta.active){
-    activeItem = studio.json.children.filter(node => node.id === studio.meta.active.id)[0]
-  }else{
-    activeItem = null
-  }
+  const active = studio.meta.active;
+  const activeItem = studio.json.children.filter(node => node.id === active.id)[0]
   const handleMouseDown = () => {
     if(styleEnabled){
       onItemStyleChange({"writingMode": "horizontal-tb"})
@@ -315,6 +364,7 @@ const WritingModeVertical = ({onItemStyleChange}) => {
       setStyleEnabled(true)
     }
   }
+  // lifecycle -----
   useEffect(() => {
     const isVertical = (activeItem.style.writingMode === "vertical-rl")
     setStyleEnabled(isVertical)

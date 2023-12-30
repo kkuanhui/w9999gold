@@ -67,7 +67,7 @@ export const cssTextToObj = (element) => {
   Object.keys(styles).forEach(key => {
     camelCaseStyles[kebabToCamelCase(key)] = styles[key];
   });
-  console.log(camelCaseStyles)
+  return camelCaseStyles
 }
 
 function kebabToCamelCase(str) {
@@ -153,7 +153,6 @@ export const setCursorAtPosition = (clientX, clientY) => {
     range.collapse(true); // meaning range start and end are the same.
     selection.removeAllRanges(); // remove existing selection
     selection.addRange(range);
-
     // Set focus to the contenteditable div
     contentEditableDiv.focus();
   }else{

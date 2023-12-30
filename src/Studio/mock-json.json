@@ -15,7 +15,7 @@
       "style": {
         "writingMode": "horizontal",
         "fontSize": "24px",
-        "fontFamily": "serif",
+        "fontFamily": "brush",
         "top": 100,
         "left": 50,
         "zIndex": 3
@@ -27,8 +27,7 @@
           "children": [
             {
               "dom": "span",
-              "style": {
-              },
+              "style": {},
               "children": [{
                 "dom": "#text",
                 "children": "功"
@@ -36,8 +35,7 @@
             },
             {
               "dom": "span",
-              "style": {
-              },
+              "style": {},
               "children": [{
                 "dom": "#text",
                 "children": "在"
@@ -45,8 +43,7 @@
             },
             {
               "dom": "span",
-              "style": {
-              },
+              "style": {},
               "children": [{
                 "dom": "#text",
                 "children": "蘋"
@@ -84,7 +81,7 @@
       "style": {
         "writingMode": "vertical-rl",
         "fontSize": "36px",
-        "fontFamily": "serif",
+        "fontFamily": "brush",
         "top": 100,
         "left": 150,
         "zIndex": 1
@@ -93,12 +90,11 @@
 
         {
           "dom": "p",
+          "style": {},
           "children": [
             {
               "dom": "span",
-              "style": {
-                "fontWeight": "bold"
-              },
+              "style": { "fontWeight": "bold"},
               "children": [{
                 "dom": "#text",
                 "children": "台南 "
@@ -106,9 +102,7 @@
             },
             {
               "dom": "span",
-              "style": {
-                "fontWeight": "bold"
-              },
+              "style": { "fontWeight": "bold"},
               "children": [{
                 "dom": "#text",
                 "children": "大興宮"
@@ -119,6 +113,7 @@
 
         {
           "dom": "p",
+          "style": {},
           "children": [
             {
               "dom": "span",
@@ -133,9 +128,7 @@
             },
             {
               "dom": "span",
-              "style": {
-                "fontStyle": "italic"
-              },
+              "style": {"fontStyle": "italic"},
               "children": [{
                 "dom": "#text",
                 "children": "敬獻"

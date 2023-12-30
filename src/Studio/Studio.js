@@ -3,6 +3,7 @@ import Toolbar from "./Toolbar/Toolbar";
 import FunctionLayer from "./FunctionLayer/FunctionLayer";
 import TriggerLayer from "./TriggerLayer/TriggerLayer";
 import { useStudio } from "./StudioContext";
+import { useEffect } from "react";
 
 const Studio = () => {
   return (
@@ -17,6 +18,7 @@ const StudioContent = () => {
   if (studio.json === null) {
     return <div>loading......</div>;
   }
+  
   return (
     <>
       <div name="toolbar"

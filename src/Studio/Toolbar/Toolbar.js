@@ -6,7 +6,10 @@ import { useStudio } from "../StudioContext";
 const Toolbar = () => {
   const studio = useStudio();
   const mode = studio.meta.mode;
-  return mode === "normal" ? (
+  const active = studio.meta.active
+  return active=== null ?(
+    <Normal />
+  ): mode === "normal" ? (
     <Normal />
   ) : mode === "word" ? (
     <Word />
