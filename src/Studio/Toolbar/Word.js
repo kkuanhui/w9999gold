@@ -17,10 +17,27 @@ const Word = () => {
   const activeItem = studio.json.children.filter(ele => ele.id === active.id)[0]
 
   // function -----
-  const onActionCalled = (newStyle) => {
+  const updateItemStyle = (newStyle = {}) => {
+    const newStyleActiveItem = {
+      ...activeItem, 
+      style: {...activeItem.style, ...newStyle}
+    } 
+    dispatch({
+      type: "update",
+      id: active.id,
+      item: newStyleActiveItem
+    })
+  }
+
+  const updateRangeStyle = (newStyle) => {
     // if user isn't in editing. Do uni-style change.
     if(document.activeElement !== document.getElementById('editable')){
-      onUniStyleChange(newStyle)
+      const itemWithNewStyle = changeUniStyle(activeItem, newStyle)
+      dispatch({
+        type: "update",
+        id: active.id,
+        item: itemWithNewStyle
+      })
       return;
     }
     // else detect select range and make change on it
@@ -45,9 +62,10 @@ const Word = () => {
         tempNode = tempNode.parentNode.nextSibling?.childNodes[0]
       }
     }
+
     let myRange = new Range()
     nodesInRange.forEach((node, idx) => {
-      if(nodesInRange.length !== 1){
+      if(nodesInRange.length > 1){
         if(idx === 0){
           myRange.setStart(node, startOffset)
           myRange.setEnd(node, node.length)
@@ -73,46 +91,20 @@ const Word = () => {
     })
   }
 
-  const onItemStyleChange = (newStyle = {}) => {
-    const active = studio.meta.active
-    const activeItem = studio.json.children.filter(node => node.id === active.id)[0]
-    const newStyleActiveItem = {
-      ...activeItem, 
-      style: {...activeItem.style, ...newStyle}
-    } 
-    dispatch({
-      type: "update",
-      id: activeItem.id,
-      item: newStyleActiveItem
-    })
-  }
 
-  const onUniStyleChange = (newStyle = {}) => {
-    const active = studio.meta.active
-    if(!active){
-      return 0;
-    }
-    const activeItem = studio.json.children.filter(node => node.id === active.id)[0]
-    traverseStyle(activeItem, newStyle)
-    dispatch({
-      type: "update",
-      id: activeItem.id,
-      item: activeItem
-    })
-  }
-
-  const traverseStyle = (obj, style = {}) => {
-    // altStyle refers to alternative style.
-    obj.children.forEach(child => {
-      if(child.dom === "#text"){
-        return 0
-      }else if(child.dom === "span"){
-        child.style = {...child.style, ...style}
-        traverseStyle(child, style)
+  const changeUniStyle = (obj, newStyle = {}) => {
+    // "altStyle" refers to alternative style.
+    const newStyleChildren = obj.children.map(child => {
+      if(child.dom === "span"){
+        return {...child, style: {...child.style, ...newStyle}}
       }else{
-        traverseStyle(child, style)
+        return changeUniStyle(child, newStyle)
       }
     })
+    return {
+      ...obj,
+      children: newStyleChildren
+    }
   }
   
 
@@ -127,9 +119,9 @@ const Word = () => {
         position: "relative",
       }}
     >
-      <FontFamily onItemStyleChange={onItemStyleChange}></FontFamily>
-      <FontSize onItemStyleChange={onItemStyleChange}></FontSize>
-      <WritingMode onItemStyleChange={onItemStyleChange}></WritingMode>
+      <FontFamily updateItemStyle={updateItemStyle}></FontFamily>
+      <FontSize updateItemStyle={updateItemStyle}></FontSize>
+      <WritingMode updateItemStyle={updateItemStyle}></WritingMode>
 
       <div name={"divider"} 
         style={{
@@ -139,14 +131,14 @@ const Word = () => {
         }} 
       />
 
-      <FontWeight onActionCalled={onActionCalled}></FontWeight>
-      <FontStyle  onActionCalled={onActionCalled}></FontStyle>
-      <TextDecoration onActionCalled={onActionCalled}></TextDecoration>
+      <FontWeight updateRangeStyle={updateRangeStyle}></FontWeight>
+      <FontStyle  updateRangeStyle={updateRangeStyle}></FontStyle>
+      <TextDecoration updateRangeStyle={updateRangeStyle}></TextDecoration>
     </div>
   );
 };
 
-const FontFamily = () => {
+const FontFamily = ({updateItemStyle}) => {
   // fontFamily affect all content in word
   const studio = useStudio();
   const contextValue = studio.toolbar.word.fontFamily
@@ -155,10 +147,8 @@ const FontFamily = () => {
   const onChangeHandler = (e) => {
     e.preventDefault();
     setFontFamily(e.target.value);
-    // dispatch({
-    //   type: "update",
-    //   style: {"fontFamily": font},
-    // })
+    // dispatch
+    updateItemStyle({"fontFamily": e.target.value})
     dispatch({
       type: "toolbarWord",
       style: {"fontFamily": e.target.value}
@@ -201,7 +191,7 @@ const FontFamily = () => {
   );
 }
 
-const FontSize = () => {
+const FontSize = ({updateItemStyle}) => {
   const studio = useStudio();
   const dispatch = useStudioDispatch();
   const myInput = useRef(null);
@@ -212,25 +202,23 @@ const FontSize = () => {
     e.preventDefault();
     const value = Number(e.target.value)
     setFontSize(value)
+    // dispatch
+    updateItemStyle({'fontSize': `${value}px`})
     dispatch({
       type: "toolbarWord",
       style: {'fontSize': `${value}px`}
     })
-    // dispatch({
-    //   type: "update",
-    // })
   }
   const handleMouseDown = (e, value) => {
     e.preventDefault()
     myInput.current.value = value
     setFontSize(value)
+    // dispatch
+    updateItemStyle({'fontSize': `${value}px`})
     dispatch({
       type: "toolbarWord",
       style: {'fontSize': `${value}px`}
     })
-    // dispatch({
-    //   type: "update",
-    // })
   }
   // lifecycle -----
   useEffect(() => {
@@ -276,10 +264,50 @@ const FontSize = () => {
           <FiPlus />
         </button>
       </div>
-    </div>// 
+    </div>
   );
 };
 
+const WritingMode = ({updateItemStyle}) => {
+  const studio = useStudio();
+  const dispatch = useStudioDispatch();
+  const contextValue = studio.toolbar.word.writingMode;
+  const [enabled, setEnabled] = useState(false)
+  const handleMouseDown = () => {
+    setEnabled(!enabled)
+    // dispatch
+    updateItemStyle({"writingMode": (!enabled)?"vertical-rl":"horizontal-tb"})
+    dispatch({
+      "type": "toolbarWord",
+      "style": {"writingMode": (!enabled)?"vertical-rl":"horizontal-tb"}
+    })
+  }
+  useEffect(() => {
+    if(contextValue === "vertical-rl"){
+      setEnabled(true)
+    }else{
+      setEnabled(false)
+    }
+  }, [contextValue])
+  return (
+    <button
+      style={{
+        width: "25px",
+        height: "25px",
+        borderRadius: "5px",
+        background: enabled ? "rgba(33, 129, 0, 0.46)": "transparent" ,
+      }}
+      onMouseDown={(e) => {
+        e.preventDefault();
+        handleMouseDown()
+      }}
+    >
+      <AiOutlineVerticalAlignBottom />
+    </button>
+  )
+}
+
+// range style
 const Button = ({children, handleMouseDown, enabled}) => {
   return (
     <button
@@ -289,24 +317,28 @@ const Button = ({children, handleMouseDown, enabled}) => {
         borderRadius: "5px",
         background: enabled ? "rgba(33, 129, 0, 0.46)": "transparent" ,
       }}
-      onMouseDown={handleMouseDown}
+      onMouseDown={(e) => {
+        e.preventDefault();
+        handleMouseDown()
+      }}
     >
       {children}
     </button>
   );
 };
 
-const FontWeight = () => {
+const FontWeight = ({updateRangeStyle}) => {
   const studio = useStudio();
   const dispatch = useStudioDispatch();
   const contextValue = studio.toolbar.word.fontWeight;
   const [enabled, setEnabled] = useState(false)
-  const handleMouseDown = (e) => {
-    e.preventDefault();
+  const handleMouseDown = () => {
     setEnabled(!enabled)
+    // dispatch -----
+    updateRangeStyle({"fontWeight": !enabled?"bold":"normal"})
     dispatch({
       "type": "toolbarWord",
-      "style": {"fontWeight": !enabled?"normal":"bold"}
+      "style": {"fontWeight": !enabled?"bold":"normal"}
     })
   }
   useEffect(() => {
@@ -323,17 +355,18 @@ const FontWeight = () => {
   )
 }
 
-const FontStyle = () => {
+const FontStyle = ({updateRangeStyle}) => {
   const studio = useStudio();
   const dispatch = useStudioDispatch();
   const contextValue = studio.toolbar.word.fontStyle;
   const [enabled, setEnabled] = useState(false)
-  const handleMouseDown = (e) => {
-    e.preventDefault();
+  const handleMouseDown = () => {
     setEnabled(!enabled)
+    // dispatch -----
+    updateRangeStyle({"fontStyle": !enabled?"italic":"normal"})
     dispatch({
       "type": "toolbarWord",
-      "style": {"fontStyle": !enabled?"normal":"italic"}
+      "style": {"fontStyle": !enabled?"italic":"normal"}
     })
   }
   useEffect(() => {
@@ -350,17 +383,18 @@ const FontStyle = () => {
   )
 }
 
-const TextDecoration = () => {
+const TextDecoration = ({updateRangeStyle}) => {
   const studio = useStudio();
   const dispatch = useStudioDispatch();
   const contextValue = studio.toolbar.word.textDecoration;
   const [enabled, setEnabled] = useState(false)
-  const handleMouseDown = (e) => {
-    e.preventDefault();
+  const handleMouseDown = () => {
     setEnabled(!enabled)
+    // dispatch -----
+    updateRangeStyle({"textDecoration": !enabled?"underline":"none"})
     dispatch({
       "type": "toolbarWord",
-      "style": {"fontStyle": !enabled?"none":"underline"}
+      "style": {"textDecoration": !enabled?"underline":"none"}
     })
   }
   useEffect(() => {
@@ -377,31 +411,5 @@ const TextDecoration = () => {
   )
 }
 
-const WritingMode = () => {
-  const studio = useStudio();
-  const dispatch = useStudioDispatch();
-  const contextValue = studio.toolbar.word.writingMode;
-  const [enabled, setEnabled] = useState(false)
-  const handleMouseDown = (e) => {
-    e.preventDefault();
-    setEnabled(!enabled)
-    dispatch({
-      "type": "toolbarWord",
-      "style": {"fontStyle": !enabled?"horizontal":"vertical-rl"}
-    })
-  }
-  useEffect(() => {
-    if(contextValue === "vertical-rl"){
-      setEnabled(true)
-    }else{
-      setEnabled(false)
-    }
-  }, [contextValue])
-  return (
-    <Button handleMouseDown={handleMouseDown} enabled={enabled}>
-      <AiOutlineVerticalAlignBottom />
-    </Button>
-  )
-}
 
 export default Word;

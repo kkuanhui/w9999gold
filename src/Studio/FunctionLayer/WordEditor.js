@@ -96,7 +96,8 @@ const WordEditor = ({onEditing}) => {
       const endNode = (range.endContainer.tagName === "P")?
                         range.endContainer.previousSibling.lastChild.lastChild:
                         range.endContainer
-      nodesInRange = [...anchorToFocus(startNode, endNode)]
+      if(startNode.data === "" && startNode.nodeName === "#text") return;
+      nodesInRange = anchorToFocus(startNode, endNode)
     }
     const cssObjsInRange = nodesInRange.map(cssText =>  cssTextToObj(cssText))
     const style = cssObjsInRange.reduce((res, cur) => {

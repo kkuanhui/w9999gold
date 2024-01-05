@@ -13,7 +13,7 @@
       "id": 1,
       "type": "word",
       "style": {
-        "writingMode": "horizontal",
+        "writingMode": "horizontal-tb",
         "fontSize": "24px",
         "fontFamily": "brush",
         "top": 100,
