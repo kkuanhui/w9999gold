@@ -42,22 +42,22 @@ const studioReducer = (studio, action) => {
     // meta
     case "active": {
       return {
+        ...studio,
         meta: { ...studio.meta, active: action.active },
-        json: studio.json,
       };
     }
     case "hover": {
       return {
+        ...studio,
         meta: { ...studio.meta, hover: action.hover },
-        json: studio.json,
       };
     }
     case "mode": {
       const modes = ["normal", "word", "image"];
       if (modes.includes(action.mode)) {
         return {
+          ...studio,
           meta: { ...studio.meta, mode: action.mode },
-          json: studio.json,
         };
       } else {
         throw Error("Unknown operateMode: " + action.mode);
@@ -67,8 +67,8 @@ const studioReducer = (studio, action) => {
       const activeId = studio.meta.active.id
       const copy = studio.json.children.filter(item => item.id === activeId)[0]
       return {
+        ...studio,
         meta: {...studio.meta, copy: copy},
-        json: studio.json
       }
     }
     case "cut": {
@@ -76,6 +76,7 @@ const studioReducer = (studio, action) => {
       const copy = studio.json.children.filter(item => item.id === activeId)[0]
       const studioChildren = studio.json.children.filter(item => item.id !== activeId)
       return {
+        ...studio,
         meta: {...studio.meta, copy: copy, active: null},
         json: {...studio.json, children: studioChildren}
       }
@@ -84,6 +85,7 @@ const studioReducer = (studio, action) => {
       const activeId = studio.meta.active.id
       const studioChildren = studio.json.children.filter(item => item.id !== activeId)
       return {
+        ...studio,
         meta: {...studio.meta, active: null},
         json: {...studio.json, children: studioChildren}
       }
@@ -96,11 +98,11 @@ const studioReducer = (studio, action) => {
     }
 
     // toolbar
-    case "toolbar-style": {
+    case "toolbarWord": {
       return {
         ...studio,
         toolbar: {
-          wordStyle: action.wordStyle
+          word: {...studio.toolbar.word, ...action.style}
         }
       }
     }
@@ -108,7 +110,7 @@ const studioReducer = (studio, action) => {
     // json
     case "get": {
       return {
-        meta: studio.meta,
+        ...studio,
         json: action.json,
       };
     }
@@ -122,7 +124,7 @@ const studioReducer = (studio, action) => {
         }
       })
       return { 
-        meta: studio.meta,
+        ...studio,
         json: {
           ...studio.json,
           children: children
@@ -138,7 +140,7 @@ const studioReducer = (studio, action) => {
         }
       })
       return {
-        meta: studio.meta,
+        ...studio,
         json: {
           ...studio.json,
           children: children
@@ -198,6 +200,7 @@ const studioReducer = (studio, action) => {
         return {...ele, id: idx+1}
       })
       return {
+        ...studio,
         meta: {...studio.meta, active: null}, 
         json: {...studio.json, children: sortById}
       }
@@ -249,7 +252,7 @@ const studioReducer = (studio, action) => {
         ]
       }
       return { 
-        meta: studio.meta,
+        ...studio,
         json: {
           ...studio.json,
           children: [...studio.json.children, newWord]
@@ -300,7 +303,7 @@ const studioReducer = (studio, action) => {
 
 const initStudio = {
   toolbar: {
-    wordStyle: {
+    word: {
       'fontFamily': "ariel",
       'fontSize': "24px",
       'writingMode': "horizontal",

@@ -97,12 +97,12 @@
               "style": { "fontWeight": "bold"},
               "children": [{
                 "dom": "#text",
-                "children": "台南 "
+                "children": "3號台南 "
               }]
             },
             {
               "dom": "span",
-              "style": { "fontWeight": "bold"},
+              "style": { "fontWeight": "normal"},
               "children": [{
                 "dom": "#text",
                 "children": "大興宮"
@@ -117,10 +117,7 @@
           "children": [
             {
               "dom": "span",
-              "style": {
-                "fontWeight": "bold",
-                "fontStyle": "italic"
-              },
+              "style": {"fontWeight": "bold", "fontStyle": "normal"},
               "children": [{
                 "dom": "#text",
                 "children": "眾弟子 "
@@ -128,7 +125,7 @@
             },
             {
               "dom": "span",
-              "style": {"fontStyle": "italic"},
+              "style": {"fontWeight": "bold", "fontStyle": "italic"},
               "children": [{
                 "dom": "#text",
                 "children": "敬獻"

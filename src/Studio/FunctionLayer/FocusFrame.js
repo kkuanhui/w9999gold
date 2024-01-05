@@ -1,5 +1,5 @@
 import { useRef, useState, useEffect } from "react";
-import EditFrame from "./EditFrame";
+import WordEditor from "./WordEditor";
 import ShowFrame from "./ShowFrame";
 import EditImageFrame from "./EditImageFrame";
 import ShowImageFrame from "./ShowImageFrame";
@@ -45,6 +45,7 @@ const FocusFrame = () => {
         cursor: isDragging ? "move" : "auto",
       }}
       onMouseDown={() => {
+        // to move item
         if(isEditing) return false;
         let top = activeItem.style.top;
         let left = activeItem.style.left;
@@ -88,7 +89,7 @@ const FocusFrame = () => {
 const FocusOnWhat = ({ isDragging, itemType, onEditing}) => {
   if (itemType === "word") {
     if (!isDragging) {
-      return <EditFrame onEditing={onEditing}></EditFrame>;
+      return <WordEditor onEditing={onEditing}></WordEditor>;
     } else {
       return <ShowFrame></ShowFrame>;
     }

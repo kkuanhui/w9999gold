@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import {
   AiOutlineBold, 
   AiOutlineItalic, 
@@ -10,45 +10,22 @@ import { useStudio, useStudioDispatch } from "../StudioContext";
 import { toolbarHtmlToObj } from "../utilities";
 
 const Word = () => {
+  // state -----
   const dispatch = useStudioDispatch();
   const studio = useStudio();
   const active = studio.meta.active
   const activeItem = studio.json.children.filter(ele => ele.id === active.id)[0]
 
-  // const [headStyle, setHeadStyle] = useState({
-  //   "fontWeight": true,
-  //   "fontStyle": true,
-  //   "textDecoration": true
-  // })
-
-  // const checkIfStyleWhole = (activeItem) => {
-  //   activeItem.children.forEach(child => {
-  //     if(child.dom === "#text"){
-  //       return;
-  //     }else{
-  //       if(child.style.fontWeight !== "bold") setHeadStyle({...headStyle, fontWeight: false})
-  //       if(child.style.fontStyle !== "italic") setHeadStyle({...headStyle, fontStyle: false})
-  //       if(child.style.textDecoration !== "underline") setHeadStyle({...headStyle, textDecoration: false})
-  //       checkIfStyleWhole(child)
-  //     }
-  //   })
-  // }
-
-  // useEffect(() => {
-  //   checkIfStyleWhole(activeItem)
-  //   setTimeout(() => {
-  //     console.log(headStyle)
-  //   }, [3000])
-  // }, [])
-
+  // function -----
   const onActionCalled = (newStyle) => {
-    // if user isn't editing. caret not placed on contenteditalbe.
+    // if user isn't in editing. Do uni-style change.
     if(document.activeElement !== document.getElementById('editable')){
       onUniStyleChange(newStyle)
-      return 0
+      return;
     }
+    // else detect select range and make change on it
     const selection = window.getSelection();
-    const range = selection.getRangeAt(0); // the first one selection range. normally you'll have only one.
+    const range = selection.getRangeAt(0);
     const startNode = range.startContainer
     const endNode = range.endContainer
     const startOffset = range.startOffset
@@ -94,12 +71,6 @@ const Word = () => {
       id: activeItem.id,
       item: {...activeItem, children: toolbarHtmlToObj(newHTMLString)}
     })
-    // const newRange = new Range();
-    // const newEndNode = endNode.parentNode.childNodes[1].childNodes[0]
-    // newRange.setStart(newEndNode, 1);
-    // newRange.collapse(true);
-    // selection.removeAllRanges();
-    // selection.addRange(newRange);
   }
 
   const onItemStyleChange = (newStyle = {}) => {
@@ -158,28 +129,44 @@ const Word = () => {
     >
       <FontFamily onItemStyleChange={onItemStyleChange}></FontFamily>
       <FontSize onItemStyleChange={onItemStyleChange}></FontSize>
+      <WritingMode onItemStyleChange={onItemStyleChange}></WritingMode>
+
+      <div name={"divider"} 
+        style={{
+          borderLeft: "1px solid #b7b7b7", 
+          width: "1px", 
+          height: "50%"
+        }} 
+      />
+
       <FontWeight onActionCalled={onActionCalled}></FontWeight>
       <FontStyle  onActionCalled={onActionCalled}></FontStyle>
       <TextDecoration onActionCalled={onActionCalled}></TextDecoration>
-      <WritingModeVertical onItemStyleChange={onItemStyleChange}></WritingModeVertical>
     </div>
   );
 };
 
-const FontFamily = ({onItemStyleChange}) => {
+const FontFamily = () => {
   // fontFamily affect all content in word
   const studio = useStudio();
-  const active = studio.meta.active;
-  const activeItem = studio.json.children.filter(node => node.id === active.id)[0];
-  const [style, setStyle] = useState("arial");
-  const onStyleChange = (name) => {
-    setStyle(name);
-    onItemStyleChange({"fontFamily": name});
+  const contextValue = studio.toolbar.word.fontFamily
+  const dispatch = useStudioDispatch();
+  const [fontFamily, setFontFamily] = useState(contextValue);
+  const onChangeHandler = (e) => {
+    e.preventDefault();
+    setFontFamily(e.target.value);
+    // dispatch({
+    //   type: "update",
+    //   style: {"fontFamily": font},
+    // })
+    dispatch({
+      type: "toolbarWord",
+      style: {"fontFamily": e.target.value}
+    })
   }
   useEffect(() => {
-    const jsonFontFamily = activeItem.style.fontFamily;
-    setStyle(jsonFontFamily);
-  }, [])
+    setFontFamily(contextValue)
+  }, [contextValue])
   return (
     <div 
       className="d-flex flex-ai-center" 
@@ -195,12 +182,10 @@ const FontFamily = ({onItemStyleChange}) => {
         borderStyle: "none solid",
       }}>
         <select className="width-100 text-center" 
-          value={style} 
+          value={fontFamily} 
           type="number" 
-          onChange={(e) => {
-            e.preventDefault()
-            onStyleChange(e.target.value)}
-          }>
+          onChange={onChangeHandler}
+        >
             <option value="arial">Arial</option>
             <option value="verdana">Verdana</option>
             <option value="tahoma">Tahoma</option> 
@@ -216,27 +201,49 @@ const FontFamily = ({onItemStyleChange}) => {
   );
 }
 
-const FontSize = ({onItemStyleChange}) => {
-  // fontSize affect all content in word
+const FontSize = () => {
   const studio = useStudio();
-  const active = studio.meta.active;
-  const activeItem = studio.json.children.filter(node => node.id === active.id)[0]
-  const [size, setSize] = useState(16);
-  const onSizeAdd = (delta) => {
-    const s = (size + delta).toFixed(0);
-    setSize(Number(s));
-    onItemStyleChange({"fontSize": `${s}px`})
-  };
-  const onSizeChange = (s) => {
-    setSize(Number(s))
-    onItemStyleChange({"fontSize": `${s}px`})
+  const dispatch = useStudioDispatch();
+  const myInput = useRef(null);
+  const contextValue = studio.toolbar.word.fontSize;
+  const [fontSize, setFontSize] = useState(16);
+  // function -----
+  const handleChange = (e) => {
+    e.preventDefault();
+    const value = Number(e.target.value)
+    setFontSize(value)
+    dispatch({
+      type: "toolbarWord",
+      style: {'fontSize': `${value}px`}
+    })
+    // dispatch({
+    //   type: "update",
+    // })
   }
+  const handleMouseDown = (e, value) => {
+    e.preventDefault()
+    myInput.current.value = value
+    setFontSize(value)
+    dispatch({
+      type: "toolbarWord",
+      style: {'fontSize': `${value}px`}
+    })
+    // dispatch({
+    //   type: "update",
+    // })
+  }
+  // lifecycle -----
   useEffect(() => {
-    if(activeItem){
-      const fontSize = activeItem.style.fontSize
-      setSize(Number(fontSize.slice(0, fontSize.length - 2)))
+    const ele = myInput.current
+    ele.addEventListener('change', handleChange)
+    const contextFontSize = Number(contextValue.slice(0, contextValue.length - 2))
+    ele.value = contextFontSize
+    setFontSize(contextFontSize)
+    return () => {
+      ele.removeEventListener('change', handleChange)
     }
-  }, [])
+  }, [contextValue])
+
   return (
     <div 
       className="d-flex flex-ai-center" 
@@ -247,10 +254,7 @@ const FontSize = ({onItemStyleChange}) => {
       >
       <div className="width-20 d-flex flex-ai-center flex-jc-center">
         <button className="d-flex flex-ai-center flex-jc-center" 
-          onMouseDown={(e) => {
-            e.preventDefault();
-            onSizeAdd(-1)
-          }}
+          onMouseDown={(e) => {handleMouseDown(e, fontSize-1)}}
         >
           <FiMinus />
         </button>
@@ -260,121 +264,141 @@ const FontSize = ({onItemStyleChange}) => {
         borderStyle: "none solid",
       }}>
         <input className="width-100 text-center" 
-          value={size} 
+          ref={myInput}
+          defaultValue={fontSize} 
           type="number" 
-          onChange={(e) => {
-            e.preventDefault();
-            onSizeChange(e.target.value);
-          }}
         />
       </div>
       <div className="width-20 d-flex flex-ai-center flex-jc-center">
         <button className="d-flex flex-ai-center flex-jc-center" 
-          onMouseDown={(e) => {
-            e.preventDefault();
-            onSizeAdd(1)
-          }}
+          onMouseDown={(e) => handleMouseDown(e, fontSize+1)}
         >
           <FiPlus />
         </button>
       </div>
-    </div>
+    </div>// 
   );
 };
 
-const Button = ({children, styleEnabled, handleMouseDown}) => {
-  const studio = useStudio()
-  const active = studio.meta.active;
-  const activeItem = studio.json.children.filter(e => e.id === active.id)[0]
+const Button = ({children, handleMouseDown, enabled}) => {
   return (
     <button
       style={{
         width: "25px",
         height: "25px",
         borderRadius: "5px",
-        background: !styleEnabled ? "transparent" : "rgba(33, 129, 0, 0.46)",
+        background: enabled ? "rgba(33, 129, 0, 0.46)": "transparent" ,
       }}
-      onMouseDown={(e) => {
-        if(!activeItem){return false}
-        e.preventDefault();
-        handleMouseDown();
-      }}
+      onMouseDown={handleMouseDown}
     >
       {children}
     </button>
   );
 };
 
-const FontWeight = ({onActionCalled}) => {
-  const [styleEnabled, setStyleEnabled] = useState(false)
-  const handleMouseDown = () => {
-    onActionCalled({"fontWeight": "bold"})
+const FontWeight = () => {
+  const studio = useStudio();
+  const dispatch = useStudioDispatch();
+  const contextValue = studio.toolbar.word.fontWeight;
+  const [enabled, setEnabled] = useState(false)
+  const handleMouseDown = (e) => {
+    e.preventDefault();
+    setEnabled(!enabled)
+    dispatch({
+      "type": "toolbarWord",
+      "style": {"fontWeight": !enabled?"normal":"bold"}
+    })
   }
   useEffect(() => {
-    setStyleEnabled(false)
-  }, [])
+    if(contextValue === "bold"){
+      setEnabled(true)
+    }else{
+      setEnabled(false)
+    }
+  }, [contextValue])
   return (
-    <Button handleMouseDown={handleMouseDown} styleEnabled={styleEnabled}>
+    <Button handleMouseDown={handleMouseDown} enabled={enabled}>
       <AiOutlineBold></AiOutlineBold>  
     </Button>
   )
 }
 
-const FontStyle = ({onActionCalled}) => {
-  const [styleEnabled, setStyleEnabled] = useState(false)
-  const handleMouseDown = () => {
-    onActionCalled({"fontStyle": "italic"})
+const FontStyle = () => {
+  const studio = useStudio();
+  const dispatch = useStudioDispatch();
+  const contextValue = studio.toolbar.word.fontStyle;
+  const [enabled, setEnabled] = useState(false)
+  const handleMouseDown = (e) => {
+    e.preventDefault();
+    setEnabled(!enabled)
+    dispatch({
+      "type": "toolbarWord",
+      "style": {"fontStyle": !enabled?"normal":"italic"}
+    })
   }
   useEffect(() => {
-    setStyleEnabled(false)
-  }, [])
+    if(contextValue === "italic"){
+      setEnabled(true)
+    }else{
+      setEnabled(false)
+    }
+  }, [contextValue])
   return (
-    <Button handleMouseDown={handleMouseDown} styleEnabled={styleEnabled}>
+    <Button handleMouseDown={handleMouseDown} enabled={enabled}>
       <AiOutlineItalic></AiOutlineItalic>  
     </Button>
   )
 }
 
-const TextDecoration = ({onActionCalled}) => {
-  const [styleEnabled, setStyleEnabled] = useState(false)
-  const handleMouseDown = () => {
-    onActionCalled({"textDecoration": "underline"})
+const TextDecoration = () => {
+  const studio = useStudio();
+  const dispatch = useStudioDispatch();
+  const contextValue = studio.toolbar.word.textDecoration;
+  const [enabled, setEnabled] = useState(false)
+  const handleMouseDown = (e) => {
+    e.preventDefault();
+    setEnabled(!enabled)
+    dispatch({
+      "type": "toolbarWord",
+      "style": {"fontStyle": !enabled?"none":"underline"}
+    })
   }
   useEffect(() => {
-    setStyleEnabled(false)
-  }, [])
+    if(contextValue === "underline"){
+      setEnabled(true)
+    }else{
+      setEnabled(false)
+    }
+  }, [contextValue])
   return (
-    <Button handleMouseDown={handleMouseDown} styleEnabled={styleEnabled}>
+    <Button handleMouseDown={handleMouseDown} enabled={enabled}>
       <AiOutlineUnderline></AiOutlineUnderline>  
     </Button>
   )
 }
 
-const WritingModeVertical = ({onItemStyleChange}) => {
-  const [styleEnabled, setStyleEnabled] = useState(false)
+const WritingMode = () => {
   const studio = useStudio();
-  const active = studio.meta.active;
-  const activeItem = studio.json.children.filter(node => node.id === active.id)[0]
-  const handleMouseDown = () => {
-    if(styleEnabled){
-      onItemStyleChange({"writingMode": "horizontal-tb"})
-      setStyleEnabled(false)
-    }else{
-      onItemStyleChange({"writingMode": "vertical-rl"})
-      setStyleEnabled(true)
-    }
+  const dispatch = useStudioDispatch();
+  const contextValue = studio.toolbar.word.writingMode;
+  const [enabled, setEnabled] = useState(false)
+  const handleMouseDown = (e) => {
+    e.preventDefault();
+    setEnabled(!enabled)
+    dispatch({
+      "type": "toolbarWord",
+      "style": {"fontStyle": !enabled?"horizontal":"vertical-rl"}
+    })
   }
-  // lifecycle -----
   useEffect(() => {
-    const isVertical = (activeItem.style.writingMode === "vertical-rl")
-    setStyleEnabled(isVertical)
-  }, [])
-
+    if(contextValue === "vertical-rl"){
+      setEnabled(true)
+    }else{
+      setEnabled(false)
+    }
+  }, [contextValue])
   return (
-    <Button 
-      handleMouseDown={handleMouseDown} 
-      styleEnabled={styleEnabled}
-    >
+    <Button handleMouseDown={handleMouseDown} enabled={enabled}>
       <AiOutlineVerticalAlignBottom />
     </Button>
   )
