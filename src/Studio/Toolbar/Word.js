@@ -64,6 +64,7 @@ const Word = () => {
     }
 
     let myRange = new Range()
+    let postRangeNode = []
     nodesInRange.forEach((node, idx) => {
       if(nodesInRange.length > 1){
         if(idx === 0){
@@ -79,9 +80,13 @@ const Word = () => {
       }else{
         myRange = range
       }
-      const span = document.createElement('span');
+      const span = document.createElement(`span`);
       Object.assign(span.style, newStyle)
       myRange.surroundContents(span);
+      if(idx === 0 || idx === nodesInRange.length - 1){
+        console.log(node)
+        postRangeNode.push(node.parentElement)
+      }
     })
     const newHTMLString = document.getElementById('editable').innerHTML
     dispatch({
@@ -89,6 +94,14 @@ const Word = () => {
       id: activeItem.id,
       item: {...activeItem, children: toolbarHtmlToObj(newHTMLString)}
     })
+    // -----
+    setTimeout(() => {
+      postRangeNode.forEach(e => console.log(e))
+      myRange.setStart(document.getElementById('editable'), 0)
+      myRange.setEnd(document.getElementById('editable'), 2)
+      selection.removeAllRanges();
+      selection.addRange(myRange);
+    }, 100)
   }
 
 
