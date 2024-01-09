@@ -1,0 +1,30 @@
+[
+  {
+    "title": "酬神金牌",
+    "subtitle": "酬神適用",
+    "shapes": 12,
+    "priceStart": 3000,
+    "eName": "plate_deities"
+  },
+  {
+    "title": "創意金牌",
+    "subtitle": "送禮適用",
+    "shapes": 5,
+    "priceStart": 3000,
+    "eName": "plate_creativity"
+  },
+  {
+    "title": "黃金扇",
+    "subtitle": "小物品",
+    "shapes": 11,
+    "priceStart": 2500,
+    "eName": "goldfan"
+  },
+  {
+    "title": "黃金御守",
+    "subtitle": "小物品",
+    "shapes": 13,
+    "priceStart": 1000,
+    "eName": "omori"
+  }
+]

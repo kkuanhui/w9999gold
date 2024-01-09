@@ -1,0 +1,104 @@
+{
+  "uuid": "123456779398",
+  "owner": "guest",
+  "create-date": null,
+  "productStyle": "雙龍搶珠",
+  "productWeight": 3,
+  "productSize": 5,
+  "isLock": false,
+  "price": 25840,
+  "children": [
+    {
+      "id": 1,
+      "type": "word",
+      "style": {
+        "writingMode": "horizontal-tb",
+        "fontSize": "24px",
+        "fontFamily": "brush",
+        "top": 100,
+        "left": 50,
+        "zIndex": 3
+      },
+      "children": [
+        {
+          "dom": "p",
+          "style": {},
+          "children": [
+            {
+              "dom": "span",
+              "style": {},
+              "children": [
+                {
+                  "dom": "#text",
+                  "children": ""
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+
+    {
+      "id": 2,
+      "type": "word",
+      "style": {
+        "writingMode": "horizontal-tb",
+        "fontSize": "24px",
+        "fontFamily": "brush",
+        "top": 100,
+        "left": 50,
+        "zIndex": 3
+      },
+      "children": [
+        {
+          "dom": "p",
+          "style": {},
+          "children": [
+            {
+              "dom": "span",
+              "style": {},
+              "children": [
+                {
+                  "dom": "#text",
+                  "children": ""
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+
+    {
+      "id": 3,
+      "type": "word",
+      "style": {
+        "writingMode": "horizontal-tb",
+        "fontSize": "24px",
+        "fontFamily": "brush",
+        "top": 100,
+        "left": 50,
+        "zIndex": 3
+      },
+      "children": [
+        {
+          "dom": "p",
+          "style": {},
+          "children": [
+            {
+              "dom": "span",
+              "style": {},
+              "children": [
+                {
+                  "dom": "#text",
+                  "children": ""
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

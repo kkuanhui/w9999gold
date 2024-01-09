@@ -71,8 +71,8 @@ const StudioNavBar = () => {
                 <Link style={{color: "#FFFFFF"}} to="/gold">黃金市價</Link>
               </li>
               <li onClick={() => setIsChecked(false)}>
-                <Link style={{ color: "#FFFFFF" }} to="/product">
-                  選擇產品
+                <Link style={{ color: "#FFFFFF" }} to="/products">
+                  鑑賞產品
                 </Link>
               </li>
             </ul>

@@ -3,7 +3,6 @@ import Toolbar from "./Toolbar/Toolbar";
 import FunctionLayer from "./FunctionLayer/FunctionLayer";
 import TriggerLayer from "./TriggerLayer/TriggerLayer";
 import { useStudio } from "./StudioContext";
-import { useEffect } from "react";
 
 const Studio = () => {
   return (
