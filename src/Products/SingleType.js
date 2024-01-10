@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Preview from "./Preview";
-import { useProducts, useProductsDispatch } from "./Context";
+import { useProducts } from "./Context";
 import "../static/css/custom-class.css"
 
 const SingleType = () => {
@@ -9,7 +9,7 @@ const SingleType = () => {
   const params = useParams(); // url parameter
   const products = useProducts();
   const [type, setType] = useState({})
-  const [product, setProduct] = useState({})
+  const [main, setMain] = useState({})
   const [shape, setShape] = useState("雙龍搶珠")
   const [size, setSize] = useState(6)
   const [weight, setWeight] = useState(5)
@@ -25,7 +25,7 @@ const SingleType = () => {
       setType(filteredType)
     }
     if(Object.values(products.main).length !== 0){
-      setProduct(products.main)
+      setMain(products.main)
     }
   },
   [products])
@@ -170,12 +170,16 @@ const SingleType = () => {
           <div style={{ marginTop: "15px" }}>
             <div>總價: <span style={{color: "#026f02"}}>{price}</span></div>
             <button style={{
-              width: "100%", 
-              height: "50px", 
-              color: "#fff", 
-              background: "#000", 
-              borderRadius: "20px"
-            }}>
+                width: "100%", 
+                height: "50px", 
+                color: "#fff", 
+                background: "#000", 
+                borderRadius: "20px"
+              }}
+              onClick={() => {
+                alert('加入購物車')
+              }}
+            >
               加入購物車
             </button>
           </div>

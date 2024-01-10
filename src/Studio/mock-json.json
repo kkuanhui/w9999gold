@@ -8,7 +8,6 @@
   "isLock": false,
   "price": 35359,
   "children": [
-
     {
       "id": 1,
       "type": "word",
@@ -28,34 +27,42 @@
             {
               "dom": "span",
               "style": {},
-              "children": [{
-                "dom": "#text",
-                "children": "功"
-              }]
+              "children": [
+                {
+                  "dom": "#text",
+                  "children": "功"
+                }
+              ]
             },
             {
               "dom": "span",
               "style": {},
-              "children": [{
-                "dom": "#text",
-                "children": "在"
-              }]
+              "children": [
+                {
+                  "dom": "#text",
+                  "children": "在"
+                }
+              ]
             },
             {
               "dom": "span",
               "style": {},
-              "children": [{
-                "dom": "#text",
-                "children": "蘋"
-              }]
+              "children": [
+                {
+                  "dom": "#text",
+                  "children": "蘋"
+                }
+              ]
             },
             {
               "dom": "span",
               "style": {},
-              "children": [{
-                "dom": "#text",
-                "children": "果"
-              }]
+              "children": [
+                {
+                  "dom": "#text",
+                  "children": "果"
+                }
+              ]
             }
           ]
         }
@@ -87,26 +94,29 @@
         "zIndex": 1
       },
       "children": [
-
         {
           "dom": "p",
           "style": {},
           "children": [
             {
               "dom": "span",
-              "style": { "fontWeight": "bold"},
-              "children": [{
-                "dom": "#text",
-                "children": "3號台南 "
-              }]
+              "style": { "fontWeight": "bold" },
+              "children": [
+                {
+                  "dom": "#text",
+                  "children": "3號台南 "
+                }
+              ]
             },
             {
               "dom": "span",
-              "style": { "fontWeight": "normal"},
-              "children": [{
-                "dom": "#text",
-                "children": "大興宮"
-              }]
+              "style": { "fontWeight": "normal" },
+              "children": [
+                {
+                  "dom": "#text",
+                  "children": "大興宮"
+                }
+              ]
             }
           ]
         },
@@ -117,26 +127,27 @@
           "children": [
             {
               "dom": "span",
-              "style": {"fontWeight": "bold", "fontStyle": "normal"},
-              "children": [{
-                "dom": "#text",
-                "children": "眾弟子 "
-              }]
+              "style": { "fontWeight": "bold", "fontStyle": "normal" },
+              "children": [
+                {
+                  "dom": "#text",
+                  "children": "眾弟子 "
+                }
+              ]
             },
             {
               "dom": "span",
-              "style": {"fontWeight": "bold", "fontStyle": "italic"},
-              "children": [{
-                "dom": "#text",
-                "children": "敬獻"
-              }]
+              "style": { "fontWeight": "bold", "fontStyle": "italic" },
+              "children": [
+                {
+                  "dom": "#text",
+                  "children": "敬獻"
+                }
+              ]
             }
           ]
         }
-
       ]
     }
-
-
   ]
 }
