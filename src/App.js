@@ -10,11 +10,11 @@ import Studio from "./Studio/Studio";
 const MainPage = lazy(() => import("./MainPage/MainPage"));
 const GoldPage = lazy(() => import("./GoldPage/GoldPage"));
 const Products = lazy(() => import("./Products/Products"));
-const ProductSingleType = lazy(() => import("./Products/SingleType"))
 
 const App = () => {
   const [footerHieght, setFooterHeight] = useState(150);
   return (
+
     <div
       style={{
         position: "relative",
@@ -61,6 +61,7 @@ const App = () => {
         </Routes>
       </Router>
     </div>
+
   );
 };
 

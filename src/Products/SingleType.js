@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { Link } from "react-router-dom";
 import Preview from "./Preview";
 import { useProducts, useProductsDispatch } from "./Context";
 import "../static/css/custom-class.css"
@@ -11,8 +10,15 @@ const SingleType = () => {
   const products = useProducts();
   const [type, setType] = useState({})
   const [product, setProduct] = useState({})
+  const [shape, setShape] = useState("雙龍搶珠")
   const [size, setSize] = useState(6)
   const [weight, setWeight] = useState(5)
+  const [content, setContent] = useState({})
+  const [price, setPrice] = useState(0)
+  useEffect(() => {
+    const calculate = size*1000 + weight*3000
+    setPrice(calculate)
+  }, [size, weight])
   useEffect(() => {
     if(products.types.length !== 0){
       const filteredType = products.types.filter(ele => ele.eName === params.productType)[0]
@@ -28,7 +34,7 @@ const SingleType = () => {
     <div>
       <div className="d-flex flex-jc-around" style={{ margin: "15px 0px" }}>
 
-        <Preview></Preview>
+        <Preview content={content}></Preview>
 
         <div>
 
@@ -49,29 +55,64 @@ const SingleType = () => {
               <div style={{fontSize: "16px", color: "rgb(58 58 58)"}}>
                 {type.subtitle}
               </div>
-              {/* <button>
-                <Link to={`/studio/${type.eName}`}>
-                  使用進階編輯器
-                </Link>
-              </button> */}
             </div>
           </div>
 
 
           <div style={{ marginTop: "15px" }}>
 
-            <div>
+            <div style={{marginBottom: "5px"}}>
               <label htmlFor="name">神明名稱: </label>
-              <input id="name" type="text" placeholder="名稱" />
+              <input id="name" type="text" placeholder="名稱" 
+                style={{background: "#dadada", padding: "1px 3px", borderRadius: "5px"}}
+                onInput={(e) => {
+                  setContent({...content, name: e.target.value})
+                }} />
             </div>
 
-            <div>
+            <div style={{marginBottom: "5px"}}>
               <label htmlFor="department">敬獻單位: </label>
-              <input id="department" type="text" placeholder="單位" />
+              <input id="department" type="text" placeholder="單位" 
+                style={{background: "#dadada", padding: "1px 3px", borderRadius: "5px"}}
+                onInput={(e) => {
+                  setContent({...content, department: e.target.value})
+                }}  
+              />
             </div>
-            <div>
+
+            <div style={{marginBottom: "5px"}}>
               <label htmlFor="signature">敬獻詞: </label>
-              <input id="signature" type="text" placeholder="敬獻辭" />
+              <input id="signature" type="text" placeholder="敬獻辭" 
+                style={{background: "#dadada", padding: "1px 3px", borderRadius: "5px"}}
+                onInput={(e) => {
+                  setContent({...content, signature: e.target.value})
+                }}
+              />
+            </div>
+
+          </div>
+
+          <div>
+            <div>款式</div>
+            <div className="d-grid grid-column-4">
+                {
+                ["龍鳳搶珠", "雙龍搶珠", "桃形", 
+                  "書卷", "財源滾滾", "廣澤尊王", 
+                  "山水景", "雙虎底"].map(ele => {
+                    return <div
+                    className="d-flex flex-ai-center flex-jc-center hover-border-2e2e2e border-d4d4d4 hover-cursor-pointer" 
+                    onClick={() => {setShape(ele)}}
+                    style={{
+                      width: "80px", 
+                      height: "50px", 
+                      borderRadius: "5px", 
+                      userSelect: "none",
+                      background: (ele === shape)?"#e3e3e3":"transparent"
+                    }}>
+                    {ele}
+                    </div>
+                  })
+                }
             </div>
           </div>
 
@@ -127,18 +168,16 @@ const SingleType = () => {
           </select>
 
           <div style={{ marginTop: "15px" }}>
-            <div>總價: {product.price}</div>
-            {/* <div> */}
-              <button style={{
-                width: "100%", 
-                height: "50px", 
-                color: "#fff", 
-                background: "#000", 
-                borderRadius: "20px"
-              }}>
-                加入購物車
-              </button>
-            {/* </div> */}
+            <div>總價: <span style={{color: "#026f02"}}>{price}</span></div>
+            <button style={{
+              width: "100%", 
+              height: "50px", 
+              color: "#fff", 
+              background: "#000", 
+              borderRadius: "20px"
+            }}>
+              加入購物車
+            </button>
           </div>
 
         </div>
