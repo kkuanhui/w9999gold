@@ -1,5 +1,5 @@
 import stevejobs from "../../static/image/steve-jobs.png";
-import { useStudio } from "../StudioContext";
+import { useStudio } from "../Context";
 
 // image
 const EditImageFrame = () => {

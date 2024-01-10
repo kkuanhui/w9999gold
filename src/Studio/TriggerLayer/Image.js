@@ -1,7 +1,7 @@
 import { useRef } from "react";
 import "../../static/css/general/events.css";
 import stevejobs from "../../static/image/steve-jobs.png"
-import { useStudioDispatch } from "../StudioContext";
+import { useStudioDispatch } from "../Context";
 
 const Image = ({idx, imageObj}) => {
   const component = useRef(null);

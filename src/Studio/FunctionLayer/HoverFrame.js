@@ -1,4 +1,4 @@
-import { useStudio } from "../StudioContext";
+import { useStudio } from "../Context";
 
 const HoverFrame = () => {
   const studio = useStudio();

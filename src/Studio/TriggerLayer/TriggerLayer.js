@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useStudio } from "../StudioContext";
+import { useStudio } from "../Context";
 import Word from "./Word";
 import Image from "./Image";
 import Exit from "./Exit";

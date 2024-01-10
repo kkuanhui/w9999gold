@@ -2,7 +2,7 @@ import { useState, useRef, useEffect} from "react";
 import {GoTriangleLeft, GoTriangleRight} from "react-icons/go";
 import {AiOutlineSearch} from "react-icons/ai";
 import {RiArrowDropDownLine} from "react-icons/ri"
-import {useStudio, useStudioDispatch} from "../StudioContext"
+import {useStudio, useStudioDispatch} from "../Context"
 
 const Normal = () => {
   const studio = useStudio();

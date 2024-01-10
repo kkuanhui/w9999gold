@@ -1,5 +1,5 @@
 import { useRef, useEffect } from "react";
-import { useStudioDispatch } from "../StudioContext";
+import { useStudioDispatch } from "../Context";
 import "../../static/css/custom-class.css";
 import "../../static/css/general/events.css";
 

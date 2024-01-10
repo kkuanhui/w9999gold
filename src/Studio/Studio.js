@@ -1,8 +1,7 @@
-import StudioProvider from "./StudioContext";
+import StudioProvider, {useStudio} from "./Context";
 import Toolbar from "./Toolbar/Toolbar";
 import FunctionLayer from "./FunctionLayer/FunctionLayer";
 import TriggerLayer from "./TriggerLayer/TriggerLayer";
-import { useStudio } from "./StudioContext";
 
 const Studio = () => {
   return (

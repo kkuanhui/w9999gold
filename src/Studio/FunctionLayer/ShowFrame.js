@@ -1,4 +1,4 @@
-import { useStudio } from "../StudioContext"
+import { useStudio } from "../Context"
 import { renderWordObject } from "../utilities";
 
 const ShowFrame = () => {

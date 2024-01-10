@@ -1,7 +1,7 @@
 import Normal from "./Normal";
 import Word from "./Word";
 import Photo from "./Photo";
-import { useStudio } from "../StudioContext";
+import { useStudio } from "../Context";
 
 const Toolbar = () => {
   const studio = useStudio();

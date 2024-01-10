@@ -1,4 +1,4 @@
-import { useStudioDispatch } from "../StudioContext";
+import { useStudioDispatch } from "../Context";
 const Exit = () => {
   const dispatch = useStudioDispatch();
   return(
