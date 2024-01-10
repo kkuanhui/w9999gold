@@ -69,7 +69,7 @@ const RegularNavBar = () => {
               </li>
               <li onClick={() => setIsChecked(false)}>
                 <Link style={{ color: "#FFFFFF" }} to="/products">
-                  鑑賞產品
+                  客製產品
                 </Link>
               </li>
             </ul>
