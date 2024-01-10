@@ -10,6 +10,7 @@ import Studio from "./Studio/Studio";
 const MainPage = lazy(() => import("./MainPage/MainPage"));
 const GoldPage = lazy(() => import("./GoldPage/GoldPage"));
 const Products = lazy(() => import("./Products/Products"));
+const Backstage = lazy(() => import("./Backstage/Backstage"));
 
 const App = () => {
   const [footerHieght, setFooterHeight] = useState(150);
@@ -34,6 +35,7 @@ const App = () => {
             <Route path="/gold/*" element={<GoldPage />}></Route>
             <Route path="/products/*" element={<Products />}></Route>
             <Route path="/studio/*" element={<Studio />}></Route>
+            <Route path="/backstage/*" element={<Backstage />}></Route>
           </Routes>
         </Suspense>
 
