@@ -1,10 +1,10 @@
 import { useRef } from "react";
-import { useStudioDispatch} from "../Context";
+import { useAppDispatch} from "../Context";
 import "../../static/css/general/events.css";
 import { renderWordObject } from "../utilities";
 
 const Word = ({idx, wordObj}) => {
-  const dispatch = useStudioDispatch();
+  const dispatch = useAppDispatch();
   const component = useRef(null);
   return(
     <div 

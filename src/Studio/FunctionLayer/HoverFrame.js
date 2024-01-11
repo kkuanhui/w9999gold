@@ -1,8 +1,8 @@
-import { useStudio } from "../Context";
+import { useApp } from "../Context";
 
 const HoverFrame = () => {
-  const studio = useStudio();
-  const hover = studio.meta.hover
+  const context = useApp();
+  const hover = context.studioMeta.hover
   return (
     <div
       className="m-0 p-0"

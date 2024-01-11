@@ -1,6 +1,6 @@
 import HoverFrame from "./HoverFrame";
 import FocusFrame from "./FocusFrame";
-import { useStudio } from "../Context";
+import { useApp } from "../Context";
 
 /**
  * The FunctionLayer is positioned above the BottomLayer to ensure that elements are not obscured by other elements in component Canvas.
@@ -8,9 +8,9 @@ import { useStudio } from "../Context";
  */
 
 const FunctionLayer = () => {
-  const studio = useStudio();
-  const hoverItem = studio.meta.hover;
-  const activeItem = studio.meta.active;
+  const context = useApp();
+  const hoverItem = context.studioMeta.hover;
+  const activeItem = context.studioMeta.active;
   return (
     <div
       style={{

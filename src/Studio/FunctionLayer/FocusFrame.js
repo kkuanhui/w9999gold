@@ -6,14 +6,14 @@ import ShowImageFrame from "./ShowImageFrame";
 import Contextmenu from "./Contextmenu";
 // css
 import "../../static/css/custom-class.css";
-import { useStudio, useStudioDispatch } from "../Context";
+import { useApp, useAppDispatch } from "../Context";
 
 const FocusFrame = () => {
   // context -----
-  const studio = useStudio();
-  const dispatch = useStudioDispatch();
-  const active = studio.meta.active;
-  const activeItem = studio.json.children.filter((e) => e.id === active.id)[0];
+  const context = useApp();
+  const dispatch = useAppDispatch();
+  const active = context.studioMeta.active;
+  const activeItem = context.customizedContext.children.filter((e) => e.id === active.id)[0];
   // state -----
   const [isDragging, setIsDragging] = useState(false);
   const [isEditing , setIsEditing ] = useState(false);

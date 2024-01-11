@@ -1,21 +1,10 @@
-import StudioProvider, {useStudio} from "./Context";
 import Toolbar from "./Toolbar/Toolbar";
 import FunctionLayer from "./FunctionLayer/FunctionLayer";
 import TriggerLayer from "./TriggerLayer/TriggerLayer";
+import { useApp } from "../Context"
 
 const Studio = () => {
-  return (
-    <StudioProvider>
-      <StudioContent />
-    </StudioProvider>
-  );
-};
-
-const StudioContent = () => {
-  const studio = useStudio();
-  if (studio.json === null) {
-    return <div>loading......</div>;
-  }
+  const context = useApp();
   
   return (
     <>
@@ -62,7 +51,7 @@ const StudioContent = () => {
           overflow: "scroll",
         }}>
           <div style={{
-            scale: `${studio.meta.scale}`,
+            scale: `${context.studioMeta.scale}`,
             width: "500px",
             boxSizing: "content-box",
             aspectRatio: "1 / 1",

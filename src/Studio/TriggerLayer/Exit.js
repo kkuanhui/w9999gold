@@ -1,6 +1,6 @@
-import { useStudioDispatch } from "../Context";
+import { useAppDispatch } from "../Context";
 const Exit = () => {
-  const dispatch = useStudioDispatch();
+  const dispatch = useAppDispatch();
   return(
     <div style={{
       position: "absolute",

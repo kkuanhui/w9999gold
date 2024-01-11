@@ -1,11 +1,12 @@
 import stevejobs from "../../static/image/steve-jobs.png";
-import { useStudio } from "../Context";
+import { useApp } from "../Context";
 
 // image
 const EditImageFrame = () => {
-  const studio = useStudio();
-  const imageObj = studio.json.children.filter(
-    (e) => e.id === studio.meta.active.id
+  const context = useApp();
+  const active = context.studioMeta.active
+  const imageObj = context.customizedContent.children.filter(
+    (e) => e.id === active.id
   )[0];
   return (
     <img

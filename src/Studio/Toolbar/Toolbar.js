@@ -1,12 +1,12 @@
 import Normal from "./Normal";
 import Word from "./Word";
 import Photo from "./Photo";
-import { useStudio } from "../Context";
+import { useApp } from "../Context";
 
 const Toolbar = () => {
-  const studio = useStudio();
-  const mode = studio.meta.mode;
-  const active = studio.meta.active
+  const context = useApp();
+  const mode = context.studioMeta.mode;
+  const active = context.studioMeta.active
   return active=== null ?(
     <Normal />
   ): mode === "normal" ? (

@@ -1,12 +1,5 @@
 {
-  "uuid": "123456779398",
-  "owner": "kuanhui.dev@gmail.com",
-  "create-date": "2023-10-17",
-  "productStyle": "雙龍搶珠",
-  "productWeight": 3,
-  "productSize": 5,
-  "isLock": false,
-  "price": 35359,
+  "uuid": "20240111EDFTGRE",
   "children": [
     {
       "id": 1,

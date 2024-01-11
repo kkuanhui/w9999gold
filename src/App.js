@@ -1,5 +1,6 @@
 import React, { Suspense, lazy, useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import AppProvider from "./Context";
 
 import RegularNavBar from "./NavBar/RegularNavBar";
 import StudioNavBar from "./NavBar/StudioNavBar";
@@ -13,6 +14,14 @@ const Products = lazy(() => import("./Products/Products"));
 const Backstage = lazy(() => import("./Backstage/Backstage"));
 
 const App = () => {
+  return(
+    <AppProvider>
+      <AppContent />
+    </AppProvider>
+  )
+};
+
+const AppContent = () => {
   const [footerHieght, setFooterHeight] = useState(150);
   return (
 

@@ -1,15 +1,15 @@
-import { useCallback, useEffect, useRef, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import ContentEditable from "react-contenteditable"
 import { renderToString } from 'react-dom/server'
-import { useStudio, useStudioDispatch } from "../Context"
+import { useApp, useAppDispatch } from "../Context"
 import { setCursorAtPosition, renderWordObject, genChildrenArr, cssTextToObj} from "../utilities"
 
 const WordEditor = ({onEditing}) => {
   // context -----
-  const dispatch = useStudioDispatch();
-  const studio = useStudio();
-  const active = studio.meta.active // there must be an item being activtive
-  const activeItem = studio.json.children.filter(e => e.id === active.id)[0]
+  const context = useApp();
+  const dispatch = useAppDispatch();
+  const active = context.studioMeta.active // there must be an item being activtive
+  const activeItem = context.customizedContent.children.filter(e => e.id === active.id)[0]
   // ref -----
   const component = useRef(null)
   // state -----

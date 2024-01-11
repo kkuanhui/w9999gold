@@ -1,11 +1,11 @@
-import { useStudio } from "../Context"
+import { useApp } from "../Context"
 import { renderWordObject } from "../utilities";
 
 const ShowFrame = () => {
   // context -----
-  const studio = useStudio();
-  const activeId = studio.meta.active.id
-  const children = studio.json.children
+  const context = useApp();
+  const activeId = context.studioMeta.active.id
+  const children = context.customizedContent.children
   const activeItem = children.filter(e => e.id === activeId)[0]
 
   return(

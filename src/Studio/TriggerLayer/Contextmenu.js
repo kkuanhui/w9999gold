@@ -1,12 +1,11 @@
 import { useRef, useEffect } from "react";
-import { useStudio, useStudioDispatch } from "../Context";
+import { useApp, useAppDispatch } from "../Context";
 import "../../static/css/custom-class.css";
 import "../../static/css/general/events.css";
 
 const Contextmenu = ({ onClose, position }) => {
   const component = useRef(null);
-  const dispatch = useStudioDispatch();
-  const studio = useStudio();
+  const dispatch = useAppDispatch();
   
   const manualClose = () => {
     onClose();

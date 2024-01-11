@@ -1,11 +1,11 @@
 import { useRef } from "react";
 import "../../static/css/general/events.css";
 import stevejobs from "../../static/image/steve-jobs.png"
-import { useStudioDispatch } from "../Context";
+import { useAppDispatch } from "../Context";
 
 const Image = ({idx, imageObj}) => {
   const component = useRef(null);
-  const dispatch = useStudioDispatch();
+  const dispatch = useAppDispatch();
   const style = {
         "position": "absolute",
         "top": imageObj.style.top,

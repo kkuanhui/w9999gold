@@ -1,14 +1,14 @@
 import { useState } from "react";
-import { useStudio } from "../Context";
 import Word from "./Word";
 import Image from "./Image";
 import Exit from "./Exit";
 import Contextmenu from "./Contextmenu";
+import { useApp } from "../Context";
 // test background image -----
 import vector from "../../static/image/Vector.png";
 
 const TriggerLayer = () => {
-  const studio = useStudio();
+  const context = useApp();
   const [position, setPosition] = useState(null)
   return (
     <div
@@ -30,8 +30,8 @@ const TriggerLayer = () => {
 
       <Exit></Exit>
 
-      {studio.json.children.map((item, key) => {
-        const activeId = studio.meta.active?.id 
+      {context.customizedContent.children.map((item, key) => {
+        const activeId = context.studioMeta.active?.id 
         if (item.type === "word" && activeId !== item.id) {
           return <Word key={key} idx={item.id} wordObj={item}></Word>;
         } else if (item.type === "image" && activeId !== item.id) {

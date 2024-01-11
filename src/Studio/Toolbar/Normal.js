@@ -2,12 +2,12 @@ import { useState, useRef, useEffect} from "react";
 import {GoTriangleLeft, GoTriangleRight} from "react-icons/go";
 import {AiOutlineSearch} from "react-icons/ai";
 import {RiArrowDropDownLine} from "react-icons/ri"
-import {useStudio, useStudioDispatch} from "../Context"
+import {useApp, useAppDispatch} from "../Context"
 
 const Normal = () => {
-  const studio = useStudio();
-  const dispatch = useStudioDispatch();
-  const price = studio.json.price;
+  const context = useApp();
+  const dispatch = useAppDispatch();
+  const price = context.customizedMeta.price;
   return (
     <div
       className="d-flex flex-jc-between flex-ai-center"
@@ -25,9 +25,6 @@ const Normal = () => {
           <button name="word"
             style={{height: "100%"}}
             className="hover-background-43ff64d9"
-            onClick={() => {
-              console.log(studio.json)
-            }}
           >
             json
           </button>
@@ -97,7 +94,7 @@ const Normal = () => {
               })
           }}>
           </input>
-          <div>{(Number(studio.meta.scale)*100).toFixed(0)}%</div>
+          <div>{(Number(context.studioMeta.scale)*100).toFixed(0)}%</div>
         </div>
 
       </div>
@@ -164,7 +161,7 @@ const Dropdown = ({children, name}) => {
 // content for illustrate -----
 
 const StyleContent = () => {
-  const dispatch = useStudioDispatch()
+  const dispatch = useAppDispatch()
   const container = useRef(null)
   const options = [
     {value: "A01", name: "雙龍搶珠"}, 
@@ -257,9 +254,9 @@ const StyleContent = () => {
 }
 
 const WeightContent = () => {
-  const studio = useStudio();
-  const dispatch = useStudioDispatch();
-  const weight = studio.json.productWeight
+  const context = useApp();
+  const dispatch = useAppDispatch();
+  const weight = context.studioMeta.weight
   return(
     <div style={{width: "100%", height: "100%"}}>
       <h1>金牌重量</h1>
@@ -298,9 +295,9 @@ const WeightContent = () => {
 }
 
 const SizeContent = () => {
-  const studio = useStudio();
-  const dispatch = useStudioDispatch();
-  const size = studio.json.productSize;
+  const context = useApp();
+  const dispatch = useAppDispatch();
+  const size = context.customizedMeta.size;
   return (
     <div>
       <h1>金牌尺寸</h1>

@@ -6,15 +6,15 @@ import {
   AiOutlineVerticalAlignBottom,
 } from 'react-icons/ai';
 import { FiPlus, FiMinus } from 'react-icons/fi';
-import { useStudio, useStudioDispatch } from "../Context";
+import { useApp, useAppDispatch } from "../Context";
 import { toolbarHtmlToObj } from "../utilities";
 
 const Word = () => {
   // state -----
-  const dispatch = useStudioDispatch();
-  const studio = useStudio();
-  const active = studio.meta.active
-  const activeItem = studio.json.children.filter(ele => ele.id === active.id)[0]
+  const context = useApp();
+  const dispatch = useAppDispatch();
+  const active = context.studioMeta.active
+  const activeItem = context.customizedContent.children.filter(ele => ele.id === active.id)[0]
 
   // function -----
   const updateItemStyle = (newStyle = {}) => {
@@ -153,9 +153,9 @@ const Word = () => {
 
 const FontFamily = ({updateItemStyle}) => {
   // fontFamily affect all content in word
-  const studio = useStudio();
-  const contextValue = studio.toolbar.word.fontFamily
-  const dispatch = useStudioDispatch();
+  const context = useApp();
+  const dispatch = useAppDispatch();
+  const contextValue = context.studioToolbar.word.fontFamily;
   const [fontFamily, setFontFamily] = useState(contextValue);
   const onChangeHandler = (e) => {
     e.preventDefault();
@@ -205,10 +205,10 @@ const FontFamily = ({updateItemStyle}) => {
 }
 
 const FontSize = ({updateItemStyle}) => {
-  const studio = useStudio();
-  const dispatch = useStudioDispatch();
+  const context = useApp();
+  const dispatch = useAppDispatch();
   const myInput = useRef(null);
-  const contextValue = studio.toolbar.word.fontSize;
+  const contextValue = context.studioToolbar.word.fontSize;
   const [fontSize, setFontSize] = useState(16);
   // function -----
   const handleChange = (e) => {
@@ -282,9 +282,9 @@ const FontSize = ({updateItemStyle}) => {
 };
 
 const WritingMode = ({updateItemStyle}) => {
-  const studio = useStudio();
-  const dispatch = useStudioDispatch();
-  const contextValue = studio.toolbar.word.writingMode;
+  const context = useApp();
+  const dispatch = useAppDispatch();
+  const contextValue = context.studioToolbar.word.writingMode;
   const [enabled, setEnabled] = useState(false)
   const handleMouseDown = () => {
     setEnabled(!enabled)
@@ -341,9 +341,9 @@ const Button = ({children, handleMouseDown, enabled}) => {
 };
 
 const FontWeight = ({updateRangeStyle}) => {
-  const studio = useStudio();
-  const dispatch = useStudioDispatch();
-  const contextValue = studio.toolbar.word.fontWeight;
+  const context = useApp();
+  const dispatch = useAppDispatch();
+  const contextValue = context.studioToolbar.word.fontWeight;
   const [enabled, setEnabled] = useState(false)
   const handleMouseDown = () => {
     setEnabled(!enabled)
@@ -369,9 +369,9 @@ const FontWeight = ({updateRangeStyle}) => {
 }
 
 const FontStyle = ({updateRangeStyle}) => {
-  const studio = useStudio();
-  const dispatch = useStudioDispatch();
-  const contextValue = studio.toolbar.word.fontStyle;
+  const context = useApp();
+  const dispatch = useAppDispatch();
+  const contextValue = context.studioToolbar.word.fontStyle;
   const [enabled, setEnabled] = useState(false)
   const handleMouseDown = () => {
     setEnabled(!enabled)
@@ -397,9 +397,9 @@ const FontStyle = ({updateRangeStyle}) => {
 }
 
 const TextDecoration = ({updateRangeStyle}) => {
-  const studio = useStudio();
-  const dispatch = useStudioDispatch();
-  const contextValue = studio.toolbar.word.textDecoration;
+  const context = useApp();
+  const dispatch = useAppDispatch();
+  const contextValue = context.studioToolbar.word.textDecoration;
   const [enabled, setEnabled] = useState(false)
   const handleMouseDown = () => {
     setEnabled(!enabled)
