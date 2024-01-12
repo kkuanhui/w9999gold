@@ -12,6 +12,8 @@ const MainPage = lazy(() => import("./MainPage/MainPage"));
 const GoldPage = lazy(() => import("./GoldPage/GoldPage"));
 const Products = lazy(() => import("./Products/Products"));
 const Backstage = lazy(() => import("./Backstage/Backstage"));
+const Member = lazy(() => import("./Member/Member"));
+const ShoppingCart = lazy(() => import("./ShoppingCart/ShoppingCart"))
 
 const App = () => {
   return(
@@ -45,6 +47,8 @@ const AppContent = () => {
             <Route path="/products/*" element={<Products />}></Route>
             <Route path="/studio/*" element={<Studio />}></Route>
             <Route path="/backstage/*" element={<Backstage />}></Route>
+            <Route path="/member/*" element={<Member />}></Route>
+            <Route path="/shopping-cart/*" element={<ShoppingCart />}></Route>
           </Routes>
         </Suspense>
 

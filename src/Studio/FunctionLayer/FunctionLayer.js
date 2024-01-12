@@ -1,6 +1,6 @@
 import HoverFrame from "./HoverFrame";
 import FocusFrame from "./FocusFrame";
-import { useApp } from "../Context";
+import { useApp } from "../../Context";
 
 /**
  * The FunctionLayer is positioned above the BottomLayer to ensure that elements are not obscured by other elements in component Canvas.

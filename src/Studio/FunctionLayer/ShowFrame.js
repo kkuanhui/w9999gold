@@ -1,4 +1,4 @@
-import { useApp } from "../Context"
+import { useApp } from "../../Context"
 import { renderWordObject } from "../utilities";
 
 const ShowFrame = () => {

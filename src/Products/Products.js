@@ -3,21 +3,11 @@ import { CloudinaryImage } from "@cloudinary/url-gen";
 import { AdvancedImage } from "@cloudinary/react";
 import { Link } from "react-router-dom";
 import "../static/css/product.css";
-import ProductsProvider, { useProducts } from "./Context"
 import { Route, Routes } from "react-router-dom";
 import SingleType from "./SingleType"
+import { useApp } from "../Context";
 
 const Products = () => {
-  return (
-    <ProductsProvider>
-      <ProductsContent />
-    </ProductsProvider>
-  );
-};
-
-export default Products;
-
-const ProductsContent = () => {
   return (
     <Routes>
       <Route index element={<Entry />}></Route>
@@ -27,8 +17,8 @@ const ProductsContent = () => {
 };
 
 const Entry = () => {
-  const products = useProducts();
-  const types = products.types;
+  const context = useApp();
+  const types = context.productTypes;
   return(
     <div
       id="product-cards"
@@ -117,3 +107,5 @@ const Card = ({ type }) => {
     </Link>
   );
 };
+
+export default Products;

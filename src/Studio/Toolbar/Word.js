@@ -6,7 +6,7 @@ import {
   AiOutlineVerticalAlignBottom,
 } from 'react-icons/ai';
 import { FiPlus, FiMinus } from 'react-icons/fi';
-import { useApp, useAppDispatch } from "../Context";
+import { useApp, useAppDispatch } from "../../Context";
 import { toolbarHtmlToObj } from "../utilities";
 
 const Word = () => {

@@ -1,5 +1,5 @@
 import { useRef } from "react";
-import { useAppDispatch} from "../Context";
+import { useAppDispatch} from "../../Context";
 import "../../static/css/general/events.css";
 import { renderWordObject } from "../utilities";
 

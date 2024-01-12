@@ -1,11 +1,15 @@
 import icon from "../static/image/w9999gold-icon.png";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-// navbar
+import { CgProfile, CgShoppingCart } from "react-icons/cg";
+import { useApp } from "../Context";
+
 import '../static/css/navbar.css'
 
 const RegularNavBar = () => {
   
+  const context = useApp();
+  const memberInfo = context.memberInfo;
   const [isChecked, setIsChecked] = useState(false);
 
   const toggleCheck = () => {
@@ -56,22 +60,30 @@ const RegularNavBar = () => {
           <div id="navbar-foldable">
             <div onClick={toggleCheck}></div>
             <ul>
+
               <li onClick={() => setIsChecked(false)}>
                 <Link style={{ color: "#FFFFFF" }} to="/">
                   首頁
                 </Link>
               </li>
-              {/* <li onClick={toggleCheck}>
-                <Link style={{color: "#FFFFFF"}} to="/about-us">關於我們</Link>
-              </li> */}
+
               <li onClick={toggleCheck}>
                 <Link style={{color: "#FFFFFF"}} to="/gold">黃金市價</Link>
               </li>
+
               <li onClick={() => setIsChecked(false)}>
                 <Link style={{ color: "#FFFFFF" }} to="/products">
                   客製產品
                 </Link>
               </li>
+
+              <li>
+                <ShoppingCartIcon></ShoppingCartIcon>
+              </li>
+              <li>
+                <MemberIcon memberInfo={memberInfo}></MemberIcon>
+              </li>
+
             </ul>
           </div>
         </div>
@@ -79,5 +91,25 @@ const RegularNavBar = () => {
     </nav>
   );
 };
+
+const MemberIcon = ({memberInfo}) => {
+  if(memberInfo.email){
+    return <Link style={{color: "#FFF"}} to="/member">
+      <CgProfile />{memberInfo.name}
+    </Link>
+  }else{
+    return <Link style={{ color: "#FFFFFF" }} to="/member">
+      <CgProfile />請登入
+    </Link>
+  }
+}
+
+const ShoppingCartIcon = () => {
+  return (
+    <Link style={{color: "#FFF"}} to="/shopping-cart">
+      <CgShoppingCart />購物車
+    </Link>
+  )
+}
 
 export default RegularNavBar;

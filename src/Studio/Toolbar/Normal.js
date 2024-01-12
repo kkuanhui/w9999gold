@@ -2,7 +2,7 @@ import { useState, useRef, useEffect} from "react";
 import {GoTriangleLeft, GoTriangleRight} from "react-icons/go";
 import {AiOutlineSearch} from "react-icons/ai";
 import {RiArrowDropDownLine} from "react-icons/ri"
-import {useApp, useAppDispatch} from "../Context"
+import {useApp, useAppDispatch} from "../../Context"
 
 const Normal = () => {
   const context = useApp();

@@ -1,5 +1,5 @@
 import stevejobs from "../../static/image/steve-jobs.png";
-import { useApp } from "../Context";
+import { useApp } from "../../Context";
 
 // image
 const ShowImageFrame = () => {

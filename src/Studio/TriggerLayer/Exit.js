@@ -1,4 +1,4 @@
-import { useAppDispatch } from "../Context";
+import { useAppDispatch } from "../../Context";
 const Exit = () => {
   const dispatch = useAppDispatch();
   return(

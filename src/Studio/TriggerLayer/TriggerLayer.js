@@ -3,7 +3,7 @@ import Word from "./Word";
 import Image from "./Image";
 import Exit from "./Exit";
 import Contextmenu from "./Contextmenu";
-import { useApp } from "../Context";
+import { useApp } from "../../Context";
 // test background image -----
 import vector from "../../static/image/Vector.png";
 

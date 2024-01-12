@@ -1,7 +1,7 @@
 import Normal from "./Normal";
 import Word from "./Word";
 import Photo from "./Photo";
-import { useApp } from "../Context";
+import { useApp } from "../../Context";
 
 const Toolbar = () => {
   const context = useApp();

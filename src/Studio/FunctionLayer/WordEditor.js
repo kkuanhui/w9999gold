@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react"
 import ContentEditable from "react-contenteditable"
 import { renderToString } from 'react-dom/server'
-import { useApp, useAppDispatch } from "../Context"
+import { useApp, useAppDispatch } from "../../Context"
 import { setCursorAtPosition, renderWordObject, genChildrenArr, cssTextToObj} from "../utilities"
 
 const WordEditor = ({onEditing}) => {

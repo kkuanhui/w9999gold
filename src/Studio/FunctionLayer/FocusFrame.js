@@ -6,7 +6,7 @@ import ShowImageFrame from "./ShowImageFrame";
 import Contextmenu from "./Contextmenu";
 // css
 import "../../static/css/custom-class.css";
-import { useApp, useAppDispatch } from "../Context";
+import { useApp, useAppDispatch } from "../../Context";
 
 const FocusFrame = () => {
   // context -----

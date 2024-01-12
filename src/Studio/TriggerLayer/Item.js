@@ -1,12 +1,3 @@
-/**
- * Item
- *
- * @param {Number} key
- * @param {Object} productInfo
- * @param {Boolean} activate
- * @param {Function} onActive
- */
-
 import React, {useState, useRef, useEffect} from 'react';
 import RightClick from './RightClick';
 import Word from './Word';

@@ -1,20 +1,24 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import { useProducts } from "./Context";
+import { useApp } from "../Context";
 import vector from "../static/image/Vector.png"
 
 const Preview = ({content}) => {
 
-  const products = useProducts();
+  const context = useApp();
+  const productTypes = context.productTypes
   const params = useParams(); // url parameter
   const [type, setType] = useState({})
+
   useEffect(() => {
-    if(products.types.length !== 0){
-      const filteredType = products.types.filter(ele => ele.eName === params.productType)[0]
+    if(productTypes.length !== 0){
+      const filteredType = productTypes.filter(ele => 
+        ele.eName === params.productType
+      )[0]
       setType(filteredType)
     }
   },
-  [products])
+  [productTypes])
 
   return(
     <div

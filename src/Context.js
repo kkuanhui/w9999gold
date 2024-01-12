@@ -1,8 +1,11 @@
 import { createContext, useReducer, useContext, useEffect } from "react";
 import _ from "lodash";
 // mock data -----
-import mockCustomizedProduct from "./mock/mock-customized-product.json";
+import mockCustomizedProduct from "./mock/mock-customized-content.json";
+import mockCustomizedMeta from "./mock/mock-customized-meta.json"
 import mockTypes from "./mock/mock-types.json";
+import mockShoppingcart from "./mock/mock-shoppingcart.json"
+import mockMember from "./mock/mock-member.json"
 
 const AppContext = createContext(null);
 const AppDispatchContext = createContext(null);
@@ -14,8 +17,13 @@ const AppProvider = ({ children }) => {
     setTimeout(() => {
       dispatch({
         type: "get",
-        customizedProduct: mockCustomizedProduct,
-        types: mockTypes,
+        data: {
+          customizedProduct: mockCustomizedProduct,
+          customizedMeta: mockCustomizedMeta,
+          productTypes: mockTypes,
+          shoppingCart: mockShoppingcart,
+          memberInfo: mockMember,
+        }
       });
     }, 500);
   }, []);
@@ -41,6 +49,25 @@ export const useAppDispatch = () => {
 
 const appReducer = (app, action) => {
   switch (action.type) {
+    // member
+    case "login": {
+      return{
+        ...app,
+        memberInfo: {
+          name: action.name,
+          email: action.email
+        }
+      }
+    }
+    case "logout": {
+      return{
+        ...app,
+        memberInfo: {
+          name: "",
+          email: ""
+        }
+      }
+    }
     // meta
     case "active": {
       return {
@@ -117,7 +144,7 @@ const appReducer = (app, action) => {
     case "get": {
       return {
         ...app,
-        json: action.json,
+        ...action.data
       };
     }
     case "pos": {
@@ -314,6 +341,15 @@ const appReducer = (app, action) => {
 };
 
 const initApp = {
+  memberInfo: {
+    // name: "",
+    // email: "",
+    name: "葉大雄",
+    email: "dora.amom@gmail.com",
+  },
+
+  shoppingCart: [],
+
   productTypes: [],
 
   studioToolbar: {
