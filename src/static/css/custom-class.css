@@ -13,14 +13,31 @@
   border: 1px solid #2e2e2e
 }
 
+.border-868686{
+  border: 1px solid #868686
+}
+
 .border-d4d4d4{
   border: 1px solid #D4D4D4
+}
+
+.border-717171{
+  border: 1px solid #717171
 }
 
 .text-color-6d6d6d {
   color: #6d6d6d;
 }
 
+.color-ff0000 {
+  color: #ff0000;
+}
+
 [contenteditable] {
   outline: 0px solid transparent;
+}
+
+::placeholder{
+  color: rgb(77, 77, 77);
+  opacity: 0.3;
 }

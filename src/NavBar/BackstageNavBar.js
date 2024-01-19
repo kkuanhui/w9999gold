@@ -1,6 +1,6 @@
 import icon from "../static/image/w9999gold-icon.png";
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, Navigate} from "react-router-dom";
 import { CgProfile } from "react-icons/cg";
 import { useApp } from "../Context";
 
@@ -33,12 +33,13 @@ const RegularNavBar = () => {
     <nav
       id="navbar"
       className="width-100 d-flex flex-ai-center flex-jc-center"
+      style={{background: "#696969"}}
     >
       <div className="d-flex flex-ai-center flex-jc-between pr-5 pl-5">
-        <a href="/" className="d-flex">
+        <Link to="/backstage" className="d-flex">
           <img src={icon} alt="icon" width="50" height="24.33"></img>
-          <span style={{color: "#FFFFFF"}}>仕彩金飾</span>
-        </a>
+          <span style={{color: "#FFFFFF"}}>後台管理</span>
+        </Link>
 
         <div>
           <label
@@ -62,18 +63,24 @@ const RegularNavBar = () => {
             <ul>
 
               <li onClick={() => setIsChecked(false)}>
-                <Link style={{ color: "#FFFFFF" }} to="/">
-                  首頁
+                <Link style={{ color: "#FFFFFF" }} to="/backstage/main">
+                  首頁管理
                 </Link>
               </li>
 
               <li onClick={toggleCheck}>
-                <Link style={{color: "#FFFFFF"}} to="/gold">黃金市價</Link>
+                <Link style={{color: "#FFFFFF"}} to="/backstage/gold">金價管理</Link>
               </li>
 
               <li onClick={() => setIsChecked(false)}>
-                <Link style={{ color: "#FFFFFF" }} to="/products">
-                  客製產品
+                <Link style={{ color: "#FFFFFF" }} to="/backstage/products">
+                  產品管理
+                </Link>
+              </li>
+
+              <li onClick={() => setIsChecked(false)}>
+                <Link style={{ color: "#FFFFFF" }} to="/backstage/shopping-cart">
+                  訂單管理
                 </Link>
               </li>
 
@@ -91,13 +98,15 @@ const RegularNavBar = () => {
 
 const MemberIcon = ({memberInfo}) => {
   if(memberInfo.email){
-    return <Link style={{color: "#FFF"}} to="/member">
-      <CgProfile />{memberInfo.name}
-    </Link>
+    return (
+      <Link style={{color: "#fff"}} to="/backstage">
+        <CgProfile />{memberInfo.name}
+      </Link>
+    )
   }else{
-    return <Link style={{ color: "#FFFFFF" }} to="/member">
-      <CgProfile />請登入
-    </Link>
+    return (
+      <Navigate to="/" replace={true} />
+    )
   }
 }
 

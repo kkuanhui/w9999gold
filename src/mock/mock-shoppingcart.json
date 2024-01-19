@@ -4,6 +4,9 @@
     "uuid": "1",
     "price": "23455",
     "style": "雙龍搶珠",
+    "size": "5",
+    "weight": "5",
+    "qty": "1",
     "image": ""
   },
   {
@@ -11,6 +14,9 @@
     "uuid": "2",
     "price": "6000000",
     "style": "雙虎搶珠",
+    "size": "5",
+    "weight": "5",
+    "qty": "1",
     "image": ""
   },
   {
@@ -18,6 +24,9 @@
     "uuid": "3",
     "price": "7642",
     "style": "龍鳳搶珠",
+    "size": "5",
+    "weight": "5",
+    "qty": "1",
     "image": ""
   },
   {
@@ -25,6 +34,9 @@
     "uuid": "4",
     "price": "55678",
     "style": "扇形",
+    "size": "5",
+    "weight": "5",
+    "qty": "1",
     "image": ""
   }
 ]

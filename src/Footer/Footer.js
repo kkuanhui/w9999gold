@@ -82,7 +82,7 @@ const Footer = ({setFooterHeight}) => {
       <div className="font-color-white width-100 text-center" 
         style={{fontSize: "smaller", marginTop: "40px"}}
       >
-        仕彩金飾 2023
+        仕彩金飾 2024
       </div>
 
     </div>
