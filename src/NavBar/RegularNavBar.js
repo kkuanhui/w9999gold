@@ -1,7 +1,7 @@
 import icon from "../static/image/w9999gold-icon.png";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { CgProfile } from "react-icons/cg";
+import { CgShoppingCart, CgProfile } from "react-icons/cg";
 import { useApp } from "../Context";
 
 import '../static/css/navbar.css'
@@ -75,6 +75,10 @@ const RegularNavBar = () => {
                 <Link style={{ color: "#FFFFFF" }} to="/products">
                   客製產品
                 </Link>
+              </li>
+
+              <li>
+                <CgShoppingCart></CgShoppingCart>
               </li>
 
               <li>
