@@ -78,7 +78,10 @@ const RegularNavBar = () => {
               </li>
 
               <li>
-                <CgShoppingCart></CgShoppingCart>
+                <Link style={{color: "#FFFFFF"}} to="/shopping-cart">
+                  <CgShoppingCart></CgShoppingCart>
+                  購物車
+                </Link>
               </li>
 
               <li>
