@@ -1,18 +1,20 @@
 import Toolbar from "./Toolbar/Toolbar";
 import FunctionLayer from "./FunctionLayer/FunctionLayer";
 import TriggerLayer from "./TriggerLayer/TriggerLayer";
+import { useApp } from "../Context";
 import {Routes, Route} from "react-router-dom"
 
 const Studio = () => {
   return(
     <Routes>
       <Route index element={<StudioPage />}></Route>
+      <Route path="*" element={<StudioPage />}></Route>
     </Routes>
   )
 }
 
 const StudioPage = () => {
-  
+  const context = useApp(); 
   return (
     <>
       <div name="toolbar"
@@ -30,7 +32,7 @@ const StudioPage = () => {
         <Toolbar />
       </div>
 
-      {/* <div name="studio-content" 
+      <div name="studio-content" 
         className="d-flex"
         style={{ 
           width: "100%", 
@@ -71,7 +73,7 @@ const StudioPage = () => {
         </div>
 
 
-      </div> */}
+      </div>
     </>
   );
 };

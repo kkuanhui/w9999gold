@@ -12,11 +12,11 @@ const Exit = () => {
     }}
     onClick={() => {
       dispatch({
-        type: "active",
+        type: "studioActive",
         active: null
       })
       dispatch({
-        type: "mode",
+        type: "studioMode",
         mode: "normal"
       })
     }}

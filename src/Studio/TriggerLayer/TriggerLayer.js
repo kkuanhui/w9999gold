@@ -30,7 +30,7 @@ const TriggerLayer = () => {
 
       <Exit></Exit>
 
-      {context.customizedContent.children.map((item, key) => {
+      {context.productContent.children.map((item, key) => {
         const activeId = context.studioMeta.active?.id 
         if (item.type === "word" && activeId !== item.id) {
           return <Word key={key} idx={item.id} wordObj={item}></Word>;

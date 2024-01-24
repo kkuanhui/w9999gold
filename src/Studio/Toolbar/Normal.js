@@ -7,7 +7,7 @@ import {useApp, useAppDispatch} from "../../Context"
 const Normal = () => {
   const context = useApp();
   const dispatch = useAppDispatch();
-  const price = context.customizedMeta.price;
+  const price = context.productMeta.price;
   return (
     <div
       className="d-flex flex-jc-between flex-ai-center"
@@ -297,7 +297,7 @@ const WeightContent = () => {
 const SizeContent = () => {
   const context = useApp();
   const dispatch = useAppDispatch();
-  const size = context.customizedMeta.size;
+  const size = context.productMeta.size;
   return (
     <div>
       <h1>金牌尺寸</h1>

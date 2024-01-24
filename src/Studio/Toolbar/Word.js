@@ -14,7 +14,7 @@ const Word = () => {
   const context = useApp();
   const dispatch = useAppDispatch();
   const active = context.studioMeta.active
-  const activeItem = context.customizedContent.children.filter(ele => ele.id === active.id)[0]
+  const activeItem = context.productContent.children.filter(ele => ele.id === active.id)[0]
 
   // function -----
   const updateItemStyle = (newStyle = {}) => {

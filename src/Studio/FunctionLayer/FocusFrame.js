@@ -13,7 +13,7 @@ const FocusFrame = () => {
   const context = useApp();
   const dispatch = useAppDispatch();
   const active = context.studioMeta.active;
-  const activeItem = context.customizedContext.children.filter((e) => e.id === active.id)[0];
+  const activeItem = context.productContent.children.filter((e) => e.id === active.id)[0];
   // state -----
   const [isDragging, setIsDragging] = useState(false);
   const [isEditing , setIsEditing ] = useState(false);

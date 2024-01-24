@@ -4,7 +4,6 @@ import Photo from "./Photo";
 import { useApp } from "../../Context";
 
 const Toolbar = () => {
-  console.log('toolbar')
   const context = useApp();
   const mode = context.studioMeta.mode;
   const active = context.studioMeta.active

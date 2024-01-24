@@ -22,11 +22,11 @@ const Word = ({idx, wordObj}) => {
       }} 
       onFocus={() => {
         dispatch({
-          type: "mode", 
+          type: "studioMode", 
           mode: 'word'
         });
         dispatch({
-          type: "active",
+          type: "studioActive",
           active: {
             id: idx,
             width: component.current.offsetWidth, 
@@ -34,13 +34,13 @@ const Word = ({idx, wordObj}) => {
           }
         })
         dispatch({
-          type: "hover",
+          type: "studioHover",
           hover: null
         })
       }}
       onMouseEnter={() => {
         dispatch({
-          type: "hover",
+          type: "studioHover",
           hover: {
             top: wordObj.style.top,
             left: wordObj.style.left,
@@ -51,7 +51,7 @@ const Word = ({idx, wordObj}) => {
       }}
       onMouseLeave={() => {
         dispatch({
-          type: "hover",
+          type: "studioHover",
           hover: null
         })
       }}

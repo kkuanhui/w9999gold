@@ -24,11 +24,11 @@ const Image = ({idx, imageObj}) => {
       src={stevejobs}
       onFocus={() => {
         dispatch({
-          type: "mode", 
+          type: "studioMode", 
           mode: 'image'
         });
         dispatch({
-          type: "active",
+          type: "studioActive",
           active: {
             id: idx,
             width: component.current.offsetWidth, 
@@ -36,13 +36,13 @@ const Image = ({idx, imageObj}) => {
           }
         })
         dispatch({
-          type: "hover",
+          type: "studioHover",
           hover: null
         })
       }}
       onMouseEnter={() => {
         dispatch({
-          type: "hover",
+          type: "studioHover",
           hover: {
             top: imageObj.style.top,
             left: imageObj.style.left,
@@ -53,7 +53,7 @@ const Image = ({idx, imageObj}) => {
       }}
       onMouseLeave={() => {
         dispatch({
-          type: "hover",
+          type: "studioHover",
           hover: null
         })
       }}
