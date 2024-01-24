@@ -20,11 +20,10 @@ const Register = () => {
         }}
       >
         <div style={{ width: "350px", height: "400px" }}>
-          <h1
-            className="text-center width-100 font-size-15"
+          <h1 className="text-center width-100 font-size-15"
             style={{ marginBottom: "25px" }}
           >
-            註冊
+            更改資料
           </h1>
 
           <div
@@ -89,7 +88,7 @@ const Register = () => {
               console.log("register!");
             }}
           >
-            送出
+            註冊
           </button>
         </div>
       </div>

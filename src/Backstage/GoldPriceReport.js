@@ -1,4 +1,5 @@
-const Gold = () => {
+import "../static/css/custom-class.css"
+const GoldPriceReport = () => {
   return (
     <div className="width-70 ml-auto mr-auto">
 
@@ -74,8 +75,8 @@ const Gold = () => {
       <div className="mb-3">
         <h2 className="font-size-20">報價警語</h2>
         <textarea 
-          className="border-d4d4d4 width-100 font-size-10" 
-          style={{height: "300px"}} 
+          className="d-block border-d4d4d4 width-100 font-size-10 p-3" 
+          style={{height: "300px", borderRadius: "15px"}} 
         />
         <button className="pt-1 pb-1 pl-3 pr-3"
           style={{background: "#000", color: "#fff", borderRadius: "15px"}}>
@@ -87,4 +88,4 @@ const Gold = () => {
   );
 };
 
-export default Gold;
+export default GoldPriceReport;

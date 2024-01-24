@@ -1,10 +1,10 @@
 import { GoTrash } from "react-icons/go";
 import { useApp } from "../Context";
 
-const ShoppingCart = () => {
+const Cart = () => {
   const context = useApp();
-  const shoppingCart = context.shoppingCart;
-  if(shoppingCart.length === 0){
+  const cart = context.cart;
+  if(cart.length === 0){
     return (
       <div>
         購物車沒有東西。
@@ -47,7 +47,6 @@ const ListItem = () => {
         style={{ width: "30px", height: "30px", border: "1px solid #000" }}
       />
       <div style={{ width: "150px", height: "150px", background: "#D9D9D9" }}></div>
-
       <div className="d-grid height-100" style={{gridTemplateRows: "auto"}}>
         <div className="font-size-15 font-bold d-flex flex-ai-start">酬神金牌</div>
         <div className="font-size-10" style={{ color: "#707072" }}>
@@ -74,12 +73,10 @@ const ListItem = () => {
           <GoTrash></GoTrash>
         </div>
       </div>
-
       <div className="font-size-15 font-bold" 
         style={{height: "100%"}}>
           $15,000
       </div>
-
     </div>
   );
 };
@@ -88,25 +85,20 @@ const PriceSum = () => {
   return (
     <div style={{ width: "300px" }}>
       <h2 className="font-size-15 font-bold mb-5">摘要</h2>
-
       <div className="font-size-10">你選擇了 2 個產品</div>
       <div className="d-flex flex-jc-between flex-ai-center">
         <div className="font-size-15 font-bold">小計</div>
         <div className="font-size-15 font-bold">$30,000</div>
       </div>
-
       <div className="d-flex flex-jc-between flex-ai-center">
         <div className="font-size-15 font-bold">運費</div>
         <div className="font-size-15 font-bold">$0</div>
       </div>
-
       <div style={{ width: "300px", borderBottom: "1px solid #E7E7E7" }}></div>
-
       <div className="d-flex flex-jc-between flex-ai-center">
         <div className="font-size-15 font-bold">總計</div>
         <div className="font-size-15 font-bold">$30,000</div>
       </div>
-
       <div className="d-flex flex-jc-end flex-ai-center width-100">
         <button
           className="d-flex flex-ai-center flex-jc-center font-bold"
@@ -125,4 +117,4 @@ const PriceSum = () => {
   );
 };
 
-export default ShoppingCart;
+export default Cart;

@@ -3,7 +3,7 @@ import Jumbotron from "./Jumbotron.js";
 import GoogleMap from "./GoogleMap.js";
 import Feature from "./Feature.js";
 
-const MainPage = () => {
+const CoverPage = () => {
   return (
     <>
       <Jumbotron />
@@ -13,4 +13,4 @@ const MainPage = () => {
   );
 };
 
-export default MainPage;
+export default CoverPage;

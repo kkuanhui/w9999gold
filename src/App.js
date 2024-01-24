@@ -1,100 +1,57 @@
-import React, { Suspense, lazy, useState } from "react";
+import React, { Suspense, lazy } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import AppProvider from "./Context";
 
-import RegularNavBar from "./NavBar/RegularNavBar";
-import StudioNavBar from "./NavBar/StudioNavBar";
-import BackstageNavBar from "./NavBar/BackstageNavBar";
+import NavBar from "./NavBar/NavBar";
 import Footer from "./Footer/Footer";
-import NoFooter from "./Footer/NoFooter";
-import Studio from "./Studio/Studio";
 
-const MainPage = lazy(() => import("./MainPage/MainPage"));
-const GoldPage = lazy(() => import("./GoldPage/GoldPage"));
+const CoverPage = lazy(() => import("./CoverPage/CoverPage"));
+const GoldPriceReport = lazy(() => import("./GoldPriceReport/GoldPriceReport"));
 const Products = lazy(() => import("./Products/Products"));
-// member aspect
+const Cart = lazy(() => import("./Cart/Cart"));
 const Member = lazy(() => import("./Member/Member"));
-const ShoppingCart = lazy(() => import("./ShoppingCart/ShoppingCart"))
-// exclusive
 const Backstage = lazy(() => import("./Backstage/Backstage"));
-const BackstageMain = lazy(() => import("./Backstage/Main"));
-const BackstageGold = lazy(() => import("./Backstage/Gold"));
-const BackstageProducts = lazy(() => import("./Backstage/Products"));
-const BackstageShoppingCart = lazy(() => import("./Backstage/ShoppingCart"));
+const Studio = lazy(() => import("./Studio/Studio"));
+const Error = lazy(() => import("./Error"));
 
 const App = () => {
-  return(
+  return (
     <AppProvider>
       <AppContent />
     </AppProvider>
-  )
+  );
 };
 
 const AppContent = () => {
-  const [footerHieght, setFooterHeight] = useState(150);
   return (
+    <Router>
+      <NavBar></NavBar>
 
-    <div
-      style={{
-        position: "relative",
-        minHeight: "100vh",
-        paddingBottom: `${footerHieght}px`,
-      }}
-    >
-      <Router>
-        <Routes>
-          <Route path="*" element={<RegularNavBar />}></Route>
-          <Route path="/studio/*" element={<StudioNavBar />}></Route>
-          <Route path="/backstage/*" element={<BackstageNavBar />}></Route>
-        </Routes>
-
+      <div
+        style={{ minHeight: "calc(100vh - 50px)" }}
+        // NavBar height 50px.
+        // minHeight is not fixed height.
+        // height percentage cannot applied in upcoming children
+      >
         <Suspense fallback={<div>loading...</div>}>
           <Routes>
-
-            <Route index element={<MainPage />}></Route>
-            <Route path="/main/*" element={<MainPage />}></Route>
-            <Route path="/gold/*" element={<GoldPage />}></Route>
+            <Route index element={<CoverPage />}></Route>
+            <Route
+              path="/gold-price-report"
+              element={<GoldPriceReport />}
+            ></Route>
+            <Route path="/cart" element={<Cart />}></Route>
             <Route path="/products/*" element={<Products />}></Route>
             <Route path="/studio/*" element={<Studio />}></Route>
-
             <Route path="/member/*" element={<Member />}></Route>
-            <Route path="/shopping-cart/*" element={<ShoppingCart />}></Route>
-
             <Route path="/backstage/*" element={<Backstage />}></Route>
-            <Route path="/backstage/main/*" element={<BackstageMain />}></Route>
-            <Route path="/backstage/gold/*" element={<BackstageGold />}></Route>
-            <Route path="/backstage/products/*" element={<BackstageProducts />}></Route>
-            <Route path="/backstage/shopping-cart/*" element={<BackstageShoppingCart />}></Route>
-
+            <Route path="*" element={<Error />}></Route>
           </Routes>
         </Suspense>
+      </div>
 
-        <Routes>
-          <Route
-            path="*"
-            element={
-              <Footer
-                setFooterHeight={(v) => {
-                  setFooterHeight(v);
-                }}
-              ></Footer>
-            }
-          ></Route>
-          <Route
-            path="/studio/*"
-            element={
-              <NoFooter
-                setFooterHeight={(v) => {
-                  setFooterHeight(v);
-                }}
-              ></NoFooter>
-            }
-          ></Route>
-        </Routes>
-
-      </Router>
-    </div>
-
+      <Footer></Footer>
+    </Router>
   );
 };
 

@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 
-const GoldPage = () => {
+const GoldPriceReport = () => {
   return (
-    <div id="app-gold" style={{}}>
+    <div>
       <div>
         <PriceIntro></PriceIntro>
         {/* <PriceChart></PriceChart> */}
@@ -62,4 +62,4 @@ const PriceIntro = () => {
   );
 };
 
-export default GoldPage;
+export default GoldPriceReport;

@@ -1,4 +1,4 @@
-const ShoppingCart = () => {
+const Cart = () => {
   return (
     <div className="ml-auto mr-auto" style={{ width: "70%" }}>
       <h1>網站訂單管理</h1>
@@ -6,4 +6,4 @@ const ShoppingCart = () => {
   );
 };
 
-export default ShoppingCart;
+export default Cart;

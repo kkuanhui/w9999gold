@@ -1,16 +1,15 @@
-import icon from "../static/image/w9999gold-icon.png";
+import icon from "../static/image/w9999gold-icon-black.png";
 import React, { useEffect, useState } from "react";
 import { CgShoppingCart, CgProfile } from "react-icons/cg";
 import { Link } from "react-router-dom";
 import { useApp } from "../Context";
 // navbar
-import '../static/css/navbar.css'
+import "../static/css/navbar.css";
 
 const StudioNavBar = () => {
-
   const context = useApp();
-  const memberInfo = context.memberInfo;
-  
+  const member = context.member;
+
   const [isChecked, setIsChecked] = useState(false);
 
   const toggleCheck = () => {
@@ -24,34 +23,33 @@ const StudioNavBar = () => {
         setIsChecked(false);
       }
     };
-    window.addEventListener('resize', handleResize);
+    window.addEventListener("resize", handleResize);
     return () => {
-      window.removeEventListener('resize', handleResize);
+      window.removeEventListener("resize", handleResize);
     };
   }, [isChecked]);
 
   return (
-    <nav id="navbar"
+    <nav
+      id="navbar"
       className="width-100 d-flex flex-ai-center flex-jc-center"
       style={{
         height: "100px",
-        background: "linear-gradient(90deg, #A76E00 0.77%, #FF9C28 33.85%, #FFB750 66.92%, #DAAA00 100%)",
+        background:
+          "linear-gradient(90deg, #A76E00 0.77%, #FF9C28 33.85%, #FFB750 66.92%, #DAAA00 100%)",
       }}
     >
-      <div style={{color: "black"}}
-        className="d-flex flex-ai-center flex-jc-between pr-5 pl-5" 
-      >
-
-        <a href="/" className="d-flex">
+      <div className="d-flex flex-ai-center flex-jc-between pr-5 pl-5">
+        <a href="/" className="d-flex flex-ai-center flex-jc-center">
           <img src={icon} alt="icon" width="50" height="24.33"></img>
-          <span style={{color: "#FFFFFF"}}>仕彩金飾</span>
+          <span style={{color: "#000"}}>仕彩金飾</span>
         </a>
 
         <div>
           <label
             className="font-size-20"
             id="navbar-toggler-label"
-            style={{ color: "#FFFFFF" }}
+            style={{color: "#000"}}
             htmlFor="navbar-toggler"
           >
             &#9776;
@@ -67,54 +65,70 @@ const StudioNavBar = () => {
           <div id="navbar-foldable">
             <div onClick={toggleCheck}></div>
             <ul>
-
               <li onClick={() => setIsChecked(false)}>
-                <Link style={{ color: "#FFFFFF" }} to="/">
+                <Link style={{color: "#000"}} to="/">
                   首頁
                 </Link>
               </li>
 
               <li onClick={toggleCheck}>
-                <Link style={{color: "#FFFFFF"}} to="/gold">黃金市價</Link>
+                <Link style={{color: "#000"}} to="/gold-price-report">
+                  黃金市價
+                </Link>
               </li>
 
               <li onClick={() => setIsChecked(false)}>
-                <Link style={{ color: "#FFFFFF" }} to="/products">
-                  客製產品  
+                <Link style={{color: "#000"}} to="/products">
+                  客製產品
                 </Link>
               </li>
 
-              <li>
-                <Link style={{color: "#FFFFFF"}} to="/shopping-cart">
+              <li className="position-relative">
+                <Link className="d-flex flex-ai-center flex-jc-center position-relative" 
+                  style={{color: "#000"}} to="/cart"
+                >
                   <CgShoppingCart></CgShoppingCart>
                   購物車
+                  <CartCount />
                 </Link>
               </li>
 
               <li>
-                <MemberIcon memberInfo={memberInfo}></MemberIcon>
+                <MemberIcon member={member}></MemberIcon>
               </li>
-
-
             </ul>
           </div>
         </div>
-
       </div>
     </nav>
   );
 };
 
-const MemberIcon = ({memberInfo}) => {
-  if(memberInfo.email){
-    return <Link style={{color: "#FFF"}} to="/member">
-      <CgProfile />{memberInfo.name}
+const MemberIcon = ({ member }) => {
+  return (
+    <Link className="d-flex flex-ai-center flex-jc-center" 
+      style={{color: "#000"}} to="/member">
+      <CgProfile />{(member.email)?member.name:"請登入"}
     </Link>
-  }else{
-    return <Link style={{ color: "#FFFFFF" }} to="/member">
-      <CgProfile />請登入
-    </Link>
-  }
-}
+  );
+};
+
+const CartCount = () => {
+  return (
+    <span
+      className="color-white font-bold d-flex flex-ai-center flex-jc-center"
+      style={{
+        width: "16px",
+        height: "16px",
+        fontSize: "10px",
+        background: "#FF0000",
+        borderRadius: "100px",
+        fontFamily: "Tahoma",
+      }}
+    >
+      0
+    </span>
+  );
+};
 
 export default StudioNavBar;

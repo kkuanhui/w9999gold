@@ -1,14 +1,62 @@
+// package -----
 import { createContext, useReducer, useContext, useEffect } from "react";
 import _ from "lodash";
-// mock data -----
-import mockCustomizedProduct from "./mock/mock-customized-content.json";
-import mockCustomizedMeta from "./mock/mock-customized-meta.json"
-import mockTypes from "./mock/mock-types.json";
-import mockShoppingcart from "./mock/mock-shoppingcart.json"
-import mockMember from "./mock/mock-member.json"
 
+// mock data -----
+import mockProductContent from "./mock/mock-product-content.json";
+import mockProductMeta from "./mock/mock-product-meta.json"
+import mockProductTypes from "./mock/mock-product-types.json";
+import mockMember from "./mock/mock-member.json"
+import mockCart from "./mock/mock-cart.json"
+
+// context -----
 const AppContext = createContext(null);
 const AppDispatchContext = createContext(null);
+
+const initApp = {
+  member: {
+    name: "",
+    email: "",
+    phone: "",
+  },
+  cart: [],
+  // product
+  productTypes: [],
+  productMeta: {
+    uuid: null,
+    owner: "guest",
+    createDate: null,
+    product: "",
+    style: "",
+    weight: 0,
+    size: 0,
+    isLock: false,
+    price: 0,
+  },
+  productContent: {
+    uuid: null,
+    children: [],
+  },
+  // studio -> temporary state
+  studioMeta: {
+    mode: "normal",
+    scale: 1,
+    active: null,
+    hover: null,
+    copy: null,
+  },
+  studioToolbar: {
+    word: {
+      fontFamily: "ariel",
+      fontSize: "24px",
+      writingMode: "horizontal",
+      fontWeight: "normal",
+      fontStyle: "italic",
+      textDecoration: "none",
+    },
+    image: {},
+  },
+};
 
 const AppProvider = ({ children }) => {
   const [context, dispatch] = useReducer(appReducer, initApp);
@@ -18,11 +66,11 @@ const AppProvider = ({ children }) => {
       dispatch({
         type: "get",
         data: {
-          customizedProduct: mockCustomizedProduct,
-          customizedMeta: mockCustomizedMeta,
-          productTypes: mockTypes,
-          shoppingCart: mockShoppingcart,
-          memberInfo: mockMember,
+          productContent: mockProductContent,
+          productMeta: mockProductMeta,
+          productTypes: mockProductTypes,
+          cart: mockCart,
+          member: mockMember,
         }
       });
     }, 500);
@@ -47,109 +95,142 @@ export const useAppDispatch = () => {
   return useContext(AppDispatchContext);
 };
 
-const appReducer = (app, action) => {
+// reducer -----
+const appReducer = (context, action) => {
   switch (action.type) {
-    // member
+    // request database -----
+    case "get": {
+      return {
+        ...context,
+        ...action.data
+      };
+    }
+
+    // function member -----
     case "login": {
       return{
-        ...app,
-        memberInfo: {
-          name: action.name,
-          email: action.email
+        ...context,
+        member: {
+          ...context.member,
+          ...action.member
         }
       }
     }
     case "logout": {
-      return{
-        ...app,
-        memberInfo: {
-          name: "",
-          email: ""
+      const emptyMemberInfo = {...context.member}
+      for (let key in emptyMemberInfo) {
+        if (emptyMemberInfo.hasOwnProperty(key)) {
+          emptyMemberInfo[key] = null;
         }
       }
+      return{
+        ...context,
+        member: emptyMemberInfo
+      }
     }
-    // meta
-    case "active": {
+
+    // studio meta -----
+    case "studioActive": {
       return {
-        ...app,
-        meta: { ...app.meta, active: action.active },
+        ...context,
+        studioMeta: { ...context.studioMeta, active: action.active },
       };
     }
-    case "hover": {
+    case "studioHover": {
       return {
-        ...app,
-        meta: { ...app.meta, hover: action.hover },
+        ...context,
+        studioMeta: { ...context.studioMeta, hover: action.hover },
       };
     }
-    case "mode": {
+    case "studioMode": {
       const modes = ["normal", "word", "image"];
       if (modes.includes(action.mode)) {
         return {
-          ...app,
-          meta: { ...app.meta, mode: action.mode },
+          ...context,
+          studioMeta: { ...context.studioMeta, mode: action.mode },
         };
       } else {
         throw Error("Unknown operateMode: " + action.mode);
       }
     }
-    case "copy": {
-      const activeId = app.meta.active.id;
-      const copy = app.json.children.filter((item) => item.id === activeId)[0];
+    case "studioCopy": {
+      const activeId = context.studioMeta.active.id;
+      const content = context.productContent
+      const copy = content.filter((item) => item.id === activeId)[0];
       return {
-        ...app,
-        meta: { ...app.meta, copy: copy },
+        ...context,
+        studioMeta: { 
+          ...context.studioMeta, 
+          copy: copy 
+        },
       };
     }
-    case "cut": {
-      const activeId = app.meta.active.id;
-      const copy = app.json.children.filter((item) => item.id === activeId)[0];
-      const studioChildren = app.json.children.filter(
+    case "studioCut": {
+      const activeId = context.studioMeta.active.id;
+      const content = context.productContent;
+      const copy = content.children.filter((item) => item.id === activeId)[0];
+      const studioChildren = content.children.filter(
         (item) => item.id !== activeId
       );
       return {
-        ...app,
-        meta: { ...app.meta, copy: copy, active: null },
-        json: { ...app.json, children: studioChildren },
+        ...context,
+        studioMeta: { 
+          ...context.studioMeta, 
+          copy: copy, 
+          active: null 
+        },
+        productContent: { 
+          ...context.productContent, 
+          children: studioChildren 
+        },
       };
     }
     case "delete": {
-      const activeId = app.meta.active.id;
-      const studioChildren = app.json.children.filter(
+      const activeId = context.studioMeta.active.id;
+      const content = context.productContent;
+      const studioChildren = content.children.filter(
         (item) => item.id !== activeId
       );
       return {
-        ...app,
-        meta: { ...app.meta, active: null },
-        json: { ...app.json, children: studioChildren },
+        ...context,
+        studioMeta: { 
+          ...context.meta, 
+          active: null 
+        },
+        productContent: { 
+          ...context.productContent, 
+          children: studioChildren 
+        },
       };
     }
-    case "zoom": {
+    case "scale": {
       return {
-        ...app,
-        meta: { ...app.meta, scale: action.scale },
-      };
-    }
-
-    // toolbar
-    case "toolbarWord": {
-      return {
-        ...app,
-        toolbar: {
-          word: { ...app.toolbar.word, ...action.style },
+        ...context,
+        studioMeta: { 
+          ...context.studioMeta, 
+          scale: action.scale 
         },
       };
     }
 
-    // json
-    case "get": {
+    // studio toolbar -----
+    case "toolbarWord": {
       return {
-        ...app,
-        ...action.data
+        ...context,
+        studioToolbar: {
+          ...context.studioToolbar,
+          word: { 
+            ...context.studioToolbar.word, 
+            ...action.style 
+          },
+        },
       };
     }
+
     case "pos": {
       // update item position
-      const children = [...app.json.children].map((e) => {
+      const content = context.productContent
+      const children = [...content.children].map((e) => {
         if (e.id === action.item.id) {
           return action.item;
         } else {
@@ -157,15 +238,16 @@ const appReducer = (app, action) => {
         }
       });
       return {
-        ...app,
-        json: {
-          ...app.json,
+        ...context,
+        productContent: {
+          ...context.productContent,
           children: children,
         },
       };
     }
     case "update": {
-      const children = [...app.json.children].map((ele) => {
+      const content = context.productContent
+      const children = [...content.children].map((ele) => {
         if (ele.id !== action.id) {
           return ele;
         } else {
@@ -173,16 +255,17 @@ const appReducer = (app, action) => {
         }
       });
       return {
-        ...app,
-        json: {
-          ...app.json,
+        ...context,
+        productContent: {
+          ...context.productContent,
           children: children,
         },
       };
     }
     case "sort": {
-      const children = [...app.json.children];
-      const targetId = app.meta.active.id;
+      const content = context.productContent;
+      const children = [...content.children];
+      const targetId = context.studioMeta.active.id;
       const preservedZ = children.filter((ele) => ele.id === targetId)[0]
         .zIndex;
       if (action.order === "head") {
@@ -207,8 +290,11 @@ const appReducer = (app, action) => {
         });
       }
       return {
-        ...app,
-        json: { ...app.json, children: children },
+        ...context,
+        productContent: { 
+          ...context.productContent, 
+          children: children 
+        },
       };
     }
     case "reset": {
@@ -221,12 +307,12 @@ const appReducer = (app, action) => {
         });
       };
       const invalidId = [];
-      app.json.children.forEach((item) => {
+      context.productContent.children.forEach((item) => {
         if (item.type === "word" && !isValid(item)) {
           invalidId.push(item.id);
         }
       });
-      const valiedChildren = [...app.json.children].filter(
+      const valiedChildren = [...context.productContent.children].filter(
         (ele) => !invalidId.includes(ele.id)
       );
       const sortByZ = _.sortBy(valiedChildren, "zIndex").map((ele, idx) => {
@@ -236,30 +322,30 @@ const appReducer = (app, action) => {
         return { ...ele, id: idx + 1 };
       });
       return {
-        ...app,
-        meta: { ...app.meta, active: null },
-        json: { ...app.json, children: sortById },
+        ...context,
+        productMeta: { ...context.productMeta, active: null },
+        productContent: { ...context.productContent, children: sortById },
       };
     }
     case "paste": {
-      const totalChildren = app.json.children.length + 1;
+      const totalChildren = context.productContent.children.length + 1;
       const pasteItem = {
-        ...app.meta.copy,
+        ...context.productMeta.copy,
         id: totalChildren,
         zIndex: totalChildren,
         left: action.position[0],
         top: action.position[1],
       };
       return {
-        ...app,
-        json: {
-          ...app.json,
-          children: [...app.json.children, pasteItem],
+        ...context,
+        productContent: {
+          ...context.productContent,
+          children: [...context.productContent.children, pasteItem],
         },
       };
     }
     case "word": {
-      const children = [...app.json.children];
+      const children = [...context.productContent.children];
       const newId = _.maxBy(children, "id").id + 1;
       const newZIndex = _.maxBy(children, "zIndex").zIndex + 1;
       const newWord = {
@@ -287,10 +373,13 @@ const appReducer = (app, action) => {
         ],
       };
       return {
-        ...app,
-        json: {
-          ...app.json,
-          children: [...app.json.children, newWord],
+        ...context,
+        productContent: {
+          ...context.productContent,
+          children: [
+            ...context.productContent.children, 
+            newWord
+          ],
         },
       };
     }
@@ -300,13 +389,13 @@ const appReducer = (app, action) => {
         action.position,
         "add an image. function not complete."
       );
-      return app;
+      return context;
     }
     case "weight": {
       return {
-        ...app,
-        json: {
-          ...app.json,
+        ...context,
+        productContent: {
+          ...context.productContent,
           productWeight: action.weight,
           price: 45642,
         },
@@ -314,9 +403,9 @@ const appReducer = (app, action) => {
     }
     case "size": {
       return {
-        ...app,
-        json: {
-          ...app.json,
+        ...context,
+        productContent: {
+          ...context.productContent,
           productSize: action.size,
           price: 303232,
         },
@@ -324,9 +413,9 @@ const appReducer = (app, action) => {
     }
     case "style": {
       return {
-        ...app,
-        json: {
-          ...app.json,
+        ...context,
+        productContent: {
+          ...context.productContent,
           productStyle: action.style,
           price: 30000,
         },
@@ -338,54 +427,4 @@ const appReducer = (app, action) => {
       );
     }
   }
-};
-
-const initApp = {
-  memberInfo: {
-    // name: "",
-    // email: "",
-    name: "葉大雄",
-    email: "dora.amom@gmail.com",
-  },
-
-  shoppingCart: [],
-
-  productTypes: [],
-
-  studioToolbar: {
-    word: {
-      fontFamily: "ariel",
-      fontSize: "24px",
-      writingMode: "horizontal",
-      fontWeight: "normal",
-      fontStyle: "italic",
-      textDecoration: "none",
-    },
-    image: {},
-  },
-
-  studioMeta: {
-    mode: "normal",
-    scale: 1,
-    active: null,
-    hover: null,
-    copy: null,
-  },
-
-  customizedMeta: {
-    uuid: null,
-    owner: "guest",
-    createDate: null,
-    product: "",
-    style: "",
-    weight: 0,
-    size: 0,
-    isLock: false,
-    price: 0,
-  },
-
-  customizedContent: {
-    uuid: null,
-    children: [],
-  },
 };

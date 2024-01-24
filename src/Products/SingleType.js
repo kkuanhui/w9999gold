@@ -104,9 +104,10 @@ const SingleType = () => {
                 {
                 ["龍鳳搶珠", "雙龍搶珠", "桃形", 
                   "書卷", "財源滾滾", "廣澤尊王", 
-                  "山水景", "雙虎底"].map(ele => {
+                  "山水景", "雙虎底"].map((ele, idx) => {
                     return <div
                     className="d-flex flex-ai-center flex-jc-center hover-border-2e2e2e border-d4d4d4 hover-cursor-pointer" 
+                    key={idx}
                     onClick={() => {setShape(ele)}}
                     style={{
                       width: "80px", 
@@ -125,9 +126,10 @@ const SingleType = () => {
           <div>
             <div>重量</div>
             <div className="d-grid grid-column-4">
-              {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(ele => {
+              {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((ele, idx) => {
                   return <div 
                     className="d-flex flex-ai-center flex-jc-center hover-border-2e2e2e border-d4d4d4 hover-cursor-pointer" 
+                    key={idx}
                     onClick={() => {setWeight(ele)}}
                     style={{
                       width: "80px", 
@@ -145,10 +147,11 @@ const SingleType = () => {
           <div>
             <div>尺寸</div>
             <div className="d-grid grid-column-4">
-              {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(ele => {
+              {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((ele, idx) => {
                   return <div 
                     className="d-flex flex-ai-center flex-jc-center hover-border-2e2e2e border-d4d4d4 hover-cursor-pointer" 
                     onClick={() => {setSize(ele)}}
+                    key={idx}
                     style={{
                       width: "80px", 
                       height: "50px", 
