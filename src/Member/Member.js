@@ -28,7 +28,7 @@ const MemberPage = () => {
   const member = context.member;
   if (member.name) {
     return (
-      <div className="pt-5 pl-5 pr-5">
+      <div className="pt-5 pl-5 pr-5" style={{width: "992px", margin: "0px auto"}}>
         <h1 className="mb-1 font-size-25">{member.name}，歡迎！</h1>
         <h2 className="mb-1 font-size-15">自從 2021 年 8 月成為我們的會員。</h2>
         <div className="mb-1 d-flex" style={{ gap: "10px" }}>

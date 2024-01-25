@@ -1,7 +1,7 @@
 import "../static/css/custom-class.css"
 const GoldPriceReport = () => {
   return (
-    <div className="width-70 ml-auto mr-auto">
+    <div className="ml-auto mr-auto" style={{width: "992px"}}>
 
       <div className="mb-3">
         <h1 className="font-size-25">仕彩黃金報價管理</h1>

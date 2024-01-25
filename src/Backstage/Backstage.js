@@ -22,7 +22,7 @@ const Backstage = () => {
 
 const BackstagePage = () => {
   return(
-    <div className="ml-auto mr-auto" style={{width: "50%"}}>
+    <div className="ml-auto mr-auto" style={{width: "992px"}}>
       <h1>
         仕彩同仁專用網頁後台
       </h1>

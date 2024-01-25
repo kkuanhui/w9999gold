@@ -1,20 +1,17 @@
 import { GoTrash } from "react-icons/go";
 import { useApp } from "../Context";
+import "../static/css/cart.css";
 
 const Cart = () => {
   const context = useApp();
   const cart = context.cart;
-  if(cart.length === 0){
+  if (cart.length === 0) {
+    return <div>購物車沒有東西。</div>;
+  } else {
     return (
-      <div>
-        購物車沒有東西。
-      </div>
-    )
-  }else{
-    return ( 
-      <div className="ml-auto mr-auto d-flex flex-jc-between" style={{width: "1000px"}}>
+      <div id="cart">
         <List></List>
-        <PriceSum></PriceSum>
+        <Checkout></Checkout>
       </div>
     );
   }
@@ -22,17 +19,19 @@ const Cart = () => {
 
 const List = () => {
   return (
-    <div>
-      <h1 className="font-size-15" style={{paddingBottom: "30px"}}>購物車</h1>
-      <div className="mb-5"
+    <div id="cart-list">
+      <h1 className="font-size-15" style={{ paddingBottom: "30px" }}>
+        購物車
+      </h1>
+      <div
+        className="mb-5"
         style={{
-          width: "600px",
           height: "calc(80vh - 50px)",
           overflow: "scroll",
         }}
       >
-        <ListItem></ListItem> 
-        <ListItem></ListItem> 
+        <ListItem></ListItem>
+        <ListItem></ListItem>
       </div>
     </div>
   );
@@ -40,50 +39,65 @@ const List = () => {
 
 const ListItem = () => {
   return (
-    <div className="d-flex flex-ai-center flex-jc-between mb-5"
-      style={{ width: "600px", height: "150px"}}
-    >
-      <input type="checkbox"
-        style={{ width: "30px", height: "30px", border: "1px solid #000" }}
-      />
-      <div style={{ width: "150px", height: "150px", background: "#D9D9D9" }}></div>
-      <div className="d-grid height-100" style={{gridTemplateRows: "auto"}}>
-        <div className="font-size-15 font-bold d-flex flex-ai-start">酬神金牌</div>
-        <div className="font-size-10" style={{ color: "#707072" }}>
+    <div className="cart-list-item">
+      <input type="checkbox" />
+
+      <img src="" alt="thumbnail" width={150} height={150} />
+
+      <div className="d-grid height-100" style={{ gridTemplateRows: "auto" }}>
+        <div
+          className="font-bold d-flex flex-ai-start"
+          style={{ fontSize: "clamp(1em,2vw,1.5em)" }}
+        >
+          酬神金牌
+        </div>
+        <div style={{ fontSize: "clamp(0.8em,2vw,1em)", color: "#707072" }}>
           尺寸 5吋/ 重量 5錢/ 款式 雙龍搶珠
         </div>
-        <div className="d-flex flex-ai-center flex-jc-start" style={{gap: "5px"}}>
-          <div className="font-size-10" style={{ color: "#707072" }}>
+        <div
+          className="d-flex flex-ai-center flex-jc-start"
+          style={{ gap: "5px" }}
+        >
+          <div style={{ fontSize: "clamp(0.8em, 2vw, 1em)", color: "#707072" }}>
             數量
           </div>
           <select
             style={{
-              width: "60px",
-              height: "20px",
+              width: "clamp(20px, 10vw, 60px)",
+              aspectRatio: "3/1",
               border: "1px solid #707072",
               borderRadius: "5px",
             }}
           >
-            {[1,2,3,4,5,6,7,8,9,10].map((num, idx) => {
-              return <option key={idx} value={num}>{num}</option>
+            {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((num, idx) => {
+              return (
+                <option key={idx} value={num}>
+                  {num}
+                </option>
+              );
             })}
           </select>
         </div>
-        <div className="font-size-10 d-flex flex-ai-end">
+        <div
+          style={{ fontSize: "clamp(0.8em, 2vw, 1em)" }}
+          className="d-flex flex-ai-end"
+        >
           <GoTrash></GoTrash>
         </div>
       </div>
-      <div className="font-size-15 font-bold" 
-        style={{height: "100%"}}>
-          $15,000
+      <div
+        className="font-bold"
+        style={{ height: "100%", fontSize: "clamp(1em,2vw,1.5em)" }}
+      >
+        $15,000
       </div>
     </div>
   );
 };
 
-const PriceSum = () => {
+const Checkout = () => {
   return (
-    <div style={{ width: "300px" }}>
+    <div id="cart-checkout" style={{ width: "300px" }}>
       <h2 className="font-size-15 font-bold mb-5">摘要</h2>
       <div className="font-size-10">你選擇了 2 個產品</div>
       <div className="d-flex flex-jc-between flex-ai-center">
@@ -99,19 +113,8 @@ const PriceSum = () => {
         <div className="font-size-15 font-bold">總計</div>
         <div className="font-size-15 font-bold">$30,000</div>
       </div>
-      <div className="d-flex flex-jc-end flex-ai-center width-100">
-        <button
-          className="d-flex flex-ai-center flex-jc-center font-bold"
-          style={{
-            borderRadius: "15px",
-            width: "200px",
-            height: "50px",
-            background: "#198964",
-            color: "#fff",
-          }}
-        >
-          結帳
-        </button>
+      <div id="cart-checkout-button">
+        <button>結帳</button>
       </div>
     </div>
   );
