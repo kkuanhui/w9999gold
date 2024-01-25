@@ -41,8 +41,8 @@ const Contextmenu = ({ onClose, position }) => {
 
       <div
         onClick={() => {
-          dispatch({type: "copy"})
-          dispatch({type: "active", active: null})
+          dispatch({type: "studioCopy"})
+          dispatch({type: "studioActive", active: null})
           manualClose()
         }}
         className="hover-cursor-pointer hover-background-06f hover-color-fff p-3"
@@ -54,7 +54,7 @@ const Contextmenu = ({ onClose, position }) => {
 
       <div
         onClick={() => {
-          dispatch({type: "cut"})
+          dispatch({type: "studioCut"})
           manualClose()
         }}
         className="hover-cursor-pointer hover-background-06f hover-color-fff p-3"
@@ -66,7 +66,7 @@ const Contextmenu = ({ onClose, position }) => {
 
       <div
         onClick={() => {
-          dispatch({type: "sort",order: 'forward',})
+          dispatch({type: "studioSort",order: 'forward',})
         }}
         className="hover-cursor-pointer hover-background-06f hover-color-fff p-3"
       >
@@ -77,7 +77,7 @@ const Contextmenu = ({ onClose, position }) => {
 
       <div
         onClick={() => {
-          dispatch({type: "sort",order: 'backward',})
+          dispatch({type: "studioSort",order: 'backward',})
         }}
         className="hover-cursor-pointer hover-background-06f hover-color-fff p-3"
       >
@@ -88,8 +88,8 @@ const Contextmenu = ({ onClose, position }) => {
 
       <div
         onClick={() => {
-          dispatch({type: "sort",order: 'head',})
-          dispatch({type: "active", active: null})
+          dispatch({type: "studioSort",order: 'head',})
+          dispatch({type: "studioActive", active: null})
           manualClose()
         }}
         className="hover-cursor-pointer hover-background-06f hover-color-fff p-3"
@@ -101,8 +101,8 @@ const Contextmenu = ({ onClose, position }) => {
 
       <div
         onClick={() => {
-          dispatch({type: "sort",order: 'bottom'})
-          dispatch({type: "active", active: null})
+          dispatch({type: "studioSort",order: 'bottom'})
+          dispatch({type: "studioActive", active: null})
           manualClose()
         }}
         className="hover-cursor-pointer hover-background-06f hover-color-fff p-3"

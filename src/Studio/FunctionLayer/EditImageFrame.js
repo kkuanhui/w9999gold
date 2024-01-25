@@ -5,7 +5,7 @@ import { useApp } from "../../Context";
 const EditImageFrame = () => {
   const context = useApp();
   const active = context.studioMeta.active
-  const imageObj = context.customizedContent.children.filter(
+  const imageObj = context.productContent.children.filter(
     (e) => e.id === active.id
   )[0];
   return (

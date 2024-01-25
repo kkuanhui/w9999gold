@@ -262,7 +262,7 @@ const appReducer = (context, action) => {
         },
       };
     }
-    case "sort": {
+    case "studioSort": {
       const content = context.productContent;
       const children = [...content.children];
       const targetId = context.studioMeta.active.id;

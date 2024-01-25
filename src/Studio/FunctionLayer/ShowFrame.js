@@ -5,7 +5,7 @@ const ShowFrame = () => {
   // context -----
   const context = useApp();
   const activeId = context.studioMeta.active.id
-  const children = context.customizedContent.children
+  const children = context.productContent.children
   const activeItem = children.filter(e => e.id === activeId)[0]
 
   return(
