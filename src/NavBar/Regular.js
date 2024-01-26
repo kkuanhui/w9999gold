@@ -79,7 +79,7 @@ const RegularNavBar = () => {
               </li>
 
               <li className="position-relative">
-                <Link className="d-flex flex-ai-center flex-jc-center position-relative" 
+                <Link className="d-flex flex-ai-center flex-jc-start position-relative" 
                   style={{color: "#FFFFFF"}} to="/cart"
                 >
                   <CgShoppingCart></CgShoppingCart>
@@ -102,7 +102,7 @@ const RegularNavBar = () => {
 
 const MemberIcon = ({member}) => {
   return (
-    <Link className="d-flex flex-ai-center flex-jc-center" 
+    <Link className="d-flex flex-ai-center flex-jc-start" 
       style={{color: "#FFF"}} to="/member"
     >
       <CgProfile />{(member.email)?member.name:"請登入"}
