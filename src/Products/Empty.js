@@ -1,9 +1,9 @@
 import { Navigate } from "react-router-dom";
 
-const EmptyProduct = () => {
+const Empty = () => {
   return(
     <Navigate to="/products"></Navigate>
   )
 }
 
-export default EmptyProduct;
+export default Empty;

@@ -1,15 +1,22 @@
 import React from "react";
 import Entry from "./Entry";
-import SingleType from "./SingleType"
+import Custom from "./Custom";
 import { Route, Routes } from "react-router-dom";
-import "../static/css/product.css";
+import "../static/css/products.css";
+import Warning from "./Warning";
 
 const Products = () => {
   return (
-    <Routes>
-      <Route index element={<Entry />}></Route>
-      <Route path=":productType" element={<SingleType />}></Route>
-    </Routes>
+    <>
+      <Routes>
+        <Route index element={<Entry />}></Route>
+        <Route path="custom/:productType" element={<Custom />}></Route>
+      </Routes>
+      {/* <Routes>
+        <Route index element={null}></Route>
+        <Route path="custom/:productType" element={<Warning />}></Route>
+      </Routes> */}
+    </>
   );
 };
 

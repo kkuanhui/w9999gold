@@ -18,13 +18,16 @@ const Regular = () => {
           仕彩金飾
         </div>
 
-        <div className="mb-3 font-color-white width-60 mr-auto ml-auto">
+        <div className="mb-3 font-color-white mr-auto ml-auto" 
+          style={{width: "min(100%, 600px)"}}
+        >
           地址：台南市北區大興街 325 巷 34 號
           <br></br>
           電話：06-2809988
         </div>
 
-        <div className="d-flex mb-3 flex-jc-around width-60 mr-auto ml-auto" style={{gap: "5px"}}>
+        <div className="d-flex mb-3 flex-jc-around mr-auto ml-auto" 
+          style={{gap: "5px", width: "min(100%, 600px)"}}>
           <a
             href="https://www.facebook.com/w9999.cs"
             className="font-size-20 font-color-white"

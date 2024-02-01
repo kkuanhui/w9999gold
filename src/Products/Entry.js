@@ -46,7 +46,7 @@ const Card = ({ type }) => {
 
   return (
     <Link
-      to={`${type.eName}`} 
+      to={`custom/${type.eName}`} 
       style={{
         overflow: "hidden",
         width: "90%",
