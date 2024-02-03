@@ -1,0 +1,86 @@
+{
+  "uuid": "20240111EDFTGRE",
+  "children": [
+
+    {
+      "id": 1,
+      "type": "word",
+      "style": {
+        "writingMode": "horizontal-tb",
+        "fontFamily": "DFKai-SB"
+      },
+      "children": [
+        {
+          "dom": "p",
+          "style": {},
+          "children": [
+            {
+              "dom": "span",
+              "style": {},
+              "children": [
+                {
+                  "dom": "#text",
+                  "children": ""
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+
+    {
+      "id": 2,
+      "type": "word",
+      "style": {
+        "writingMode": "horizontal-tb",
+        "fontFamily": "DFKai-SB"
+      },
+      "children": [
+        {
+          "dom": "p",
+          "style": {},
+          "children": [
+            {
+              "dom": "span",
+              "style": {},
+              "children": [
+                {
+                  "dom": "#text",
+                  "children": ""
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+
+    {
+      "id": 3,
+      "type": "word",
+      "style": {
+        "writingMode": "horizontal-tb",
+        "fontFamily": "DFKai-SB"
+      },
+      "children": [
+        {
+          "dom": "p",
+          "style": {},
+          "children": [
+            {
+              "dom": "span",
+              "style": {},
+              "children": [
+                {
+                  "dom": "#text",
+                  "children": ""
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

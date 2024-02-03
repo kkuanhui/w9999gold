@@ -2,54 +2,60 @@ import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { useApp } from "../Context";
 import vector from "../static/image/Vector.png";
-import "../static/css/products.css"
+import "../static/css/products.css";
+import { renderWordObject } from "./utilities";
 
 const Preview = ({ content }) => {
-  content = {
-    name: "天上聖母",
-    department: "北港朝天宮",
-    signature: "眾爐下 敬獻",
-  };
+
   const context = useApp();
-  const productTypes = context.productTypes;
-  const params = useParams(); // url parameter
-  const [type, setType] = useState({});
+  const paramProductType = useParams().productType;
+  const productContent = context.productContent;
+
+  const [name, setName] = useState({});
+  const [department, setDepartment] = useState({});
+  const [signature, setSignature] = useState({});
 
   useEffect(() => {
-    if (productTypes.length !== 0) {
-      const filteredType = productTypes.filter(
-        (ele) => ele.eName === params.productType
-      )[0];
-      setType(filteredType);
+    if(productContent.children.length !== 0){
+      const name = productContent.children[0]
+      setName(name)
+      const department = productContent.children[1]
+      setDepartment(department)
+      const signature = productContent.children[2]
+      setSignature(signature)
     }
-  }, [productTypes]);
+  }, [productContent])
 
   return (
     <div>
-      <div id="preview"
+      <div
+        id="preview"
         style={{
           position: "relative",
-          aspectRatio: "1/1",
+          aspectRatio: "1 / 1",
           borderRadius: "10px",
           backgroundColor: "#D9D9D9",
           backgroundImage: `url("${vector}")`,
           backgroundRepeat: "no-repeat",
           backgroundSize: "90%",
           backgroundPosition: "center",
-          fontFamily: "DFKai-sb",
         }}
       >
-        <div className="preview-item" style={{left: "50%",top: "35%"}}>
-          {content.name}
+        <div className="preview-item" style={{ left: "50%", top: "35%" }}>
+          {renderWordObject(name)}
         </div>
-        <div className="preview-item" style={{left: "50%",top: "50%"}}>
-          {content.department}
+        <div className="preview-item" style={{ left: "50%", top: "50%" }}>
+          {renderWordObject(department)}
         </div>
-        <div className="preview-item" style={{left: "50%",top: "65%"}}>
-          {content.signature}
+        <div className="preview-item" style={{ left: "50%", top: "65%" }}>
+          {renderWordObject(signature)}
         </div>
 
-        <Link className="pl-3 pr-3" to={`/studio/${type.eName}`} style={{ color: "#fff" }}>
+        <Link
+          className="pl-3 pr-3"
+          to={`/studio/${paramProductType}`}
+          style={{ color: "#fff" }}
+        >
           使用進階編輯器
         </Link>
       </div>

@@ -3,7 +3,7 @@ import { createContext, useReducer, useContext, useEffect } from "react";
 import _ from "lodash";
 
 // mock data -----
-import mockProductContent from "./mock/mock-product-content.json";
+import mockProductContent from "./mock/mock-product-content-2.json";
 import mockProductMeta from "./mock/mock-product-meta.json"
 import mockProductTypes from "./mock/mock-product-types.json";
 import mockMember from "./mock/mock-member.json"
@@ -261,6 +261,33 @@ const appReducer = (context, action) => {
           children: children,
         },
       };
+    }
+    case "textUpdate": {
+      const objResetText = (obj, text) => {
+        if(obj.dom === "#text"){
+          return {...obj, children: text}
+        }else{
+          return {
+            ...obj, 
+            children: [objResetText(obj.children[0], text)]
+            }
+        }
+      }
+      const content = context.productContent
+      const children = [...content.children].map((ele) => {
+        if (ele.id !== action.id) {
+          return ele;
+        } else {
+          return objResetText(ele, action.text)
+        }
+      });
+      return{
+        ...context,
+        productContent: {
+          ...context.productContent,
+          children: children
+        }
+      }
     }
     case "studioSort": {
       const content = context.productContent;
