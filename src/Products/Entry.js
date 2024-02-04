@@ -2,20 +2,13 @@ import { Link } from "react-router-dom";
 import { CloudinaryImage } from "@cloudinary/url-gen";
 import { AdvancedImage } from "@cloudinary/react";
 import { useApp } from "../Context";
+import "../static/css/products.css";
 
 const Entry = () => {
   const context = useApp();
   const types = context.productTypes;
   return(
-    <div className="d-grid"
-      style={{
-        gridTemplateColumns: "1fr 1fr 1fr",
-        width: "min(100%, 992px)",
-        margin: "30px auto",
-        columngap: "30px",
-        rowgap: "30px",
-      }}
-    >
+    <div id="entry">
       {
         types.map((types, idx) => {
           return <Card key={idx} type={types} />;
@@ -55,7 +48,8 @@ const Card = ({ type }) => {
         cursor: "pointer",
       }}
     >
-      <div style={{ width: "100%", height: "100%" }}>
+      <div className="card" style={{ width: "100%", height: "100%" }}>
+
         <div style={{ height: "70%", overflow: "hidden" }}>
           <AdvancedImage
             cldImg={imgs[type.eName]}
@@ -64,32 +58,38 @@ const Card = ({ type }) => {
             style={{ width: "100%", height: "100%" }}
           />
         </div>
+        
         <div style={{ paddingTop: "5px", height: "30%" }}>
           <div
+            className="title"
             style={{
               marginBottom: "5px",
               color: "black",
-              fontSize: "clamp(16px, 2vw, 24px)",
             }}
           >
             {type.title}
           </div>
-          <div style={{ color: "gray", fontSize: "clamp(8px, 1.5vw, 16px)" }}>
+          <div 
+            className="subtitle"
+            style={{ color: "gray"}}>
             {type.subtitle}
           </div>
-          <div style={{ color: "gray", fontSize: "clamp(8px, 1.5vw, 16px)" }}>
+          <div 
+            className="subtitle"
+            style={{ color: "gray"}}>
             {`${type.shapes} 種款式`}
           </div>
           <div
+            className="price"
             style={{
               marginTop: "5px",
               color: "black",
-              fontSize: "clamp(10px, 1.8vw, 24px)",
             }}
           >
             {`$ ${type.priceMin} 元起`}
           </div>
         </div>
+
       </div>
     </Link>
   );

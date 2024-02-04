@@ -1,8 +1,11 @@
 import { GoTrash } from "react-icons/go";
 import "../static/css/cart.css";
 import "../static/css/custom-class.css"
+import { useApp } from "../Context";
 
 const List = () => {
+  const context = useApp();
+  const cart = context.cart;
   return (
     <div id="cart-list">
       <h1 className="mb-5" style={{ fontSize: "clamp(0.8em, 3vw, 1.5em)"}}>
@@ -10,22 +13,36 @@ const List = () => {
       </h1>
       <div className="border-868686 p-3 width-100"
         style={{
-          maxHeight: "calc(80vh - 50px)",
-          overflow: "scroll",
+          height: "calc(80vh - 50px)",
+          overflow: "hidden",
           borderRadius: "25px"
         }}
       >
-        <ListItem></ListItem>
-        <ListItem></ListItem>
-        <ListItem></ListItem>
-        <ListItem></ListItem>
-        <ListItem></ListItem>
+        <div style={{
+          overflow: "auto",
+          height: "100%",
+        }}>
+          {
+            cart.map((ele, idx) => {
+              return <ListItem key={idx}
+                title={ele.title}
+                style={ele.style}
+                qty={ele.qty}
+                weight={ele.weight}
+                size={ele.size}
+                price={ele.price}
+              ></ListItem>
+            })
+          }
+        </div>
       </div>
     </div>
   );
 };
 
-const ListItem = () => {
+const ListItem = ({
+  title, style, qty, weight, size, price
+}) => {
   return (
     <div className="cart-list-item">
 
@@ -38,17 +55,17 @@ const ListItem = () => {
           className="font-bold d-flex flex-ai-start"
           style={{ fontSize: "clamp(1em,2vw,1.5em)" }}
         >
-          酬神金牌
+          {title}
         </div>
         <div style={{ fontSize: "clamp(0.8em,2vw,1em)", color: "#707072" }}>
-          尺寸 5吋/ 重量 5錢/ 款式 雙龍搶珠
+          尺寸 {size}吋/ 重量 {weight}錢/ 款式 {style}
         </div>
         <div
           className="d-flex flex-ai-center flex-jc-start"
           style={{ gap: "5px" }}
         >
           <div style={{ fontSize: "clamp(0.8em, 2vw, 1em)", color: "#707072" }}>
-            數量
+            {qty}
           </div>
           <select
             style={{
@@ -81,7 +98,7 @@ const ListItem = () => {
         className="font-bold"
         style={{ height: "100%", fontSize: "clamp(1em,2vw,1.5em)" }}
       >
-        $15,000
+        ${price}
       </div>
 
     </div>

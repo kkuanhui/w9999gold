@@ -5,7 +5,7 @@ import vector from "../static/image/Vector.png";
 import "../static/css/products.css";
 import { renderWordObject } from "./utilities";
 
-const Preview = ({ content }) => {
+const Preview = ({ scale }) => {
 
   const context = useApp();
   const paramProductType = useParams().productType;
@@ -56,7 +56,7 @@ const Preview = ({ content }) => {
           to={`/studio/${paramProductType}`}
           style={{ color: "#fff" }}
         >
-          使用進階編輯器
+          使用進階編輯器{scale}
         </Link>
       </div>
     </div>

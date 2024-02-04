@@ -6,7 +6,6 @@ const Footer = () => {
     <div
       className="pl-5 pr-5 pt-5"
       style={{
-        borderTop: "1px solid red",
         background: "linear-gradient(180deg, #00290A 56.04%, #003D06 93.4%)",
         color: "#FFF",
       }}

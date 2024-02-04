@@ -438,13 +438,12 @@ const appReducer = (context, action) => {
         },
       };
     }
-    case "style": {
+    case "productMetaUpdate": {
       return {
         ...context,
-        productContent: {
-          ...context.productContent,
-          productStyle: action.style,
-          price: 30000,
+        productMeta: {
+          ...context.productMeta,
+          ...action.update,
         },
       };
     }

@@ -5,7 +5,7 @@ import "../static/css/products.css";
 import "../static/css/general/events.css";
 import { useEffect, useState } from "react";
 
-const CustomControl = () => {
+const CustomControl = ({scale, onScaleChange}) => {
   return (
     <div id="control">
       <Title />
@@ -15,7 +15,7 @@ const CustomControl = () => {
       <Style />
       <Weight />
       <Size />
-      <Scale />
+      <Scale scale={scale} onScaleChange={onScaleChange}/>
       <Price />
       <AddToCartButton />
     </div>
@@ -130,6 +130,10 @@ const SignatureInput = () => {
 };
 
 const Style = () => {
+  const dispatch = useAppDispatch();
+  const context = useApp();
+  const productMeta = context.productMeta;
+  const style = productMeta.style;
   return (
     <div>
       <div className="font-bold">款式</div>
@@ -146,13 +150,19 @@ const Style = () => {
         ].map((ele, idx) => {
           return (
             <div
-              style={(idx===3)
+              style={(ele===style)
                 ?{background: "#198964", color: "#fff", border: "1px solid #2e2e2e"}
                 :null
               }
               className="options hover-border-2e2e2e hover-cursor-pointer hover-cursor-pointer"
               key={idx}
               onClick={() => {
+                dispatch({
+                  type: "productMetaUpdate",
+                  update: {
+                    style: ele
+                  }
+                })
               }}
             >
               {ele}
@@ -165,6 +175,10 @@ const Style = () => {
 };
 
 const Weight = () => {
+  const dispatch = useAppDispatch();
+  const context = useApp();
+  const productMeta = context.productMeta;
+  const weight = productMeta.weight;
   return (
     <div>
       <div className="font-bold">重量</div>
@@ -172,14 +186,19 @@ const Weight = () => {
         {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((ele, idx) => {
           return (
             <div
-              style={(idx===3)
+              style={(ele===weight)
                 ?{background: "#198964", color: "#fff", border: "1px solid #2e2e2e"}
                 :null
               }
               className="options hover-border-2e2e2e hover-border-2e2e2e hover-cursor-pointer"
               key={idx}
               onClick={() => {
-                // setShape(ele);
+                dispatch({
+                  type: "productMetaUpdate",
+                  update: {
+                    weight: ele
+                  }
+                })
               }}
             >
               {ele}
@@ -192,6 +211,10 @@ const Weight = () => {
 };
 
 const Size = () => {
+  const dispatch = useAppDispatch();
+  const context = useApp();
+  const productMeta = context.productMeta;
+  const size = productMeta.size;
   return (
     <div>
       <div className="font-bold">尺寸</div>
@@ -199,14 +222,19 @@ const Size = () => {
         {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((ele, idx) => {
           return (
             <div
-              style={(idx===3)
+              style={(ele===size)
                 ?{background: "#198964", color: "#fff", border: "1px solid #2e2e2e"}
                 :null
               }
               className="options hover-border-2e2e2e hover-border-2e2e2e hover-cursor-pointer"
               key={idx}
               onClick={() => {
-                // setShape(ele);
+                dispatch({
+                  type: "productMetaUpdate",
+                  update: {
+                    size: ele
+                  }
+                })
               }}
             >
               {ele}
@@ -218,7 +246,7 @@ const Size = () => {
   );
 };
 
-const Scale = () => {
+const Scale = ({scale, onScaleChange}) => {
   return (
     <div>
       <div className="font-bold">顯示神尊尺寸</div>
@@ -226,10 +254,14 @@ const Scale = () => {
         {["不顯示", 1, 2, 3, 4, 5].map((ele, idx) => {
           return (
             <div
-              className="options hover-border-2e2e2e hover-cursor-pointer"
+              style={(ele===scale)
+                ?{background: "#198964", color: "#fff", border: "1px solid #2e2e2e"}
+                :null
+              }
+              className="options hover-border-2e2e2e hover-border-2e2e2e hover-cursor-pointer"
               key={idx}
               onClick={() => {
-                // setShape(ele);
+                onScaleChange(ele)
               }}
             >
               {ele}

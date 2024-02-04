@@ -97,8 +97,33 @@
     font-size: clamp(12px, 1vw, 20px);
     margin: 5px;
   }
+
 }
 
+#entry{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  column-gap: 15px;
+  row-gap: 15px;
+  width: min(100%, 992px);
+  margin: 0px auto;
+  padding: 25px;
+}
+
+.card{
+  container-type: size;
+  & .title{
+    font-size: 10cqw;
+    font-weight: 900;
+  }
+  & .subtitle{
+    font-size: 8cqw;
+  }
+  & .price{
+    font-size: 10cqw;
+    font-weight: bold;
+  }
+}
 
 @media screen and (max-width: 768px) {
   #control {
@@ -110,6 +135,9 @@
       display: grid;
       grid-template-columns: 1fr 1fr 1fr;
     }
+  }
+  #entry{
+    grid-template-columns: 1fr 1fr 1fr;
   }
 }
 
@@ -133,5 +161,9 @@
       display: grid;
       grid-template-columns: 1fr 1fr 1fr 1fr;
     }
+  }
+
+  #entry{
+    grid-template-columns: 1fr 1fr;
   }
 }

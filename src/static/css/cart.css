@@ -1,6 +1,6 @@
 #cart {
   width: min(100%, 992px);
-  padding: 10px 25px 0px 25px;
+  padding: 25px;
   margin: 0px auto;
   display: flex;
   justify-content: space-between;
