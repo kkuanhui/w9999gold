@@ -1,0 +1,52 @@
+#studio {
+  position: relative;
+  width: 100vw;
+  height: calc(100vh - 50px);
+  /* navbar height 50px */
+}
+
+#toolbar {
+  position: absolute;
+  top: 0px;
+  z-index: 3;
+  width: 100vw;
+  height: 50px;
+  border-bottom: 1px solid #434343;
+  background: #FFFDF7;
+  box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.25);
+  color: #000;
+}
+
+#side-column {
+  position: absolute;
+  top: 50px;
+  left: 0px;
+  z-index: 2;
+  border-right: 1px solid #434343;
+  background: FFFDF7;
+  box-shadow: 10px 0px 10px 0px rgba(0, 0, 0, 0.25);
+  width: 80px;
+  height: calc(100vh - 100px);
+}
+
+#content {
+  position: absolute;
+  z-index: 1;
+  top: 50px;
+  right: 0px;
+  width: calc(100vw - 80px);
+  height: calc(100vh - 50px - 50px);
+  background: #FFFDF7;
+  overflow: hidden;
+}
+
+#content-canvas{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.studio-word *{
+  font-family: inherit;
+}

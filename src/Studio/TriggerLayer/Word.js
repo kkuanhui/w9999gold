@@ -10,7 +10,7 @@ const Word = ({idx, wordObj}) => {
     <div 
       ref={component}
       tabIndex="0" 
-      className="user-select-none"
+      className="studio-word user-select-none"
       style={{
         position: "absolute",
         writingMode: wordObj.style.writingMode,

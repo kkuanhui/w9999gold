@@ -34,7 +34,7 @@ const StudioNavBar = () => {
       id="navbar"
       className="width-100 d-flex flex-ai-center flex-jc-center"
       style={{
-        height: "100px",
+        height: "50px",
         background:
           "linear-gradient(90deg, #A76E00 0.77%, #FF9C28 33.85%, #FFB750 66.92%, #DAAA00 100%)",
       }}

@@ -54,7 +54,7 @@ const FocusFrame = () => {
           top = top + e.movementY;
           left = left + e.movementX;
           dispatch({
-            type: "pos",
+            type: "contentPos",
             item: {
               ...activeItem,
               style: {

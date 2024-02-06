@@ -7,7 +7,8 @@
       "type": "word",
       "style": {
         "writingMode": "horizontal-tb",
-        "fontFamily": "DFKai-SB"
+        "fontFamily": "DFKai-SB",
+        "zIndex": 1
       },
       "children": [
         {
@@ -34,7 +35,8 @@
       "type": "word",
       "style": {
         "writingMode": "horizontal-tb",
-        "fontFamily": "DFKai-SB"
+        "fontFamily": "DFKai-SB",
+        "zIndex": 2
       },
       "children": [
         {
@@ -61,7 +63,8 @@
       "type": "word",
       "style": {
         "writingMode": "horizontal-tb",
-        "fontFamily": "DFKai-SB"
+        "fontFamily": "DFKai-SB",
+        "zIndex": 3
       },
       "children": [
         {

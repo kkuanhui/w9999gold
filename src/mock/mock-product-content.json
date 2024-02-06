@@ -7,7 +7,7 @@
       "style": {
         "writingMode": "horizontal-tb",
         "fontSize": "24px",
-        "fontFamily": "brush",
+        "fontFamily": "DFKai-SB",
         "top": 100,
         "left": 50,
         "zIndex": 3
@@ -81,7 +81,7 @@
       "style": {
         "writingMode": "vertical-rl",
         "fontSize": "36px",
-        "fontFamily": "brush",
+        "fontFamily": "DFKai-SB",
         "top": 100,
         "left": 150,
         "zIndex": 1
@@ -97,7 +97,7 @@
               "children": [
                 {
                   "dom": "#text",
-                  "children": "3號台南 "
+                  "children": "台南 "
                 }
               ]
             },

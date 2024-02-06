@@ -1,5 +1,5 @@
 import { useRef, useEffect } from "react";
-import { useApp, useAppDispatch } from "../../Context";
+import { useAppDispatch } from "../../Context";
 import "../../static/css/custom-class.css";
 import "../../static/css/general/events.css";
 
@@ -42,7 +42,7 @@ const Contextmenu = ({ onClose, position }) => {
       <div
         onClick={() => {
           dispatch({
-            type: "paste",
+            type: "contentPaste",
             position: position
           })
           manualClose()
@@ -57,7 +57,7 @@ const Contextmenu = ({ onClose, position }) => {
       <div
         onClick={() => {
           dispatch({
-            type: "word",
+            type: "contentAddNewWord",
             position: position
           })
           manualClose()
@@ -72,7 +72,7 @@ const Contextmenu = ({ onClose, position }) => {
       <div
         onClick={() => {
           dispatch({
-            type: "image",
+            type: "contentAddNewImage",
             position: position
           })
           manualClose()

@@ -9,7 +9,8 @@ const ShowFrame = () => {
   const activeItem = children.filter(e => e.id === activeId)[0]
 
   return(
-    <div style={{
+    <div className="studio-word"
+      style={{
         userSelect: 'none', 
         writingMode: activeItem.style.writingMode,
         fontFamily: activeItem.style.fontFamily,

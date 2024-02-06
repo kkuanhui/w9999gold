@@ -9,6 +9,14 @@ import '../static/css/footer.css'
 const Regular = () => {
 
   return (
+
+    <div
+      className="pl-5 pr-5 pt-5"
+      style={{
+        background: "linear-gradient(180deg, #00290A 56.04%, #003D06 93.4%)",
+        color: "#FFF",
+      }}
+    >
     <div className="width-100" style={{ minHeight: "150px" }}>
 
       <div style={{width: "min(100%, 992px)", marginInline: "auto"}}>
@@ -71,6 +79,7 @@ const Regular = () => {
         仕彩金飾 2024
       </div>
 
+    </div>
     </div>
   );
 };

@@ -36,10 +36,7 @@ const AppContent = () => {
         <Suspense fallback={<div>loading...</div>}>
           <Routes>
             <Route index element={<CoverPage />}></Route>
-            <Route
-              path="/gold-price-report"
-              element={<GoldPriceReport />}
-            ></Route>
+            <Route path="/gold-price-report" element={<GoldPriceReport />}></Route>
             <Route path="/cart" element={<Cart />}></Route>
             <Route path="/products/*" element={<Products />}></Route>
             <Route path="/studio/*" element={<Studio />}></Route>

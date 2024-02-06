@@ -3,6 +3,7 @@ import {GoTriangleLeft, GoTriangleRight} from "react-icons/go";
 import {AiOutlineSearch} from "react-icons/ai";
 import {RiArrowDropDownLine} from "react-icons/ri"
 import {useApp, useAppDispatch} from "../../Context"
+import { update } from "lodash";
 
 const Normal = () => {
   const context = useApp();
@@ -19,48 +20,34 @@ const Normal = () => {
       }}
     >
       <div className="d-flex flex-jc-around" style={{height: "100%", gap: "10px"}}>
-        <div className="d-flex flex-ai-center flex-jc-center font-bold">W</div>
 
-        <div style={{height: "100%"}}>
-          <button name="word"
-            style={{height: "100%"}}
-            className="hover-background-43ff64d9"
-          >
-            json
-          </button>
-        </div>
+        <button name="word"
+          style={{height: "100%"}}
+          className="hover-background-43ff64d9"
+          onClick={() => {
+            console.log('addon new word block')
+            dispatch({
+              type: "contentAddNewWord",
+              position: [250, 250]
+            })
+          }}
+        >
+          新增文字
+        </button>
 
-        <div style={{height: "100%"}}>
-          <button name="word"
-            style={{height: "100%"}}
-            className="hover-background-43ff64d9"
-            onClick={() => {
-              console.log('addon new word block')
-              dispatch({
-                type: "word",
-                position: [250, 250]
-              })
-            }}
-          >
-            新增文字
-          </button>
-        </div>
-
-        <div style={{height: "100%"}}>
-          <button name="word"
-            style={{height: "100%"}}
-            className="hover-background-43ff64d9"
-            onClick={() => {
-              console.log('addon new word block')
-              dispatch({
-                type: "word",
-                position: [250, 250]
-              })
-            }}
-          >
-            新增圖片
-          </button>
-        </div>
+        <button name="word"
+          style={{height: "100%"}}
+          className="hover-background-43ff64d9"
+          onClick={() => {
+            console.log('addon new word block')
+            dispatch({
+              type: "contentAddNewWord",
+              position: [250, 250]
+            })
+          }}
+        >
+          新增圖片
+        </button>
 
         <Dropdown name={"款式"}>
           <StyleContent />
@@ -89,7 +76,7 @@ const Normal = () => {
               const value = e.target.value 
               const c = (value <= 10)?value*0.1:value/10
               dispatch({
-                type: "zoom",
+                type: "studioScale",
                 scale: c
               })
           }}>
@@ -164,18 +151,15 @@ const StyleContent = () => {
   const dispatch = useAppDispatch()
   const container = useRef(null)
   const options = [
-    {value: "A01", name: "雙龍搶珠"}, 
-    {value: "A02", name: "龍鳳搶珠"}, 
-    {value: "A03", name: "雙鳳搶珠"},
-    {value: "A04", name: "雙龍搶珠"}, 
-    {value: "A05", name: "龍鳳搶珠"}, 
-    {value: "A06", name: "雙鳳搶珠"},
-    {value: "A07", name: "雙龍搶珠"}, 
-    {value: "A08", name: "龍鳳搶珠"}, 
-    {value: "A09", name: "雙鳳搶珠"},
-    {value: "A10", name: "雙龍搶珠"}, 
-    {value: "A11", name: "龍鳳搶珠"}, 
-    {value: "A12", name: "雙鳳搶珠"},
+    {value: "A01", name: "山水景"},
+    {value: "A02", name: "財源滾滾"},
+    {value: "A03", name: "山水景"},
+    {value: "A04", name: "財源滾滾"},
+    {value: "A05", name: "雙虎底"},
+    {value: "A06", name: "關公部將"},
+    {value: "A07", name: "聖母部將"},
+    {value: "A08", name: "廣澤部將"},
+    {value: "A09", name: "特殊三魚"},
   ]
   const pageMax = Number((
     (options.length/5) + ((options%5)?1:0)
@@ -231,8 +215,10 @@ const StyleContent = () => {
             className="hover-background-06f hover-color-fff hover-pointer"
             onClick={() => {
               dispatch({
-                type: "style",
-                style: ele.name   
+                type: "productMetaUpdate",
+                update: {
+                  style: ele.name   
+                }
               })
             }}
           >
@@ -255,8 +241,8 @@ const StyleContent = () => {
 
 const WeightContent = () => {
   const context = useApp();
+  const weight = context.productMeta.weight
   const dispatch = useAppDispatch();
-  const weight = context.studioMeta.weight
   return(
     <div style={{width: "100%", height: "100%"}}>
       <h1>金牌重量</h1>
@@ -264,8 +250,10 @@ const WeightContent = () => {
         <button
           style={{ border: "1px solid rgba(0, 0, 0, 0.5)" }}
           onClick={() => dispatch({
-            type: "weight",
-            weight: Number((weight - 1).toFixed(1))
+            type: "contentWeight",
+            update: {
+              weight: Number((weight - 1).toFixed(1))
+            }
           })}
         >
           -
@@ -279,8 +267,10 @@ const WeightContent = () => {
         <button
           style={{ border: "1px solid rgba(0,0,0,0.5)" }}
           onClick={() => dispatch({
-            type: "weight",
-            weight: Number((weight + 1).toFixed(1))
+            type: "productMetaUpdate",
+            update: {
+              weight: Number((weight + 1).toFixed(1))
+            }
           })}
         >
           +
@@ -307,8 +297,10 @@ const SizeContent = () => {
           style={{ border: "1px solid rgba(0, 0, 0, 0.5)" }}
           onClick={() => {
             dispatch({
-              type: "size",
-              size: Number((size - 0.1).toFixed(2))
+              type: "productMetaUpdate",
+              update: {
+                size: Number((size - 0.1).toFixed(2))
+              }
             })
           }}
         >
@@ -326,8 +318,10 @@ const SizeContent = () => {
           style={{ border: "1px solid rgba(0,0,0,0.5)" }}
           onClick={() => {
             dispatch({
-              type: "size",
-              size: Number((size + 0.1).toFixed(2))
+              type: "productMetaUpdate",
+              update: {
+                size: Number((size + 0.1).toFixed(2))
+              }
             })
           }}
         >

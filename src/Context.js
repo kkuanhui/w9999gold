@@ -3,11 +3,11 @@ import { createContext, useReducer, useContext, useEffect } from "react";
 import _ from "lodash";
 
 // mock data -----
-import mockProductContent from "./mock/mock-product-content-2.json";
-import mockProductMeta from "./mock/mock-product-meta.json"
+import mockProductContent from "./mock/mock-product-content.json";
+import mockProductMeta from "./mock/mock-product-meta.json";
 import mockProductTypes from "./mock/mock-product-types.json";
-import mockMember from "./mock/mock-member.json"
-import mockCart from "./mock/mock-cart.json"
+import mockMember from "./mock/mock-member.json";
+import mockCart from "./mock/mock-cart.json";
 
 // context -----
 const AppContext = createContext(null);
@@ -71,7 +71,7 @@ const AppProvider = ({ children }) => {
           productTypes: mockProductTypes,
           cart: mockCart,
           member: mockMember,
-        }
+        },
       });
     }, 500);
   }, []);
@@ -102,34 +102,45 @@ const appReducer = (context, action) => {
     case "get": {
       return {
         ...context,
-        ...action.data
+        ...action.data,
       };
     }
 
-    // function member -----
+    // member -----
     case "login": {
-      return{
+      return {
         ...context,
         member: {
           ...context.member,
-          ...action.member
-        }
-      }
+          ...action.member,
+        },
+      };
     }
     case "logout": {
-      const emptyMemberInfo = {...context.member}
+      const emptyMemberInfo = { ...context.member };
       for (let key in emptyMemberInfo) {
         if (emptyMemberInfo.hasOwnProperty(key)) {
           emptyMemberInfo[key] = null;
         }
       }
-      return{
+      return {
         ...context,
-        member: emptyMemberInfo
-      }
+        member: emptyMemberInfo,
+      };
     }
 
     // studio meta -----
+    case "studioMode": {
+      const modes = ["normal", "word", "image"];
+      if (modes.includes(action.mode)) {
+        return {
+          ...context,
+          studioMeta: { ...context.studioMeta, mode: action.mode },
+        };
+      } else {
+        throw Error("Unknown operateMode: " + action.mode);
+      }
+    }
     case "studioActive": {
       return {
         ...context,
@@ -142,30 +153,44 @@ const appReducer = (context, action) => {
         studioMeta: { ...context.studioMeta, hover: action.hover },
       };
     }
-    case "studioMode": {
-      const modes = ["normal", "word", "image"];
-      if (modes.includes(action.mode)) {
-        return {
-          ...context,
-          studioMeta: { ...context.studioMeta, mode: action.mode },
-        };
-      } else {
-        throw Error("Unknown operateMode: " + action.mode);
-      }
-    }
-    case "studioCopy": {
-      const activeId = context.studioMeta.active.id;
-      const content = context.productContent
-      const copy = content.filter((item) => item.id === activeId)[0];
+    case "studioScale": {
       return {
         ...context,
-        studioMeta: { 
-          ...context.studioMeta, 
-          copy: copy 
+        studioMeta: {
+          ...context.studioMeta,
+          scale: action.scale,
         },
       };
     }
-    case "studioCut": {
+
+    // toolbar -----
+    case "toolbarWord": {
+      return {
+        ...context,
+        studioToolbar: {
+          ...context.studioToolbar,
+          word: {
+            ...context.studioToolbar.word,
+            ...action.style,
+          },
+        },
+      };
+    }
+
+    // content -----
+    case "contentCopy": {
+      const activeId = context.studioMeta.active.id;
+      const content = context.productContent;
+      const copy = content.filter((item) => item.id === activeId)[0];
+      return {
+        ...context,
+        studioMeta: {
+          ...context.studioMeta,
+          copy: copy,
+        },
+      };
+    }
+    case "contentCut": {
       const activeId = context.studioMeta.active.id;
       const content = context.productContent;
       const copy = content.children.filter((item) => item.id === activeId)[0];
@@ -174,18 +199,18 @@ const appReducer = (context, action) => {
       );
       return {
         ...context,
-        studioMeta: { 
-          ...context.studioMeta, 
-          copy: copy, 
-          active: null 
+        studioMeta: {
+          ...context.studioMeta,
+          copy: copy,
+          active: null,
         },
-        productContent: { 
-          ...context.productContent, 
-          children: studioChildren 
+        productContent: {
+          ...context.productContent,
+          children: studioChildren,
         },
       };
     }
-    case "delete": {
+    case "contentDelete": {
       const activeId = context.studioMeta.active.id;
       const content = context.productContent;
       const studioChildren = content.children.filter(
@@ -193,43 +218,19 @@ const appReducer = (context, action) => {
       );
       return {
         ...context,
-        studioMeta: { 
-          ...context.meta, 
-          active: null 
+        studioMeta: {
+          ...context.meta,
+          active: null,
         },
-        productContent: { 
-          ...context.productContent, 
-          children: studioChildren 
-        },
-      };
-    }
-    case "scale": {
-      return {
-        ...context,
-        studioMeta: { 
-          ...context.studioMeta, 
-          scale: action.scale 
+        productContent: {
+          ...context.productContent,
+          children: studioChildren,
         },
       };
     }
-
-    // studio toolbar -----
-    case "toolbarWord": {
-      return {
-        ...context,
-        studioToolbar: {
-          ...context.studioToolbar,
-          word: { 
-            ...context.studioToolbar.word, 
-            ...action.style 
-          },
-        },
-      };
-    }
-
-    case "pos": {
+    case "contentPos": {
       // update item position
-      const content = context.productContent
+      const content = context.productContent;
       const children = [...content.children].map((e) => {
         if (e.id === action.item.id) {
           return action.item;
@@ -245,51 +246,7 @@ const appReducer = (context, action) => {
         },
       };
     }
-    case "update": {
-      const content = context.productContent
-      const children = [...content.children].map((ele) => {
-        if (ele.id !== action.id) {
-          return ele;
-        } else {
-          return action.item;
-        }
-      });
-      return {
-        ...context,
-        productContent: {
-          ...context.productContent,
-          children: children,
-        },
-      };
-    }
-    case "textUpdate": {
-      const objResetText = (obj, text) => {
-        if(obj.dom === "#text"){
-          return {...obj, children: text}
-        }else{
-          return {
-            ...obj, 
-            children: [objResetText(obj.children[0], text)]
-            }
-        }
-      }
-      const content = context.productContent
-      const children = [...content.children].map((ele) => {
-        if (ele.id !== action.id) {
-          return ele;
-        } else {
-          return objResetText(ele, action.text)
-        }
-      });
-      return{
-        ...context,
-        productContent: {
-          ...context.productContent,
-          children: children
-        }
-      }
-    }
-    case "studioSort": {
+    case "contentSort": {
       const content = context.productContent;
       const children = [...content.children];
       const targetId = context.studioMeta.active.id;
@@ -318,13 +275,13 @@ const appReducer = (context, action) => {
       }
       return {
         ...context,
-        productContent: { 
-          ...context.productContent, 
-          children: children 
+        productContent: {
+          ...context.productContent,
+          children: children,
         },
       };
     }
-    case "reset": {
+    case "contentReset": {
       // prune empty content children
       // resort id, zIndex
       const isValid = (obj) => {
@@ -354,7 +311,7 @@ const appReducer = (context, action) => {
         productContent: { ...context.productContent, children: sortById },
       };
     }
-    case "paste": {
+    case "contentPaste": {
       const totalChildren = context.productContent.children.length + 1;
       const pasteItem = {
         ...context.productMeta.copy,
@@ -371,23 +328,32 @@ const appReducer = (context, action) => {
         },
       };
     }
-    case "word": {
+    case "contentAddNewWord": {
       const children = [...context.productContent.children];
       const newId = _.maxBy(children, "id").id + 1;
-      const newZIndex = _.maxBy(children, "zIndex").zIndex + 1;
+      const styles = children.map((ele) => ele.style);
+      const newZIndex = _.maxBy(styles, "zIndex").zIndex + 1;
       const newWord = {
         id: newId,
-        zIndex: newZIndex,
         type: "word",
-        left: action.position[0],
-        top: action.position[1],
+        style: {
+          writingMode: "horizontal-tb",
+          fontSize: "24px",
+          zIndex: newZIndex,
+          fontFamily: "brush",
+          left: action.position[0],
+          top: action.position[1],
+        },
         children: [
           {
             dom: "p",
+            style: {},
             children: [
               {
                 dom: "span",
-                fontSize: "12px",
+                style: {
+                  fontSize: "24px",
+                },
                 children: [
                   {
                     dom: "#text",
@@ -403,14 +369,11 @@ const appReducer = (context, action) => {
         ...context,
         productContent: {
           ...context.productContent,
-          children: [
-            ...context.productContent.children, 
-            newWord
-          ],
+          children: [...context.productContent.children, newWord],
         },
       };
     }
-    case "image": {
+    case "contentAddNewImage": {
       console.log(
         "parameter: position ",
         action.position,
@@ -418,7 +381,7 @@ const appReducer = (context, action) => {
       );
       return context;
     }
-    case "weight": {
+    case "contentWeight": {
       return {
         ...context,
         productContent: {
@@ -428,16 +391,56 @@ const appReducer = (context, action) => {
         },
       };
     }
-    case "size": {
+    case "contentItem": {
+      const updateChildren = context.productContent.children.map(
+        (child) => {
+          if(child.id === action.id){
+            return { 
+              ...child, 
+              ...action.item
+            }
+          }else{
+            return child
+          }
+        }
+      );
       return {
         ...context,
         productContent: {
           ...context.productContent,
-          productSize: action.size,
-          price: 303232,
+          children: updateChildren,
         },
       };
     }
+    case "contentText": {
+      const objResetText = (obj, text) => {
+        if (obj.dom === "#text") {
+          return { ...obj, children: text };
+        } else {
+          return {
+            ...obj,
+            children: [objResetText(obj.children[0], text)],
+          };
+        }
+      };
+      const content = context.productContent;
+      const children = [...content.children].map((ele) => {
+        if (ele.id !== action.id) {
+          return ele;
+        } else {
+          return objResetText(ele, action.text);
+        }
+      });
+      return {
+        ...context,
+        productContent: {
+          ...context.productContent,
+          children: children,
+        },
+      };
+    }
+
+    // product meta -----
     case "productMetaUpdate": {
       return {
         ...context,
