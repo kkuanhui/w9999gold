@@ -1,6 +1,5 @@
 import { useRef } from "react";
 import "../../static/css/general/events.css";
-import stevejobs from "../../static/image/steve-jobs.png"
 import { useAppDispatch } from "../../Context";
 
 const Image = ({idx, imageObj}) => {
@@ -21,7 +20,7 @@ const Image = ({idx, imageObj}) => {
       ref={component}
       style={style} 
       alt="user custom" 
-      src={stevejobs}
+      src={imageObj.src}
       onFocus={() => {
         dispatch({
           type: "studioMode", 

@@ -374,20 +374,26 @@ const appReducer = (context, action) => {
       };
     }
     case "contentAddNewImage": {
-      console.log(
-        "parameter: position ",
-        action.position,
-        "add an image. function not complete."
-      );
-      return context;
-    }
-    case "contentWeight": {
+      const children = [...context.productContent.children];
+      const newId = _.maxBy(children, "id").id + 1;
+      const styles = children.map((ele) => ele.style);
+      const newZIndex = _.maxBy(styles, "zIndex").zIndex + 1;
+      const newImage = {
+        id: newId,
+        type: "image",
+        style: {
+          zIndex: newZIndex,
+          left: action.position[0],
+          top: action.position[1],
+          // width: "300px"
+        },
+        src: action.src
+      };
       return {
         ...context,
         productContent: {
           ...context.productContent,
-          productWeight: action.weight,
-          price: 45642,
+          children: [...context.productContent.children, newImage],
         },
       };
     }

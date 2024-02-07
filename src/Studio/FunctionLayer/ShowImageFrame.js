@@ -1,4 +1,3 @@
-import stevejobs from "../../static/image/steve-jobs.png";
 import { useApp } from "../../Context";
 
 // image
@@ -16,7 +15,7 @@ const ShowImageFrame = () => {
         height: `${imageObj.style.height}px`,
       }}
       alt="user custom"
-      src={stevejobs}
+      src={imageObj.src}
     />
   );
 };

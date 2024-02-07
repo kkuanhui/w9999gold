@@ -1,9 +1,9 @@
 import { useState, useRef, useEffect} from "react";
 import {GoTriangleLeft, GoTriangleRight} from "react-icons/go";
 import {AiOutlineSearch} from "react-icons/ai";
-import {RiArrowDropDownLine} from "react-icons/ri"
-import {useApp, useAppDispatch} from "../../Context"
-import { update } from "lodash";
+import {RiArrowDropDownLine} from "react-icons/ri";
+import {useApp, useAppDispatch} from "../../Context";
+import axios from "axios";
 
 const Normal = () => {
   const context = useApp();
@@ -35,19 +35,7 @@ const Normal = () => {
           新增文字
         </button>
 
-        <button name="word"
-          style={{height: "100%"}}
-          className="hover-background-43ff64d9"
-          onClick={() => {
-            console.log('addon new word block')
-            dispatch({
-              type: "contentAddNewWord",
-              position: [250, 250]
-            })
-          }}
-        >
-          新增圖片
-        </button>
+        <ImageInput />
 
         <Dropdown name={"款式"}>
           <StyleContent />
@@ -336,5 +324,36 @@ const SizeContent = () => {
     </div>
   );
 };
+
+const ImageInput = () => {
+  const dispatch = useAppDispatch();
+
+  return(
+        <label name="word"
+          style={{height: "100%"}}
+          className="hover-cursor-pointer hover-background-43ff64d9 d-flex flex-ai-center flex-jc-center"
+          // onClick={() => {
+          // }}
+        >
+          新增圖片
+
+          <input 
+            type="file" 
+            accept="image/jpeg, image/png" 
+            style={{height: "100%", display: "none"}}
+            onChange={(e) => {
+              const fileList = e.target.files;
+              console.log('addon new word block')
+              dispatch({
+                type: "contentAddNewImage",
+                src: URL.createObjectURL(fileList[0]),
+                position: [250, 250]
+              })
+            }}
+          />
+
+        </label>
+  )
+}
 
 export default Normal;

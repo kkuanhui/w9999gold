@@ -1,8 +1,11 @@
 import { useState, useRef } from "react";
+import { useAppDispatch } from "../../Context";
+
 import {BsImage} from 'react-icons/bs';
 import {PiCornersOutLight} from 'react-icons/pi'
 import {BiCrop} from 'react-icons/bi'
 import {AiFillDelete} from "react-icons/ai"
+
 
 const Photo = () => {
   return (
@@ -16,20 +19,22 @@ const Photo = () => {
         position: "relative",
       }}
     >
-      <BsImage />
+
       <NavItem name={"裁切"} type={"corp"}>
         <BiCrop></BiCrop>
       </NavItem>
+
       <NavItem name={"圓角"} type={"corner"}>
         <PiCornersOutLight />
       </NavItem>
+
       <Delete>
         <AiFillDelete></AiFillDelete>
       </Delete>
+
     </div>
   );
 };
-
 
 const NavItem = (props) => {
   const [isStyleShow, setIsStyleShow] = useState(false);
@@ -83,9 +88,12 @@ const DropDown = (props) => {
 };
 
 const Delete = (props) => {
+  const dispatch = useAppDispatch();
   return(
     <div>
-      <button>
+      <button onClick={() => {
+        dispatch({type: "contentDelete"})
+      }}>
         {props.children}
       </button>
     </div>

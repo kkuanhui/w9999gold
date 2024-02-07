@@ -1,5 +1,6 @@
 import { useRef, useEffect } from "react";
 import { useAppDispatch } from "../../Context";
+import "../../static/css/studio.css";
 import "../../static/css/custom-class.css";
 import "../../static/css/general/events.css";
 
@@ -70,18 +71,28 @@ const Contextmenu = ({ onClose, position }) => {
       </div>
 
       <div
-        onClick={() => {
-          dispatch({
-            type: "contentAddNewImage",
-            position: position
-          })
-          manualClose()
-        }}
+        // onClick={() => {
+          // dispatch({
+          //   type: "contentAddNewImage",
+          //   position: position
+          // })
+          // manualClose()
+        // }}
         className="hover-cursor-pointer hover-background-06f hover-color-fff p-3"
       >
-        <div className="width-100 d-flex flex-jc-between flex-ai-end">
-          <span>新增圖片(add image)</span>
-        </div>
+        <label className="hover-cursor-pointer user-select-none width-100 d-flex flex-jc-between flex-ai-end">
+          <input 
+            className="d-none"
+            type="file" 
+            accept="image/png, image/jpeg" 
+            onChange={(e) => {
+              const files = e.target.files
+              console.log(files)
+            }}
+          />
+          新增圖片(add image)
+        </label>
+
       </div>
 
     </div>
