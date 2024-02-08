@@ -1,9 +1,9 @@
 import { useRef, useState, useEffect } from "react";
-import WordEditor from "./WordEditor";
-import ShowFrame from "./ShowFrame";
-import EditImageFrame from "./EditImageFrame";
-import ShowImageFrame from "./ShowImageFrame";
 import Contextmenu from "./Contextmenu";
+import EditWord from "./EditWord";
+import ShowWord from "./ShowWord";
+import EditImage from "./EditImage";
+import ShowImage from "./ShowImage";
 // css
 import "../../static/css/custom-class.css";
 import { useApp, useAppDispatch } from "../../Context";
@@ -89,15 +89,15 @@ const FocusFrame = () => {
 const FocusOnWhat = ({ isDragging, itemType, onEditing}) => {
   if (itemType === "word") {
     if (!isDragging) {
-      return <WordEditor onEditing={onEditing}></WordEditor>;
+      return <EditWord onEditing={onEditing}></EditWord>;
     } else {
-      return <ShowFrame></ShowFrame>;
+      return <ShowWord></ShowWord>;
     }
   } else {
     if(!isDragging){
-      return <EditImageFrame></EditImageFrame>
+      return <EditImage></EditImage>
     }else{
-      return <ShowImageFrame></ShowImageFrame>
+      return <ShowImage></ShowImage>
     }
   }
 };

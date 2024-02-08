@@ -1,7 +1,7 @@
 import { useApp } from "../../Context";
 
 // image
-const EditImageFrame = () => {
+const ImageEditor = () => {
   const context = useApp();
   const active = context.studioMeta.active
   const imageObj = context.productContent.children.filter(
@@ -20,4 +20,4 @@ const EditImageFrame = () => {
   );
 };
 
-export default EditImageFrame;
+export default ImageEditor;
