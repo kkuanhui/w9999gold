@@ -41,7 +41,7 @@ const Contextmenu = ({ onClose, position }) => {
 
       <div
         onClick={() => {
-          dispatch({type: "studioCopy"})
+          dispatch({type: "contentCopy"})
           dispatch({type: "studioActive", active: null})
           manualClose()
         }}
@@ -54,7 +54,7 @@ const Contextmenu = ({ onClose, position }) => {
 
       <div
         onClick={() => {
-          dispatch({type: "studioCut"})
+          dispatch({type: "contentCut"})
           manualClose()
         }}
         className="hover-cursor-pointer hover-background-06f hover-color-fff p-3"
@@ -66,7 +66,7 @@ const Contextmenu = ({ onClose, position }) => {
 
       <div
         onClick={() => {
-          dispatch({type: "studioSort",order: 'forward',})
+          dispatch({type: "contentSort",order: 'forward',})
         }}
         className="hover-cursor-pointer hover-background-06f hover-color-fff p-3"
       >
@@ -77,7 +77,7 @@ const Contextmenu = ({ onClose, position }) => {
 
       <div
         onClick={() => {
-          dispatch({type: "studioSort",order: 'backward',})
+          dispatch({type: "contentSort",order: 'backward',})
         }}
         className="hover-cursor-pointer hover-background-06f hover-color-fff p-3"
       >
@@ -88,7 +88,7 @@ const Contextmenu = ({ onClose, position }) => {
 
       <div
         onClick={() => {
-          dispatch({type: "studioSort",order: 'head',})
+          dispatch({type: "contentSort",order: 'head',})
           dispatch({type: "studioActive", active: null})
           manualClose()
         }}
@@ -101,7 +101,7 @@ const Contextmenu = ({ onClose, position }) => {
 
       <div
         onClick={() => {
-          dispatch({type: "studioSort",order: 'bottom'})
+          dispatch({type: "contentSort",order: 'bottom'})
           dispatch({type: "studioActive", active: null})
           manualClose()
         }}

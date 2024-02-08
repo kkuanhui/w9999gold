@@ -180,13 +180,35 @@ const appReducer = (context, action) => {
     // content -----
     case "contentCopy": {
       const activeId = context.studioMeta.active.id;
-      const content = context.productContent;
-      const copy = content.filter((item) => item.id === activeId)[0];
+      const copy = context.productContent.children.filter((item) => item.id === activeId)[0];
       return {
         ...context,
         studioMeta: {
           ...context.studioMeta,
           copy: copy,
+        },
+      };
+    }
+    case "contentPaste": {
+      const totalChildren = context.productContent.children.length + 1;
+      const pasteItem = {
+        ...context.studioMeta.copy,
+        id: totalChildren,
+        style: {
+          ...context.studioMeta.copy.style,
+          zIndex: totalChildren,
+          left: action.position[0],
+          top: action.position[1],
+        }
+      };
+      return {
+        ...context,
+        productContent: {
+          ...context.productContent,
+          children: [
+            ...context.productContent.children, 
+            pasteItem
+          ],
         },
       };
     }
@@ -254,23 +276,23 @@ const appReducer = (context, action) => {
         .zIndex;
       if (action.order === "head") {
         children.forEach((ele) => {
-          if (ele.id === targetId) ele.zIndex = children.length;
-          else if (ele.zIndex > preservedZ) ele.zIndex -= 1;
+          if (ele.id === targetId) ele.style.zIndex = children.length;
+          else if (ele.style.zIndex > preservedZ) ele.style.zIndex -= 1;
         });
       } else if (action.order === "bottom") {
         children.forEach((ele) => {
-          if (ele.id === targetId) ele.zIndex = 1;
-          else if (ele.zIndex < preservedZ) ele.zIndex += 1;
+          if (ele.id === targetId) ele.style.zIndex = 1;
+          else if (ele.style.zIndex < preservedZ) ele.style.zIndex += 1;
         });
       } else if (action.order === "backward" && preservedZ !== 1) {
         children.forEach((ele) => {
-          if (ele.id === targetId) ele.zIndex -= 1;
-          else if (ele.zIndex === preservedZ - 1) ele.zIndex += 1;
+          if (ele.id === targetId) ele.style.zIndex -= 1;
+          else if (ele.style.zIndex === preservedZ - 1) ele.style.zIndex += 1;
         });
       } else if (action.order === "forward" && preservedZ !== children.length) {
         children.forEach((ele) => {
-          if (ele.id === targetId) ele.zIndex += 1;
-          else if (ele.zIndex === preservedZ + 1) ele.zIndex -= 1;
+          if (ele.id === targetId) ele.style.zIndex += 1;
+          else if (ele.style.zIndex === preservedZ + 1) ele.style.zIndex -= 1;
         });
       }
       return {
@@ -309,23 +331,6 @@ const appReducer = (context, action) => {
         ...context,
         productMeta: { ...context.productMeta, active: null },
         productContent: { ...context.productContent, children: sortById },
-      };
-    }
-    case "contentPaste": {
-      const totalChildren = context.productContent.children.length + 1;
-      const pasteItem = {
-        ...context.productMeta.copy,
-        id: totalChildren,
-        zIndex: totalChildren,
-        left: action.position[0],
-        top: action.position[1],
-      };
-      return {
-        ...context,
-        productContent: {
-          ...context.productContent,
-          children: [...context.productContent.children, pasteItem],
-        },
       };
     }
     case "contentAddNewWord": {

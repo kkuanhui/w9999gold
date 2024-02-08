@@ -12,6 +12,7 @@ const TriggerLayer = () => {
   const [position, setPosition] = useState(null)
   return (
     <div
+      id="trigger-layer"
       style={{
         boxSizing: "border-box",
         height: "100%",
@@ -30,16 +31,18 @@ const TriggerLayer = () => {
 
       <Exit></Exit>
 
-      {context.productContent.children.map((item, key) => {
-        const activeId = context.studioMeta.active?.id 
-        if (item.type === "word" && activeId !== item.id) {
-          return <Word key={key} idx={item.id} wordObj={item}></Word>;
-        } else if (item.type === "image" && activeId !== item.id) {
-          return <Image key={key} idx={item.id} imageObj={item}></Image>;
-        } else {
-          return null;
-        }
-      })}
+      {
+        context.productContent.children.map((item, key) => {
+          const activeId = context.studioMeta.active?.id 
+          if (item.type === "word" && activeId !== item.id) {
+            return <Word key={key} idx={item.id} wordObj={item}></Word>;
+          } else if (item.type === "image" && activeId !== item.id) {
+            return <Image key={key} idx={item.id} imageObj={item}></Image>;
+          } else {
+            return null;
+          }
+        })
+      }
 
       {
         (position !== null)
