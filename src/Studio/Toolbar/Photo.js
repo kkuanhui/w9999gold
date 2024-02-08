@@ -1,7 +1,6 @@
 import { useState, useRef } from "react";
 import { useAppDispatch } from "../../Context";
 
-import {BsImage} from 'react-icons/bs';
 import {PiCornersOutLight} from 'react-icons/pi'
 import {BiCrop} from 'react-icons/bi'
 import {AiFillDelete} from "react-icons/ai"

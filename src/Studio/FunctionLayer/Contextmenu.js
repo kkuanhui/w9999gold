@@ -114,7 +114,7 @@ const Contextmenu = ({ onClose, position }) => {
 
       <div
         onClick={() => {
-          dispatch({type: "delete"})
+          dispatch({type: "contentDelete"})
           manualClose()
         }}
         className="hover-cursor-pointer hover-background-06f hover-color-fff p-3"

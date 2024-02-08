@@ -3,7 +3,6 @@ import {GoTriangleLeft, GoTriangleRight} from "react-icons/go";
 import {AiOutlineSearch} from "react-icons/ai";
 import {RiArrowDropDownLine} from "react-icons/ri";
 import {useApp, useAppDispatch} from "../../Context";
-import axios from "axios";
 
 const Normal = () => {
   const context = useApp();
@@ -74,7 +73,7 @@ const Normal = () => {
 
       </div>
 
-      <div className="font-bold" style={{fontSize: "large"}}>
+      <div className="font-bold user-select-none">
         價格 {Number(price).toLocaleString()} 元
       </div>
     </div>
@@ -332,8 +331,6 @@ const ImageInput = () => {
         <label name="word"
           style={{height: "100%"}}
           className="hover-cursor-pointer hover-background-43ff64d9 d-flex flex-ai-center flex-jc-center"
-          // onClick={() => {
-          // }}
         >
           新增圖片
 

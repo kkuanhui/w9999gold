@@ -70,30 +70,24 @@ const Contextmenu = ({ onClose, position }) => {
         </div>
       </div>
 
-      <div
-        // onClick={() => {
-          // dispatch({
-          //   type: "contentAddNewImage",
-          //   position: position
-          // })
-          // manualClose()
-        // }}
-        className="hover-cursor-pointer hover-background-06f hover-color-fff p-3"
-      >
-        <label className="hover-cursor-pointer user-select-none width-100 d-flex flex-jc-between flex-ai-end">
-          <input 
-            className="d-none"
-            type="file" 
-            accept="image/png, image/jpeg" 
-            onChange={(e) => {
-              const files = e.target.files
-              console.log(files)
-            }}
-          />
-          新增圖片(add image)
-        </label>
-
-      </div>
+      <label className="hover-background-06f hover-color-fff p-3 hover-cursor-pointer user-select-none width-100 d-flex flex-jc-between flex-ai-end">
+        <input 
+          type="file" 
+          accept="image/jpeg, image/png" 
+          style={{height: "100%", display: "none"}}
+          onChange={(e) => {
+            const fileList = e.target.files;
+            console.log('addon new word block')
+            dispatch({
+              type: "contentAddNewImage",
+              src: URL.createObjectURL(fileList[0]),
+              position: position
+            })
+            manualClose()
+          }}
+        />
+        新增圖片(add image)
+      </label>
 
     </div>
   );
