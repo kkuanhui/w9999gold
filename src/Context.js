@@ -272,8 +272,7 @@ const appReducer = (context, action) => {
       const content = context.productContent;
       const children = [...content.children];
       const targetId = context.studioMeta.active.id;
-      const preservedZ = children.filter((ele) => ele.id === targetId)[0]
-        .zIndex;
+      const preservedZ = children.filter((ele) => ele.id === targetId)[0].style.zIndex;
       if (action.order === "head") {
         children.forEach((ele) => {
           if (ele.id === targetId) ele.style.zIndex = children.length;
