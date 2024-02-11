@@ -43,3 +43,19 @@
   color: rgb(77, 77, 77);
   opacity: 0.3;
 }
+
+.hover-cursor-n-resize:hover {
+  cursor: n-resize;
+}
+
+.hover-cursor-e-resize:hover {
+  cursor: e-resize;
+}
+
+.hover-cursor-s-resize:hover {
+  cursor: s-resize;
+}
+
+.hover-cursor-w-resize:hover {
+  cursor: w-resize;
+}

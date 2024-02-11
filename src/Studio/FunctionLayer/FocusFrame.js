@@ -6,6 +6,7 @@ import EditImage from "./EditImage";
 import ShowImage from "./ShowImage";
 // css
 import "../../static/css/custom-class.css";
+import "../../static/css/studio.css"
 import { useApp, useAppDispatch } from "../../Context";
 
 const FocusFrame = () => {
@@ -72,6 +73,11 @@ const FocusFrame = () => {
         };
       }}
     >
+      {
+        (activeItem.type === "image")
+        ?<ResizePack />
+        :null
+      }
       <FocusOnWhat 
         isDragging={isDragging} 
         itemType={activeItem.type}
@@ -101,5 +107,64 @@ const FocusOnWhat = ({ isDragging, itemType, onEditing}) => {
     }
   }
 };
+
+const ResizePack = () => {
+  return(
+    <>
+      <div 
+      className="hover-cursor-n-resize"
+      style={{
+        position: "absolute",
+        top: "-1px",
+        left: "0px",
+        height: "5px",
+        width: "100%",
+      }}
+      ></div>
+
+      <div 
+      className="hover-cursor-e-resize"
+      style={{
+        position: "absolute",
+        top: "0px",
+        right: "-1px",
+        height: "100%",
+        width: "5px",
+      }}></div>
+
+      <div 
+      className="hover-cursor-s-resize"
+      style={{
+        position: "absolute",
+        bottom: "-1px",
+        left: "0px",
+        height: "5px",
+        width: "100%",
+      }}></div>
+
+      <div 
+      className="hover-cursor-w-resize"
+      style={{
+        position: "absolute",
+        top: "0px",
+        left: "-1px",
+        height: "100%",
+        width: "5px",
+      }}
+      onMouseDown={() => {
+        console.log('down')
+        document.onmousemove = (e) => {
+          console.log(e.clientX, e.clientY)
+        }
+        document.onmouseup = () => {
+          document.onmousemove = null;
+          document.onmouseup  = null;
+        }
+      }}
+      ></div>
+
+    </>
+  )
+}
 
 export default FocusFrame;
