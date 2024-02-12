@@ -40,13 +40,29 @@
   overflow: hidden;
 }
 
-#content-canvas{
+#content-canvas {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
 
-.studio-word *{
+.studio-word * {
   font-family: inherit;
+}
+
+.hover-cursor-n-resize:hover {
+  cursor: n-resize;
+}
+
+.hover-cursor-e-resize:hover {
+  cursor: e-resize;
+}
+
+.hover-cursor-s-resize:hover {
+  cursor: s-resize;
+}
+
+.hover-cursor-w-resize:hover {
+  cursor: w-resize;
 }

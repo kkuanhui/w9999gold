@@ -19,11 +19,11 @@ const Photo = () => {
       }}
     >
 
-      <NavItem name={"裁切"} type={"corp"}>
+      <NavItem type={"corp"}>
         <BiCrop></BiCrop>
       </NavItem>
 
-      <NavItem name={"圓角"} type={"corner"}>
+      <NavItem type={"corner"}>
         <PiCornersOutLight />
       </NavItem>
 
@@ -35,7 +35,7 @@ const Photo = () => {
   );
 };
 
-const NavItem = (props) => {
+const NavItem = ({children, type}) => {
   const [isStyleShow, setIsStyleShow] = useState(false);
   // determin dropdown component display.
   return (
@@ -50,9 +50,9 @@ const NavItem = (props) => {
           setIsStyleShow(!isStyleShow);
         }}
       >
-        {props.children}
+        {children}
       </button>
-      <DropDown type={props.type} isShow={isStyleShow} setIsShow={setIsStyleShow}>
+      <DropDown type={type} isShow={isStyleShow} setIsShow={setIsStyleShow}>
       </DropDown>
     </div>
   );

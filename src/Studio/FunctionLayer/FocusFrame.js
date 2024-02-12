@@ -41,7 +41,7 @@ const FocusFrame = () => {
         zIndex: "1",
         top: `${activeItem.style.top - 2}px`,
         left: `${activeItem.style.left - 2}px`,
-        border: "1px solid purple",
+        border: (activeItem.type === "word")?"1px solid purple":null,
         padding: "1px",
         cursor: isDragging ? "move" : "auto",
       }}
@@ -73,11 +73,6 @@ const FocusFrame = () => {
         };
       }}
     >
-      {
-        (activeItem.type === "image")
-        ?<ResizePack />
-        :null
-      }
       <FocusOnWhat 
         isDragging={isDragging} 
         itemType={activeItem.type}
@@ -107,64 +102,5 @@ const FocusOnWhat = ({ isDragging, itemType, onEditing}) => {
     }
   }
 };
-
-const ResizePack = () => {
-  return(
-    <>
-      <div 
-      className="hover-cursor-n-resize"
-      style={{
-        position: "absolute",
-        top: "-1px",
-        left: "0px",
-        height: "5px",
-        width: "100%",
-      }}
-      ></div>
-
-      <div 
-      className="hover-cursor-e-resize"
-      style={{
-        position: "absolute",
-        top: "0px",
-        right: "-1px",
-        height: "100%",
-        width: "5px",
-      }}></div>
-
-      <div 
-      className="hover-cursor-s-resize"
-      style={{
-        position: "absolute",
-        bottom: "-1px",
-        left: "0px",
-        height: "5px",
-        width: "100%",
-      }}></div>
-
-      <div 
-      className="hover-cursor-w-resize"
-      style={{
-        position: "absolute",
-        top: "0px",
-        left: "-1px",
-        height: "100%",
-        width: "5px",
-      }}
-      onMouseDown={() => {
-        console.log('down')
-        document.onmousemove = (e) => {
-          console.log(e.clientX, e.clientY)
-        }
-        document.onmouseup = () => {
-          document.onmousemove = null;
-          document.onmouseup  = null;
-        }
-      }}
-      ></div>
-
-    </>
-  )
-}
 
 export default FocusFrame;
