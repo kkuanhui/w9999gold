@@ -17,7 +17,7 @@ const FunctionLayer = () => {
 
   useEffect(() => {
     if(active){
-      const item = context.productContent.children(ele => ele.id === active.id)[0]
+      const item = context.productContent.children.filter(ele => ele.id === active.id)[0]
       setActiveItem(item)
     }
   }, [active])
@@ -35,8 +35,8 @@ const FunctionLayer = () => {
       }}
     >
       {hoverItem ? <HoverFrame></HoverFrame> : null}
-      {activeItem ? <FocusFrame></FocusFrame> : null}
-      {
+      {active ? <FocusFrame></FocusFrame> : null}
+    {
         (active && activeItem.type === 'image')
         ? <ResizeFrame></ResizeFrame>
         :null

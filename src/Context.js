@@ -266,6 +266,14 @@ const appReducer = (context, action) => {
           ...context.productContent,
           children: children,
         },
+        studioMeta: {
+          ...context.studioMeta,
+          active: {
+            ...context.studioMeta.active,
+            top: action.item.style.top,
+            left: action.item.style.left,
+          }
+        }
       };
     }
     case "contentSort": {

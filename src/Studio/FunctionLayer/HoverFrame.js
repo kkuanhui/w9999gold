@@ -8,6 +8,7 @@ const HoverFrame = () => {
       className="m-0 p-0"
       style={{
         position: "absolute",
+        zIndex: "1",
         width: "100%",
         height: "100%",
         top: `${hover.top}px`,
