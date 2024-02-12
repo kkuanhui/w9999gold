@@ -30,6 +30,8 @@ const Image = ({idx, imageObj}) => {
           type: "studioActive",
           active: {
             id: idx,
+            top: imageObj.style.top,
+            left: imageObj.style.left,
             width: component.current.offsetWidth, 
             height: component.current.offsetHeight
           }

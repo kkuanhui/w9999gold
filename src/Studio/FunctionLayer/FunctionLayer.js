@@ -1,6 +1,8 @@
 import HoverFrame from "./HoverFrame";
 import FocusFrame from "./FocusFrame";
+import ResizeFrame from "./ResizeFrame";
 import { useApp } from "../../Context";
+import { useEffect, useState } from "react";
 
 /**
  * The FunctionLayer is positioned above the BottomLayer to ensure that elements are not obscured by other elements in component Canvas.
@@ -10,7 +12,14 @@ import { useApp } from "../../Context";
 const FunctionLayer = () => {
   const context = useApp();
   const hoverItem = context.studioMeta.hover;
-  const activeItem = context.studioMeta.active;
+  const active = context.studioMeta.active;
+  const [activeItem, setActiveItem] = useState({})
+  useEffect(() => {
+    if(active){
+      const item = context.productContent.children.filter(ele => ele.id === active.id)[0]
+      setActiveItem(item)
+    }
+  }, [active])
   return (
     <div
       style={{
@@ -24,9 +33,16 @@ const FunctionLayer = () => {
       }}
     >
       {hoverItem ? <HoverFrame></HoverFrame> : null}
-      {activeItem ? <FocusFrame></FocusFrame> : null}
+      {active ? <FocusFrame></FocusFrame> : null}
+      {
+        (active && activeItem.type === "image")
+        ? <ResizeFrame></ResizeFrame>
+        : null
+      }
     </div>
   );
 };
+
+
 
 export default FunctionLayer;
