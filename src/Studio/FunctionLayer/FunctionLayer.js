@@ -1,9 +1,7 @@
 import HoverFrame from "./HoverFrame";
 import FocusFrame from "./FocusFrame";
 import ResizeFrame from "./ResizeFrame";
-import ResizeFrame from "./ResizeFrame";
 import { useApp } from "../../Context";
-import { useEffect, useState } from "react";
 import { useEffect, useState } from "react";
 
 /**
