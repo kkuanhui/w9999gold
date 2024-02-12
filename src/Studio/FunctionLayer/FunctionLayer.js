@@ -1,7 +1,9 @@
 import HoverFrame from "./HoverFrame";
 import FocusFrame from "./FocusFrame";
 import ResizeFrame from "./ResizeFrame";
+import ResizeFrame from "./ResizeFrame";
 import { useApp } from "../../Context";
+import { useEffect, useState } from "react";
 import { useEffect, useState } from "react";
 
 /**
@@ -13,7 +15,8 @@ const FunctionLayer = () => {
   const context = useApp();
   const hoverItem = context.studioMeta.hover;
   const active = context.studioMeta.active;
-  const [activeItem, setActiveItem] = useState({})
+  const [activeItem, setActiveItem] = useState({});
+
   useEffect(() => {
     if(active){
       const item = context.productContent.children.filter(ele => ele.id === active.id)[0]
@@ -34,10 +37,10 @@ const FunctionLayer = () => {
     >
       {hoverItem ? <HoverFrame></HoverFrame> : null}
       {active ? <FocusFrame></FocusFrame> : null}
-      {
-        (active && activeItem.type === "image")
+    {
+        (active && activeItem.type === 'image')
         ? <ResizeFrame></ResizeFrame>
-        : null
+        :null
       }
     </div>
   );

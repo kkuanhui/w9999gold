@@ -1,4 +1,5 @@
 import { useApp } from "../../Context";
+import "../../static/css/studio.css";
 
 const ResizeFrame = () => {
   const context = useApp();
@@ -8,15 +9,16 @@ const ResizeFrame = () => {
       className="m-0 p-0"
       style={{
         position: "absolute",
-        zIndex: "3",
+        zIndex: "2",
         width: "100%",
         height: "100%",
         top: `${active.top}px`,
         left: `${active.left}px`,
       }}
     >
+
       <div
-        className="m-0 p-0"
+        className="m-0 p-0 hover-cursor-n-resize"
         style={{
           position: "absolute",
           top: "-2px",
@@ -24,6 +26,16 @@ const ResizeFrame = () => {
           width: `${active.width + 4}px`,
           height: `1px`,
           backgroundColor: "black",
+        }}
+        onMouseDown={() => {
+          console.log('down')
+          document.onmousemove = (e) => {
+            console.log(e.clientX, e.clientY)
+          }
+          document.onmouseup = () => {
+            document.onmousemove = null;
+            document.onmouseup = null;
+          }
         }}
       ></div>
 

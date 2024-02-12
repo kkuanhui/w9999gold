@@ -9,6 +9,7 @@ const ShowImageFrame = () => {
   )[0];
   return (
     <img
+      unselectable="on"
       draggable={false}
       style={{
         width: `${imageObj.style.width}px`,

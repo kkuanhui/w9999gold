@@ -41,7 +41,7 @@ const FocusFrame = () => {
         zIndex: "1",
         top: `${activeItem.style.top - 2}px`,
         left: `${activeItem.style.left - 2}px`,
-        border: (activeItem.type === "word")?"1px solid purple": null,
+        border: (activeItem.type === "word")?"1px solid purple":null,
         padding: "1px",
         cursor: isDragging ? "move" : "auto",
       }}
