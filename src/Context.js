@@ -460,16 +460,17 @@ const appReducer = (context, action) => {
     case "contentImageUpdate": {
       const newContent = context.productContent.children.map(child => {
         if(child.id === action.id && child.type === "image"){
-          const newChild = {...child}
-          newChild.style.width = newChild.style.width + action.movement
-          return child
+          return action.item
         }else{
           return child
         }
       })
       return{
         ...context,
-        productContent: [...newContent]
+        productContent: {
+          ...context.productContent,
+          children: [...newContent]
+        }
       }
     }
 

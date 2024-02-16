@@ -3,9 +3,23 @@ import "../../static/css/studio.css";
 
 const ResizeFrame = () => {
   const context = useApp();
+  const active = context.studioMeta.active
+  const activeItem = context.productContent.children.filter(ele => ele.id === active.id)[0]
+  const aspectRatio = (active.width/ active.height);
   const dispatch = useAppDispatch();
 
-  const active = context.studioMeta.active
+  const setItemAspectValue = (movementX, movementY) => {
+    const imageItem = {...activeItem}
+    if(!imageItem.style.width || !imageItem.style.height){
+      imageItem.style.width = active.width
+      imageItem.style.height = active.height
+    }
+    imageItem.style.width += movementX
+    imageItem.style.height = imageItem.style.width * aspectRatio;
+    imageItem.style.height += movementY
+    imageItem.style.width = imageItem.style.height / aspectRatio;
+    return imageItem
+  }
   return (
     <div
       className="m-0 p-0"
@@ -31,14 +45,12 @@ const ResizeFrame = () => {
           backgroundColor: "black",
         }}
         onMouseDown={() => {
-          console.log('down')
           document.onmousemove = (e) => {
             dispatch({
               type: "contentImageUpdate",
               id: active.id,
-              movement: e.movementY
+              item: setItemAspectValue(0, e.movementY)
             })
-            console.log(e.movementY)
           }
           document.onmouseup = () => {
             document.onmousemove = null;
@@ -49,7 +61,7 @@ const ResizeFrame = () => {
 
       <div
         name="right"
-        className="m-0 p-0"
+        className="m-0 p-0 hover-cursor-e-resize"
         style={{
           position: "absolute",
           top: "-2px",
@@ -59,11 +71,24 @@ const ResizeFrame = () => {
           height: `${active.height + 4}px`,
           backgroundColor: "black",
         }}
+        onMouseDown={() => {
+          document.onmousemove = (e) => {
+            dispatch({
+              type: "contentImageUpdate",
+              id: active.id,
+              item: setItemAspectValue(e.movementX, 0)
+            })
+          }
+          document.onmouseup = () => {
+            document.onmousemove = null;
+            document.onmouseup = null;
+          }
+        }}
       ></div>
 
       <div
         name="bottom"
-        className="m-0 p-0"
+        className="m-0 p-0 hover-cursor-s-resize"
         style={{
           position: "absolute",
           top: `${active.height + 1}px`,
@@ -73,11 +98,24 @@ const ResizeFrame = () => {
           height: `1px`,
           backgroundColor: "black",
         }}
+        onMouseDown={() => {
+          document.onmousemove = (e) => {
+            dispatch({
+              type: "contentImageUpdate",
+              id: active.id,
+              item: setItemAspectValue(0, e.movementY)
+            })
+          }
+          document.onmouseup = () => {
+            document.onmousemove = null;
+            document.onmouseup = null;
+          }
+        }}
       ></div>
 
       <div
         name="left"
-        className="m-0 p-0"
+        className="m-0 p-0 hover-cursor-w-resize"
         style={{
           position: "absolute",
           top: "-2px",
@@ -85,6 +123,19 @@ const ResizeFrame = () => {
           width: "1px",
           height: `${active.height + 4}px`,
           backgroundColor: "black",
+        }}
+        onMouseDown={() => {
+          document.onmousemove = (e) => {
+            dispatch({
+              type: "contentImageUpdate",
+              id: active.id,
+              item: setItemAspectValue(e.movementX, 0)
+            })
+          }
+          document.onmouseup = () => {
+            document.onmousemove = null;
+            document.onmouseup = null;
+          }
         }}
       ></div>
 

@@ -16,3 +16,10 @@ We can serve both frontend and backend on the same server.
 selection 
 一樣使用滑鼠位置引導方格大小變化，利用 absolute positioned element 的 top left right bottom 來作定位。
 不過，選擇框的四個點位會因為滑鼠位置變換而需要重新定義，或者說右下角的點會因為滑鼠位置不同而變成左上角，這樣一來四點需要做什麼處理？
+
+aspectRatio = (16/9)
+1920/1080 = 16/9
+1920 = (16/9)/1080
+
+1080 = 1920/(16/9)
+1920 = 1080*(16/9)
