@@ -5,9 +5,6 @@ const ResizeFrame = () => {
   const context = useApp();
   const dispatch = useAppDispatch();
 
-  const whRatio = context.studioMeta.active;
-  console.log(whRatio.width, whRatio.height)
-
   const active = context.studioMeta.active
   return (
     <div
@@ -23,6 +20,7 @@ const ResizeFrame = () => {
     >
 
       <div
+        name="up"
         className="m-0 p-0 hover-cursor-n-resize"
         style={{
           position: "absolute",
@@ -36,7 +34,9 @@ const ResizeFrame = () => {
           console.log('down')
           document.onmousemove = (e) => {
             dispatch({
-              type: "contentImageUpdate"
+              type: "contentImageUpdate",
+              id: active.id,
+              movement: e.movementY
             })
             console.log(e.movementY)
           }
@@ -48,6 +48,7 @@ const ResizeFrame = () => {
       ></div>
 
       <div
+        name="right"
         className="m-0 p-0"
         style={{
           position: "absolute",
@@ -61,6 +62,7 @@ const ResizeFrame = () => {
       ></div>
 
       <div
+        name="bottom"
         className="m-0 p-0"
         style={{
           position: "absolute",
@@ -74,6 +76,7 @@ const ResizeFrame = () => {
       ></div>
 
       <div
+        name="left"
         className="m-0 p-0"
         style={{
           position: "absolute",
