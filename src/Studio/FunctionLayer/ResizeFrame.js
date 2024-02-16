@@ -1,8 +1,13 @@
-import { useApp } from "../../Context";
+import { useApp, useAppDispatch } from "../../Context";
 import "../../static/css/studio.css";
 
 const ResizeFrame = () => {
   const context = useApp();
+  const dispatch = useAppDispatch();
+
+  const whRatio = context.studioMeta.active;
+  console.log(whRatio.width, whRatio.height)
+
   const active = context.studioMeta.active
   return (
     <div
@@ -30,7 +35,10 @@ const ResizeFrame = () => {
         onMouseDown={() => {
           console.log('down')
           document.onmousemove = (e) => {
-            console.log(e.clientX, e.clientY)
+            dispatch({
+              type: "contentImageUpdate"
+            })
+            console.log(e.movementY)
           }
           document.onmouseup = () => {
             document.onmousemove = null;

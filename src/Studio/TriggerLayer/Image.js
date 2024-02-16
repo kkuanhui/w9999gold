@@ -1,17 +1,17 @@
 import { useRef } from "react";
 import "../../static/css/general/events.css";
-import { useAppDispatch } from "../../Context";
+import { useApp, useAppDispatch } from "../../Context";
 
 const Image = ({idx, imageObj}) => {
   const component = useRef(null);
   const dispatch = useAppDispatch();
   const style = {
-        "position": "absolute",
-        "top": imageObj.style.top,
-        "left": imageObj.style.left,
-        "zIndex": imageObj.style.zIndex,
-        "width": `${imageObj.style.width}px`,
-        "height": `${imageObj.style.height}px`
+    "position": "absolute",
+    "top": imageObj.style.top,
+    "left": imageObj.style.left,
+    "zIndex": imageObj.style.zIndex,
+    "width": `${imageObj.style.width}px`,
+    "height": `${imageObj.style.height}px`,
   }
   return(
     <img 

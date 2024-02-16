@@ -457,6 +457,19 @@ const appReducer = (context, action) => {
         },
       };
     }
+    case "contentImageUpdate": {
+      const newContent = context.productContent.children.map(child => {
+        if(child.id === action.id && child.type === "image"){
+          return null
+        }else{
+          return child
+        }
+      })
+      return{
+        ...context,
+        // productContent: [...newContent]
+      }
+    }
 
     // product meta -----
     case "productMetaUpdate": {
