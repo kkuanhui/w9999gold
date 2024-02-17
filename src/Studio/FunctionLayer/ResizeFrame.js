@@ -22,25 +22,6 @@ const ResizeFrame = () => {
     return imageItem
   }
 
-  const reposition = (movementX, movementY) => {
-    let top = activeItem.style.top;
-    let left = activeItem.style.left;
-    left = left + movementX;
-    top = top + movementY;
-    dispatch({
-      type: "contentPos",
-      item: {
-        ...activeItem,
-        style: {
-          ...activeItem.style,
-          top: top,
-          left: left,
-        }
-      },
-    });
-
-  }
-
   return (
     <div
       className="m-0 p-0"
@@ -94,6 +75,17 @@ const ResizeFrame = () => {
           }
         }}
       >
+        <div style={{
+          background: "#fff",
+          border: "1px solid black",
+          height: "3px",
+          width: "10px",
+          borderRadius: "5px",
+          position: "absolute",
+          top: "50%",
+          left: "50%",
+          transform: "translate(-50%, -50%)",
+        }}></div>
       </div>
 
       <div
@@ -121,7 +113,19 @@ const ResizeFrame = () => {
             document.onmouseup = null;
           }
         }}
-      ></div>
+      >
+        <div style={{
+          background: "#fff",
+          border: "1px solid black",
+          width: "3px",
+          height: "10px",
+          borderRadius: "5px",
+          position: "absolute",
+          top: "50%",
+          left: "50%",
+          transform: "translate(-50%, -50%)",
+        }}></div>
+      </div>
 
       <div
         name="bottom"
@@ -148,7 +152,19 @@ const ResizeFrame = () => {
             document.onmouseup = null;
           }
         }}
-      ></div>
+      >
+        <div style={{
+          background: "#fff",
+          border: "1px solid black",
+          height: "3px",
+          width: "10px",
+          borderRadius: "5px",
+          position: "absolute",
+          top: "50%",
+          left: "50%",
+          transform: "translate(-50%, -50%)",
+        }}></div>
+      </div>
 
       <div
         name="left"
@@ -189,7 +205,19 @@ const ResizeFrame = () => {
             document.onmouseup = null;
           }
         }}
-      ></div>
+      >
+        <div style={{
+          background: "#fff",
+          border: "1px solid black",
+          width: "3px",
+          height: "10px",
+          borderRadius: "5px",
+          position: "absolute",
+          top: "50%",
+          left: "50%",
+          transform: "translate(-50%, -50%)",
+        }}></div>
+      </div>
 
     </div>
   );

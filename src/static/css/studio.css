@@ -66,3 +66,16 @@
 .hover-cursor-w-resize:hover {
   cursor: w-resize;
 }
+
+.hover-cursor-ne-resize:hover{
+  cursor: ne-resize;
+}
+.hover-cursor-nw-resize:hover{
+  cursor: nw-resize;
+}
+.hover-cursor-se-resize:hover{
+  cursor: se-resize;
+}
+.hover-cursor-sw-resize:hover{
+  cursor: sw-resize;
+}
