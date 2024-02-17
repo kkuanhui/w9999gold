@@ -2,6 +2,7 @@ import { useApp, useAppDispatch } from "../../Context";
 import "../../static/css/studio.css";
 
 const ResizeFrame = () => {
+
   const context = useApp();
   const active = context.studioMeta.active
   const activeItem = context.productContent.children.filter(ele => ele.id === active.id)[0]
@@ -20,6 +21,26 @@ const ResizeFrame = () => {
     imageItem.style.width = imageItem.style.height / aspectRatio;
     return imageItem
   }
+
+  const reposition = (movementX, movementY) => {
+    let top = activeItem.style.top;
+    let left = activeItem.style.left;
+    left = left + movementX;
+    top = top + movementY;
+    dispatch({
+      type: "contentPos",
+      item: {
+        ...activeItem,
+        style: {
+          ...activeItem.style,
+          top: top,
+          left: left,
+        }
+      },
+    });
+
+  }
+
   return (
     <div
       className="m-0 p-0"
@@ -45,19 +66,35 @@ const ResizeFrame = () => {
           backgroundColor: "black",
         }}
         onMouseDown={() => {
+          let top = activeItem.style.top;
+          let left = activeItem.style.left;
           document.onmousemove = (e) => {
             dispatch({
               type: "contentImageUpdate",
               id: active.id,
-              item: setItemAspectValue(0, e.movementY)
+              item: setItemAspectValue(0, (-1*e.movementY))
             })
+            top = top + e.movementY;
+            left = left + e.movementX;
+            dispatch({
+              type: "contentPos",
+              item: {
+                ...activeItem,
+                style: {
+                  ...activeItem.style,
+                  top: top,
+                  left: left,
+                }
+              },
+            });
           }
           document.onmouseup = () => {
             document.onmousemove = null;
             document.onmouseup = null;
           }
         }}
-      ></div>
+      >
+      </div>
 
       <div
         name="right"
@@ -125,12 +162,27 @@ const ResizeFrame = () => {
           backgroundColor: "black",
         }}
         onMouseDown={() => {
+          let top = activeItem.style.top;
+          let left = activeItem.style.left;
           document.onmousemove = (e) => {
             dispatch({
               type: "contentImageUpdate",
               id: active.id,
-              item: setItemAspectValue(e.movementX, 0)
+              item: setItemAspectValue((-1*e.movementX), 0)
             })
+            top = top + e.movementY;
+            left = left + e.movementX;
+            dispatch({
+              type: "contentPos",
+              item: {
+                ...activeItem,
+                style: {
+                  ...activeItem.style,
+                  top: top,
+                  left: left,
+                }
+              },
+            });
           }
           document.onmouseup = () => {
             document.onmousemove = null;

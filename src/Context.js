@@ -260,6 +260,7 @@ const appReducer = (context, action) => {
           return e;
         }
       });
+      console.log(action.item.style.top, action.item.style.left)
       return {
         ...context,
         productContent: {
@@ -470,6 +471,14 @@ const appReducer = (context, action) => {
         productContent: {
           ...context.productContent,
           children: [...newContent]
+        },
+        studioMeta: {
+          ...context.studioMeta,
+          active: {
+            ...context.studioMeta.active,
+            width: action.item.style.width,
+            height: action.item.style.height,
+          }
         }
       }
     }

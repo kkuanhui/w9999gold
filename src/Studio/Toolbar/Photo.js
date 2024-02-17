@@ -19,9 +19,9 @@ const Photo = () => {
       }}
     >
 
-      <NavItem type={"corp"}>
+      {/* <NavItem type={"corp"}>
         <BiCrop></BiCrop>
-      </NavItem>
+      </NavItem> */}
 
       <NavItem type={"corner"}>
         <PiCornersOutLight />
@@ -53,6 +53,7 @@ const NavItem = ({children, type}) => {
         {children}
       </button>
       <DropDown type={type} isShow={isStyleShow} setIsShow={setIsStyleShow}>
+        <Corner></Corner>
       </DropDown>
     </div>
   );
@@ -95,6 +96,24 @@ const Delete = (props) => {
       }}>
         {props.children}
       </button>
+    </div>
+  )
+}
+
+const Corner = () => {
+  return(
+    <div>
+      
+      <label>
+        圓角
+        <input type="number" style={{
+            width: "30px",
+            height: "30px",
+            border: "1px solid black"
+          }}
+        onInput={(e) => {console.log(e.target.value)}} />
+      </label>
+
     </div>
   )
 }
