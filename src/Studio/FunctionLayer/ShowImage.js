@@ -11,6 +11,7 @@ const EditImage = () => {
       style={{
         width: `${imageObj.style.width}px`,
         height: `${imageObj.style.height}px`,
+        borderRadius: imageObj.style.borderRadius,
         userSelect: `none`,
       }}
       alt="user custom"

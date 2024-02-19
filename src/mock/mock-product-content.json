@@ -70,7 +70,8 @@
         "left": 300,
         "zIndex": 2,
         "width": 150,
-        "height": 100
+        "height": 100,
+        "borderRadius": 30
       },
       "src": "server-name/to/image/steve-jobs.png"
     },

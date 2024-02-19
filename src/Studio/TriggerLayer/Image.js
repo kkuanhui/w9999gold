@@ -10,6 +10,7 @@ const Image = ({idx, imageObj}) => {
     "top": imageObj.style.top,
     "left": imageObj.style.left,
     "zIndex": imageObj.style.zIndex,
+    "borderRadius": imageObj.style.borderRadius,
     "width": `${imageObj.style.width}px`,
     "height": `${imageObj.style.height}px`,
   }

@@ -397,7 +397,7 @@ const appReducer = (context, action) => {
           zIndex: newZIndex,
           left: action.position[0],
           top: action.position[1],
-          // width: "300px"
+          borderRadius: 0,
         },
         src: action.src
       };

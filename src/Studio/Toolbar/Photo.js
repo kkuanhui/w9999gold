@@ -1,8 +1,6 @@
-import { useState, useRef } from "react";
-import { useAppDispatch } from "../../Context";
-
+import { useState, useRef, useEffect } from "react";
+import { useApp, useAppDispatch } from "../../Context";
 import {PiCornersOutLight} from 'react-icons/pi'
-import {BiCrop} from 'react-icons/bi'
 import {AiFillDelete} from "react-icons/ai"
 
 
@@ -19,13 +17,7 @@ const Photo = () => {
       }}
     >
 
-      {/* <NavItem type={"corp"}>
-        <BiCrop></BiCrop>
-      </NavItem> */}
-
-      <NavItem type={"corner"}>
-        <PiCornersOutLight />
-      </NavItem>
+      <CornorRadius />
 
       <Delete>
         <AiFillDelete></AiFillDelete>
@@ -35,9 +27,17 @@ const Photo = () => {
   );
 };
 
-const NavItem = ({children, type}) => {
+const CornorRadius = () => {
+  const context = useApp();
+  const dispatch = useAppDispatch();
+  const active = context.studioMeta.active;
+  const activeItem = context.productContent.children.filter(ele => ele.id === active.id)[0]
+  const [radiusValue, setRadiusValue] = useState(0);
   const [isStyleShow, setIsStyleShow] = useState(false);
   // determin dropdown component display.
+  useEffect(() => {
+    setRadiusValue(activeItem.style.borderRadius)
+  }, [])
   return (
     <div style={{height: "100%"}}>
       <button
@@ -50,20 +50,45 @@ const NavItem = ({children, type}) => {
           setIsStyleShow(!isStyleShow);
         }}
       >
-        {children}
+        <PiCornersOutLight />
       </button>
-      <DropDown type={type} isShow={isStyleShow} setIsShow={setIsStyleShow}>
-        <Corner></Corner>
-      </DropDown>
+      <DropDown isShow={isStyleShow} setIsShow={setIsStyleShow}>
+        <label>
+          圓角
+          <input type="number" 
+            value={radiusValue}
+            style={{
+              width: "30px",
+              height: "30px",
+              border: "1px solid black"
+            }}
+          onInput={(e) => {
+            setRadiusValue(e.target.value)
+            dispatch({
+              type: "contentImageUpdate",
+              id: active.id,
+              item: {
+                ...activeItem, 
+                style: {
+                  ...activeItem.style,
+                  borderRadius: Number(e.target.value)
+                }
+              }
+            })
+          }} 
+        />
+        </label>
+        </DropDown>
     </div>
   );
 };
 
-const DropDown = (props) => {
+
+const DropDown = ({children, isShow, setIsShow}) => {
   const menu = useRef(null)
   const closeMenu = (e)=>{
     if(menu.current && !menu.current.contains(e.target)){
-      props.setIsShow(false)
+      setIsShow(false)
     }
   }
   document.addEventListener('mousedown',closeMenu)
@@ -75,14 +100,14 @@ const DropDown = (props) => {
         height: "200px",
         position: "absolute",
         zIndex: "999",
-        display: props.isShow ? "block" : "none",
+        display: isShow ? "block" : "none",
         borderRadius: "0px 5px 5px 5px",
         border: "1px solid #00873E",
         background: "#FFF",
         boxShadow: "0px 4px 4px 0px rgba(0, 0, 0, 0.25)",
       }}
     >
-      {props.children}
+      {children}
     </div>
   );
 };
@@ -96,24 +121,6 @@ const Delete = (props) => {
       }}>
         {props.children}
       </button>
-    </div>
-  )
-}
-
-const Corner = () => {
-  return(
-    <div>
-      
-      <label>
-        圓角
-        <input type="number" style={{
-            width: "30px",
-            height: "30px",
-            border: "1px solid black"
-          }}
-        onInput={(e) => {console.log(e.target.value)}} />
-      </label>
-
     </div>
   )
 }
