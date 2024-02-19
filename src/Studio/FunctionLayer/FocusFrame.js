@@ -2,7 +2,6 @@ import { useRef, useState, useEffect } from "react";
 import Contextmenu from "./Contextmenu";
 import EditWord from "./EditWord";
 import ShowWord from "./ShowWord";
-import EditImage from "./EditImage";
 import ShowImage from "./ShowImage";
 // css
 import "../../static/css/custom-class.css";
@@ -95,11 +94,7 @@ const FocusOnWhat = ({ isDragging, itemType, onEditing}) => {
       return <ShowWord></ShowWord>;
     }
   } else {
-    if(!isDragging){
-      return <EditImage></EditImage>
-    }else{
-      return <ShowImage></ShowImage>
-    }
+    return <ShowImage></ShowImage>
   }
 };
 

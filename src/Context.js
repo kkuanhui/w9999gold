@@ -260,7 +260,6 @@ const appReducer = (context, action) => {
           return e;
         }
       });
-      console.log(action.item.style.top, action.item.style.left)
       return {
         ...context,
         productContent: {

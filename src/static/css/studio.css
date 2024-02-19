@@ -51,31 +51,10 @@
   font-family: inherit;
 }
 
-.hover-cursor-n-resize:hover {
-  cursor: n-resize;
+.hover-cursor-nesw-resize:hover {
+  cursor: nesw-resize;
 }
 
-.hover-cursor-e-resize:hover {
-  cursor: e-resize;
-}
-
-.hover-cursor-s-resize:hover {
-  cursor: s-resize;
-}
-
-.hover-cursor-w-resize:hover {
-  cursor: w-resize;
-}
-
-.hover-cursor-ne-resize:hover{
-  cursor: ne-resize;
-}
-.hover-cursor-nw-resize:hover{
-  cursor: nw-resize;
-}
-.hover-cursor-se-resize:hover{
-  cursor: se-resize;
-}
-.hover-cursor-sw-resize:hover{
-  cursor: sw-resize;
+.hover-cursor-nwse-resize:hover {
+  cursor: nwse-resize;
 }
